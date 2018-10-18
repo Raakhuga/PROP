@@ -10,8 +10,6 @@ package domain;
  * @author adria
  */
 
-Santi cabron
-
 
 
 public class Subject {
