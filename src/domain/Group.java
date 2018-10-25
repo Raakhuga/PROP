@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package domain;
 
-/**
- *
- * @author raakhuga
- */
+
 public class Group {
     
+    /** Atributtes **/
+    private int num;
+    private int nEst;
+    
+    /** Constructor **/
+    public Group(int num, int nEst){
+        this.num = num;
+        this.nEst = nEst;
+    }
 }
