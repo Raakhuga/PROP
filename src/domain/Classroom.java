@@ -14,8 +14,17 @@ public class Classroom {
         this.capacity = capacity;
         this.ref = ref; 
     }
-    
-   /* public Timetable getTimetable() {
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getRef() {
+        return ref;
+    }
+
+    public Timetable getTimetable() {
         return timetable;
-    }*/
+    }
+    
 }

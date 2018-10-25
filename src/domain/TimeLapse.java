@@ -19,4 +19,26 @@ public class TimeLapse {
         this.classroom = classroom;
         this.group = group;
     }
+
+    public int gettIni() {
+        return tIni;
+    }
+
+    public int gettEnd() {
+        return tEnd;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+    
+    
 }

@@ -1,9 +1,6 @@
 
 package domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Timetable {
     
     /** Atributtes **/
@@ -17,4 +14,18 @@ public class Timetable {
         this.nDays = nDays;
         this.nHours = nHours;
     }
+
+    public TimeLapse[][] getTimetable() {
+        return timetable;
+    }
+
+    public int getnDays() {
+        return nDays;
+    }
+
+    public int getnHours() {
+        return nHours;
+    }
+    
+    
 }

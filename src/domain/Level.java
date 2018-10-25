@@ -12,4 +12,14 @@ public class Level {
     public Level(int num){
         this.num = num;
     }
+
+    public int getNum() {
+        return num;
+    }
+
+    public Subject[] getSubjects() {
+        return subjects;
+    }
+    
+    
 }
