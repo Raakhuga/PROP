@@ -3,10 +3,16 @@ package domain;
 
 
 public class StudyProgram {
-    private String name;
-    private Level[] Levels;
     
-    public StudyProgram(String name){
+    /** Atributtes **/
+    private String name;
+    private Level[] levels;
+    private int nLevels;
+    
+    /** Constructor **/
+    public StudyProgram(String name, int nLevels){
         this.name = name;
+        levels = new Level[nLevels];
+        this.nLevels = nLevels;
     }
 }
