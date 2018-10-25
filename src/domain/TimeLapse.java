@@ -8,16 +8,18 @@ public class TimeLapse {
     private final int tIni;
     private final int tEnd;
     private final String day;
-    private final Classroom classroom;
+    //private final Classroom classroom;
+    private final Subject subject;
     private final Group group;
     
     /** Constructor **/
-    public TimeLapse(int tIni, int tEnd, String day, Classroom classroom, Group group) {
-        this.tIni = tIni;
-        this.tEnd = tEnd;
-        this.day = day;
-        this.classroom = classroom;
-        this.group = group;
+    public TimeLapse() {
+        this.tIni = -1;
+        this.tEnd = -1;
+        this.day = null;
+        //this.classroom = null;
+        this.subject = null;
+        this.group = null;
     }
 
     public int gettIni() {
@@ -32,13 +34,11 @@ public class TimeLapse {
         return day;
     }
 
-    public Classroom getClassroom() {
+    /*public Classroom getClassroom() {
         return classroom;
-    }
+    }*/
 
     public Group getGroup() {
         return group;
     }
-    
-    
 }
