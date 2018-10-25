@@ -15,4 +15,17 @@ public class StudyProgram {
         levels = new Level[nLevels];
         this.nLevels = nLevels;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Level[] getLevels() {
+        return levels;
+    }
+
+    public int getnLevels() {
+        return nLevels;
+    }
+    
 }

@@ -13,4 +13,12 @@ public class Group {
         this.num = num;
         this.nEst = nEst;
     }
+
+    public int getNum() {
+        return num;
+    }
+
+    public int getnEst() {
+        return nEst;
+    }
 }
