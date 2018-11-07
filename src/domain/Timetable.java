@@ -4,7 +4,7 @@ package domain;
 public class Timetable {
     
     /** Atributtes **/
-    private TimeLapse[][] timetable;
+    private GroupSubject[][] timetable;
     private final int nDays;
     //private final int nHours;
     private final int hIni;
@@ -12,14 +12,14 @@ public class Timetable {
     
     /** Constructor **/
     public Timetable(int nDays, int hIni, int hEnd){
-        timetable = new TimeLapse[nDays][hEnd-hIni];
+        timetable = new GroupSubject[nDays][hEnd-hIni];
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
         //this.nHours = nHours;
     }
 
-    public TimeLapse[][] getTimetable() {
+    public GroupSubject[][] getTimetable() {
         return timetable;
     }
 
@@ -39,12 +39,12 @@ public class Timetable {
         return hEnd;
     }
     
-    public void fill(int day, int hIni, int hEnd, TimeLapse lapse) {
+    public void fill(int day, int hIni, int hEnd, GroupSubject lapse) {
         for (int i = hIni; i < hEnd; i++) timetable[day][i] = lapse;
     }
     
     public void timeBanned(int day, int hIni, int hEnd) {
-        TimeLapse banned = new TimeLapse();
+        GroupSubject banned = new GroupSubject();
         for (int i = hIni; i < hEnd; i++) timetable[day][i] = banned;
     }
     

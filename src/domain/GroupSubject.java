@@ -2,7 +2,7 @@
 package domain;
 
 
-public class TimeLapse {
+public class GroupSubject {
     
     /** Atributtes **/
     //private final int tIni;
@@ -11,15 +11,17 @@ public class TimeLapse {
     //private final Classroom classroom;
     private final Subject subject;
     private final Group group;
+    private final int nMat;
     
     /** Constructor **/
-    public TimeLapse() {
+    public GroupSubject() {
         //this.tIni = -1;
         //this.tEnd = -1;
         //this.day = null;
         //this.classroom = null;
         this.subject = null;
         this.group = null;
+        this.nMat = -1;
     }
 
     /*public int gettIni() {

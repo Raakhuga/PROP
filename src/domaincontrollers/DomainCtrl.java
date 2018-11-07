@@ -15,7 +15,7 @@ import domain.Group;
 import domain.Level;
 import domain.StudyProgram;
 import domain.Subject;
-import domain.TimeLapse;
+import domain.GroupSubject;
 import domain.Timetable;
 
 /** Class for the controller of the domain **/
