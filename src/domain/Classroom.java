@@ -27,5 +27,9 @@ public class Classroom {
     public Timetable getTimetable() {
         return timetable;
     }
+
+    public void setTimetable(Timetable timetable) {
+        this.timetable = timetable;
+    }
     
 }

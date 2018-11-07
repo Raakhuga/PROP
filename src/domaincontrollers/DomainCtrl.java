@@ -17,6 +17,7 @@ import domain.StudyProgram;
 import domain.Subject;
 import domain.GroupSubject;
 import domain.Timetable;
+import java.util.logging.Logger;
 
 /** Class for the controller of the domain **/
 public class DomainCtrl {
@@ -26,5 +27,10 @@ public class DomainCtrl {
     
     /** Constructor **/
     public DomainCtrl(){
+        initializeDomainCtrl();
     }
+    
+    public void initializeDomainCtrl(){
+        
+    }   
 }

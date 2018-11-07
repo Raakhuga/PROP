@@ -6,16 +6,21 @@ public class Subject {
     
     /** Atributtes **/
     private String name;
+    private Level level;
     
     /** Constructor **/
-    public Subject(String name){
+    public Subject(String name, Level level){
         this.name = name;
+        this.level = level;
     }
 
+    /** Public methods **/
     public String getName() {
         return name;
     }
-    
-    /** Public methods **/
-    
+
+    public Level getLevel() {
+        return level;
+    }
+       
 }

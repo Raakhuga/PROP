@@ -5,21 +5,24 @@ package domain;
 public class Level {
     
     /** Atributtes **/
-    private int num;
+    private int iden;
     private Subject[] subjects;
     
     /** Constructor **/
-    public Level(int num){
-        this.num = num;
+    public Level(int iden){
+        this.iden = iden;
     }
 
-    public int getNum() {
-        return num;
+    public int getIden() {
+        return iden;
     }
 
     public Subject[] getSubjects() {
         return subjects;
     }
-    
+
+    public void setSubjects(Subject[] subjects) {
+        this.subjects = subjects;
+    }
     
 }
