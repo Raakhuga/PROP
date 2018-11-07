@@ -12,10 +12,9 @@ public class Subject {
         this.name = name;
     }
 
+    /** Public methods **/
     public String getName() {
         return name;
     }
-    
-    /** Public methods **/
     
 }
