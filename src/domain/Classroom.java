@@ -10,10 +10,10 @@ public class Classroom {
     private Timetable timetable;
       
     /** Constructor **/
-    public Classroom(int capacity, String ref, int nDays, int nHours){
+    public Classroom(int capacity, String ref, int nDays, int hIni, int hEnd){
         this.capacity = capacity;
         this.ref = ref;
-        this.timetable = new Timetable(nDays, nHours);
+        this.timetable = new Timetable(nDays, hIni, hEnd);
     }
 
     public int getCapacity() {
