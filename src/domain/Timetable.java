@@ -28,7 +28,10 @@ public class Timetable {
     }
     
     public void fill(int day, int hIni, int hEnd, TimeLapse lapse){
-        for (int i = hIni; i < hEnd; i++) timetable[day][hour] = lapse;
+
+        for (int i = hIni; i < hEnd; i++) timetable[day][i] = lapse;
     }
+    
+    public void timeBanned(){}
     
 }
