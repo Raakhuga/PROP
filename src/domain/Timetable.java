@@ -27,5 +27,8 @@ public class Timetable {
         return nHours;
     }
     
+    public void fill(int day, int hIni, int, hEnd; TimeLapse lapse){
+        for (int i = hIni; i < hEnd; i++) timetable[day][hour] = lapse;
+    }
     
 }
