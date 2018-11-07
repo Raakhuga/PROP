@@ -1,6 +1,10 @@
 
 package domain;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class Classroom {
     
@@ -32,4 +36,14 @@ public class Classroom {
         this.timetable = timetable;
     }
     
+    public void save() throws IOException {
+        String file = "state.txt";
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(writer);
+        bw.write("Class");
+        bw.write(ref);
+        bw.write(capacity);
+        timetable.save();
+        bw.close();
+    }
 }

@@ -1,5 +1,8 @@
 
 package domain;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class StudyProgram {
@@ -27,5 +30,16 @@ public class StudyProgram {
     public int getnLevels() {
         return nLevels;
     }
+    
+    public void save() throws IOException {
+        String file = "state.txt";
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(writer);
+        bw.write("StudyProgram");
+        bw.write(name);
+        for (int i = 0; i < levels.length; i++) levels[i].save();
+        bw.write(nLevels);
+        bw.close(); 
+    }  
     
 }

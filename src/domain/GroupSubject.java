@@ -1,6 +1,10 @@
 
 package domain;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class GroupSubject {
     
@@ -42,6 +46,17 @@ public class GroupSubject {
 
     public Group getGroup() {
         return group;
+    }
+    
+    public void save() throws IOException {
+        String file = "state.txt";
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(writer);
+        bw.write("GroupSubject");
+        bw.write(subject.getName());
+        bw.write(group.getNum());
+        bw.write(nMat);
+        bw.close();
     }
 
     /*public void FillTime(Classroom Class) {

@@ -1,5 +1,9 @@
 
 package domain;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class Timetable {
     
@@ -48,4 +52,16 @@ public class Timetable {
         for (int i = hIni; i < hEnd; i++) timetable[day][i] = banned;
     }
     
+    public void save() throws IOException{
+        String file = "state.txt";
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(writer);
+        bw.write("Timetable");
+        bw.write(nDays);
+        bw.write(hIni);
+        bw.write(hEnd);
+        for (int i = 0; i < nDays; i++) 
+            for (int j = 0; j < hEnd-hIni; j++) timetable[i][j].save();
+        bw.close(); 
+    }
 }

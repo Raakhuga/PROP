@@ -1,6 +1,9 @@
 
 package domain;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Level {
     
@@ -25,4 +28,13 @@ public class Level {
         this.subjects = subjects;
     }
     
+    public void save() throws IOException {
+        String file = "state.txt";
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(writer);
+        bw.write("Level");
+        bw.write(iden);
+        for (int i = 0; i < subjects.length; i++) subjects[i].save();
+        bw.close();  
+    }
 }
