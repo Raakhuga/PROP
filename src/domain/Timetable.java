@@ -26,6 +26,10 @@ public class Timetable {
     public GroupSubject[][] getTimetable() {
         return timetable;
     }
+    
+    public GroupSubject getGroupSubject(int day, int hour) {
+        return timetable[day][hour];
+    }
 
     public int getnDays() {
         return nDays;
@@ -43,12 +47,16 @@ public class Timetable {
         return hEnd;
     }
     
-    public void fill(int day, int hIni, int hEnd, GroupSubject lapse) {
-        for (int i = hIni; i < hEnd; i++) timetable[day][i] = lapse;
+    public int fill(int day, int hIni, int hEnd, GroupSubject lapse) {
+        for (int i = hIni; i < hEnd; i++){
+            if (timetable[day][i].getnMat() != -1) timetable[day][i] = lapse;
+            else return -1;
+        }
+        return 0;
     }
     
     public void timeBanned(int day, int hIni, int hEnd) {
-        GroupSubject banned = new GroupSubject();
+        GroupSubject banned = new GroupSubject("banned");
         for (int i = hIni; i < hEnd; i++) timetable[day][i] = banned;
     }
     

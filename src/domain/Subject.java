@@ -3,12 +3,15 @@ package domain;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import javafx.util.Pair;
 /** Class for the subjects **/
 public class Subject {
     
     /** Atributtes **/
-    private String name;
-    private Level level;
+    private final String name;
+    private final Level level;
+    private int hours;
+    private Pair<String, Integer> nSessions;
     
     /** Constructor **/
     public Subject(String name, Level level){

@@ -15,6 +15,9 @@ public class GroupSubject {
     //private final Classroom classroom;
     private final Subject subject;
     private final Group group;
+    private final boolean teoria;
+    private final boolean lab;
+    private final boolean problems;
     private final int nMat;
     
     /** Constructor **/
@@ -25,9 +28,41 @@ public class GroupSubject {
         //this.classroom = null;
         this.subject = null;
         this.group = null;
-        this.nMat = -1;
+        this.nMat = 0;
+        this.teoria = false;
+        this.lab = false;
+        this.problems = false;
+    }
+    
+    public GroupSubject(String t) {
+        if (t == "banned") {
+            this.subject = null;
+            this.group = null;
+            this.nMat = -1;
+            this.teoria = false;
+            this.lab = false;
+            this.problems = false;
+        }
+    }
+    
+    public GroupSubject(Subject subject, Group group, int nMat, boolean teoria, boolean lab, boolean problems) {
+        //this.tIni = -1;
+        //this.tEnd = -1;
+        //this.day = null;
+        //this.classroom = null;
+        this.subject = subject;
+        this.group = group;
+        this.nMat = nMat;
+        this.teoria = teoria;
+        this.lab = lab;
+        this.problems = problems;
     }
 
+    public boolean isBanned() {
+        if (nMat != -1) return false;
+        return true;
+    }
+    
     /*public int gettIni() {
         return tIni;
     }*/
@@ -43,9 +78,29 @@ public class GroupSubject {
     /*public Classroom getClassroom() {
         return classroom;
     }*/
+    
+    public Subject getSubject() {
+        return subject;
+    }
 
     public Group getGroup() {
         return group;
+    }
+    
+    public int getnMat() {
+        return nMat;
+    }
+    
+    public boolean getTeoria() {
+        return teoria;
+    }
+    
+    public boolean getLab() {
+        return lab;
+    }
+    
+    public boolean getProblems() {
+        return problems;
     }
     
     public void save() throws IOException {

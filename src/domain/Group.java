@@ -8,21 +8,15 @@ import java.io.IOException;
 public class Group {
     
     /** Atributtes **/
-    private int num;
-    private int nEst;
+    public int num;
     
     /** Constructor **/
-    public Group(int num, int nEst){
+    public Group(int num){
         this.num = num;
-        this.nEst = nEst;
     }
 
     public int getNum() {
         return num;
-    }
-
-    public int getnEst() {
-        return nEst;
     }
     
     public void save() throws IOException {
@@ -31,7 +25,6 @@ public class Group {
         BufferedWriter bw = new BufferedWriter(writer);
         bw.write("Group");
         bw.write(num);
-        bw.write(nEst);
         bw.close(); 
     }
 }
