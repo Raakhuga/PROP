@@ -1,9 +1,11 @@
 
 package domain;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import javafx.util.Pair;
+
 /** Class for the subjects **/
 public class Subject {
     

@@ -1,22 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package domain;
 
-/**
- *
- * @author Raakhuga
- */
+
 public class Restrictions {
+    
+    /** Attributes **/
     public Timetable actual;
     public Timetable tNew;
     public StudyProgram SP;
     public boolean[] rBase;
     
     
-    
+    /** Constructor **/
     public Restrictions(Timetable actual, Timetable tNew) {
         this.actual = actual;
         this.tNew = tNew;
@@ -38,11 +33,15 @@ public class Restrictions {
             if (!teoria ) return false;
         }
         //se solapan dos assignaturas del mismo nivel
-        else if (actual.getGroupSubject(day, hour).getnMat() > 0 && 
-                actual.getGroupSubject(day, hour).getSubject().getLevel() == 
-                tNew.getGroupSubject(day, hour).getSubject().getLevel()) return false;
+        else if (sameLevel(day, hour)) return false;
         else if (actual.);
         return true;
+    }
+    
+    private boolean sameLevel(int day, int hour){
+        return (actual.getGroupSubject(day, hour).getnMat() > 0 && 
+                actual.getGroupSubject(day, hour).getSubject().getLevel() == 
+                tNew.getGroupSubject(day, hour).getSubject().getLevel());
     }
     
     public add(){}
