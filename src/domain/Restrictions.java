@@ -40,9 +40,7 @@ public class Restrictions {
             return groupTimetable.getGroupSubject(day, hour).getSubject().getLevel() == GSNew.getSubject().getLevel();
         }
         else {
-            for(int i = 0; i< classrooms.length; i++) {
-                GroupSubject GSact = classrooms[i].getTimetable().getGroupSubject(day, hour);
-            }
+            return
         }
     }
     
@@ -63,12 +61,19 @@ public class Restrictions {
         return true;
     }
     
-    private void banDay(int dia) {
+    private void banDia(int dia) {
         if (classTimetable.getRestrictions(4)){
             classTimetable.timeBanned(dia, groupTimetable.gethIni(), groupTimetable.gethEnd());
         }
     }
     private void ban
+    
+    private void as(){
+    }
+    
+    private void sdsadf() {
+    
+    }
     
     public add(){}
             
