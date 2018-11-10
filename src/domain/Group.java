@@ -9,10 +9,17 @@ public class Group {
     
     /** Atributtes **/
     public int num;
+    public Timetable groupTimetable;
     
     /** Constructor **/
-    public Group(int num){
+    public Group(int num, int nDays, int hIni, int hEnd){
         this.num = num;
+        groupTimetable = new Timetable(nDays, hIni, hEnd);
+    }
+    
+    public Group(int num, Timetable groupTimetable){
+        this.num = num;
+        groupTimetable = groupTimetable;
     }
 
     public int getNum() {

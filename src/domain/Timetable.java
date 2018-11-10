@@ -14,6 +14,7 @@ public class Timetable {
     //private final int nHours;
     private final int hIni;
     private final int hEnd;
+    public boolean Restrictions[];
     
     /** Constructor **/
     public Timetable(int nDays, int hIni, int hEnd){
@@ -21,6 +22,7 @@ public class Timetable {
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
+        for(int i = 0; i < 5; i++) Restrictions[i] = true;
         //this.nHours = nHours;
     }
 
@@ -46,6 +48,10 @@ public class Timetable {
     
     public int gethEnd() {
         return hEnd;
+    }
+    
+    public boolean getRestrictions(int i){
+        return Restrictions[i];
     }
     
     public int fill(int day, int hIni, int hEnd, GroupSubject lapse) {
