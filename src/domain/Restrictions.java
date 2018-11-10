@@ -63,11 +63,12 @@ public class Restrictions {
         return true;
     }
     
-    private void banDia(int dia) {
+    private void banDay(int dia) {
         if (classTimetable.getRestrictions(4)){
             classTimetable.timeBanned(dia, groupTimetable.gethIni(), groupTimetable.gethEnd());
         }
     }
+    private void ban
     
     public add(){}
             
