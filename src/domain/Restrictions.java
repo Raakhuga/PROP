@@ -68,12 +68,7 @@ public class Restrictions {
     }
     private void ban
     
-    private void as(){
-    }
-    
-    private void sdsadf() {
-    
-    }
+    private void asdflkasdf(){}
     
     public add(){}
             
