@@ -9,7 +9,8 @@ public class Level {
     
     /** Atributtes **/
     private int iden;
-    private Subject[] subjects;
+    private Subject subjects[];
+    private Group groups[];
     
     /** Constructor **/
     public Level(int iden){
@@ -24,7 +25,7 @@ public class Level {
         return subjects;
     }
 
-    public void setSubjects(Subject[] subjects) {
+    public void setSubjects(Subject subjects[]) {
         this.subjects = subjects;
     }
     

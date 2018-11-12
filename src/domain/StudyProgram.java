@@ -9,7 +9,7 @@ public class StudyProgram {
     
     /** Atributtes **/
     private String name;
-    private Level[] levels;
+    private Level levels[];
     private int nLevels;
     
     /** Constructor **/
@@ -31,7 +31,12 @@ public class StudyProgram {
         return nLevels;
     }
     
-    public addLevels()
+    public void addLevels() {
+        for(int i = 0; i < nLevels; i++) {
+            levels[i] = new Level(i);
+            
+        }
+    }
     
     public void save() throws IOException {
         String file = "state.txt";
