@@ -11,7 +11,7 @@ public class subGroup extends Group {
         this.sNum = sNum;
     }
     
-    public addSubject()
+    public void addSubject() {}
     
     public int getsNum() {
         return sNum;

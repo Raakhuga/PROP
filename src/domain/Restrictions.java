@@ -7,20 +7,21 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
  * @author hasee
  */
 public class Restrictions {
-    public boolean banned;
-    public List<String> bansubjects;
-    public List<Integer> groups;
-    public List<String> banclassrooms;
+    private boolean banned;
+    private Set<String> bansubjects;
+    private Set<String> banclassrooms;
+    private Set<Integer> groups;
     
     public Restrictions() {
         banned = false;
-        bansubjects = new ArrayList<String>();
+        bansubjects = new Set<String>();
         groups = new ArrayList<Integer>();
         banclassrooms = new ArrayList<String>();
     }

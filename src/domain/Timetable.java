@@ -10,19 +10,19 @@ public class Timetable {
     
     /** Atributtes **/
     private GroupSubject[][] timetable;
+    public Restrictions restrictions[][];
     private final int nDays;
     //private final int nHours;
     private final int hIni;
     private final int hEnd;
-    public boolean Restrictions[];
     
     /** Constructor **/
     public Timetable(int nDays, int hIni, int hEnd){
         timetable = new GroupSubject[nDays][hEnd-hIni];
+        restrictions = new Restrictions[nDays][hEnd-hIni];
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
-        for(int i = 0; i < 5; i++) Restrictions[i] = true;
         //this.nHours = nHours;
     }
 
@@ -50,20 +50,24 @@ public class Timetable {
         return hEnd;
     }
     
-    public boolean getRestrictions(int i){
-        return Restrictions[i];
+    public Restrictions[][] getRestrictions() {
+        return restrictions;
     }
     
     public int fill(int day, int hIni, int hEnd, GroupSubject lapse) {
         for (int i = hIni; i < hEnd; i++){
-            if (timetable[day][i].getnMat() != -1) timetable[day][i] = lapse;
+            if (!restrictions[day][i].getBanned()) timetable[day][i] = lapse;
             else return -1;
         }
         return 0;
     }
     
     public void timeBanned(int day, int hIni, int hEnd) {
-        for (int i = hIni; i < hEnd; i++) restrictions[day][i] = ;
+        for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(true);
+    }
+    
+    public void unbanTime(int day, int hIni, int hEnd) {
+        for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(false);
     }
     
     public void save() throws IOException{
