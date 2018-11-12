@@ -15,7 +15,7 @@ public class GroupSubject {
     //private final Classroom classroom;
     private final Subject subject;
     private final Group group;
-    private final boolean teoria;
+    private final boolean theory;
     private final boolean lab;
     private final boolean problems;
     private final int nMat;
@@ -29,7 +29,7 @@ public class GroupSubject {
         this.subject = null;
         this.group = null;
         this.nMat = 0;
-        this.teoria = false;
+        this.theory = false;
         this.lab = false;
         this.problems = false;
     }
@@ -39,13 +39,13 @@ public class GroupSubject {
             this.subject = null;
             this.group = null;
             this.nMat = -1;
-            this.teoria = false;
+            this.theory = false;
             this.lab = false;
             this.problems = false;
         }
     }*/
     
-    public GroupSubject(Subject subject, Group group, int nMat, boolean teoria, boolean lab, boolean problems) {
+    public GroupSubject(Subject subject, Group group, int nMat, boolean theory, boolean lab, boolean problems) {
         //this.tIni = -1;
         //this.tEnd = -1;
         //this.day = null;
@@ -53,7 +53,7 @@ public class GroupSubject {
         this.subject = subject;
         this.group = group;
         this.nMat = nMat;
-        this.teoria = teoria;
+        this.theory = theory;
         this.lab = lab;
         this.problems = problems;
     }
@@ -91,8 +91,8 @@ public class GroupSubject {
         return nMat;
     }
     
-    public boolean getTeoria() {
-        return teoria;
+    public boolean getTheory() {
+        return theory;
     }
     
     public boolean getLab() {

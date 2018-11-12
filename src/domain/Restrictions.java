@@ -5,8 +5,7 @@
  */
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -21,31 +20,52 @@ public class Restrictions {
     
     public Restrictions() {
         banned = false;
-        bansubjects = new Set<String>();
-        groups = new ArrayList<Integer>();
-        banclassrooms = new ArrayList<String>();
+        bansubjects = new HashSet<String>();
+        banclassrooms = new HashSet<String>();
+        groups = new HashSet<Integer>();
     }
     
     public void setBanned(boolean banned) {
         this.banned = banned;
     }
     
-    public void addClassroom(String ref){
+    public void banClassroom(String ref){
         banclassrooms.add(ref);
     }
-    public void addGroup(int num) {
+    
+    public void banGroup(int num) {
         groups.add(num);
     }
-    public void addSubject(String name) {
+    
+    public void banSubject(String name) {
         bansubjects.add(name);
     }
-     public void deleteClassroom(String ref){
+    
+    public void unbanClassroom(String ref){
         banclassrooms.remove(ref);
     }
-    public void deleteGroup(int num) {
+     
+    public void unbanGroup(int num) {
         groups.remove(num);
     }
-    public void deleteSubject(String name) {
+    
+    public void unbanSubject(String name) {
         bansubjects.remove(name);
+    }
+   
+    public boolean subjectBanned(String name) {
+        return bansubjects.contains(name);
+    }
+    
+    public boolean classroomBanned(String ref) {
+        return banclassrooms.contains(ref);
+    }
+    
+    public boolean groupsBanned(int num) {
+        return groups.contains(num);
+    }
+    
+    public boolean getBanned() {
+        return banned;
     }
 }

@@ -12,12 +12,20 @@ public class Classroom {
     private int capacity;
     private String ref;
     private Timetable timetable;
+    private boolean Theory;
+    private boolean Lab;
+    private final boolean theory;
+    private final boolean lab;
+    private final boolean problems;
       
     /** Constructor **/
-    public Classroom(int capacity, String ref, int nDays, int hIni, int hEnd){
+    public Classroom(int capacity, String ref, int nDays, int hIni, int hEnd, boolean theory, boolean lab, boolean problems){
         this.capacity = capacity;
         this.ref = ref;
         this.timetable = new Timetable(nDays, hIni, hEnd);
+        this.theory = theory;
+        this.lab = lab;
+        this.problems = problems;
     }
 
     public int getCapacity() {

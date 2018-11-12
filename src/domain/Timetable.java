@@ -63,11 +63,15 @@ public class Timetable {
     }
     
     public void timeBanned(int day, int hIni, int hEnd) {
-        for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(true);
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(true);
     }
     
     public void unbanTime(int day, int hIni, int hEnd) {
-        for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(false);
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(false);
+    }
+    
+    private boolean hourOk(int day, int hIni, int hEnd) {
+        return (0 <= day && day > nDays) && (hIni < hEnd && hIni >= this.hIni && hEnd <= this.hEnd);
     }
     
     public void save() throws IOException{
