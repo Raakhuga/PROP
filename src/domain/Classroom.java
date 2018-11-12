@@ -12,8 +12,6 @@ public class Classroom {
     private int capacity;
     private String ref;
     private Timetable timetable;
-    private boolean Theory;
-    private boolean Lab;
     private final boolean theory;
     private final boolean lab;
     private final boolean problems;

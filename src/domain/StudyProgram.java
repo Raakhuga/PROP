@@ -3,27 +3,30 @@ package domain;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Iterator;
 
 
 public class StudyProgram {
     
     /** Atributtes **/
     private String name;
-    private Level[] levels;
+    private Set<Level> levels;
     private int nLevels;
     
     /** Constructor **/
-    public StudyProgram(String name, int nLevels){
+    public StudyProgram(String name){
         this.name = name;
-        this.levels = new Level[nLevels];
-        this.nLevels = nLevels;
+        this.levels = new HashSet<Level>();
+        this.nLevels = 0;
     }
 
     public String getName() {
         return name;
     }
 
-    public Level[] getLevels() {
+    public Set<Level> getLevels() {
         return levels;
     }
 
@@ -31,7 +34,17 @@ public class StudyProgram {
         return nLevels;
     }
     
-    public addLevels()
+    public void setLevels(Set<Level> levels) {
+        this.levels = levels;
+        this.nLevels = levels.size();
+    }
+    
+    public void addLevel(Level level){
+        if (!levels.contains(level)){
+            levels.add(level);
+            nLevels++;
+        }
+    }
     
     public void save() throws IOException {
         String file = "state.txt";
@@ -39,7 +52,10 @@ public class StudyProgram {
         BufferedWriter bw = new BufferedWriter(writer);
         bw.write("StudyProgram");
         bw.write(name);
-        for (int i = 0; i < levels.length; i++) levels[i].save();
+        Iterator<Level> it = levels.iterator();
+        while(it.hasNext()){
+            it.next().save();
+        }
         bw.write(nLevels);
         bw.close(); 
     }  

@@ -12,7 +12,6 @@ public class Timetable {
     private GroupSubject[][] timetable;
     public Restrictions restrictions[][];
     private final int nDays;
-    //private final int nHours;
     private final int hIni;
     private final int hEnd;
     
@@ -23,7 +22,6 @@ public class Timetable {
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
-        //this.nHours = nHours;
     }
 
     public GroupSubject[][] getTimetable() {
@@ -37,10 +35,6 @@ public class Timetable {
     public int getnDays() {
         return nDays;
     }
-
-    /*public int getnHours() {
-        return nHours;
-    }*/
     
     public int gethIni() {
         return hIni;

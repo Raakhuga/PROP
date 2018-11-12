@@ -9,10 +9,6 @@ import java.io.IOException;
 public class GroupSubject {
     
     /** Atributtes **/
-    //private final int tIni;
-    //private final int tEnd;
-    //private final String day;
-    //private final Classroom classroom;
     private final Subject subject;
     private final Group group;
     private final boolean theory;
