@@ -107,6 +107,7 @@ public class CTRLRestrictions {
                 }
             }
         }
+        return false;
     }
     
     private void banDay(int day, Timetable classTimetable) {
@@ -134,6 +135,10 @@ public class CTRLRestrictions {
     
     private boolean classroomBanned(int day, int hIni, int hEnd, Timetable TB, String ref) {
         return TB.classroomBanned(day, hIni, hEnd, ref);
+    }
+    
+    public void modify_base_rest(int i, boolean state) {
+        rBase[i] = state;
     }
     
     public void add_rest_extra(int i) {
