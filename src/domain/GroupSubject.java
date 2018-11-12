@@ -34,7 +34,7 @@ public class GroupSubject {
         this.problems = false;
     }
     
-    public GroupSubject(String t) {
+    /*public GroupSubject(String t) {
         if (t == "banned") {
             this.subject = null;
             this.group = null;
@@ -43,7 +43,7 @@ public class GroupSubject {
             this.lab = false;
             this.problems = false;
         }
-    }
+    }*/
     
     public GroupSubject(Subject subject, Group group, int nMat, boolean teoria, boolean lab, boolean problems) {
         //this.tIni = -1;

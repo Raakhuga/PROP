@@ -63,8 +63,7 @@ public class Timetable {
     }
     
     public void timeBanned(int day, int hIni, int hEnd) {
-        GroupSubject banned = new GroupSubject("banned");
-        for (int i = hIni; i < hEnd; i++) timetable[day][i] = banned;
+        for (int i = hIni; i < hEnd; i++) restrictions[day][i] = ;
     }
     
     public void save() throws IOException{
