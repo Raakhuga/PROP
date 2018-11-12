@@ -15,7 +15,7 @@ public class StudyProgram {
     /** Constructor **/
     public StudyProgram(String name, int nLevels){
         this.name = name;
-        levels = new Level[nLevels];
+        this.levels = new Level[nLevels];
         this.nLevels = nLevels;
     }
 
@@ -30,6 +30,8 @@ public class StudyProgram {
     public int getnLevels() {
         return nLevels;
     }
+    
+    public addLevels()
     
     public void save() throws IOException {
         String file = "state.txt";
