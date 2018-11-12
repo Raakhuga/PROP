@@ -42,20 +42,33 @@ public class CTRLRestrictions {
     
     public boolean classroomRestrictions(int day, int hIni, int hEnd, Classroom classroom, GroupSubject GSNew){
         //El aula no esta disponible en dicho lapso de tiempo
-        if (!hourOk(classroom.getTimetable(), day, hIni, hEnd)) return false;
+        if (!hourOk(classroom.getTimetable(), day, hIni, hEnd) && rBase[0]) return false;
+        //El aula tiene horas bloqueadas en dicho lapso
+        else if (isBanned(day, hIni, hEnd, classroom.getTimetable()) && rExtra[0]) return false;
+        //El aula tiene bloqueado al grupo en dicha franja horaria
+        else if (groupBanned(day, hIni, hEnd, classroom.getTimetable(), GSNew.getGroup().getNum()) && rExtra[2]) return false;
         //El aula es demasiado pequeña
-        else if (classroomTooSmall(classroom, GSNew) && rExtra[0]) return false;
+        else if (classroomTooSmall(classroom, GSNew) && rBase[1]) return false;
         return true;
     }
     
     public boolean subjectRestrictions(int day, int hIni, int hEnd, Timetable groupTimetable, GroupSubject GSNew) {
-        if (sameLevel(day, hIni, hEnd, groupTimetable, GSNew) && rExtra[1]) return false;
+        //La materia esta bloqueada en dicha franja horaria
+        if (subjectBanned(day, hIni, hEnd, groupTimetable, GSNew.getSubject().getName()) && rExtra[1]) return false;
+        //Hay solapamiento de dos asignaturas de un mismo nivel
+        if (sameLevel(day, hIni, hEnd, groupTimetable, GSNew) && rBase[1]) return false;
         return true;
     }
     
-    public boolean groupRestrictions(int day, int hIni, int hEnd, Timetable groupTimetable, GroupSubject GSNew) {
-        if (!hourOk(groupTimetable, day, hIni, hEnd)) return false;
-        else if (LabAfterTheory(day, hIni, groupTimetable, GSNew) && rExtra[2]) return false;
+    public boolean groupRestrictions(int day, int hIni, int hEnd, Classroom classroom, Timetable groupTimetable, GroupSubject GSNew) {
+        //El grupo no puede tener clase en dicho lapso de tiempo
+        if (!hourOk(groupTimetable, day, hIni, hEnd) && rBase[0]) return false;
+        //El grupo tiene horas bloqueadas en dicho lapso
+        else if (isBanned(day, hIni, hEnd, groupTimetable) && rExtra[0]) return false;
+        //El grupo no puede ir a esa clase en dicha franja horaria
+        else if (classroomBanned(day, hIni, hEnd, groupTimetable, classroom.getRef()) && rExtra[3]) return false;
+        //Hay clase de Lab antes que la de teoria
+        else if (LabBeforeTheory(day, hIni, groupTimetable, GSNew) && rExtra[1]) return false;
         return true;
     }
     
@@ -75,7 +88,7 @@ public class CTRLRestrictions {
     
     
     //hay case de laboratorio antes que de teoria
-    private boolean LabAfterTheory(int day, int hour, Timetable groupTimetable, GroupSubject GSNew) {
+    private boolean LabBeforeTheory(int day, int hour, Timetable groupTimetable, GroupSubject GSNew) {
         if (GSNew.getLab()){
             int h = groupTimetable.gethEnd() - groupTimetable.gethIni();
             for (int i = 0; i < day; i++) {
@@ -107,9 +120,27 @@ public class CTRLRestrictions {
         return (0 <= day && day > TB.getnDays()) && (hIni < hEnd && hIni >= TB.gethIni() && hEnd <= TB.gethEnd());
     }
     
-    public add(){}
-            
-    public modify() {}
-            
-    public delete() {}
+    private boolean isBanned(int day, int hIni, int hEnd, Timetable TB) {
+        return TB.isBanned(day, hIni, hEnd);
+    }
+    
+    private boolean subjectBanned(int day, int hIni, int hEnd, Timetable TB, String name) {
+        return TB.subjectBanned(day, hIni, hEnd, name);
+    }
+    
+    private boolean groupBanned(int day, int hIni, int hEnd, Timetable TB, int num) {
+        return TB.groupBanned(day, hIni, hEnd, num);
+    }
+    
+    private boolean classroomBanned(int day, int hIni, int hEnd, Timetable TB, String ref) {
+        return TB.classroomBanned(day, hIni, hEnd, ref);
+    }
+    
+    public void add_rest_extra(int i) {
+        rExtra[i] = true;
+    }   
+    
+    public void remove_rest_extra(int i) {
+        rExtra[i] = false;
+    }
 }

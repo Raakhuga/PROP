@@ -61,7 +61,7 @@ public class Restrictions {
         return banclassrooms.contains(ref);
     }
     
-    public boolean groupsBanned(int num) {
+    public boolean groupBanned(int num) {
         return groups.contains(num);
     }
     

@@ -74,6 +74,34 @@ public class Timetable {
         return (0 <= day && day > nDays) && (hIni < hEnd && hIni >= this.hIni && hEnd <= this.hEnd);
     }
     
+    public boolean isBanned(int day, int hIni, int hEnd) {
+        if (hourOk(day, hIni, hEnd)) 
+            for(int i = hIni; i < hEnd; i++) 
+                if(restrictions[day][i].getBanned()) return true;
+        return false;
+    }
+    
+    public boolean subjectBanned(int day, int hIni, int hEnd, String name) {
+        if (hourOk(day, hIni, hEnd))
+            for(int i = hIni; i < hEnd; i++)
+                if(restrictions[day][i].subjectBanned(name)) return true;
+        return false;
+    }
+    
+    public boolean groupBanned(int day, int hIni, int hEnd, int num) {
+        if (hourOk(day, hIni, hEnd))
+            for(int i = hIni; i < hEnd; i++)
+                if(restrictions[day][i].groupBanned(num)) return true;
+        return false;
+    }
+    
+    public boolean classroomBanned(int day, int hIni, int hEnd, String ref) {
+        if (hourOk(day, hIni, hEnd))
+            for(int i = hIni; i < hEnd; i++)
+                if(restrictions[day][i].classroomBanned(ref)) return true;
+        return false;
+    }
+    
     public void save() throws IOException{
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);
