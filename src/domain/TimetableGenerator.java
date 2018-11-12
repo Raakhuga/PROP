@@ -36,8 +36,8 @@ public class TimetableGenerator {
         classrooms.add(new Classroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems));
     }
     
-    public void addStudyProgram(String name, int nLevels){
-        programs.add(new StudyProgram(name, nLevels));
+    public void addStudyProgram(String name){
+        programs.add(new StudyProgram(name));
     }
     
     public void addGroup(int num, int nDays, int hIni, int hEnd) {
