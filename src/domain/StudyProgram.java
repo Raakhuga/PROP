@@ -31,10 +31,14 @@ public class StudyProgram {
         return nLevels;
     }
     
-    public void addLevels() {
+    public void addLevels(Subject AllSubjects[][]) {
         for(int i = 0; i < nLevels; i++) {
             levels[i] = new Level(i);
-            
+            int size = AllSubjects[i].length;
+            Subject subjects[] = new Subject[size];
+            for(int j = 0; j < size; j++)
+                subjects[j] = AllSubjects[j][i];
+            levels[i].setSubjects(subjects);
         }
     }
     
