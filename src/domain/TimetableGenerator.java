@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 public class TimetableGenerator {
-    private final static int NUM_OF_SUBGROUPS;
+    private final static int NUM_OF_SUBGROUPS = 5;
             
     public List<Classroom> classrooms;
     public List<StudyProgram> programs;
@@ -109,8 +109,9 @@ public class TimetableGenerator {
     }
     
     public void addGroup(int num, int nDays, int hIni, int hEnd) {
-        groups.add(new Group(num, nDays, hIni, hEnd));
-        for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, ))
+        Group aux = new Group(num, nDays, hIni, hEnd); 
+        groups.add(aux);
+        for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, aux.getTimetable()));
     }
     
     public void addSubject() {}
