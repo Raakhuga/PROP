@@ -29,6 +29,10 @@ public class Level {
         this.subjects = subjects;
     }
     
+    public void setGroups(Group groups[]) {
+        this.groups = groups;
+    }
+    
     public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);

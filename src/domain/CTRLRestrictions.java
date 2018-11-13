@@ -11,8 +11,8 @@ public class CTRLRestrictions {
     public GroupSubject GSNew;
     public int hours;
     public StudyProgram SP;*/
-    private final static int NUM_RESTR_EXTRA = 7;
-    private final static int NUM_RESTR_BASE = 7;
+    private final static int NUM_RESTR_EXTRA = 4;
+    private final static int NUM_RESTR_BASE = 2;
     public boolean rBase[];
     private boolean rExtra[];
     
