@@ -64,10 +64,6 @@ public class subGroup {
         this.type[day][hour] = type;
     }
     
-    public void addSubject(int day, int hour, Subject subject) {
-        subGroupTimetable[day][hour] = subject;
-    }
-    
     public Subject[][] getGroupTimetable() {
         return subGroupTimetable;
     }
