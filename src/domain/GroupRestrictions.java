@@ -5,31 +5,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Restrictions {
+public class GroupRestrictions {
     private boolean banned;
     private Set<String> bansubjects;
     private Set<String> banclassrooms;
-    private Set<Integer> groups;
     
-    public Restrictions() {
+    public GroupRestrictions() {
         banned = false;
         bansubjects = new HashSet<String>();
         banclassrooms = new HashSet<String>();
-        groups = new HashSet<Integer>();
     }
     
     public void setBanned(boolean banned) {
         this.banned = banned;
     }
-    
+
     public void banClassroom(String ref){
         banclassrooms.add(ref);
     }
-    
-    public void banGroup(int num) {
-        groups.add(num);
-    }
-    
+
     public void banSubject(String name) {
         bansubjects.add(name);
     }
@@ -38,10 +32,6 @@ public class Restrictions {
         banclassrooms.remove(ref);
     }
      
-    public void unbanGroup(int num) {
-        groups.remove(num);
-    }
-    
     public void unbanSubject(String name) {
         bansubjects.remove(name);
     }
@@ -53,11 +43,7 @@ public class Restrictions {
     public boolean classroomBanned(String ref) {
         return banclassrooms.contains(ref);
     }
-    
-    public boolean groupBanned(int num) {
-        return groups.contains(num);
-    }
-    
+
     public boolean getBanned() {
         return banned;
     }
