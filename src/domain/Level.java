@@ -30,6 +30,10 @@ public class Level {
         return subjects;
     }
 
+    public List<Group> getGroups() {
+        return groups;
+    }
+    
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
@@ -46,17 +50,17 @@ public class Level {
         System.out.println ("Insert the fisrt available hour and the last one of the Group: " + id);
         hIni = in.nextInt();
         hEnd = in.nextInt();
-        Group actualGroup = new Group(id, nDays, hIni, hEnd);
-        groups.add(actualGroup);
+        Group actualGroup = new Group(id, nDays, hIni, hEnd, nStudentsGroup);
         nSubGroups = nStudentsGroup / nMaxStudentsSubgroups;
         if (nStudentsGroup % nMaxStudentsSubgroups != 0) nSubGroups++;
         //añadir subrupos
         int i = 1;
         for(remaining = nStudentsGroup; remaining > nMaxStudentsSubgroups; remaining -= nMaxStudentsSubgroups){
-            groups.add(new subGroup(id, id+i, actualGroup.getTimetable()));
+            actualGroup.addSubGroup(new subGroup(id+i, nDays, hIni, hEnd, nMaxStudentsSubgroups));
             i++;
         }
-        if (remaining > 0) groups.add(new subGroup(id, id+i, actualGroup.getTimetable()));        
+        if (remaining > 0) actualGroup.addSubGroup(new subGroup(id+i, nDays, hIni, hEnd, remaining));  
+        groups.add(actualGroup);
     }
     
     public void fillLevel(boolean manual) {

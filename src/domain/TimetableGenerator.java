@@ -14,6 +14,7 @@ public class TimetableGenerator {
     public List<Classroom> classrooms;
     public List<StudyProgram> programs;
     public List<Group> groups;
+    public List<GroupSubject> problem;
     public int nMaxStudentsGroup;
     public int nMaxStudentsSubgroup;
         
@@ -86,7 +87,7 @@ public class TimetableGenerator {
         }*/       
     }
     
-    public void generateAllGS(StudyProgram SP) {
+    public void generateAllGroups(StudyProgram SP) {
         Map<Integer,Level> levels = SP.getLevels();
         Iterator<Level> it = levels.values().iterator();
         List<Subject> subjects;
@@ -109,6 +110,38 @@ public class TimetableGenerator {
                 }
                 if (remaining > 0) act.addGroup(i*10, remaining, nMaxStudentsSubgroup);
                 i++;
+            }
+        }
+    }
+    
+    public void generateAllGS() {
+        Iterator<StudyProgram> SPit = programs.iterator();
+        while(SPit.hasNext()) {
+            StudyProgram SPact = SPit.next();
+            Map<Integer, Level> levels = SPact.getLevels();
+            int SPsize = levels.size();
+            for(int i = 0; i < SPsize; i++) {
+                List<Group> groups = levels.get(i).getGroups();
+                Iterator<Group> Git = groups.iterator();
+                while(Git.hasNext()) {
+                    Group Gact = Git.next();
+                    List<Subject> subjects = levels.get(i).getSubjects();
+                    Iterator<Subject> Sit = subjects.iterator();
+                    while(Sit.hasNext()) {
+                        Subject Sact = Sit.next();
+                        List<subGroup> subGroups = Gact.getsubGroups();
+                        Iterator<subGroup> SGit = subGroups.iterator();
+                        for(int j = 0; j < Sact.getTheoryH(); j++) 
+                            problem.add(new GroupSubject(Sact, Gact, Gact.getnMat(), true, false, false));
+                        while(SGit.hasNext()) {
+                            subGroup SGact = SGit.next();
+                            for(int j = 0; j < Sact.getLaboratoryH(); j++)
+                                problem.add(new GroupSubject(Sact, SGact, SGact.getnMat(), false, true, false));
+                            for(int j = 0; j < Sact.getProblemsH(); j++)
+                                problem.add(new GroupSubject(Sact, SGact, SGact.getnMat(), false, false, true));
+                        }
+                    }
+                }
             }
         }
     }
