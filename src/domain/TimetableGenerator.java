@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Iterator;
 
@@ -28,11 +30,15 @@ public class TimetableGenerator {
     }
     
     public void manualLoad() {
-        System.out.println ("Insert the number of available Classrooms");
         Scanner in = new Scanner(System.in);
         String ref, type, name;
         int nClassrooms, nSP, nGroups, capacity, nDays, hIni, hEnd, nLevels, id;
         boolean theory, lab, problems;
+        System.out.println ("Insert the number of maximum Students that a Group can have");
+        nMaxStudentsGroup = in.nextInt();
+        System.out.println ("Insert the number of maximum Students that a SubGroup can have");
+        nMaxStudentsSubgroup = in.nextInt();
+        System.out.println ("Insert the number of available Classrooms");
         nClassrooms = in.nextInt();
         for(int i = 0; i < nClassrooms; i++) {
             System.out.println("Insert the reference of the Classroom number: " + i);
@@ -72,7 +78,7 @@ public class TimetableGenerator {
             nLevels = in.nextInt();
             addStudyProgram(name, nLevels, true);
         }
-        System.out.println ("Insert the number of available Groups");
+        /*System.out.println ("Insert the number of available Groups");
         nGroups = in.nextInt();
         for(int i = 0; i < nGroups; i++) {
             System.out.println ("Insert the identifier of the Group number: " + i);
@@ -83,11 +89,34 @@ public class TimetableGenerator {
             hIni = in.nextInt();
             hEnd = in.nextInt();
             addGroup(id, nDays, hIni, hEnd);
-        }        
+        }*/       
     }
     
-    public void generateAllGS() {
-        
+    public void generateAllGS(StudyProgram SP) {
+        Map<Integer,Level> levels = SP.getLevels();
+        Iterator<Level> it = levels.values().iterator();
+        List<Subject> subjects;
+        int nGroups, nSubGroups, nStudents, i, remaining;
+        Subject sact;
+        Scanner in = new Scanner(System.in);
+        while(it.hasNext()) {
+            Level act = it.next();
+            subjects = act.getSubjects();
+            Iterator<Subject> it2 = subjects.iterator();
+            i = 1;
+            while(it2.hasNext()){
+                sact = it2.next();
+                System.out.println("Insert the number of Students that will course the Subject: " + sact.getName());
+                nStudents = in.nextInt();
+                nGroups = nStudents/nMaxStudentsGroup;
+                if (nStudents%nMaxStudentsGroup != 0) nGroups++;
+                for(remaining = nStudents; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
+                    act.addGroup(i*10, nMaxStudentsGroup, nMaxStudentsSubgroup);
+                }
+                if (remaining > 0) act.addGroup(i*10, remaining, nMaxStudentsSubgroup);
+                i++;
+            }
+        }
     }
     
     public void load() {
