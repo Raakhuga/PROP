@@ -11,15 +11,17 @@ public class Group {
     
     /** Atributtes **/
     public int num;
-    public Timetable groupTimetable;
+    public Subject[][] groupTimetable;
+    public Restrictions[][] groupRestrictions;
     private List<subGroup> subGroups;
     private int nMat;
     
     /** Constructor **/
     public Group(int num, int nDays, int hIni, int hEnd, int nMat){
         this.num = num;
-        groupTimetable = new Timetable(nDays, hIni, hEnd);
-        subGroups = new ArrayList<subGroup>();
+        groupTimetable = new Subject[nDays][hEnd-hIni];
+        groupRestrictions = new Restrictions[nDays][hEnd-hIni];
+        subGroups = new ArrayList<>();
         this.nMat = nMat;
     }
     
@@ -32,7 +34,7 @@ public class Group {
         return num;
     }
     
-    public Timetable getTimetable() {
+    public Subject[][] getTimetable() {
         return groupTimetable;
     }
     
@@ -44,9 +46,17 @@ public class Group {
         return nMat;
     }
     
-    public void setTimetable(Timetable groupTimetable) {
+    public void setTimetable(Subject[][] groupTimetable) {
         this.groupTimetable = groupTimetable;
     } 
+    
+    public void setSubject(int day, int hour, Subject subject){
+        groupTimetable[day][hour] = subject;
+    }
+    
+    public void removeSubject(int day, int hour){
+        groupTimetable[day][hour] = null;
+    }
     
     public void addSubGroup(subGroup subGroup) {
         subGroups.add(subGroup);

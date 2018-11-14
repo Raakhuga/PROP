@@ -211,8 +211,8 @@ public class TimetableGenerator {
                                     // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
                                     classroom.getTimetable().setGStoTimetable(gs, i, j);
                                     
-                                    if (gs.isSubGroup()) gs.getSubGroup().getTimetable().setGStoTimetable(gs, i, j);
-                                    else gs.getGroup().getTimetable().setGStoTimetable(gs, i, j);
+                                    if (gs.isSubGroup()) gs.getSubGroup().setSubject(i, j, gs.getSubject());
+                                    else gs.getGroup().setSubject(i, j, gs.getSubject());
 
                                     // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j
                                     fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1);
@@ -221,8 +221,8 @@ public class TimetableGenerator {
                                     
                                     classroom.getTimetable().removeHourOfTimetable(i, j);
 
-                                    if (gs.isSubGroup()) gs.getSubGroup().getTimetable().removeHourOfTimetable(i, j);
-                                    else gs.getGroup().getTimetable().removeHourOfTimetable(i, j);
+                                    if (gs.isSubGroup()) gs.getSubGroup().removeSubject(i, j);
+                                    else gs.getGroup().removeSubject(i, j);
                                 }
                             }
                         }
