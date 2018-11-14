@@ -9,10 +9,6 @@ import java.io.IOException;
 public class GroupSubject {
     
     /** Atributtes **/
-    //private final int tIni;
-    //private final int tEnd;
-    //private final String day;
-    //private final Classroom classroom;
     private final Subject subject;
     private final Group group;
     private final subGroup subGroup;
@@ -23,10 +19,6 @@ public class GroupSubject {
     
     /** Constructor **/
     public GroupSubject() {
-        //this.tIni = -1;
-        //this.tEnd = -1;
-        //this.day = null;
-        //this.classroom = null;
         this.subject = null;
         this.group = null;
         this.subGroup = null;
@@ -36,22 +28,7 @@ public class GroupSubject {
         this.problems = false;
     }
     
-    /*public GroupSubject(String t) {
-        if (t == "banned") {
-            this.subject = null;
-            this.group = null;
-            this.nMat = -1;
-            this.theory = false;
-            this.lab = false;
-            this.problems = false;
-        }
-    }*/
-    
     public GroupSubject(Subject subject, Group group, int nMat, boolean theory, boolean lab, boolean problems) {
-        //this.tIni = -1;
-        //this.tEnd = -1;
-        //this.day = null;
-        //this.classroom = null;
         this.subject = subject;
         this.group = group;
         this.subGroup = null;
@@ -76,22 +53,6 @@ public class GroupSubject {
         return true;
     }
     
-    /*public int gettIni() {
-        return tIni;
-    }*/
-
-    /*public int gettEnd() {
-        return tEnd;
-    }*/
-
-    /*public String getDay() {
-        return day;
-    }*/
-
-    /*public Classroom getClassroom() {
-        return classroom;
-    }*/
-    
     public Subject getSubject() {
         return subject;
     }
@@ -104,19 +65,19 @@ public class GroupSubject {
         return nMat;
     }
     
-    public boolean getTheory() {
+    public boolean theoryGroup() {
         return theory;
     }
     
-    public boolean getLab() {
+    public boolean labGroup() {
         return lab;
     }
     
-    public boolean getProblems() {
+    public boolean problemsGroup() {
         return problems;
     }
     
-    public void save() throws IOException {
+    /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(writer);
@@ -125,7 +86,7 @@ public class GroupSubject {
         bw.write(group.getNum());
         bw.write(nMat);
         bw.close();
-    }
+    }*/
 
     /*public void FillTime(Classroom Class) {
         Timetable t = Class.getTimetable();

@@ -4,11 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 
 public class StudyProgram {
@@ -23,12 +21,16 @@ public class StudyProgram {
         this.name = name;
         this.levels = new HashMap<Integer, Level>();
         this.nLevels = 0;
-        //for(int i = 0; i < nLevels; i++) this.levels.add(i, new Level(i));
     }
 
     public String getName() {
         return name;
     }
+    
+    public Level getLevel(int id){
+        return levels.get(id);
+    }
+
 
     public Map<Integer, Level> getLevels() {
         return levels;
@@ -36,6 +38,19 @@ public class StudyProgram {
 
     public int getnLevels() {
         return nLevels;
+    }
+    
+    public void addLevels(boolean manual) {
+        nLevels++;
+        Integer val = new Integer(nLevels);
+        Level act = new Level(nLevels);
+        act.fillLevel(manual);
+        levels.put(val, act);
+    }
+    
+    public void removeLevel(int id) {
+        nLevels--;
+        levels.remove(id);
     }
     
     /*public void fillLevel(boolean manual) {
@@ -59,19 +74,7 @@ public class StudyProgram {
         }
     }*/
     
-    public void addLevels(boolean manual) {
-        nLevels++;
-        Level act = new Level(nLevels);
-        act.fillLevel(manual);
-        levels.put(nLevels, act);
-    }
-    
-    public void removeLevel(int id) {
-        nLevels--;
-        levels.remove(id);
-    }
-    
-    public void save() throws IOException {
+    /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(writer);
@@ -81,5 +84,5 @@ public class StudyProgram {
         while(it.hasNext()) it.next().save();
         bw.write(nLevels);
         bw.close(); 
-    }  
+    }  */
 }

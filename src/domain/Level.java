@@ -83,7 +83,7 @@ public class Level {
         setSubjects(subjects);
     }
     
-    public void save() throws IOException {
+    /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(writer);
@@ -92,5 +92,5 @@ public class Level {
         Iterator<Subject> it = subjects.iterator();
         while(it.hasNext()) it.next().save();
         bw.close();  
-    }
+    }*/
 }

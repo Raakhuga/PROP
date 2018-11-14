@@ -36,6 +36,10 @@ public class Subject {
     public int getLevel() {
         return level;
     }
+
+    public int getHours() {
+        return hours;
+    }
     
     public int getTheoryH() {
         return nSessions[THEORY];
@@ -69,13 +73,19 @@ public class Subject {
             System.out.println ("Error: The sum of the different type of hours and the total number of hours are not equal");
     }
     
-    public void save() throws IOException {
+    /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(writer);
         bw.write("Subject");
         bw.write(name);
+        bw.write(level.getIden());
+        bw.write(hours);
+        for (int i = 0; i < sessions.length; ++i){
+            bw.write(sessions[i].getKey());
+            bw.write(sessions[i].getValue());
+        }
         bw.close();       
-    }
+    }*/
     
 }
