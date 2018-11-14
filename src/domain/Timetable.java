@@ -13,7 +13,7 @@ public class Timetable {
     
     /** Atributtes **/
     private GroupSubject timetable[][];
-    public Restrictions restrictions[][];
+    public ClassRestrictions restrictions[][];
     private final int nDays;
     private final int hIni;
     private final int hEnd;
@@ -21,7 +21,7 @@ public class Timetable {
     /** Constructor **/
     public Timetable(int nDays, int hIni, int hEnd){
         timetable = new GroupSubject[nDays][hEnd-hIni];
-        restrictions = new Restrictions[nDays][hEnd-hIni];
+        restrictions = new ClassRestrictions[nDays][hEnd-hIni];
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
@@ -47,7 +47,7 @@ public class Timetable {
         return hEnd;
     }
     
-    public Restrictions[][] getRestrictions() {
+    public ClassRestrictions[][] getRestrictions() {
         return restrictions;
     }
     
@@ -79,31 +79,18 @@ public class Timetable {
         return (0 <= day && day > nDays) && (hIni < hEnd && hIni >= this.hIni && hEnd <= this.hEnd);
     }
     
-    public boolean isBanned(int day, int hIni, int hEnd) {
-        if (hourOk(day, hIni, hEnd)) 
-            for(int i = hIni; i < hEnd; i++) 
-                if(restrictions[day][i].getBanned()) return true;
+    public boolean isBanned(int day, int hour) {
+        if(restrictions[day][hour].getBanned()) return true;
         return false;
     }
     
-    public boolean subjectBanned(int day, int hIni, int hEnd, String name) {
-        if (hourOk(day, hIni, hEnd))
-            for(int i = hIni; i < hEnd; i++)
-                if(restrictions[day][i].subjectBanned(name)) return true;
+    public boolean subjectBanned(int day, int hour, String name) {
+        if(restrictions[day][hour].subjectBanned(name)) return true;
         return false;
     }
     
-    public boolean groupBanned(int day, int hIni, int hEnd, int num) {
-        if (hourOk(day, hIni, hEnd))
-            for(int i = hIni; i < hEnd; i++)
-                if(restrictions[day][i].groupBanned(num)) return true;
-        return false;
-    }
-    
-    public boolean classroomBanned(int day, int hIni, int hEnd, String ref) {
-        if (hourOk(day, hIni, hEnd))
-            for(int i = hIni; i < hEnd; i++)
-                if(restrictions[day][i].classroomBanned(ref)) return true;
+    public boolean groupBanned(int day, int hour, int num) {
+        if(restrictions[day][hour].groupBanned(num)) return true;
         return false;
     }
     

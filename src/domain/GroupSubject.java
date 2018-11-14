@@ -38,9 +38,9 @@ public class GroupSubject {
         this.problems = problems;
     }
     
-    public GroupSubject(Subject subject, subGroup subGroup, int nMat, boolean theory, boolean lab, boolean problems) {
+    public GroupSubject(Subject subject, Group group, subGroup subGroup, int nMat, boolean theory, boolean lab, boolean problems) {
         this.subject = subject;
-        this.group = null;
+        this.group = group;
         this.subGroup = subGroup;
         this.nMat = nMat;
         this.theory = theory;
@@ -53,12 +53,20 @@ public class GroupSubject {
         return true;
     }
     
+    public boolean issubGroup() {
+        return this.subGroup != null;
+    }
+    
     public Subject getSubject() {
         return subject;
     }
 
     public Group getGroup() {
         return group;
+    }
+    
+    public subGroup getsubGroup() {
+        return subGroup;
     }
     
     public int getnMat() {

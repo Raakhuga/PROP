@@ -11,31 +11,44 @@ public class Group {
     
     /** Atributtes **/
     public int num;
-    public Timetable groupTimetable;
+    private GroupRestrictions GroupRestrictions[][];
+    private Subject GroupTimetable[][];
+    private String type[][];
+    private int nDays;
+    private int hEnd;
+    private int hIni;
     private List<subGroup> subGroups;
     private int nMat;
     
     /** Constructor **/
     public Group(int num, int nDays, int hIni, int hEnd, int nMat){
         this.num = num;
-        groupTimetable = new Timetable(nDays, hIni, hEnd);
+        this.GroupRestrictions = new GroupRestrictions[nDays][hEnd-hIni];
+        this.GroupTimetable = new Subject[nDays][hEnd-hIni];
+        this.type = new String[nDays][hEnd-hIni];
+        this.nDays = nDays;
+        this.hIni = hIni;
+        this.hEnd = hEnd;
         subGroups = new ArrayList<subGroup>();
         this.nMat = nMat;
-    }
-    
-    public Group(int num, Timetable groupTimetable){
-        this.num = num;
-        groupTimetable = groupTimetable;
     }
 
     public int getNum() {
         return num;
     }
-    
-    public Timetable getTimetable() {
-        return groupTimetable;
+
+    public int getnDays() {
+        return nDays;
     }
-    
+
+    public int gethEnd() {
+        return hEnd;
+    }
+
+    public int gethIni() {
+        return hIni;
+    }
+
     public List<subGroup> getsubGroups() {
         return subGroups;
     }
@@ -44,9 +57,13 @@ public class Group {
         return nMat;
     }
     
-    public void setTimetable(Timetable groupTimetable) {
-        this.groupTimetable = groupTimetable;
-    } 
+    public String getType(int day, int hour) {
+        return this.type[day][hour];
+    }
+    
+    public void setType(int day, int hour, String type) {
+        this.type[day][hour] = type;
+    }
     
     public void addSubGroup(subGroup subGroup) {
         subGroups.add(subGroup);
@@ -54,6 +71,26 @@ public class Group {
     
     public void removeSubGroup(subGroup subGroup) {
         subGroups.add(subGroup);
+    }
+    
+    public GroupRestrictions[][] getRestrictions() {
+        return GroupRestrictions;
+    }
+    
+    public void addSubject(int day, int hour, Subject subject) {
+        GroupTimetable[day][hour] = subject;
+    }
+    
+    public Subject[][] getGroupTimetable() {
+        return GroupTimetable;
+    }
+    
+    public Subject getSubject (int day, int hour) {
+        return GroupTimetable[day][hour];
+    }
+    
+    public GroupRestrictions getRestriction(int day, int hour) {
+        return GroupRestrictions[day][hour];
     }
     
     public void save() throws IOException {

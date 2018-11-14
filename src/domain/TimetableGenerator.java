@@ -142,9 +142,9 @@ public class TimetableGenerator {
                         while(SGit.hasNext()) {
                             subGroup SGact = SGit.next();
                             for(int j = 0; j < Sact.getLaboratoryH(); j++)
-                                problem.add(new GroupSubject(Sact, SGact, SGact.getnMat(), false, true, false));
+                                problem.add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, true, false));
                             for(int j = 0; j < Sact.getProblemsH(); j++)
-                                problem.add(new GroupSubject(Sact, SGact, SGact.getnMat(), false, false, true));
+                                problem.add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, false, true));
                         }
                     }
                 }
