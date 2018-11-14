@@ -40,6 +40,10 @@ public class Group {
     public int getnDays() {
         return nDays;
     }
+    
+    public Subject[][] getTimetable() {
+        return GroupTimetable;
+    }
 
     public int gethEnd() {
         return hEnd;
@@ -63,6 +67,14 @@ public class Group {
     
     public void setType(int day, int hour, String type) {
         this.type[day][hour] = type;
+    }
+
+    public void setTimetable(Subject[][] groupTimetable) {
+        this.GroupTimetable = groupTimetable;
+    } 
+    
+    public void removeSubject(int day, int hour){
+        GroupTimetable[day][hour] = null;
     }
     
     public void addSubGroup(subGroup subGroup) {

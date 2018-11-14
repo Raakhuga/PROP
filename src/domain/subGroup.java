@@ -28,6 +28,18 @@ public class subGroup {
         return subGroupRestrictions;
     }
     
+    public Subject[][] getTimetable() {
+        return subGroupTimetable;
+    }
+    
+    public void setSubject(int day, int hour, Subject subject){
+        subGroupTimetable[day][hour] = subject;
+    }
+    
+    public void removeSubject(int day, int hour){
+        subGroupTimetable[day][hour] = null;
+    }
+    
     public int getnMat() {
         return nMat;
     }
