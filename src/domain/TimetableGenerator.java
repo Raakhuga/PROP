@@ -1,6 +1,10 @@
 
 package domain;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,4 +55,16 @@ public class TimetableGenerator {
         else error;*/
     }
     
+    /*public void load(String file) throws FileNotFoundException, IOException{
+        String s;
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        TimetableGenerator TTG;
+        if ((s = br.readLine())!=null) {
+            
+            TTG.addClassroom(0, s, 0, 0, 0, true, true, true);
+            
+        }
+        br.close();
+    }*/
 }

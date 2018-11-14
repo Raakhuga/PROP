@@ -3,6 +3,9 @@ package domain;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 
@@ -96,6 +99,17 @@ public class Timetable {
         return false;
     }
     
+    /*public void load() throws IOException{
+        String s;
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        if ((s = br.readLine())!=null) 
+        while((s = br.readLine())!=null) {
+            ;
+        }
+        br.close();
+    }
+    
     public void save() throws IOException{
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);
@@ -107,5 +121,5 @@ public class Timetable {
         for (int i = 0; i < nDays; i++) 
             for (int j = 0; j < hEnd-hIni; j++) timetable[i][j].save();
         bw.close(); 
-    }
+    }*/
 }
