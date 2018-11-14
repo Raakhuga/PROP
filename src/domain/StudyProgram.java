@@ -3,8 +3,10 @@ package domain;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -13,22 +15,22 @@ public class StudyProgram {
     
     /** Atributtes **/
     private String name;
-    private Set<Level> levels;
+    private Map<Integer, Level> levels;
     private int nLevels;
     
     /** Constructor **/
-    public StudyProgram(String name, int nLevels){
+    public StudyProgram(String name){
         this.name = name;
-        this.levels = new HashSet<Level>();
-        this.nLevels = nLevels;
-        for(int i = 0; i < nLevels; i++) this.levels.add(new Level(i));
+        this.levels = new HashMap<Integer, Level>();
+        this.nLevels = 0;
+        //for(int i = 0; i < nLevels; i++) this.levels.add(i, new Level(i));
     }
 
     public String getName() {
         return name;
     }
 
-    public Set<Level> getLevels() {
+    public Map<Integer, Level> getLevels() {
         return levels;
     }
 
@@ -36,8 +38,8 @@ public class StudyProgram {
         return nLevels;
     }
     
-    public void fillLevels() {
-        Iterator<Level> it = levels.iterator();
+    /*public void fillLevel(boolean manual) {
+        Iterator<> it = levels.iterator();
         while(it.hasNext()){
             Level act = it.next();
             System.out.println ("Insert the number of Subjects of the Level: " + act.getIden());
@@ -49,20 +51,25 @@ public class StudyProgram {
                 System.out.println ("Insert the name of the Subject num: " + j + "of the Level: " + act.getIden());
                 name = in.next();
                 subjects[j] = new Subject(name, act);
+                if(manual)subjects[j].manualFillHours();
             }
             act.setSubjects(subjects);
             it.remove();
             levels.add(act);
         }
-    }
+    }*/
     
-    public void addLevels() {
+    public void addLevels(boolean manual) {
         nLevels++;
-        levels.add(new Level(nLevels));
+        Integer val = new Integer(nLevels);
+        Level act = new Level(nLevels);
+        act.fillLevel(manual);
+        levels.put(val, act);
     }
     
     public void removeLevel(int id) {
-        levels.remove(new Level(id));
+        nLevels--;
+        levels.remove(id);
     }
     
     public void save() throws IOException {
@@ -71,7 +78,7 @@ public class StudyProgram {
         BufferedWriter bw = new BufferedWriter(writer);
         bw.write("StudyProgram");
         bw.write(name);
-        Iterator<Level> it = levels.iterator();
+        Iterator<Level> it = levels.values().iterator();
         while(it.hasNext()) it.next().save();
         bw.write(nLevels);
         bw.close(); 

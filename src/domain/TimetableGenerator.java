@@ -62,7 +62,7 @@ public class TimetableGenerator {
             name = in.next();
             System.out.println ("Insert the number of Levels of the StudyProgram number: " + i);
             nLevels = in.nextInt();
-            addStudyProgram(name, nLevels);
+            addStudyProgram(name, nLevels, true);
         }
         System.out.println ("Insert the number of available Groups");
         nGroups = in.nextInt();
@@ -102,9 +102,9 @@ public class TimetableGenerator {
         classrooms.add(new Classroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems));
     }
     
-    public void addStudyProgram(String name, int nLevels){
-        StudyProgram aux = new StudyProgram(name, nLevels);
-        aux.fillLevels();
+    public void addStudyProgram(String name, int nLevels, boolean manual){
+        StudyProgram aux = new StudyProgram(name);
+        for (int i = 0; i < nLevels; i++) aux.addLevels(manual);
         programs.add(aux);
     }
     
