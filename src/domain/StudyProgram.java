@@ -61,10 +61,9 @@ public class StudyProgram {
     
     public void addLevels(boolean manual) {
         nLevels++;
-        Integer val = new Integer(nLevels);
         Level act = new Level(nLevels);
         act.fillLevel(manual);
-        levels.put(val, act);
+        levels.put(nLevels, act);
     }
     
     public void removeLevel(int id) {

@@ -21,9 +21,10 @@ public class Subject {
     private int nSessions[];
     
     /** Constructor **/
-    public Subject(String name, int level){
+    public Subject(String name, int level, int hours){
         this.name = name;
         this.level = level;
+        this.hours = hours;
         this.nSessions = new int[3];
     }
 
@@ -37,13 +38,23 @@ public class Subject {
     }
     
     public void manualFillHours() {
+        int act, total;
+        total = 0;
         System.out.println ("Insert the number of Theory hours for the Subject: " + name);
         Scanner in = new Scanner(System.in);
-        nSessions[THEORY] = in.nextInt();
+        act = in.nextInt();
+        nSessions[THEORY] = act;
+        total += act;
         System.out.println ("Insert the number of Laboratory hours for the Subject: " + name);
-        nSessions[LABORATORY]  = in.nextInt();
+        act = in.nextInt();
+        nSessions[LABORATORY]  = act;
+        total += act;
         System.out.println ("Insert the number of Problem hours for the Subject: " + name);
-        nSessions[PROBLEMS] = in.nextInt();
+        act = in.nextInt();
+        nSessions[PROBLEMS] = act;
+        total += act;
+        if (total != hours) 
+            System.out.println ("Error: The sum of the different type of hours and the total number of hours are not equal");
     }
     
     public void save() throws IOException {
