@@ -10,7 +10,7 @@ public class subGroup {
     
     public subGroup(int num, int nDays, int hIni, int hEnd, int nMat) {
         this.subGroupTimetable = new Subject[nDays][hEnd-hIni];
-        this.Num = Num;
+        this.Num = num;
         this.nMat = nMat;
     }
     
