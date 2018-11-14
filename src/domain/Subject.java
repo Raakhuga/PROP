@@ -41,6 +41,18 @@ public class Subject {
         return hours;
     }
     
+    public int getTheoryH() {
+        return nSessions[THEORY];
+    }
+    
+    public int getLaboratoryH() {
+        return nSessions[LABORATORY];
+    }
+    
+    public int getProblemsH() {
+        return nSessions[PROBLEMS];
+    }
+    
     public void manualFillHours() {
         int act, total;
         total = 0;

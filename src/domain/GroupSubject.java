@@ -11,6 +11,7 @@ public class GroupSubject {
     /** Atributtes **/
     private final Subject subject;
     private final Group group;
+    private final subGroup subGroup;
     private final boolean theory;
     private final boolean lab;
     private final boolean problems;
@@ -20,6 +21,7 @@ public class GroupSubject {
     public GroupSubject() {
         this.subject = null;
         this.group = null;
+        this.subGroup = null;
         this.nMat = 0;
         this.theory = false;
         this.lab = false;
@@ -29,6 +31,17 @@ public class GroupSubject {
     public GroupSubject(Subject subject, Group group, int nMat, boolean theory, boolean lab, boolean problems) {
         this.subject = subject;
         this.group = group;
+        this.subGroup = null;
+        this.nMat = nMat;
+        this.theory = theory;
+        this.lab = lab;
+        this.problems = problems;
+    }
+    
+    public GroupSubject(Subject subject, subGroup subGroup, int nMat, boolean theory, boolean lab, boolean problems) {
+        this.subject = subject;
+        this.group = null;
+        this.subGroup = subGroup;
         this.nMat = nMat;
         this.theory = theory;
         this.lab = lab;
