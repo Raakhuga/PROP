@@ -172,11 +172,11 @@ public class TimetableGenerator {
         programs.add(aux);
     }
     
-    public void addGroup(int num, int nDays, int hIni, int hEnd) {
+    /*public void addGroup(int num, int nDays, int hIni, int hEnd) {
         Group aux = new Group(num, nDays, hIni, hEnd); 
         groups.add(aux);
         for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, aux.getTimetable()));
-    }
+    }*/
     
     public void addSubject() {}
     
