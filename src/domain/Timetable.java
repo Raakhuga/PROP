@@ -59,6 +59,14 @@ public class Timetable {
         return 0;
     }
     
+    public void setGStoTimetable(GroupSubject gs, int day, int hour){
+        timetable[day][hour] = gs;
+    }
+    
+    public void removeHourOfTimetable(int day, int hour){
+        timetable[day][hour] = new GroupSubject();
+    }
+    
     public void timeBanned(int day, int hIni, int hEnd) {
         if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(true);
     }

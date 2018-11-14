@@ -26,6 +26,10 @@ public class StudyProgram {
     public String getName() {
         return name;
     }
+    
+    public Level getLevel(int id){
+        return levels.get(id);
+    }
 
 
     public Map<Integer, Level> getLevels() {

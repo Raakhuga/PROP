@@ -91,19 +91,19 @@ public class CTRLRestrictions {
     
     //hay case de laboratorio antes que de teoria
     private boolean LabBeforeTheory(int day, int hour, Timetable groupTimetable, GroupSubject GSNew) {
-        if (GSNew.getLab()){
+        if (GSNew.labGroup()){
             int h = groupTimetable.gethEnd() - groupTimetable.gethIni();
             for (int i = 0; i < day; i++) {
                 if (i < day) {
                     for (int j = 0; j < h; j++) {
                         GroupSubject act = groupTimetable.getGroupSubject(i, j);
-                        if(act.getSubject() == GSNew.getSubject() && act.getTheory()) return true;
+                        if(act.getSubject() == GSNew.getSubject() && act.theoryGroup()) return true;
                     }
                 }
                 else {
                     for (int j = 0; j < hour; j++) {
                         GroupSubject act = groupTimetable.getGroupSubject(i, j);
-                        if(act.getSubject() == GSNew.getSubject() && act.getTheory()) return true;
+                        if(act.getSubject() == GSNew.getSubject() && act.theoryGroup()) return true;
                     }
                     return false;
                 }

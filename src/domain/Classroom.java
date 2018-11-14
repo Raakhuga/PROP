@@ -42,6 +42,18 @@ public class Classroom {
         this.timetable = timetable;
     }
     
+    public boolean isForTheory(){
+        return theory;
+    }
+    
+    public boolean isForLab(){
+        return lab;
+    }
+    
+    public boolean isForProblems(){
+        return problems;
+    }
+    
     /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);

@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Iterator;
 
 
 public class TimetableGenerator {
@@ -16,11 +17,14 @@ public class TimetableGenerator {
     public List<Classroom> classrooms;
     public List<StudyProgram> programs;
     public List<Group> groups;
+    public int nMaxStudentsGroup;
+    public int nMaxStudentsSubgroup;
+    public CTRLRestrictions ctrlRestrictions;
         
     public TimetableGenerator() {
-        this.classrooms = new ArrayList<Classroom>();
-        this.programs = new ArrayList<StudyProgram>();
-        this.groups = new ArrayList<Group>();
+        this.classrooms = new ArrayList<>();
+        this.programs = new ArrayList<>();
+        this.groups = new ArrayList<>();
     }
     
     public void manualLoad() {
@@ -120,9 +124,43 @@ public class TimetableGenerator {
     
     public void addSubject() {}
     
-    public void generate() {
-        /*if (res.base) add;
-        else error;*/
+    public void generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
+        Iterator<Classroom> it1 = classrooms.iterator();
+        Iterator<GroupSubject> it2 = gs_list.iterator();
+        i_generate(classrooms, gs_list, it1, it2);
+    }
+    
+    public void i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, Iterator<Classroom> it1, Iterator<GroupSubject> it2){ {
+        if (it2.hasNext()){
+            GroupSubject gs = it2.next();
+            if (it1.hasNext()){
+                Classroom classroom = it1.next();
+                for(int i = 0; i < classroom.getTimetable().getnDays(); ++i){
+                    for(int j = classroom.getTimetable().gethIni(); j < classroom.getTimetable().gethEnd(); ++j){
+                        if(ctrlRestrictions.classroomRestrictions(i, classroom.getTimetable().gethIni(), classroom.getTimetable().gethEnd(), classroom, gs)){
+                            if(ctrlRestrictions.groupRestrictions(i, classroom.getTimetable().gethIni(), classroom.getTimetable().gethEnd(), classroom, classroom.getTimetable(), gs)){
+                                if(ctrlRestrictions.subjectRestrictions(i, classroom.getTimetable().gethIni(), classroom.getTimetable().gethEnd(), classroom.getTimetable(), gs)){
+                                    classroom.getTimetable().setGStoTimetable(gs, i, j);
+
+                                    if (gs.getGroup().getNum() % 10 == 0) gs.getGroup().getTimetable().setGStoTimetable(gs, i, j);
+                                    else gs.getGroup().getSubTimetable().setGStoTimetable(gs, i, j);;
+
+
+                                    i_generate(classrooms, gs_list, it1, (Iterator<GroupSubject>) it2.next());
+
+                                    if (gs.getGroup().getNum() % 10 == 0) gs.getGroup().getTimetable().removeHourOfTimetable(i, j);
+                                    else gs.getGroup().getSubTimetable().removeHourOfTimetable(i, j);;
+
+                                    classroom.getTimetable().removeHourOfTimetable(i, j);
+                                }
+                            }
+                        }
+                        else i_generate(classrooms, gs_list, (Iterator<Classroom>) it1.next(), it2);
+                    }
+                }
+                i_generate(classrooms, gs_list, (Iterator<Classroom>) it1.next(), it2);
+            }
+        }
     }
     
     /*public void load(String file) throws FileNotFoundException, IOException{

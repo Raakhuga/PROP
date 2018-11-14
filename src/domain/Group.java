@@ -8,8 +8,8 @@ import java.io.IOException;
 public class Group {
     
     /** Atributtes **/
-    public int num;
-    public Timetable groupTimetable;
+    private int num;
+    private Timetable groupTimetable;
     
     /** Constructor **/
     public Group(int num, int nDays, int hIni, int hEnd){
