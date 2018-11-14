@@ -13,6 +13,10 @@ public class subGroup extends Group {
         this.sNum = sNum;
     }
     
+    public Timetable getSubTimetable() {
+        return subGroupTimetable;
+    }
+    
     public void addSubject() {}
     
     public int getsNum() {
