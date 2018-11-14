@@ -39,17 +39,24 @@ public class Level {
     }
     
     public void addGroup(int id, int nStudentsGroup, int nMaxStudentsSubgroups) {
-        int nDays, hIni, hEnd, nSubGroups;
+        int nDays, hIni, hEnd, nSubGroups, remaining;
         Scanner in = new Scanner(System.in);
         System.out.println ("Insert the number of available days for the Group: " + id);
         nDays = in.nextInt();
         System.out.println ("Insert the fisrt available hour and the last one of the Group: " + id);
         hIni = in.nextInt();
         hEnd = in.nextInt();
-        groups.add(new Group(id, nDays, hIni, hEnd));
+        Group actualGroup = new Group(id, nDays, hIni, hEnd);
+        groups.add(actualGroup);
         nSubGroups = nStudentsGroup / nMaxStudentsSubgroups;
         if (nStudentsGroup % nMaxStudentsSubgroups != 0) nSubGroups++;
         //añadir subrupos
+        int i = 1;
+        for(remaining = nStudentsGroup; remaining > nMaxStudentsSubgroups; remaining -= nMaxStudentsSubgroups){
+            groups.add(new subGroup(id, id+i, actualGroup.getTimetable()));
+            i++;
+        }
+        if (remaining > 0) groups.add(new subGroup(id, id+i, actualGroup.getTimetable()));        
     }
     
     public void fillLevel(boolean manual) {

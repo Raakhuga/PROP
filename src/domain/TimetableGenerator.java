@@ -90,7 +90,7 @@ public class TimetableGenerator {
         Map<Integer,Level> levels = SP.getLevels();
         Iterator<Level> it = levels.values().iterator();
         List<Subject> subjects;
-        int nGroups, nSubGroups, nStudents, i;
+        int nGroups, nSubGroups, nStudents, i, remaining;
         Subject sact;
         Scanner in = new Scanner(System.in);
         while(it.hasNext()) {
@@ -104,9 +104,10 @@ public class TimetableGenerator {
                 nStudents = in.nextInt();
                 nGroups = nStudents/nMaxStudentsGroup;
                 if (nStudents%nMaxStudentsGroup != 0) nGroups++;
-                act.addGroup(i*10, nMaxStudentsSubgroup);
-                
-                
+                for(remaining = nStudents; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
+                    act.addGroup(i*10, nMaxStudentsGroup, nMaxStudentsSubgroup);
+                }
+                if (remaining > 0) act.addGroup(i*10, remaining, nMaxStudentsSubgroup);
                 i++;
             }
         }
