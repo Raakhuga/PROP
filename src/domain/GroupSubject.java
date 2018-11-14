@@ -48,6 +48,14 @@ public class GroupSubject {
         this.problems = problems;
     }
 
+    public subGroup getSubGroup() {
+        return subGroup;
+    }
+    
+    public boolean isSubGroup() {
+        return subGroup != null;
+    }
+
     public boolean isBanned() {
         if (nMat != -1) return false;
         return true;
