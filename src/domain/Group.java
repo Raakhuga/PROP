@@ -26,6 +26,14 @@ public class Group {
         return num;
     }
     
+    public Timetable getTimetable() {
+        return groupTimetable;
+    }
+    
+    public void setTimetable(Timetable groupTimetable) {
+        this.groupTimetable = groupTimetable;
+    } 
+    
     public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);

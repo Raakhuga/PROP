@@ -4,25 +4,28 @@ package domain;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import javafx.util.Pair;
 
 /** Class for the subjects **/
 public class Subject {
     
     /** Atributtes **/
+    private final static int THEORY = 0;
+    private final static int LABORATORY = 1;
+    private final static int PROBLEMS = 2;
+    
     private final String name;
-    private final Level level;
+    private final int level;
     private int hours;
-    private Pair<String, Integer>[] sessions;
+    private int nSessions[];
     
     /** Constructor **/
-    public Subject(String name, Level level, int hours, int nSesTheory, int nSesLab, int nSesProblems){
+
+    public Subject(String name, int level){
         this.name = name;
         this.level = level;
-        this.hours = hours;
-        sessions[0] = new Pair<>("Theory", nSesTheory);
-        sessions[1] = new Pair<>("Lab", nSesLab);
-        sessions[2] = new Pair<>("Problems", nSesProblems);
+        this.nSessions = new int[3];
     }
 
     /** Public methods **/
@@ -30,20 +33,25 @@ public class Subject {
         return name;
     }
 
-    public Level getLevel() {
+    public int getLevel() {
         return level;
     }
 
     public int getHours() {
         return hours;
     }
-
-    public Pair<String, Integer>[] getSessions() {
-        return sessions;
+    
+    public void manualFillHours() {
+        System.out.println ("Insert the number of Theory hours for the Subject: " + name);
+        Scanner in = new Scanner(System.in);
+        nSessions[THEORY] = in.nextInt();
+        System.out.println ("Insert the number of Laboratory hours for the Subject: " + name);
+        nSessions[LABORATORY]  = in.nextInt();
+        System.out.println ("Insert the number of Problem hours for the Subject: " + name);
+        nSessions[PROBLEMS] = in.nextInt();
     }
     
-    
-    public void save() throws IOException {
+    /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(writer);
@@ -56,6 +64,6 @@ public class Subject {
             bw.write(sessions[i].getValue());
         }
         bw.close();       
-    }
+    }*/
     
 }

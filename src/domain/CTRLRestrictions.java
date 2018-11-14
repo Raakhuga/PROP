@@ -11,10 +11,10 @@ public class CTRLRestrictions {
     public GroupSubject GSNew;
     public int hours;
     public StudyProgram SP;*/
-    public boolean[] rBase;
-    private boolean[] rExtra;
-    private final static int NUM_RESTR_EXTRA = 7;
-    private final static int NUM_RESTR_BASE = 7;
+    private final static int NUM_RESTR_EXTRA = 4;
+    private final static int NUM_RESTR_BASE = 2;
+    public boolean rBase[];
+    private boolean rExtra[];
     
     
     /** Constructor **/
@@ -25,6 +25,8 @@ public class CTRLRestrictions {
         this.GSNew = GSNew;
         this.hours = hours;
         this.SP = SP;*/
+        rBase = new boolean[NUM_RESTR_BASE];
+        rExtra = new boolean[NUM_RESTR_EXTRA];
         for (int i = 0; i < NUM_RESTR_BASE; i++) rBase[i] = true;
         for (int i = 0; i < NUM_RESTR_EXTRA; i++) rExtra[i] = false;
     }

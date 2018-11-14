@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Timetable {
     
     /** Atributtes **/
-    private GroupSubject[][] timetable;
+    private GroupSubject timetable[][];
     public Restrictions restrictions[][];
     private final int nDays;
     private final int hIni;
