@@ -267,11 +267,11 @@ public class TimetableGenerator {
                     }
                 }
                 // Hemos llenado el horario de una clase, cambiamos a la siguiente clase (si la hay)
-                System.out.println("Cambio de clase");
+                //System.out.println("Cambio de clase");
                 if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs, ctrlRestrictions);
             }
             // Hay al menos un grupo-asignatura disponible pero no hay ninguna clase a la que se le pueda asignar
-            System.out.println("No hi ha cap horari disponible");
+            //System.out.println("No hi ha cap horari disponible");
             return true;
         }
         return true;
