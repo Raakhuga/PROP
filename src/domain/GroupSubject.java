@@ -60,6 +60,14 @@ public class GroupSubject {
         return subject.getName();
     }
     
+    public String getType() {
+        String type = "";
+        if (theory) type = "theroy";
+        else if (lab) type = "laboratory";
+        else if (problems) type = "problems";
+        return type;
+    }
+    
     public boolean isSubGroup() {
         return subGroup != null;
     }
