@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package tests.drivers.subGroup.studyprogram;
+
+package tests.drivers.studyprogram;
 
 import domain.*;
-import static java.time.Clock.system;
 import java.util.Scanner;
 
-/**
- *
- * @author hasee
- */
 public class DriverstudyProgram {
       public static void main(String[] args) throws Exception{
         System.out.println("Aquest es el driver de StudyProgram");
