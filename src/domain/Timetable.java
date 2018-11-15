@@ -25,6 +25,14 @@ public class Timetable {
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
+        initializeClassRestrictions();
+    }
+    
+    private void initializeClassRestrictions(){
+        ClassRestrictions cr = new ClassRestrictions();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                restrictions[i][j] = cr;
     }
 
     public GroupSubject[][] getTimetable() {
@@ -93,18 +101,17 @@ public class Timetable {
     }
     
     public boolean isBanned(int day, int hour) {
-        if(restrictions[day][hour].getBanned()) return true;
-        return false;
+        /*System.out.println("Day: "+day+" hour: "+hour);
+        System.out.println("nDays: "+getnDays()+" ultima franja: "+(gethEnd()-gethIni()));*/
+        return restrictions[day][hour].getBanned();
     }
     
     public boolean subjectBanned(int day, int hour, String name) {
-        if(restrictions[day][hour].subjectBanned(name)) return true;
-        return false;
+        return restrictions[day][hour].subjectBanned(name);
     }
     
     public boolean groupBanned(int day, int hour, int num) {
-        if(restrictions[day][hour].groupBanned(num)) return true;
-        return false;
+        return restrictions[day][hour].groupBanned(num);
     }
     
     /*public void load() throws IOException{
