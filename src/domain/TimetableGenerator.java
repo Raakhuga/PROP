@@ -219,31 +219,39 @@ public class TimetableGenerator {
     }*/
     
     public boolean generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
-        return i_generate(classrooms, gs_list, 0, 0);
+        CTRLRestrictions ctrlRestrictions = new CTRLRestrictions();
+        return i_generate(classrooms, gs_list, 0, 0, ctrlRestrictions);
     }
     
-    public boolean i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs){
+    public boolean i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs, CTRLRestrictions ctrlRestrictions){
+        System.out.println("Ha entrat a la funció recursiva");
         boolean fin = false;
         if (pos_gs < gs_list.size()){
+            System.out.println("Entra en el primer if");
             GroupSubject gs = gs_list.get(pos_gs);
             if (pos_classroom < classrooms.size()){
+                System.out.println("Entra en el segundo if");
                 Classroom classroom = classrooms.get(pos_classroom);
                 // Recorremos los días del horario
-                for(int i = 0; i < classroom.getnDaysFromTimetable(); ++i){
+                for(int i = 0; i < classroom.getnDaysFromTimetable(); i++){
+                    System.out.println("Ha entrado en el for de la i");
                     // Recorremos las horas de un día
-                    for(int j = 0; j < (classroom.gethEndFromTimetable()-classroom.gethIniFromTimetable()); ++j){
+                    for(int j = 0; j < (classroom.gethEndFromTimetable()-classroom.gethIniFromTimetable()); j++){
+                        System.out.println("Ha entrado en el for de la j");
                         // Comprobamos restricciones de la clase
                         if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
+                            System.out.println("Entra en el tercer if");
                             // Comprobamos restricciones de los grupos
                             if(ctrlRestrictions.groupRestrictions(i, j, classroom, classroom.getTimetable(), gs)){
+                                System.out.println("Entra en el cuarto if");
                                 // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
                                 classroom.setGStoTimetable(gs, i, j);
 
                                 if (gs.issubGroup()) gs.setSubjectToGroup(i, j, gs.getSubject(), true);
                                 else gs.setSubjectToGroup(i, j, gs.getSubject(), false);
-
+                                
                                 // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j
-                                fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1);
+                                fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1, ctrlRestrictions);
 
                                 if (fin) return true;
 
@@ -256,9 +264,11 @@ public class TimetableGenerator {
                     }
                 }
                 // Hemos llenado el horario de una clase, cambiamos a la siguiente clase (si la hay)
-                if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs);
+                System.out.println("Cambio de clase");
+                if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs, ctrlRestrictions);
             }
             // Hay al menos un grupo-asignatura disponible pero no hay ninguna clase a la que se le pueda asignar
+            System.out.println("No hi ha cap horari disponible");
             return false;
         }
         return true;
