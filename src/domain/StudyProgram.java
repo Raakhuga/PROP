@@ -53,6 +53,7 @@ public class StudyProgram {
         levels.remove(id);
     }
     
+   
     /*public void fillLevel(boolean manual) {
         Iterator<> it = levels.iterator();
         while(it.hasNext()){
