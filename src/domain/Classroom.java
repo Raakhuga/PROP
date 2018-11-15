@@ -9,8 +9,8 @@ import java.io.IOException;
 public class Classroom {
     
     /** Atributtes **/
-    private int capacity;
     private String ref;
+    private int capacity;
     private Timetable timetable;
     private final boolean theory;
     private final boolean lab;

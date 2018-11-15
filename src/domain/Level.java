@@ -43,6 +43,10 @@ public class Level {
         this.groups = groups;
     }
     
+    public void addGro(Group group) {
+        this.groups.add(group);
+    }
+    
     public void addGroup(int id, int nStudentsGroup, int nMaxStudentsSubgroups) {
         int nDays, hIni, hEnd, nSubGroups, remaining;
         Scanner in = new Scanner(System.in);

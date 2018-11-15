@@ -13,7 +13,7 @@ public class DriverTimetableGenerator {
     private static TimetableGenerator p = new TimetableGenerator();
     
     
-    public static void addClassroom(TimetableGenerator TG, int capacity, String ref, int nDays, int hIni, int hEnd, boolean theory, boolean lab, boolean problems) {
+    /*public static void addClassroom(TimetableGenerator TG, int capacity, String ref, int nDays, int hIni, int hEnd, boolean theory, boolean lab, boolean problems) {
         TG.getClassrooms().add(new Classroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems));
     }
     
@@ -21,9 +21,9 @@ public class DriverTimetableGenerator {
         StudyProgram aux = new StudyProgram(name);
         for (int i = 0; i < nLevels; i++) aux.addLevels(manual);
         TG.getPrograms().add(aux);
-    }
+    }*/
     
-    public static void generateAllGS(TimetableGenerator TG) {
+    /*public static void generateAllGS(TimetableGenerator TG) {
         Iterator<StudyProgram> SPit = TG.getPrograms().iterator();
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
@@ -53,7 +53,7 @@ public class DriverTimetableGenerator {
                 }
             }
         }
-    }
+    }*/
     
     public static void addGroup(Level level, int id, int nStudentsGroup, int nMaxStudentsSubgroups) {
         int nDays, hIni, hEnd, nSubGroups, remaining;
@@ -85,21 +85,16 @@ public class DriverTimetableGenerator {
         Scanner in = new Scanner(System.in);
         while(it.hasNext()) {
             Level act = it.next();
-            subjects = act.getSubjects();
-            Iterator<Subject> it2 = subjects.iterator();
             i = 1;
-            while(it2.hasNext()){
-                sact = it2.next();
-                System.out.println("Insert the number of Students that will course the Subject: " + sact.getName());
-                nStudents = in.nextInt();
-                nGroups = nStudents/nMaxStudentsGroup;
-                if (nStudents%nMaxStudentsGroup != 0) nGroups++;
-                for(remaining = nStudents; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
-                    addGroup(act, i*10, nMaxStudentsGroup, nMaxStudentsSubgroup);
-                }
-                if (remaining > 0) addGroup(act, i*10, remaining, nMaxStudentsSubgroup);
+            System.out.println("Insert the number of Students that will course the Level: " + act.getIden());
+            nStudents = in.nextInt();
+            nGroups = nStudents/nMaxStudentsGroup;
+            if (nStudents%nMaxStudentsGroup != 0) nGroups++;
+            for(remaining = nStudents; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
+                addGroup(act, i*10, nMaxStudentsGroup, nMaxStudentsSubgroup);
                 i++;
             }
+            if (remaining > 0) addGroup(act, i*10, remaining, nMaxStudentsSubgroup);
         }
     }
     
@@ -141,7 +136,7 @@ public class DriverTimetableGenerator {
                 lab = false; 
                 problems = true;
             }
-            addClassroom(TG, capacity, ref, nDays, hIni, hEnd, theory, lab, problems);
+            TG.addClassroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems);
         }
         System.out.println ("Insert the number of available StudyPrograms");
         nSP = in.nextInt();
@@ -150,21 +145,162 @@ public class DriverTimetableGenerator {
             name = in.next();
             System.out.println ("Insert the number of Levels of the StudyProgram number: " + i);
             nLevels = in.nextInt();
-            addStudyProgram(TG, name, nLevels, true);
+            TG.addStudyProgram(name, nLevels, true);
         }
         Iterator<StudyProgram> it = TG.getPrograms().iterator();
         while(it.hasNext()) generateAllGroups(it.next(), TG.getnMaxStudentsGroup(), TG.getnMaxStudentsSubgroup());
     }
     
+    private static void printGroupRestrictions (GroupRestrictions GR) {
+        Iterator<String> BSit = GR.getBansubjects().iterator();
+        Iterator<String> BCit = GR.getBanclassrooms().iterator();
+        System.out.println("Restriccions:");
+        String banned;
+        if (GR.getBanned()) banned = "true";
+        else banned = "false";
+        System.out.println("L'atribut banned es: " + banned);
+        System.out.println("Les assignatures bloquejades son: ");
+        while (BSit.hasNext()) System.out.print(BSit.next() + "  ");
+        System.out.println();
+        System.out.println("Les aules bloquejades son: ");
+        while(BCit.hasNext())System.out.println(BCit.next() + "  ");
+    }
+    
+    private static void printSubject(Subject subject) {
+        System.out.println("L'assignatura " + subject.getName() + " es del nivell " + subject.getLevel() +
+                " fa " + subject.getHours() + "h a la setmana i te " + subject.getTheoryH() + "h de teoria " 
+                + subject.getLaboratoryH() + "h de laboratori i " + subject.getProblemsH() + "h de problemes");
+    }
+    
+    private static void printsubGroup(subGroup subgroup) {
+        int Num = subgroup.getsNum();;
+        int nDays = subgroup.getnDays();
+        int hEnd = subgroup.gethEnd();
+        int hIni = subgroup.gethIni();
+        int nMat = subgroup.getnMat();
+        System.out.println("El subgrup: " + Num + " te: " + nMat + " estudiants");
+        for (int i = 0; i < nDays; i++){
+            System.out.println("El dia: " + i);
+            for (int j = 0; j < hEnd-hIni; j++) {
+                System.out.println("La hora: " + (hIni+j) + "te: ");
+                //printSubject(subgroup.getSubject(i,j));
+                //printGroupRestrictions(subgroup.getRestriction(i, j));
+                //System.out.println("El grup es del tipus: " + subgroup.getType(i, j));
+                if( subgroup.getSubject(i,j) != null){
+                    printSubject(subgroup.getSubject(i,j));
+                    printGroupRestrictions(subgroup.getRestriction(i, j));
+                    System.out.println("El grup es del tipus: " + subgroup.getType(i, j));
+                }
+                else System.out.println("Lliure ");
+            }
+        }
+        
+    }
+    
+    private static void printGroup(Group group) {
+        int nDays = group.getnDays();
+        int hIni = group.gethIni();
+        int hEnd = group.gethEnd();
+        System.out.println("El grup: " + group.getNum() + " te: " + group.getnMat() + " estudiants");
+        for (int i = 0; i < nDays; i++){
+            System.out.println("El dia: " + i);
+            for (int j = 0; j < hEnd-hIni; j++) {
+                System.out.println("La hora: " + (hIni+j) + " te: ");
+                if( group.getSubject(i,j) != null){
+                    printSubject(group.getSubject(i,j));
+                    printGroupRestrictions(group.getRestriction(i, j));
+                    System.out.println("El grup es del tipus: " + group.getType(i, j));
+                }
+                else System.out.println("Lliure ");
+            }
+        }
+        Iterator<subGroup> SGit = group.getsubGroups().iterator();
+        System.out.println("El grup: " + group.getNum() + "te els subgroups: ");
+        while (SGit.hasNext()) printsubGroup(SGit.next());
+    }
+    
+    private static void printGroupSubject(GroupSubject GS) {
+        String type = "";
+        if(GS.theoryGroup()) type = "Theory";
+        else if (GS.labGroup()) type = "Laboratory";
+        else if (GS.problemsGroup()) type = "Problems";
+        System.out.print("Materia: " + GS.getSubject().getName() + " ");
+        if(GS.issubGroup()) System.out.println("Subgrup: " + GS.getSubGroup().getsNum());
+        else System.out.println("Group: " + GS.getGroup());
+    }
+    
+    private static void printTimetable(Timetable timetable) {
+        int nDays = timetable.getnDays();
+        int hIni = timetable.gethIni();
+        int hEnd = timetable.gethEnd();
+        System.out.println("HORARI");
+        for (int i = 0; i < nDays; i++){
+            System.out.println("El dia: " + i);
+            for (int j = 0; j < hEnd-hIni; j++) {
+                System.out.println("A la hora: "+ j);
+                if (timetable.getGroupSubject(i, j) != null) printGroupSubject(timetable.getGroupSubject(i, j));
+                else System.out.println("Liure");
+                //printGroupSubject(timetable.getGroupSubject(i ,j));
+            }
+        }
+    }
+    
+    private static void printClassroom(Classroom classroom) {
+        String type = "";
+        if(classroom.isForTheory()) type = "Theory";
+        else if (classroom.isForLab()) type = "Laboratory";
+        else if (classroom.isForProblems()) type = "Problems";
+        System.out.println("L'aula " + classroom.getRef() + " te una capacitat de: " + classroom.getCapacity() + " i es del tipus: " + type);
+        printTimetable(classroom.getTimetable());
+    }
+    
+    private static void printAllGS(List<GroupSubject> problem) {
+        Iterator<GroupSubject> GSit = problem.iterator();
+        while(GSit.hasNext()) {
+            printGroupSubject(GSit.next());
+        }
+    }
+    
+    private static void print(TimetableGenerator TG) {
+        List<Classroom> classes = TG.getClassrooms();
+        Iterator<Classroom> Cit = classes.iterator();
+        Iterator<StudyProgram> SPit = TG.getPrograms().iterator();
+        while(Cit.hasNext()){
+            Classroom Cact = Cit.next();
+            while(SPit.hasNext()) printStudyProgram(SPit.next());
+            printClassroom(Cact);           
+        }
+        printAllGS(TG.getProblem());
+    }
+    
+    private static void printLevel(Level level) {
+        Iterator<Subject> Sit = level.getSubjects().iterator();
+        Iterator<Group> Git = level.getGroups().iterator();
+        System.out.println("El nivell: " + level.getIden() + " te les seguents assignatures: ");
+        while(Sit.hasNext()) printSubject(Sit.next());
+        System.out.println("El nivell: " + level.getIden() + " te els grups: ");
+        while(Git.hasNext()) printGroup(Git.next());
+    }
+    
+    public static void printStudyProgram(StudyProgram SP) {
+        Iterator<Level> Lit = SP.getLevels().values().iterator();
+        System.out.println("El pla d'estudis: " + SP.getName() + " te els seguents nivells: ");
+        while(Lit.hasNext()) {
+            printLevel(Lit.next());
+        }
+        System.out.println("I els grups: ");
+        
+    }
     
     public static void main(String[] args) throws Exception{
         manualLoad(p);
+        p.generateAllGS();
+        print(p);
         driverGR();
         
     }
     
     private static void driverGR(){
-        
         
     }
 }

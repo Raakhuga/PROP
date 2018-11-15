@@ -157,13 +157,14 @@ public class TimetableGenerator {
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
             Map<Integer, Level> levels = SPact.getLevels();
-            int SPsize = levels.size();
-            for(int i = 0; i < SPsize; i++) {
-                List<Group> groups = levels.get(i).getGroups();
+            Iterator<Level> Lit = levels.values().iterator();
+            while(Lit.hasNext()) {
+                Level Lact = Lit.next();
+                List<Group> groups = Lact.getGroups();
                 Iterator<Group> Git = groups.iterator();
                 while(Git.hasNext()) {
                     Group Gact = Git.next();
-                    List<Subject> subjects = levels.get(i).getSubjects();
+                    List<Subject> subjects = Lact.getSubjects();
                     Iterator<Subject> Sit = subjects.iterator();
                     while(Sit.hasNext()) {
                         Subject Sact = Sit.next();
