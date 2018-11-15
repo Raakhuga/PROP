@@ -245,10 +245,12 @@ public class TimetableGenerator {
                                 if (gs.issubGroup()) {
                                     gs.setSubjectToGroup(i, j, gs.getSubject(), true);
                                     gs.getSubGroup().setType(i, j, gs.getType());
+                                    gs.getSubGroup().getRestriction(i, j).setFree(false);
                                 }
                                 else {
                                     gs.setSubjectToGroup(i, j, gs.getSubject(), false);
                                     gs.getGroup().setType(i, j, gs.getType());
+                                    gs.getGroup().getRestriction(i, j).setFree(false);
                                 }
 
                                 // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j

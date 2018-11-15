@@ -6,6 +6,7 @@ import java.util.Set;
 
 
 public class GroupRestrictions {
+    private boolean free;
     private boolean banned;
     private Set<String> bansubjects;
     private Set<String> banclassrooms;
@@ -18,6 +19,14 @@ public class GroupRestrictions {
 
     public Set<String> getBansubjects() {
         return bansubjects;
+    }
+
+    public boolean isFree() {
+        return free;
+    }
+
+    public void setFree(boolean free) {
+        this.free = free;
     }
 
     public Set<String> getBanclassrooms() {
