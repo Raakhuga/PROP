@@ -16,18 +16,60 @@ import java.util.Iterator;
 public class TimetableGenerator {
     private final static int NUM_OF_SUBGROUPS = 5;
             
-    public List<Classroom> classrooms;
-    public List<StudyProgram> programs;
-    public List<Group> groups;
-    public List<GroupSubject> problem;
-    public int nMaxStudentsGroup;
-    public int nMaxStudentsSubgroup;
-    public CTRLRestrictions ctrlRestrictions;
+    private List<Classroom> classrooms;
+    private List<StudyProgram> programs;
+    private List<GroupSubject> problem;
+    private int nMaxStudentsGroup;
+    private int nMaxStudentsSubgroup;
+    private CTRLRestrictions ctrlRestrictions;
         
     public TimetableGenerator() {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
-        this.groups = new ArrayList<>();
+    }
+
+    public List<Classroom> getClassrooms() {
+        return classrooms;
+    }
+
+    public List<StudyProgram> getPrograms() {
+        return programs;
+    }
+
+    public List<GroupSubject> getProblem() {
+        return problem;
+    }
+
+    public int getnMaxStudentsGroup() {
+        return nMaxStudentsGroup;
+    }
+
+    public int getnMaxStudentsSubgroup() {
+        return nMaxStudentsSubgroup;
+    }
+
+    public void setClassrooms(List<Classroom> classrooms) {
+        this.classrooms = classrooms;
+    }
+
+    public void setPrograms(List<StudyProgram> programs) {
+        this.programs = programs;
+    }
+
+    public void setProblem(List<GroupSubject> problem) {
+        this.problem = problem;
+    }
+
+    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
+        this.nMaxStudentsGroup = nMaxStudentsGroup;
+    }
+
+    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
+        this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
+    }
+
+    public void setCtrlRestrictions(CTRLRestrictions ctrlRestrictions) {
+        this.ctrlRestrictions = ctrlRestrictions;
     }
     
     public void manualLoad() {
@@ -79,18 +121,8 @@ public class TimetableGenerator {
             nLevels = in.nextInt();
             addStudyProgram(name, nLevels, true);
         }
-        /*System.out.println ("Insert the number of available Groups");
-        nGroups = in.nextInt();
-        for(int i = 0; i < nGroups; i++) {
-            System.out.println ("Insert the identifier of the Group number: " + i);
-            id = in.nextInt();
-            System.out.println ("Insert the number of available days for the Group: " + id);
-            nDays = in.nextInt();
-            System.out.println ("Insert the fisrt available hour and the last one of the Group: " + i);
-            hIni = in.nextInt();
-            hEnd = in.nextInt();
-            addGroup(id, nDays, hIni, hEnd);
-        }*/       
+        Iterator<StudyProgram> it = programs.iterator();
+        while(it.hasNext()) generateAllGroups(it.next());
     }
     
     public void generateAllGroups(StudyProgram SP) {
@@ -184,8 +216,7 @@ public class TimetableGenerator {
         for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, aux.getTimetable()));
     }*/
     
-    public void addSubject() {}
-    
+    /*
     public boolean generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
         Iterator<Classroom> it1 = classrooms.iterator();
         Iterator<GroupSubject> it2 = gs_list.iterator();
@@ -239,7 +270,7 @@ public class TimetableGenerator {
             return false;
         }
         return true;
-    }
+    }*/
     
     /*public void load(String file) throws FileNotFoundException, IOException{
         String s;

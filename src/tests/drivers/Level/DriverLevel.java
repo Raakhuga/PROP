@@ -1,11 +1,34 @@
 
 package tests.drivers.Level;
 import domain.*;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
 
 public class DriverLevel {
     private static Level a = new Level(1);
+    
+    private void fillLevel(Level level) {
+        System.out.println ("Insert the number of Subjects of the Level: " + level.getIden());
+        Scanner in = new Scanner(System.in);
+        int nSubjects, hours;
+        nSubjects = in.nextInt();
+        String name;
+        List<Subject> subjects = new ArrayList<Subject>();
+        Subject act;
+        for(int j = 0; j < nSubjects; j++) {
+            System.out.println ("Insert the name of the Subject num: " + j + " of the Level: " + level.getIden());
+            name = in.next();
+            System.out.println ("Insert the number of hours of the Subject: " + name + " of the Level: " + level.getIden());
+            hours = in.nextInt();
+            act = new Subject(name, level.getIden(), hours);
+            act.manualFillHours();
+            subjects.add(act);
+        }
+        level.setSubjects(subjects);
+    }
     
     public static void main(String[] args) throws Exception{
         a.fillLevel(true);

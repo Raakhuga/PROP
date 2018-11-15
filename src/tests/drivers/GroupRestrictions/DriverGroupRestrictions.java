@@ -2,11 +2,11 @@
 package tests.drivers.GroupRestrictions;
 
 import domain.*;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 
 
@@ -16,14 +16,19 @@ public class DriverGroupRestrictions {
     private static GroupRestrictions c = new GroupRestrictions();
     
     
-    public static final String[] subjects = new String[] { "M1", "F", "FM" };
-    public static final Set<String> bansubjects = new HashSet<>(Arrays.asList(subjects));
+    public static List<String> bansubjects = new ArrayList<>();
     
-    public static final String[] classrooms = new String[] { "A5101", "A5E01" ,"A6E02" };
-    public static final Set<String> bannedclassrooms = new HashSet<>(Arrays.asList(classrooms));
+    public static List<String> bannedclassrooms = new ArrayList<>();
     
     
     public static void main(String[] args) throws Exception{
+        bansubjects.add("M1");
+        bansubjects.add("F");
+        bansubjects.add("FM");
+        
+        bannedclassrooms.add("A5101");
+        bannedclassrooms.add("A5E01");
+        bannedclassrooms.add("A6E02");
         
         a.setBanned(true);
         a.banSubject("M1");
@@ -32,7 +37,22 @@ public class DriverGroupRestrictions {
         a.banClassroom("A5101");
         a.banClassroom("A5E01");
         a.banClassroom("A6E02");
-        if (a.getBanned() && a.getBansubjects() == bansubjects && a.getBanclassrooms() == bannedclassrooms)
+       
+        boolean correct = true;
+        
+        Iterator<String> it1 = bansubjects.iterator();
+        Iterator<String> it2 = bannedclassrooms.iterator();
+        
+        while(it1.hasNext()) {
+            correct = a.subjectBanned(it1.next());
+        }
+        
+        
+        while(it2.hasNext()) {
+            correct = a.classroomBanned(it2.next());
+        }
+        
+        if (a.getBanned() && correct)
             System.out.println("Correct");
         driverGR();
         System.out.println("Driver ha acabat amb exit");
