@@ -80,6 +80,8 @@ public class Timetable {
         if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].banGroup(group);   
     }
      public void banSubject(int day, int hIni, int hEnd, String name) {
+         boolean hourOK2 = hourOk(day, hIni, hEnd);
+        System.out.println("hourOk123123213 = " + hourOK2);
         if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].banSubject(name);   
     }
      
@@ -99,6 +101,8 @@ public class Timetable {
     }
     
     public void banTime(int day, int hIni, int hEnd) {
+        boolean hourOK2 = hourOk(day, hIni, hEnd);
+        System.out.println("hourOk = " + hourOK2);
         if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].setBanned(true);
     }
     
@@ -107,7 +111,7 @@ public class Timetable {
     }
     
     private boolean hourOk(int day, int hIni, int hEnd) {
-        return (0 <= day && day > nDays) && (hIni < hEnd && hIni >= this.hIni && hEnd <= this.hEnd);
+        return (0 <= day && day < nDays) && (hIni < hEnd && hIni >= this.hIni && hEnd <= this.hEnd);
     }
     
     public boolean isBanned(int day, int hour) {

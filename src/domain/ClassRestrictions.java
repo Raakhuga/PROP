@@ -6,14 +6,24 @@ import java.util.Set;
 
 
 public class ClassRestrictions {
+    private boolean free;
     private boolean banned;
     private Set<String> bansubjects;
     private Set<Integer> groups;
     
     public ClassRestrictions() {
         banned = false;
+        free = true;
         bansubjects = new HashSet<String>();
         groups = new HashSet<Integer>();
+    }
+
+    public boolean isFree() {
+        return free;
+    }
+
+    public void setFree(boolean free) {
+        this.free = free;
     }
 
     public Set<String> getBansubjects() {
