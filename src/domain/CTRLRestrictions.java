@@ -49,20 +49,21 @@ public class CTRLRestrictions {
     }
     
     public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew){
-        System.out.println("Ha entrado en la funcion classroomRestrictions");
-        if(classroom.getTimetable().getGroupSubject(day, hour) == null) return false;
-        //El aula no esta disponible en dicho lapso de tiempo
-        else if (!hourOk(classroom.getTimetable(), day, hour) && rBase[0]) return false;
-        //El aula tiene horas bloqueadas en dicho lapso
-        else if (isBanned(day, hour, classroom.getTimetable()) && rExtra[0]) return false;
-        //El aula tiene bloqueado al grupo en dicha franja horaria
-        else if (groupBanned(day, hour, classroom.getTimetable(), GSNew.getNumGroup()) && rExtra[2]) return false;
-        //La materia esta bloqueada en dicha franja horaria
-        else if (subjectBanned(day, hour, classroom.getTimetable(), GSNew.getNameSubject()) && rExtra[1]) return false;
-        //El aula es demasiado pequeña
-        else if (classroomTooSmall(classroom, GSNew) && rBase[1]) return false;
-        //El tipus de aula no es la mateixa amb el de GroupSubject
-        else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
+        //System.out.println("Ha entrado en la funcion classroomRestrictions");
+        if(classroom.getTimetable().getGroupSubject(day, hour) != null){
+            //El aula no esta disponible en dicho lapso de tiempo
+            if (!hourOk(classroom.getTimetable(), day, hour) && rBase[0]) return false;
+            //El aula tiene horas bloqueadas en dicho lapso
+            else if (isBanned(day, hour, classroom.getTimetable()) && rExtra[0]) return false;
+            //El aula tiene bloqueado al grupo en dicha franja horaria
+            else if (groupBanned(day, hour, classroom.getTimetable(), GSNew.getNumGroup()) && rExtra[2]) return false;
+            //La materia esta bloqueada en dicha franja horaria
+            else if (subjectBanned(day, hour, classroom.getTimetable(), GSNew.getNameSubject()) && rExtra[1]) return false;
+            //El aula es demasiado pequeña
+            else if (classroomTooSmall(classroom, GSNew) && rBase[1]) return false;
+            //El tipus de aula no es la mateixa amb el de GroupSubject
+            else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
+        }
         System.out.println("Ha acabado las classroomRestrictions");
         return true;
     }
@@ -76,23 +77,25 @@ public class CTRLRestrictions {
     }*/
     
     public boolean groupRestrictions(int day, int hour, Classroom classroom, Timetable groupTimetable, GroupSubject GSNew) {
-        //El grupo no puede tener clase en dicho lapso de tiempo
-        if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
-        //El grupo tiene horas bloqueadas en dicho lapso
-        else if (isBanned(day, hour, GSNew) && rExtra[0]) return false;
-        //El grupo no puede ir a esa clase en dicha franja horaria
-        else if (classroomBanned(day, hour, GSNew, classroom.getRef()) && rExtra[3]) return false;
-        //La materia esta bloqueada en dicha franja horaria
-        else if (subjectBanned(day, hour, GSNew, GSNew.getNameSubject()) && rExtra[1]) return false;
-        //Hay solapamiento de dos asignaturas de un mismo nivel
-        else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
-        //Hay clase de Lab antes que la de teoria
-        else if (LabBeforeTheory(day, hour, GSNew) && rExtra[1]) return false;
+        if(classroom.getTimetable().getGroupSubject(day, hour) != null){
+            //El grupo no puede tener clase en dicho lapso de tiempo
+            if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
+            //El grupo tiene horas bloqueadas en dicho lapso
+            else if (isBanned(day, hour, GSNew) && rExtra[0]) return false;
+            //El grupo no puede ir a esa clase en dicha franja horaria
+            else if (classroomBanned(day, hour, GSNew, classroom.getRef()) && rExtra[3]) return false;
+            //La materia esta bloqueada en dicha franja horaria
+            else if (subjectBanned(day, hour, GSNew, GSNew.getNameSubject()) && rExtra[1]) return false;
+            //Hay solapamiento de dos asignaturas de un mismo nivel
+            else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
+            //Hay clase de Lab antes que la de teoria
+            else if (LabBeforeTheory(day, hour, GSNew) && rExtra[1]) return false;
+        }
         return true;
     }
     
     private boolean classroomTooSmall(Classroom classroom, GroupSubject GSNew) {
-        System.out.println("Ha entrado en classroomTooSmall");
+        //System.out.println("Ha entrado en classroomTooSmall");
         return classroom.getCapacity() < GSNew.getnMat();
     }
     
@@ -130,7 +133,7 @@ public class CTRLRestrictions {
     }
     
     private boolean hourOk(Timetable TB, int day, int hour) {
-        System.out.println("Ha entrado en hour ok");
+        //System.out.println("Ha entrado en hour ok");
         return (0 <= day && day < TB.getnDays()) && (hour >= TB.gethIni() && hour < TB.gethEnd());
     }
     
@@ -139,7 +142,8 @@ public class CTRLRestrictions {
     }
     
     private boolean isBanned(int day, int hour, Timetable TB) {
-        System.out.println("Ha entrado en isbanned");
+        //System.out.println("Ha entrado en isbanned");
+        
         return TB.isBanned(day, hour);
     }
     
@@ -153,13 +157,13 @@ public class CTRLRestrictions {
     }
     
     private boolean subjectBanned(int day, int hour, GroupSubject GSNew, String name) {
-        System.out.println("Ha entrado en subjectBanned");
+        //System.out.println("Ha entrado en subjectBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupSubjectBanned(day, hour, name);
         else return GSNew.GroupSubjectBanned(day, hour, name);
     }
     
     private boolean groupBanned(int day, int hour, Timetable TB, int num) {
-        System.out.println("Ha entrado en groupBanned");
+        //System.out.println("Ha entrado en groupBanned");
         return TB.groupBanned(day, hour, num);
     }
     

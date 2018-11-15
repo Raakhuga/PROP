@@ -27,6 +27,7 @@ public class TimetableGenerator {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
+        this.ctrlRestrictions = new CTRLRestrictions();
     }
 
     public List<Classroom> getClassrooms() {
@@ -224,26 +225,20 @@ public class TimetableGenerator {
     }
     
     public boolean i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs, CTRLRestrictions ctrlRestrictions){
-        System.out.println("Ha entrat a la funció recursiva");
         boolean fin = false;
         if (pos_gs < gs_list.size()){
-            System.out.println("Entra en el primer if");
             GroupSubject gs = gs_list.get(pos_gs);
             if (pos_classroom < classrooms.size()){
-                System.out.println("Entra en el segundo if");
                 Classroom classroom = classrooms.get(pos_classroom);
                 // Recorremos los días del horario
                 for(int i = 0; i < classroom.getnDaysFromTimetable(); i++){
-                    System.out.println("Ha entrado en el for de la i");
                     // Recorremos las horas de un día
                     for(int j = 0; j < (classroom.gethEndFromTimetable()-classroom.gethIniFromTimetable()); j++){
-                        System.out.println("Ha entrado en el for de la j");
+                        System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef());
                         // Comprobamos restricciones de la clase
                         if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
-                            System.out.println("Entra en el tercer if");
                             // Comprobamos restricciones de los grupos
                             if(ctrlRestrictions.groupRestrictions(i, j, classroom, classroom.getTimetable(), gs)){
-                                System.out.println("Entra en el cuarto if");
                                 // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
                                 classroom.setGStoTimetable(gs, i, j);
 
