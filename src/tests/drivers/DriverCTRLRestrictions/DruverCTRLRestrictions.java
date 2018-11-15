@@ -58,43 +58,17 @@ public class DruverCTRLRestrictions {
         System.out.println("Anem a provar el driver de classroomRestrictions");
         Scanner in = new Scanner(System.in);
         CTRLRestrictions cR = new CTRLRestrictions();
-        /*System.out.println("Cream una classe classRestrictions, necessitem una classe i un GroupSubject, introdueix les informacions necessaries per cridar la funcio:");
-        System.out.println("Insert the reference of the Classroom");
-        String ref = in.next();
-        System.out.println("Insert the capacity of the Classroom");
-        int capacity = in.nextInt();
-        System.out.println("Insert the number of availabe days for the Classroom");
-        int nDays = in.nextInt();
-        System.out.println("Insert the first available hour and the last one of the Classroom");
-        int hIni = in.nextInt();
-        int hEnd = in.nextInt();
-        System.out.println("Insert the type of the Classroom");
-        String type = in.next();
-        Boolean theory, lab, problems;
-        if(type == "theory" ||type == "Theory") {
-            theory = true;
-            lab = false; 
-            problems = false;
-        }
-        else if (type == "laboratory" || type == "Laboratory" || type == "lab" || type == "Lab") {
-            theory = false;
-            lab = true; 
-            problems = false;
-        }
-        else {
-            theory = false;
-            lab = false; 
-            problems = true;
-        }    
-        Classroom classroom = new Classroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems);*/
-        ClassroomStub classroomS = new ClassroomStub();
+        Classroom classrooms[];
+        classrooms = new Classroom[3];
+        classrooms[0] = new Classroom(100, "A6001", 5, 8, 20, true, false, false);
+        classrooms[1] = new Classroom(100, "A6002", 5, 8, 20, false, true, false);
+        classrooms[2] = new Classroom(100, "A6003", 5, 8, 20, false, false, true);
         int hIni, hEnd = 0;
         System.out.println("Tria el tipus de classroom:");
         System.out.println("0: Teoria");
         System.out.println("1: Lab");
         System.out.println("2: Problemes");
         int i = in.nextInt();
-        Classroom classroom = classroomS.getClassroomiesim(i);
         System.out.println("Vols bloquejar alguna hora d'aquesta classe? SI/NO");
         String again = in.next();
         while (again.equals("SI")) {
@@ -106,8 +80,8 @@ public class DruverCTRLRestrictions {
             hIni = in.nextInt();
             System.out.println("Indica la hora final");
             hEnd = in.nextInt();
-            classroom.getTimetable().banTime(dia, hIni, hEnd);
-            boolean ban = classroom.getTimetable().getRestrictions()[dia][hIni].getBanned();
+            classrooms[i].getTimetable().banTime(dia, hIni, hEnd);
+            boolean ban = classrooms[i].getTimetable().getRestrictions()[dia][hIni].getBanned();
             System.out.println("boolean =" + ban);
             System.out.println("Vols bloquejar alguna hora mes d'aquesta classe? SI/NO");
             again = in.next();
@@ -124,7 +98,7 @@ public class DruverCTRLRestrictions {
             hEnd = in.nextInt();
             System.out.println("Indica el numero del grup");
             int group = in.nextInt();
-            classroom.getTimetable().banGroup(dia, hIni, hEnd, group);
+            classrooms[i].getTimetable().banGroup(dia, hIni, hEnd, group);
             System.out.println("Vols bloquejar alguna hora mes d'aquesta classe per algun grup determinat? SI/NO");
             again = in.next();
         }
@@ -141,20 +115,13 @@ public class DruverCTRLRestrictions {
             hEnd = in.nextInt();
             System.out.println("Indica el nom de la assignatura");
             String name = in.next();
-            classroom.getTimetable().banSubject(dia, hIni, hEnd, name);
+            classrooms[i].getTimetable().banSubject(dia, hIni, hEnd, name);
             System.out.println("Vols bloquejar alguna hora mes d'aquesta classe per alguna assignatura determinada? SI/NO");
             again = in.next();
         }
         System.out.println("Introdueix el numero del Grup");
         int id = in.nextInt();
-        System.out.println ("Introdueix el numero de dies valides per aquest grup: " + id);
-        int nDays = in.nextInt();
-        System.out.println ("Introdueix la hora inicial i final per aquest grup: " + id);
-        hIni = in.nextInt();
-        hEnd = in.nextInt();
-        System.out.println("Introdueix el numero d'estudiants que te aquest grup:" + id);
-        int nStudentsGroup = in.nextInt();
-        Group group = new Group(id, nDays, hIni, hEnd, nStudentsGroup);
+        Group group = new Group(id, 5, 8, 20, 50);
         System.out.println("Introdueix el nom de la assignatura");
         String name = in.next();
         Subject s = new Subject(name, 0, 0);
@@ -162,8 +129,8 @@ public class DruverCTRLRestrictions {
         System.out.println("Introdueix el dia que vols situar aquest GroupSubject");
         int day = in.nextInt();
         System.out.println("Introdueix la hora que vols situar aquest GroupSubject");
-        hIni = in.nextInt();
-        if (cR.classroomRestrictions(day, hIni, classroom, gs)) 
+        hEnd = in.nextInt();
+        if (cR.classroomRestrictions(day, hEnd - classrooms[i].getTimetable().gethIni(), classrooms[i], gs)) 
            System.out.println("S'ha ficat amb exit aquest GroupSubject en la franja d'horari indicada");
         
         else System.out.println("No es possible situar aquest GroupSubject en aquesta franja d'horari");
