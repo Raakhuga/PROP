@@ -116,17 +116,12 @@ public class CTRLRestrictions {
         }
         return false;
     }
-    
-    
-    /*
-    private void banDay(int day, Timetable classTimetable) {
-        classTimetable.timeBanned(day, classTimetable.gethIni(), classTimetable.gethEnd());
+    public void enableRestriction(int num) {
+        rExtra[num] = true;        
     }
-    private void banHours (int hIni, int hEnd, Timetable classTimetable) {
-        for(int i = 0; i < classTimetable.getnDays(); ++i) classTimetable.timeBanned(i, hIni, hEnd);
+    public void disableRestriction(int num) {
+        rExtra[num] = false;        
     }
-    */
-    
     private boolean hourOk(Timetable TB, int day, int hour) {
         return (0 <= day && day > TB.getnDays()) && (hour >= TB.gethIni() && hour <= TB.gethEnd());
     }
