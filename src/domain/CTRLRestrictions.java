@@ -124,12 +124,6 @@ public class CTRLRestrictions {
         }
         return false;
     }
-    public void enableRestriction(int num) {
-        rExtra[num] = true;        
-    }
-    public void disableRestriction(int num) {
-        rExtra[num] = false;        
-    }
     private boolean hourOk(Timetable TB, int day, int hour) {
         return (0 <= day && day > TB.getnDays()) && (hour >= TB.gethIni() && hour <= TB.gethEnd());
     }
