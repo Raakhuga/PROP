@@ -68,6 +68,10 @@ public class DriverGroup {
         int hIni = in.nextInt();
         System.out.println("Escriu hora final del dia lectiu");
         int hEnd = in.nextInt();
+        while (hEnd <= hIni){
+            System.out.println("Hora final incorrecte, ha de ser major que "+hIni);
+            hEnd = in.nextInt();
+        }
         System.out.println("Escriu la quantitat d'estudiants matriculats a aquest grup");
         int nMats = in.nextInt();
         Group g = new Group(num, days, hIni, hEnd, nMats);
@@ -182,6 +186,10 @@ public class DriverGroup {
         int hIni = in.nextInt();
         System.out.println("Escriu hora final del dia lectiu");
         int hEnd = in.nextInt();
+        while (hEnd <= hIni){
+            System.out.println("Hora final incorrecte, ha de ser major que "+hIni);
+            hEnd = in.nextInt();
+        }
         System.out.println("Escriu la quantitat d'estudiants matriculats a aquest subgrup");
         int nMats = in.nextInt();
         subGroup sg = new subGroup(num, days, hIni, hEnd, nMats);
@@ -205,7 +213,6 @@ public class DriverGroup {
         }
         System.out.println("S'ha seleccionat el subgrup amb numero "+sg.getsNum());
         System.out.println();
-        
     }
     
     private static void driverRemoveSubGroup(Group g){
