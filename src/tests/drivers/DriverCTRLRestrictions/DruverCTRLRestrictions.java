@@ -97,7 +97,7 @@ public class DruverCTRLRestrictions {
         Classroom classroom = classroomS.getClassroomiesim(i);
         System.out.println("Vols bloquejar alguna hora d'aquesta classe? SI/NO");
         String again = in.next();
-        while (again == "SI") {
+        while (again.equals("SI")) {
             cR.enableRestriction(0);
             int dia = 0;
             System.out.println("Indica el dia");
@@ -105,21 +105,23 @@ public class DruverCTRLRestrictions {
             System.out.println("Indica la hora inicial");
             hIni = in.nextInt();
             System.out.println("Indica la hora final");
+            hEnd = in.nextInt();
             classroom.getTimetable().banTime(dia, hIni, hEnd);
+            boolean ban = classroom.getTimetable().getRestrictions()[dia][hIni].getBanned();
+            System.out.println("boolean =" + ban);
             System.out.println("Vols bloquejar alguna hora mes d'aquesta classe? SI/NO");
             again = in.next();
         }
         System.out.println("Vols bloquejar alguna hora d'aquesta classe per algun grup determinat? SI/NO");
         again = in.next();
-        while (again == "SI") {
+        while (again.equals("SI")) {
             cR.enableRestriction(2);
-            int dia = in.nextInt();
             System.out.println("Indica el dia");
-            dia = in.nextInt();
+            int dia = in.nextInt();
             System.out.println("Indica la hora inicial");
             hIni = in.nextInt();
             System.out.println("Indica la hora final");
-            classroom.getTimetable().banTime(dia, hIni, hEnd);
+            hEnd = in.nextInt();
             System.out.println("Indica el numero del grup");
             int group = in.nextInt();
             classroom.getTimetable().banGroup(dia, hIni, hEnd, group);
@@ -128,16 +130,16 @@ public class DruverCTRLRestrictions {
         }
         System.out.println("Vols bloquejar alguna hora d'aquesta classe per alguna assignatura determinada? SI/NO");
         again = in.next();
-        while (again == "SI") {
-            cR.enableRestriction(3);
+        while (again.equals("SI")) {
+            cR.enableRestriction(1);
             int dia = 0;
             System.out.println("Indica el dia");
             dia = in.nextInt();
             System.out.println("Indica la hora inicial");
             hIni = in.nextInt();
             System.out.println("Indica la hora final");
-            classroom.getTimetable().banTime(dia, hIni, hEnd);
-            System.out.println("Indica el numero del grup");
+            hEnd = in.nextInt();
+            System.out.println("Indica el nom de la assignatura");
             String name = in.next();
             classroom.getTimetable().banSubject(dia, hIni, hEnd, name);
             System.out.println("Vols bloquejar alguna hora mes d'aquesta classe per alguna assignatura determinada? SI/NO");
@@ -146,7 +148,7 @@ public class DruverCTRLRestrictions {
         System.out.println("Introdueix el numero del Grup");
         int id = in.nextInt();
         System.out.println ("Introdueix el numero de dies valides per aquest grup: " + id);
-        nDays = in.nextInt();
+        int nDays = in.nextInt();
         System.out.println ("Introdueix la hora inicial i final per aquest grup: " + id);
         hIni = in.nextInt();
         hEnd = in.nextInt();
