@@ -226,7 +226,7 @@ public class DriverTimetableGenerator {
         else if (GS.problemsGroup()) type = "Problems";
         System.out.print("Materia: " + GS.getSubject().getName() + " ");
         if(GS.issubGroup()) System.out.println("Subgrup: " + GS.getSubGroup().getsNum());
-        else System.out.println("Group: " + GS.getGroup());
+        else System.out.println("Group: " + GS.getGroup().getNum());
     }
     
     private static void printTimetable(Timetable timetable) {
@@ -296,6 +296,7 @@ public class DriverTimetableGenerator {
         manualLoad(p);
         p.generateAllGS();
         print(p);
+        p.generate(p.getClassrooms(), p.getProblem());
         driverGR();
         
     }

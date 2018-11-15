@@ -26,6 +26,7 @@ public class TimetableGenerator {
     public TimetableGenerator() {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
+        this.problem = new ArrayList<>();
     }
 
     public List<Classroom> getClassrooms() {
@@ -261,7 +262,7 @@ public class TimetableGenerator {
             return false;
         }
         return true;
-    }*/
+    }
     
     /*public void load(String file) throws FileNotFoundException, IOException{
         String s;
