@@ -121,6 +121,16 @@ public class GroupSubject {
         return problems;
     }
     
+    public void setSubjectToGroup(int i, int j, Subject s, boolean issubGroup){
+        if (issubGroup) this.subGroup.setSubject(i, j, s);
+        else this.group.setSubject(i, j, s);
+    }
+    
+    public void removeSubjectOfTimetableFromGroup(int i, int j, boolean issubGroup){
+        if (issubGroup) this.subGroup.removeSubject(i, j);
+        else this.group.removeSubject(i, j);
+    }
+    
     /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);

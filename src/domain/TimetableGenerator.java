@@ -217,10 +217,7 @@ public class TimetableGenerator {
         for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, aux.getTimetable()));
     }*/
     
-    /*
     public boolean generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
-        Iterator<Classroom> it1 = classrooms.iterator();
-        Iterator<GroupSubject> it2 = gs_list.iterator();
         return i_generate(classrooms, gs_list, 0, 0);
     }
     
@@ -231,36 +228,29 @@ public class TimetableGenerator {
             if (pos_classroom < classrooms.size()){
                 Classroom classroom = classrooms.get(pos_classroom);
                 // Recorremos los días del horario
-                for(int i = 0; i < classroom.getTimetable().getnDays(); ++i){
+                for(int i = 0; i < classroom.getnDaysFromTimetable(); ++i){
                     // Recorremos las horas de un día
-                    for(int j = classroom.getTimetable().gethIni(); j < classroom.getTimetable().gethEnd(); ++j){
+                    for(int j = 0; j < (classroom.gethEndFromTimetable()-classroom.gethIniFromTimetable()); ++j){
                         // Comprobamos restricciones de la clase
-                        if(ctrlRestrictions.classroomRestrictions(i, classroom.getTimetable().gethIni(), classroom.getTimetable().gethEnd(), classroom, gs)){
+                        if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
                             // Comprobamos restricciones de los grupos
-                            if(ctrlRestrictions.groupRestrictions(i, classroom.getTimetable().gethIni(), classroom.getTimetable().gethEnd(), classroom, classroom.getTimetable(), gs)){
-                                // Comprobamos restricciones de las asignaturas
-                                if(ctrlRestrictions.subjectRestrictions(i, classroom.getTimetable().gethIni(), classroom.getTimetable().gethEnd(), classroom.getTimetable(), gs)){
-                                    // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
-                                    classroom.getTimetable().setGStoTimetable(gs, i, j);
-                                    
-                                    if (gs.isSubGroup()) gs.getSubGroup().setSubject(i, j, gs.getSubject());
-                                    else gs.getGroup().setSubject(i, j, gs.getSubject());
+                            if(ctrlRestrictions.groupRestrictions(i, j, classroom, classroom.getTimetable(), gs)){
+                                // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
+                                classroom.setGStoTimetable(gs, i, j);
 
-                                    // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j
-                                    fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1);
-                                    
-                                    if (fin) return true;
-                                    
-                                    classroom.getTimetable().removeHourOfTimetable(i, j);
+                                if (gs.issubGroup()) gs.setSubjectToGroup(i, j, gs.getSubject(), true);
+                                else gs.setSubjectToGroup(i, j, gs.getSubject(), false);
 
-                                    if (gs.isSubGroup()) gs.getSubGroup().removeSubject(i, j);
-                                    else gs.getGroup().removeSubject(i, j);
-                                }
+                                // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j
+                                fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1);
+
+                                if (fin) return true;
+
+                                classroom.removeHourOfTimetable(i,j);
+
+                                if (gs.issubGroup()) gs.removeSubjectOfTimetableFromGroup(i, j, true);
+                                else gs.removeSubjectOfTimetableFromGroup(i, j, false);
                             }
-                        }
-                        // No se puede poner en esa clase, llamamos de nuevo a la función con la siguiente clase (si la hay) pero mismo grupo-asignatura
-                        else {
-                            if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs);
                         }
                     }
                 }

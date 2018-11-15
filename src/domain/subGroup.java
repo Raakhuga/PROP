@@ -17,7 +17,7 @@ public class subGroup {
         this.subGroupRestrictions = new GroupRestrictions[nDays][hEnd-hIni];
         this.subGroupTimetable = new Subject[nDays][hEnd-hIni];
         this.type = new String[nDays][hEnd-hIni];
-        this.Num = Num;
+        this.Num = num;
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
@@ -74,14 +74,6 @@ public class subGroup {
     
     public void setType(int day, int hour, String type) {
         this.type[day][hour] = type;
-    }
-    
-    public void addSubject(int day, int hour, Subject subject) {
-        subGroupTimetable[day][hour] = subject;
-    }
-    
-    public Subject[][] getGroupTimetable() {
-        return subGroupTimetable;
     }
     
     public Subject getSubject (int day, int hour) {

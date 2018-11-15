@@ -54,6 +54,26 @@ public class Classroom {
         return problems;
     }
     
+    public int getnDaysFromTimetable(){
+        return timetable.getnDays();
+    }
+    
+    public int gethEndFromTimetable(){
+        return timetable.gethEnd();
+    }
+    
+    public int gethIniFromTimetable(){
+        return timetable.gethIni();
+    }
+    
+    public void setGStoTimetable(GroupSubject gs, int i, int j){
+        timetable.setGStoTimetable(gs, i, j);
+    }
+    
+    public void removeHourOfTimetable(int i,int j){
+        timetable.removeHourOfTimetable(i, j);
+    }
+    
     /*public void save() throws IOException {
         String file = "state.txt";
         FileWriter writer = new FileWriter(file);

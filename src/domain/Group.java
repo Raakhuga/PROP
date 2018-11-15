@@ -93,20 +93,23 @@ public class Group {
         subGroups.add(subGroup);
     }
     
+    public subGroup getSpecifiedSubGroup(int num){
+        for(int i = 0; i < subGroups.size(); ++i){
+            if (subGroups.get(i).getsNum() == num) return subGroups.get(i);
+        }
+        return null;
+    }
+    
     public void removeSubGroup(subGroup subGroup) {
-        subGroups.add(subGroup);
+        subGroups.remove(subGroup);
     }
     
     public GroupRestrictions[][] getRestrictions() {
         return GroupRestrictions;
     }
     
-    public void addSubject(int day, int hour, Subject subject) {
+    public void setSubject(int day, int hour, Subject subject) {
         GroupTimetable[day][hour] = subject;
-    }
-    
-    public Subject[][] getGroupTimetable() {
-        return GroupTimetable;
     }
     
     public Subject getSubject (int day, int hour) {
