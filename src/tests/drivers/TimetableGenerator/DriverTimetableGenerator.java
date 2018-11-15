@@ -297,6 +297,7 @@ public class DriverTimetableGenerator {
         p.generateAllGS();
         print(p);
         p.generate(p.getClassrooms(), p.getProblem());
+        print(p);
         driverGR();
         
     }

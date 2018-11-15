@@ -29,8 +29,16 @@ public class Group {
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
-        subGroups = new ArrayList<subGroup>();
+        subGroups = new ArrayList<>();
         this.nMat = nMat;
+        initializeGroupRestrictions();
+    }
+    
+    private void initializeGroupRestrictions(){
+        GroupRestrictions gr = new GroupRestrictions();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                GroupRestrictions[i][j] = gr;
     }
 
     public int getNum() {

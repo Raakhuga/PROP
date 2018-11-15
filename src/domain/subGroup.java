@@ -22,6 +22,14 @@ public class subGroup {
         this.hIni = hIni;
         this.hEnd = hEnd;
         this.nMat = nMat;
+        initializeGroupRestrictions();
+    }
+    
+    private void initializeGroupRestrictions(){
+        GroupRestrictions sgr = new GroupRestrictions();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                subGroupRestrictions[i][j] = sgr;
     }
     
     public GroupRestrictions[][] getRestrictions() {
