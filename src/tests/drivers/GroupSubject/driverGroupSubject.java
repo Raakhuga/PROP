@@ -5,6 +5,7 @@ import domain.*;
 import java.util.Scanner;
 
 public class driverGroupSubject {
+    
     public static void main(String[] args) throws Exception{
         System.out.println("Aquest es el driver de groupSubject");
         System.out.println("Aquesta relació pot ser entre grup-assignatura o bé entre subgrup-assignatura, escull quina vols seleccionar:");
