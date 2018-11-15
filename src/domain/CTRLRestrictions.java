@@ -80,7 +80,7 @@ public class CTRLRestrictions {
     }*/
     
     public boolean groupRestrictions(int day, int hour, Classroom classroom, Timetable groupTimetable, GroupSubject GSNew) {
-        if(classroom.getTimetable().getGroupSubject(day, hour) != null){
+         if(classroom.getTimetable().getRestrictions()[day][hour].isFree()){
             //El grupo no puede tener clase en dicho lapso de tiempo
             if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
             //El grupo tiene horas bloqueadas en dicho lapso
@@ -93,8 +93,9 @@ public class CTRLRestrictions {
             else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
             //Hay clase de Lab antes que la de teoria
             else if (LabBeforeTheory(day, hour, GSNew) && rExtra[1]) return false;
+            return true;
         }
-        return true;
+        return false;
     }
     
     private boolean classroomTooSmall(Classroom classroom, GroupSubject GSNew) {
