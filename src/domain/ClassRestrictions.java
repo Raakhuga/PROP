@@ -12,7 +12,16 @@ public class ClassRestrictions {
     
     public ClassRestrictions() {
         banned = false;
+        bansubjects = new HashSet<String>();
         groups = new HashSet<Integer>();
+    }
+
+    public Set<String> getBansubjects() {
+        return bansubjects;
+    }
+
+    public Set<Integer> getGroups() {
+        return groups;
     }
     
     public void setBanned(boolean banned) {
