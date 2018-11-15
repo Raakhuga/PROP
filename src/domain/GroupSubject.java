@@ -51,10 +51,6 @@ public class GroupSubject {
     public subGroup getSubGroup() {
         return subGroup;
     }
-    
-    public boolean isSubGroup() {
-        return subGroup != null;
-    }
 
     public boolean isBanned() {
         if (nMat != -1) return false;
