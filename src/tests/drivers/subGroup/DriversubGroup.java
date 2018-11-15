@@ -5,14 +5,10 @@ import domain.*;
 import java.util.Scanner;
 
 public class DriversubGroup {
-    
-    //private static subGroup prova = new subGroup(11, 7, 8, 20, 20);
-    
+        
     public static void main(String[] args) throws Exception{
         System.out.println("Aquest es el driver de subgroup");
         driverConstructora();
-        /*
-        driverRemoveSubject();*/
         System.out.println("Driver ha acabat amb exit");
     }
     
@@ -45,12 +41,20 @@ public class DriversubGroup {
         System.out.println("Escriu quantes hores de classe fa l'assignatura (per setmana)");
         int hours = in.nextInt();
         Subject s = new Subject(name, lvl, hours);
-        System.out.println("S'ha creat l'assignatura "+s.getName()+" que es del "+s.getLevel()+"er nivell i fa "+s.getHours()+" hores a la setmana");
-        System.out.println("Escriu el dia on la vols afegir, ha de ser un valor entre 0 i "+sg.getnDays());
+        System.out.println("S'ha creat l'assignatura "+s.getName()+" que es del "+s.getLevel()+" nivell i fa "+s.getHours()+" hores a la setmana");
+        System.out.println("Escriu el dia on la vols afegir, ha de ser un valor entre 0 i "+(sg.getnDays()-1));
         int day = in.nextInt();
-        if (day < 0 && ) 
-        System.out.println("Escriu l'hora on la vols afegir, ha de ser un valor entre"+sg.gethIni()+" i "+sg.gethEnd());
+        while (day < 0 || day >= sg.getnDays()){
+            System.out.println("Valor invàlid, escriu un entre 0 i "+(sg.getnDays()-1));
+            day = in.nextInt();
+        }
+        System.out.println("Escriu l'hora on la vols afegir, ha de ser un valor entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
         int hour = in.nextInt();
+        while (hour < sg.gethIni() || hour >= sg.gethEnd()){
+            System.out.println("Valor invàlid, escriu un entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
+            hour = in.nextInt();
+        }
+        hour -= sg.gethIni();
         sg.setSubject(day, hour, s);
         if (sg.getTimetable()[day][hour] != null) System.out.println("S'ha afegit l'assignatura "+sg.getTimetable()[day][hour].getName());
         else System.out.println("Hi ha hagut un problema al afegir l'assignatura");
@@ -61,23 +65,68 @@ public class DriversubGroup {
     private static void driverGetTimetable(subGroup sg){
         System.out.println("Anem a provar el driver de getTimetable");
         Scanner in = new Scanner(System.in);
-        System.out.println("Escriu el dia que vols consultar, ha de ser un valor entre 0 i "+sg.getnDays());
+        System.out.println("Escriu el dia que vols consultar, ha de ser un valor entre 0 i "+(sg.getnDays()-1));
         int day = in.nextInt();
-        System.out.println("Escriu l'hora que vols consultar, ha de ser un valor entre"+sg.gethIni()+" i "+sg.gethEnd());
+        while (day < 0 || day >= sg.getnDays()){
+            System.out.println("Valor invàlid, escriu un entre 0 i "+(sg.getnDays()-1));
+            day = in.nextInt();
+        }
+        System.out.println("Escriu l'hora que vols consultar, ha de ser un valor entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
         int hour = in.nextInt();
-        System.out.println("L'assignatura de primera hora del primer dia es: "+sg.getTimetable()[day][hour].getName());
+        while (hour < sg.gethIni() || hour >= sg.gethEnd()){
+            System.out.println("Valor invàlid, escriu un entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
+            hour = in.nextInt();
+        }
+        hour -= sg.gethIni();
+        System.out.println("L'assignatura que ha consultat es: "+sg.getTimetable()[day][hour].getName());
         System.out.println();
+        driverSetType(sg);
     }
     
-    private static void driverRemoveSubject(){
+    private static void driverSetType(subGroup sg){
+        System.out.println("Anem a provar el driver de setType");
+        Scanner in = new Scanner(System.in);
+        System.out.println("Escriu el dia on vols definir el tipus de la classe, ha de ser un valor entre 0 i "+(sg.getnDays()-1));
+        int day = in.nextInt();
+        while (day < 0 || day >= sg.getnDays()){
+            System.out.println("Valor invàlid, escriu un entre 0 i "+(sg.getnDays()-1));
+            day = in.nextInt();
+        }
+        System.out.println("Escriu l'hora on vols definir el tipus de la classe, ha de ser un valor entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
+        int hour = in.nextInt();
+        while (hour < sg.gethIni() || hour >= sg.gethEnd()){
+            System.out.println("Valor invàlid, escriu un entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
+            hour = in.nextInt();
+        }
+        hour -= sg.gethIni();
+        System.out.println("Escriu el tipus de la classe que vols definir");
+        String type = in.next();
+        sg.setType(day, hour, type);
+        if (sg.getType(day, hour) != null) System.out.println("S'ha afegit el tipus "+sg.getType(day, hour));
+        else System.out.println("Hi ha hagut un problema al afegir l'assignatura");
+        System.out.println();
+        driverRemoveSubject(sg);
+    }
+    
+    private static void driverRemoveSubject(subGroup sg){
         System.out.println("Anem a provar el driver de removeSubject");
-        prova.removeSubject(0, 1);
-        if (prova.getTimetable()[0][1] != null) System.out.println("L'assignatura de primera hora del primer dia es: "+prova.getTimetable()[0][1].getName());
+        Scanner in = new Scanner(System.in);
+        System.out.println("Escriu el dia d'on vols treure l'assignatura, ha de ser un valor entre 0 i "+(sg.getnDays()-1));
+        int day = in.nextInt();
+        while (day < 0 || day >= sg.getnDays()){
+            System.out.println("Valor invàlid, escriu un entre 0 i "+(sg.getnDays()-1));
+            day = in.nextInt();
+        }
+        System.out.println("Escriu l'hora d'on vols treure l'assignatura, ha de ser un valor entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
+        int hour = in.nextInt();
+        while (hour < sg.gethIni() || hour >= sg.gethEnd()){
+            System.out.println("Valor invàlid, escriu un entre "+sg.gethIni()+" i "+(sg.gethEnd()-1));
+            hour = in.nextInt();
+        }
+        hour -= sg.gethIni();
+        sg.removeSubject(day, hour);
+        if (sg.getTimetable()[0][1] != null) System.out.println("L'assignatura que ha consultat es: "+sg.getTimetable()[day][hour].getName());
         else System.out.println("S'ha tret l'assignatura satisfactòriament");
-        Subject s = new Subject("par", 3, 1);
-        prova.setSubject(1, 1, s);
-        System.out.println("S'ha afegit una assignatura a l'horari");
-        System.out.println("L'assignatura de primera hora del segon dia es: "+prova.getTimetable()[1][1].getName());
         System.out.println();
     }
     
