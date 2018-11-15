@@ -12,7 +12,7 @@ public class CTRLRestrictions {
     public int hours;
     public StudyProgram SP;*/
     private final static int NUM_RESTR_EXTRA = 4;
-    private final static int NUM_RESTR_BASE = 2;
+    private final static int NUM_RESTR_BASE = 3;
     public boolean rBase[];
     private boolean rExtra[];
     
@@ -41,6 +41,12 @@ public class CTRLRestrictions {
         else if (classTimetable.);
         return true;
     }*/
+    public void enableRestriction(int i) {
+        rExtra[i] = true;
+    }
+    public void disableRestriction(int i) {
+        rExtra[i] = false;
+    }
     
     public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew){
         //El aula no esta disponible en dicho lapso de tiempo
@@ -53,6 +59,8 @@ public class CTRLRestrictions {
         else if (subjectBanned(day, hour, classroom.getTimetable(), GSNew.getNameSubject()) && rExtra[1]) return false;
         //El aula es demasiado pequeña
         else if (classroomTooSmall(classroom, GSNew) && rBase[1]) return false;
+        //El tipus de aula no es la mateixa amb el de GroupSubject
+        else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
         return true;
     }
     
@@ -116,17 +124,12 @@ public class CTRLRestrictions {
         }
         return false;
     }
-    
-    
-    /*
-    private void banDay(int day, Timetable classTimetable) {
-        classTimetable.timeBanned(day, classTimetable.gethIni(), classTimetable.gethEnd());
+    public void enableRestriction(int num) {
+        rExtra[num] = true;        
     }
-    private void banHours (int hIni, int hEnd, Timetable classTimetable) {
-        for(int i = 0; i < classTimetable.getnDays(); ++i) classTimetable.timeBanned(i, hIni, hEnd);
+    public void disableRestriction(int num) {
+        rExtra[num] = false;        
     }
-    */
-    
     private boolean hourOk(Timetable TB, int day, int hour) {
         return (0 <= day && day > TB.getnDays()) && (hour >= TB.gethIni() && hour <= TB.gethEnd());
     }
