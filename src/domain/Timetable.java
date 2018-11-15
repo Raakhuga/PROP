@@ -93,7 +93,7 @@ public class Timetable {
     }
     public void setGStoTimetable(GroupSubject gs, int day, int hour){
         timetable[day][hour] = gs;
-        timetable[day][hour].setFree(false);
+        restrictions[day][hour].setFree(false);
     }
     
     public void removeHourOfTimetable(int day, int hour){
