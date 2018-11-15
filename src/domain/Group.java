@@ -100,10 +100,6 @@ public class Group {
         GroupTimetable[day][hour] = subject;
     }
     
-    public Subject[][] getGroupTimetable() {
-        return GroupTimetable;
-    }
-    
     public Subject getSubject (int day, int hour) {
         return GroupTimetable[day][hour];
     }
