@@ -6,10 +6,55 @@ import java.util.Scanner;
 
 public class DriverGroup {
     
+    private static Group g = new Group(0, 0, 0, 0, 0);
+    
     public static void main(String[] args) throws Exception{
-        System.out.println("Aquest es el driver de group");
+        System.out.println("Aquest és el driver de group, anem a crear un grup");
         driverConstructora();
+        System.out.println("Ara que està creat el grup, escull que vols fer:");
+        llistat_funcionalitats();
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        while (n != -1){
+            switch(n){
+                    case 1:
+                        driverSetSubject(g);
+                        break;
+                    case 2:
+                        driverGetTimetable(g);
+                        break;
+                    case 3:
+                        driverSetType(g);
+                        break;
+                    case 4:
+                        driverRemoveSubject(g);
+                        break;
+                    case 5:
+                        driverAddSubGroup(g);
+                        break;
+                    case 6: 
+                        driverGetSpecifiedSubGroup(g);
+                        break;
+                    case 7:
+                        driverRemoveSubGroup(g);
+                        break;
+            }
+            System.out.println("Escull una altre funcionalitat:");
+            llistat_funcionalitats();
+            n = in.nextInt();
+        }
         System.out.println("Driver ha acabat amb exit");
+    }
+    
+    private static void llistat_funcionalitats(){
+        System.out.println("-1: Sortir");
+        System.out.println("1: Assignar una assignatura a una franja horària determinada");
+        System.out.println("2: Consultar l'assignatura que hi ha assignada a una franja horària determinada");
+        System.out.println("3: Assignar el tipus de la classe de l'assignatura");
+        System.out.println("4: Treure una assignatura d'una franja horària determinada");
+        System.out.println("5: Afegir subgrup");
+        System.out.println("6: Consultar subgrup");
+        System.out.println("7: Eliminar subgrup");
     }
     
     private static void driverConstructora(){
@@ -28,7 +73,6 @@ public class DriverGroup {
         Group g = new Group(num, days, hIni, hEnd, nMats);
         System.out.println("S'ha creat el grup " +g.getNum()+" amb "+g.getnMat()+" matriculats");
         System.out.println();
-        driverSetSubject(g);
     }
     
     private static void driverSetSubject(Group g){
@@ -59,7 +103,6 @@ public class DriverGroup {
         if (g.getTimetable()[day][hour] != null) System.out.println("S'ha afegit l'assignatura "+g.getTimetable()[day][hour].getName());
         else System.out.println("Hi ha hagut un problema al afegir l'assignatura");
         System.out.println();
-        driverGetTimetable(g);
     }
     
     private static void driverGetTimetable(Group g){
@@ -80,7 +123,6 @@ public class DriverGroup {
         hour -= g.gethIni();
         System.out.println("L'assignatura que ha consultat es: "+g.getTimetable()[day][hour].getName());
         System.out.println();
-        driverSetType(g);
     }
     
     private static void driverSetType(Group g){
@@ -105,7 +147,6 @@ public class DriverGroup {
         if (g.getType(day, hour) != null) System.out.println("S'ha afegit el tipus "+g.getType(day, hour));
         else System.out.println("Hi ha hagut un problema al afegir l'assignatura");
         System.out.println();
-        driverRemoveSubject(g);
     }
     
     private static void driverRemoveSubject(Group g){
@@ -128,7 +169,6 @@ public class DriverGroup {
         if (g.getTimetable()[0][1] != null) System.out.println("L'assignatura que ha consultat es: "+g.getTimetable()[day][hour].getName());
         else System.out.println("S'ha tret l'assignatura satisfactòriament");
         System.out.println();
-        driverAddSubGroup(g);
     }
     
     private static void driverAddSubGroup(Group g){
@@ -150,7 +190,6 @@ public class DriverGroup {
         if (!g.getsubGroups().isEmpty()) System.out.println("S'ha afegit correctament el subgrup "+g.getsubGroups().get(0).getsNum());
         else System.out.println("No s'ha pogut afegir correctamente el subgrup");
         System.out.println();
-        driverGetSpecifiedSubGroup(g);
     }
     
     private static void driverGetSpecifiedSubGroup(Group g){
@@ -166,7 +205,7 @@ public class DriverGroup {
         }
         System.out.println("S'ha seleccionat el subgrup amb numero "+sg.getsNum());
         System.out.println();
-        driverRemoveSubGroup(g);
+        
     }
     
     private static void driverRemoveSubGroup(Group g){

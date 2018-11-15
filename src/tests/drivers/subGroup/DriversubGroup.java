@@ -5,11 +5,44 @@ import domain.*;
 import java.util.Scanner;
 
 public class DriversubGroup {
-        
+    
+    private static subGroup sg = new subGroup(0, 0, 0, 0, 0);
+    
     public static void main(String[] args) throws Exception{
-        System.out.println("Aquest es el driver de subgroup");
+        System.out.println("Aquest és el driver de subgroup, anem a crear un subgrup");
         driverConstructora();
+        System.out.println("Ara que està creat el subgrup, escull que vols fer:");
+        llistat_funcionalitats();
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        while (n != -1){
+            switch(n){
+                    case 1:
+                        driverSetSubject(sg);
+                        break;
+                    case 2:
+                        driverGetTimetable(sg);
+                        break;
+                    case 3:
+                        driverSetType(sg);
+                        break;
+                    case 4:
+                        driverRemoveSubject(sg);
+                        break;
+            }
+            System.out.println("Escull una altre funcionalitat:");
+            llistat_funcionalitats();
+            n = in.nextInt();
+        }
         System.out.println("Driver ha acabat amb exit");
+    }
+    
+    private static void llistat_funcionalitats(){
+        System.out.println("-1: Sortir");
+        System.out.println("1: Assignar una assignatura a una franja horària determinada");
+        System.out.println("2: Consultar l'assignatura que hi ha assignada a una franja horària determinada");
+        System.out.println("3: Assignar el tipus de la classe de l'assignatura");
+        System.out.println("4: Treure una assignatura d'una franja horària determinada");
     }
     
     private static void driverConstructora(){
@@ -25,10 +58,9 @@ public class DriversubGroup {
         int hEnd = in.nextInt();
         System.out.println("Escriu la quantitat d'estudiants matriculats a aquest subgrup");
         int nMats = in.nextInt();
-        subGroup sg = new subGroup(num, days, hIni, hEnd, nMats);
+        sg = new subGroup(num, days, hIni, hEnd, nMats);
         System.out.println("S'ha creat el subgrup " +sg.getsNum()+" amb "+sg.getnMat()+" matriculats");
         System.out.println();
-        driverSetSubject(sg);
     }
     
     private static void driverSetSubject(subGroup sg){
@@ -59,7 +91,6 @@ public class DriversubGroup {
         if (sg.getTimetable()[day][hour] != null) System.out.println("S'ha afegit l'assignatura "+sg.getTimetable()[day][hour].getName());
         else System.out.println("Hi ha hagut un problema al afegir l'assignatura");
         System.out.println();
-        driverGetTimetable(sg);
     }
     
     private static void driverGetTimetable(subGroup sg){
@@ -80,7 +111,6 @@ public class DriversubGroup {
         hour -= sg.gethIni();
         System.out.println("L'assignatura que ha consultat es: "+sg.getTimetable()[day][hour].getName());
         System.out.println();
-        driverSetType(sg);
     }
     
     private static void driverSetType(subGroup sg){
@@ -105,7 +135,6 @@ public class DriversubGroup {
         if (sg.getType(day, hour) != null) System.out.println("S'ha afegit el tipus "+sg.getType(day, hour));
         else System.out.println("Hi ha hagut un problema al afegir l'assignatura");
         System.out.println();
-        driverRemoveSubject(sg);
     }
     
     private static void driverRemoveSubject(subGroup sg){
@@ -125,7 +154,7 @@ public class DriversubGroup {
         }
         hour -= sg.gethIni();
         sg.removeSubject(day, hour);
-        if (sg.getTimetable()[0][1] != null) System.out.println("L'assignatura que ha consultat es: "+sg.getTimetable()[day][hour].getName());
+        if (sg.getTimetable()[day][hour] != null) System.out.println("L'assignatura que ha consultat es: "+sg.getTimetable()[day][hour].getName());
         else System.out.println("S'ha tret l'assignatura satisfactòriament");
         System.out.println();
     }
