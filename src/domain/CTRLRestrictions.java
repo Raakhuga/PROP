@@ -64,7 +64,7 @@ public class CTRLRestrictions {
             //El tipus de aula no es la mateixa amb el de GroupSubject
             else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
         }
-        System.out.println("Ha acabado las classroomRestrictions");
+        //System.out.println("Ha acabado las classroomRestrictions");
         return true;
     }
     

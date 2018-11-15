@@ -264,7 +264,7 @@ public class TimetableGenerator {
             }
             // Hay al menos un grupo-asignatura disponible pero no hay ninguna clase a la que se le pueda asignar
             System.out.println("No hi ha cap horari disponible");
-            return false;
+            return true;
         }
         return true;
     }
