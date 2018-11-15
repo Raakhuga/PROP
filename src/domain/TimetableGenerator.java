@@ -245,7 +245,7 @@ public class TimetableGenerator {
                                 if (gs.issubGroup()) gs.setSubjectToGroup(i, j, gs.getSubject(), true);
                                 else gs.setSubjectToGroup(i, j, gs.getSubject(), false);
                                 
-                                // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j
+                                // Llamamos de nuevo a la función con el siguiente grupo-asignaturass
                                 fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1, ctrlRestrictions);
 
                                 if (fin) return true;
