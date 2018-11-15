@@ -121,12 +121,12 @@ public class DriverTimetableGenerator {
             hEnd = in.nextInt();
             System.out.println("Insert the type of the Classroom number: " + i);
             type = in.next();
-            if(type == "theory" ||type == "Theory") {
+            if(type.equals("theory") ||type.equals("Theory")) {
                 theory = true;
                 lab = false; 
                 problems = false;
             }
-            else if (type == "laboratory" || type == "Laboratory" || type == "lab" || type == "Lab") {
+            else if (type.equals("laboratory") || type.equals("Laboratory") || type.equals("lab") || type.equals("Lab")) {
                 theory = false;
                 lab = true; 
                 problems = false;
