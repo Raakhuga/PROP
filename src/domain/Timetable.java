@@ -59,6 +59,19 @@ public class Timetable {
         return 0;
     }*/
     
+    public void banGroup(int day, int hIni, int hEnd, int group) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].banGroup(group);   
+    }
+     public void banSubject(int day, int hIni, int hEnd, String name) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].banSubject(name);   
+    }
+     
+    public void UnbanGroup(int day, int hIni, int hEnd, int group) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].unbanGroup(group);   
+    }
+    public void UnbanSubject(int day, int hIni, int hEnd, String name) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].unbanSubject(name);   
+    }
     public void setGStoTimetable(GroupSubject gs, int day, int hour){
         timetable[day][hour] = gs;
     }
