@@ -39,6 +39,15 @@ public class Timetable {
         return timetable;
     }
     
+    public void restartTimetable() {
+        GroupSubject GS = new GroupSubject();
+        for(int i = 0; i < nDays; i++) 
+            for(int j = 0; j < hEnd-hIni; j++) {
+                timetable[i][j] = GS;
+                restrictions[i][j].setFree(true);
+            }
+    }
+    
     public GroupSubject getGroupSubject(int day, int hour) {
         return timetable[day][hour];
     }
@@ -84,6 +93,7 @@ public class Timetable {
     }
     public void setGStoTimetable(GroupSubject gs, int day, int hour){
         timetable[day][hour] = gs;
+        timetable[day][hour].setFree(false);
     }
     
     public void removeHourOfTimetable(int day, int hour){

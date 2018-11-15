@@ -242,9 +242,17 @@ public class TimetableGenerator {
                                 // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
                                 classroom.setGStoTimetable(gs, i, j);
 
-                                if (gs.issubGroup()) gs.setSubjectToGroup(i, j, gs.getSubject(), true);
-                                else gs.setSubjectToGroup(i, j, gs.getSubject(), false);
-                                
+                                if (gs.issubGroup()) {
+                                    gs.setSubjectToGroup(i, j, gs.getSubject(), true);
+                                    gs.getSubGroup().setType(i, j, gs.getType());
+                                    gs.getSubGroup().getRestriction(i, j).setFree(false);
+                                }
+                                else {
+                                    gs.setSubjectToGroup(i, j, gs.getSubject(), false);
+                                    gs.getGroup().setType(i, j, gs.getType());
+                                    gs.getGroup().getRestriction(i, j).setFree(false);
+                                }
+
                                 // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j
                                 fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1, ctrlRestrictions);
 
@@ -264,7 +272,7 @@ public class TimetableGenerator {
             }
             // Hay al menos un grupo-asignatura disponible pero no hay ninguna clase a la que se le pueda asignar
             System.out.println("No hi ha cap horari disponible");
-            return false;
+            return true;
         }
         return true;
     }

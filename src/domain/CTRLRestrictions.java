@@ -134,7 +134,6 @@ public class CTRLRestrictions {
         }
         return false;
     }
-    
     private boolean hourOk(Timetable TB, int day, int hour) {
         //System.out.println("Ha entrado en hour ok");
         return (0 <= day && day < TB.getnDays()) && (hour >= TB.gethIni() && hour < TB.gethEnd());
