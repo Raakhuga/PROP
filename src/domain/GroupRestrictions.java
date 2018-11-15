@@ -15,6 +15,14 @@ public class GroupRestrictions {
         bansubjects = new HashSet<String>();
         banclassrooms = new HashSet<String>();
     }
+
+    public Set<String> getBansubjects() {
+        return bansubjects;
+    }
+
+    public Set<String> getBanclassrooms() {
+        return banclassrooms;
+    }
     
     public void setBanned(boolean banned) {
         this.banned = banned;

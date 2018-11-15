@@ -20,6 +20,7 @@ public class Level {
     public Level(int iden){
         this.iden = iden;
         this.subjects = new ArrayList<Subject>();
+        this.groups = new ArrayList<Group>();
     }
 
     public int getIden() {
@@ -42,6 +43,10 @@ public class Level {
         this.groups = groups;
     }
     
+    public void addGro(Group group) {
+        this.groups.add(group);
+    }
+    
     public void addGroup(int id, int nStudentsGroup, int nMaxStudentsSubgroups) {
         int nDays, hIni, hEnd, nSubGroups, remaining;
         Scanner in = new Scanner(System.in);
@@ -59,7 +64,7 @@ public class Level {
             actualGroup.addSubGroup(new subGroup(id+i, nDays, hIni, hEnd, nMaxStudentsSubgroups));
             i++;
         }
-        if (remaining > 0) actualGroup.addSubGroup(new subGroup(id+i, nDays, hIni, hEnd, remaining));  
+        if (remaining > 0) actualGroup.addSubGroup(new subGroup(id+i, nDays, hIni, hEnd, remaining)); 
         groups.add(actualGroup);
     }
     
@@ -74,7 +79,7 @@ public class Level {
         for(int j = 0; j < nSubjects; j++) {
             System.out.println ("Insert the name of the Subject num: " + j + " of the Level: " + iden);
             name = in.next();
-            System.out.println ("Insert the number of hours of the Subject: " + name +" of the Level: " + iden);
+            System.out.println ("Insert the number of hours of the Subject: " + name + " of the Level: " + iden);
             hours = in.nextInt();
             act = new Subject(name, iden, hours);
             if(manual) act.manualFillHours();

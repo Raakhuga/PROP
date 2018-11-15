@@ -41,6 +41,18 @@ public class Group {
         return nDays;
     }
     
+    public boolean isBanned(int day, int hour) {
+        return GroupRestrictions[day][hour].getBanned();
+    }
+    
+    public boolean subjectBanned(int day, int hour, String name) {
+        return GroupRestrictions[day][hour].subjectBanned(name);
+    }
+    
+    public boolean classroomBanned(int day, int hour, String name) {
+        return GroupRestrictions[day][hour].classroomBanned(name);
+    }
+    
     public Subject[][] getTimetable() {
         return GroupTimetable;
     }

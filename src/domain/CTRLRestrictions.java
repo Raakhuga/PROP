@@ -12,7 +12,7 @@ public class CTRLRestrictions {
     public int hours;
     public StudyProgram SP;*/
     private final static int NUM_RESTR_EXTRA = 4;
-    private final static int NUM_RESTR_BASE = 2;
+    private final static int NUM_RESTR_BASE = 3;
     public boolean rBase[];
     private boolean rExtra[];
     
@@ -41,6 +41,12 @@ public class CTRLRestrictions {
         else if (classTimetable.);
         return true;
     }*/
+    public void enableRestriction(int i) {
+        rExtra[i] = true;
+    }
+    public void disableRestriction(int i) {
+        rExtra[i] = false;
+    }
     
     public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew){
         //El aula no esta disponible en dicho lapso de tiempo
@@ -48,11 +54,13 @@ public class CTRLRestrictions {
         //El aula tiene horas bloqueadas en dicho lapso
         else if (isBanned(day, hour, classroom.getTimetable()) && rExtra[0]) return false;
         //El aula tiene bloqueado al grupo en dicha franja horaria
-        else if (groupBanned(day, hour, classroom.getTimetable(), GSNew.getGroup().getNum()) && rExtra[2]) return false;
+        else if (groupBanned(day, hour, classroom.getTimetable(), GSNew.getNumGroup()) && rExtra[2]) return false;
         //La materia esta bloqueada en dicha franja horaria
-        else if (subjectBanned(day, hour, classroom.getTimetable(), GSNew.getSubject().getName()) && rExtra[1]) return false;
+        else if (subjectBanned(day, hour, classroom.getTimetable(), GSNew.getNameSubject()) && rExtra[1]) return false;
         //El aula es demasiado pequeña
         else if (classroomTooSmall(classroom, GSNew) && rBase[1]) return false;
+        //El tipus de aula no es la mateixa amb el de GroupSubject
+        else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
         return true;
     }
     
@@ -72,7 +80,7 @@ public class CTRLRestrictions {
         //El grupo no puede ir a esa clase en dicha franja horaria
         else if (classroomBanned(day, hour, GSNew, classroom.getRef()) && rExtra[3]) return false;
         //La materia esta bloqueada en dicha franja horaria
-        else if (subjectBanned(day, hour, GSNew, GSNew.getSubject().getName()) && rExtra[1]) return false;
+        else if (subjectBanned(day, hour, GSNew, GSNew.getNameSubject()) && rExtra[1]) return false;
         //Hay solapamiento de dos asignaturas de un mismo nivel
         else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
         //Hay clase de Lab antes que la de teoria
@@ -116,17 +124,12 @@ public class CTRLRestrictions {
         }
         return false;
     }
-    
-    
-    /*
-    private void banDay(int day, Timetable classTimetable) {
-        classTimetable.timeBanned(day, classTimetable.gethIni(), classTimetable.gethEnd());
+    public void enableRestriction(int num) {
+        rExtra[num] = true;        
     }
-    private void banHours (int hIni, int hEnd, Timetable classTimetable) {
-        for(int i = 0; i < classTimetable.getnDays(); ++i) classTimetable.timeBanned(i, hIni, hEnd);
+    public void disableRestriction(int num) {
+        rExtra[num] = false;        
     }
-    */
-    
     private boolean hourOk(Timetable TB, int day, int hour) {
         return (0 <= day && day > TB.getnDays()) && (hour >= TB.gethIni() && hour <= TB.gethEnd());
     }
@@ -140,8 +143,8 @@ public class CTRLRestrictions {
     }
     
     private boolean isBanned(int day, int hour, GroupSubject GSNew) {
-        if (GSNew.issubGroup()) return GSNew.getsubGroup().getRestriction(day, hour).getBanned();
-        else return GSNew.getGroup().getRestriction(day, hour).getBanned();
+        if (GSNew.issubGroup()) return GSNew.SubGroupBanned(day, hour);
+        else return GSNew.GroupBanned(day, hour);
     }
     
     private boolean subjectBanned(int day, int hour, Timetable TB, String name) {
@@ -149,8 +152,8 @@ public class CTRLRestrictions {
     }
     
     private boolean subjectBanned(int day, int hour, GroupSubject GSNew, String name) {
-        if (GSNew.issubGroup()) return GSNew.getsubGroup().getRestriction(day, hour).subjectBanned(name);
-        else return GSNew.getGroup().getRestriction(day, hour).subjectBanned(name);
+        if (GSNew.issubGroup()) return GSNew.SubGroupSubjectBanned(day, hour, name);
+        else return GSNew.GroupSubjectBanned(day, hour, name);
     }
     
     private boolean groupBanned(int day, int hour, Timetable TB, int num) {
@@ -158,8 +161,8 @@ public class CTRLRestrictions {
     }
     
     private boolean classroomBanned(int day, int hour, GroupSubject GSNew, String ref) {
-        if (GSNew.issubGroup()) return GSNew.getsubGroup().getRestriction(day, hour).classroomBanned(ref);
-        else return GSNew.getGroup().getRestriction(day, hour).classroomBanned(ref);
+        if (GSNew.issubGroup()) return GSNew.SubGroupClassroomBanned(day, hour, ref);
+        else return GSNew.GroupClassroomBanned(day, hour, ref);
     }
     
     public void modify_base_rest(int i, boolean state) {

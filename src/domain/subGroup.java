@@ -28,6 +28,18 @@ public class subGroup {
         return subGroupRestrictions;
     }
     
+    public boolean isBanned(int day, int hour) {
+        return subGroupRestrictions[day][hour].getBanned();
+    }
+    
+    public boolean subjectBanned(int day, int hour, String name) {
+        return subGroupRestrictions[day][hour].subjectBanned(name);
+    }
+    
+    public boolean classroomBanned(int day, int hour, String name) {
+        return subGroupRestrictions[day][hour].classroomBanned(name);
+    }
+    
     public Subject[][] getTimetable() {
         return subGroupTimetable;
     }

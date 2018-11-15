@@ -51,10 +51,42 @@ public class GroupSubject {
     public subGroup getSubGroup() {
         return subGroup;
     }
+    
+    public int getNumGroup() {
+        return group.getNum();
+    }
+    
+    public String getNameSubject() {
+        return subject.getName();
+    }
+    
+    public boolean isSubGroup() {
+        return subGroup != null;
+    }
 
-    public boolean isBanned() {
-        if (nMat != -1) return false;
-        return true;
+    public boolean SubGroupBanned(int day, int hour) {
+        return subGroup.isBanned(day, hour);
+    }
+    
+    public boolean GroupBanned(int day, int hour) {
+        return group.isBanned(day, hour);
+    }
+    
+    public boolean SubGroupSubjectBanned(int day, int hour, String name) {
+        return subGroup.subjectBanned(day, hour, name);
+    }
+    
+    public boolean GroupSubjectBanned(int day, int hour, String name) {
+        return group.subjectBanned(day, hour, name);
+    }
+    
+    public boolean SubGroupClassroomBanned(int day, int hour, String name) {
+        return subGroup.classroomBanned(day, hour, name);
+    }
+    
+    
+    public boolean GroupClassroomBanned(int day, int hour, String name) {
+        return group.classroomBanned(day, hour, name);
     }
     
     public boolean issubGroup() {
