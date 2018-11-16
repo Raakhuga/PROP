@@ -1,7 +1,11 @@
 
 package tests.drivers.GroupRestrictions;
 
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import domain.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -58,9 +62,12 @@ public class DriverGroupRestrictions {
         System.out.println("Driver ha acabat amb exit");
     }
     
-    private static void driverGR(){
-        
-        Scanner in = new Scanner(System.in);
+    private static void driverGR() throws FileNotFoundException{
+        File file;
+        URL url;
+        url = DriverGroupRestrictions.class.getResource("/test/drivers/GroupRestrictions/JPDriverGroupRestrictions.txt");
+        file = new File(url.toString());
+        Scanner in = new Scanner(file);//(System.in);
         String state, c, s;
         System.out.println("Insert the boolean state of banned");
         state = in.next();
