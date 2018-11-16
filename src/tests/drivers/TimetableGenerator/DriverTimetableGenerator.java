@@ -167,56 +167,59 @@ public class DriverTimetableGenerator {
     }
     
     private static void printSubject(Subject subject) {
-        System.out.println("L'assignatura " + subject.getName() + " es del nivell " + subject.getLevel() +
+        if (subject.getName() != null) System.out.println("L'assignatura " + subject.getName() + " es del nivell " + subject.getLevel() +
                 " fa " + subject.getHours() + "h a la setmana i te " + subject.getTheoryH() + "h de teoria " 
                 + subject.getLaboratoryH() + "h de laboratori i " + subject.getProblemsH() + "h de problemes");
     }
     
     private static void printsubGroup(subGroup subgroup) {
-        int Num = subgroup.getsNum();;
-        int nDays = subgroup.getnDays();
-        int hEnd = subgroup.gethEnd();
-        int hIni = subgroup.gethIni();
-        int nMat = subgroup.getnMat();
-        System.out.println("El subgrup: " + Num + " te: " + nMat + " estudiants");
-        for (int i = 0; i < nDays; i++){
-            System.out.println("El dia: " + i);
-            for (int j = 0; j < hEnd-hIni; j++) {
-                System.out.println("La hora: " + (hIni+j) + "te: ");
-                //printSubject(subgroup.getSubject(i,j));
-                //printGroupRestrictions(subgroup.getRestriction(i, j));
-                //System.out.println("El grup es del tipus: " + subgroup.getType(i, j));
-                if( subgroup.getSubject(i,j) != null){
-                    printSubject(subgroup.getSubject(i,j));
-                    printGroupRestrictions(subgroup.getRestriction(i, j));
-                    System.out.println("El grup es del tipus: " + subgroup.getType(i, j));
+        if (subgroup != null){
+            int Num = subgroup.getsNum();;
+            int nDays = subgroup.getnDays();
+            int hEnd = subgroup.gethEnd();
+            int hIni = subgroup.gethIni();
+            int nMat = subgroup.getnMat();
+            System.out.println("El subgrup: " + Num + " te: " + nMat + " estudiants");
+            for (int i = 0; i < nDays; i++){
+                System.out.println("El dia: " + i);
+                for (int j = 0; j < hEnd-hIni; j++) {
+                    System.out.println("La hora: " + (hIni+j) + "te: ");
+                    //printSubject(subgroup.getSubject(i,j));
+                    //printGroupRestrictions(subgroup.getRestriction(i, j));
+                    //System.out.println("El grup es del tipus: " + subgroup.getType(i, j));
+                    if( subgroup.getSubject(i,j) != null){
+                        printSubject(subgroup.getSubject(i,j));
+                        printGroupRestrictions(subgroup.getRestriction(i, j));
+                        System.out.println("El grup es del tipus: " + subgroup.getType(i, j));
+                    }
+                    else System.out.println("Lliure ");
                 }
-                else System.out.println("Lliure ");
             }
         }
-        
     }
     
     private static void printGroup(Group group) {
-        int nDays = group.getnDays();
-        int hIni = group.gethIni();
-        int hEnd = group.gethEnd();
-        System.out.println("El grup: " + group.getNum() + " te: " + group.getnMat() + " estudiants");
-        for (int i = 0; i < nDays; i++){
-            System.out.println("El dia: " + i);
-            for (int j = 0; j < hEnd-hIni; j++) {
-                System.out.println("La hora: " + (hIni+j) + " te: ");
-                if( group.getSubject(i,j) != null){
-                    printSubject(group.getSubject(i,j));
-                    printGroupRestrictions(group.getRestriction(i, j));
-                    System.out.println("El grup es del tipus: " + group.getType(i, j));
+        if (group != null){
+            int nDays = group.getnDays();
+            int hIni = group.gethIni();
+            int hEnd = group.gethEnd();
+            System.out.println("El grup: " + group.getNum() + " te: " + group.getnMat() + " estudiants");
+            for (int i = 0; i < nDays; i++){
+                System.out.println("El dia: " + i);
+                for (int j = 0; j < hEnd-hIni; j++) {
+                    System.out.println("La hora: " + (hIni+j) + " te: ");
+                    if( group.getSubject(i,j) != null){
+                        printSubject(group.getSubject(i,j));
+                        printGroupRestrictions(group.getRestriction(i, j));
+                        System.out.println("El grup es del tipus: " + group.getType(i, j));
+                    }
+                    else System.out.println("Lliure ");
                 }
-                else System.out.println("Lliure ");
             }
+            Iterator<subGroup> SGit = group.getsubGroups().iterator();
+            System.out.println("El grup: " + group.getNum() + "te els subgroups: ");
+            while (SGit.hasNext()) printsubGroup(SGit.next());
         }
-        Iterator<subGroup> SGit = group.getsubGroups().iterator();
-        System.out.println("El grup: " + group.getNum() + "te els subgroups: ");
-        while (SGit.hasNext()) printsubGroup(SGit.next());
     }
     
     private static void printGroupSubject(GroupSubject GS) {
@@ -297,7 +300,7 @@ public class DriverTimetableGenerator {
         p.generateAllGS();
         
         p.generate(p.getClassrooms(), p.getProblem());
-        print(p);   
+        print(p);
         driverGR();
         
     }

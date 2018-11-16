@@ -19,7 +19,7 @@ public class StudyProgram {
     /** Constructor **/
     public StudyProgram(String name){
         this.name = name;
-        this.levels = new HashMap<Integer, Level>();
+        this.levels = new HashMap<>();
         this.nLevels = 0;
     }
 

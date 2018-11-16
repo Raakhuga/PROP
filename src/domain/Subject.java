@@ -21,6 +21,13 @@ public class Subject {
     private int nSessions[];
     
     /** Constructor **/
+    public Subject(){
+        this.name = null;
+        this.level = -1;
+        this.hours = -1;
+        this.nSessions = new int[3];
+    }
+    
     public Subject(String name, int level, int hours){
         this.name = name;
         this.level = level;

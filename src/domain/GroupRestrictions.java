@@ -12,6 +12,7 @@ public class GroupRestrictions {
     private Set<String> banclassrooms;
     
     public GroupRestrictions() {
+        free = true;
         banned = false;
         bansubjects = new HashSet<String>();
         banclassrooms = new HashSet<String>();
