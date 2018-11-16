@@ -11,49 +11,7 @@ import static tests.drivers.GroupRestrictions.DriverGroupRestrictions.bansubject
 public class DriverTimetableGenerator {
     
     private static TimetableGenerator p = new TimetableGenerator();
-    
-    
-    /*public static void addClassroom(TimetableGenerator TG, int capacity, String ref, int nDays, int hIni, int hEnd, boolean theory, boolean lab, boolean problems) {
-        TG.getClassrooms().add(new Classroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems));
-    }
-    
-    public static void addStudyProgram(TimetableGenerator TG, String name, int nLevels, boolean manual){
-        StudyProgram aux = new StudyProgram(name);
-        for (int i = 0; i < nLevels; i++) aux.addLevels(manual);
-        TG.getPrograms().add(aux);
-    }*/
-    
-    /*public static void generateAllGS(TimetableGenerator TG) {
-        Iterator<StudyProgram> SPit = TG.getPrograms().iterator();
-        while(SPit.hasNext()) {
-            StudyProgram SPact = SPit.next();
-            Map<Integer, Level> levels = SPact.getLevels();
-            int SPsize = levels.size();
-            for(int i = 0; i < SPsize; i++) {
-                List<Group> groups = levels.get(i).getGroups();
-                Iterator<Group> Git = groups.iterator();
-                while(Git.hasNext()) {
-                    Group Gact = Git.next();
-                    List<Subject> subjects = levels.get(i).getSubjects();
-                    Iterator<Subject> Sit = subjects.iterator();
-                    while(Sit.hasNext()) {
-                        Subject Sact = Sit.next();
-                        List<subGroup> subGroups = Gact.getsubGroups();
-                        Iterator<subGroup> SGit = subGroups.iterator();
-                        for(int j = 0; j < Sact.getTheoryH(); j++) 
-                            TG.getProblem().add(new GroupSubject(Sact, Gact, Gact.getnMat(), true, false, false));
-                        while(SGit.hasNext()) {
-                            subGroup SGact = SGit.next();
-                            for(int j = 0; j < Sact.getLaboratoryH(); j++)
-                                TG.getProblem().add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, true, false));
-                            for(int j = 0; j < Sact.getProblemsH(); j++)
-                                TG.getProblem().add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, false, true));
-                        }
-                    }
-                }
-            }
-        }
-    }*/
+
     
     public static void addGroup(Level level, int id, int nStudentsGroup, int nMaxStudentsSubgroups) {
         int nDays, hIni, hEnd, nSubGroups, remaining;
@@ -296,16 +254,70 @@ public class DriverTimetableGenerator {
     }
     
     public static void main(String[] args) throws Exception{
+        System.out.println("Aquest es el driver de CTRLRestrictions");
+        int prova = 0;
         manualLoad(p);
-        p.generateAllGS();
-        
-        p.generate(p.getClassrooms(), p.getProblem());
-        print(p);
-        driverGR();
-        
+        while (prova != -1) {
+            System.out.println("Escull una funció per provar:");
+            llistatfunctions();
+            Scanner in = new Scanner(System.in);
+            prova = in.nextInt();
+            switch(prova) {
+                case 1:
+                    driverConstructora();
+                     break;
+                case 2:
+                    drivergenerateAllGS();
+                    break;
+                case 3:
+                    drivergenerate();
+                    break;
+                case 4:
+                    driverprint();
+                    break;
+            default:
+            }
+        }
+        System.out.println("Driver ha acabat amb exit");        
     }
     
-    private static void driverGR(){
+
+
+     private static void llistatfunctions() {
+		System.out.println("-1: Sortir del driver");
+		System.out.println("1: Constructora");
+                System.out.println("2: generateAllGS");
+                System.out.println("3: generate");
+                System.out.println("4: print");
+	}
+
+      private static void driverConstructora() {
+        System.out.println("Anem a provar el driver de la constructora");
+        Scanner in = new Scanner(System.in);
+        TimetableGenerator t = new TimetableGenerator();
+        System.out.println("Classe TimetableGenerador creada sense cap excepció");
+	System.out.println("Sortint del driver de Constructora");
+        System.out.println();
         
+    }
+      private static void drivergenerate() {
+        System.out.println("Anem a provar el driver de generate");
+        p.generateAllGS();
+        System.out.println("El driver ha acabat amb exit");
+        System.out.println("Sortint del driver de generate");
+   }
+
+    private static void drivergenerateAllGS() {
+        System.out.println("Anem a provar el driver de generateAllGS");
+        p.generateAllGS();
+        System.out.println("El driver ha acabat amb exit");
+        System.out.println("Sortint del driver de generateAllGS");
+    }
+
+    private static void driverprint() {
+        System.out.println("Anem a provar el driver de print");
+        print(p);
+        System.out.println("El driver ha acabat amb exit");
+        System.out.println("Sortint del driver de print");
     }
 }

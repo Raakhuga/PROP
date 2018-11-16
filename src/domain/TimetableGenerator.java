@@ -223,7 +223,10 @@ public class TimetableGenerator {
     }*/
     
     public void generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
+        System.out.println("Anem a provar el drive de generate");
         i_generate(classrooms, gs_list, 0, 0);
+        System.out.println("Ha acabat amb exit el drive de generate");
+        System.out.println("Sortint del drive de generate");
     }
     
     public void i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs){

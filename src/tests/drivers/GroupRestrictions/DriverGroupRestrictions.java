@@ -57,16 +57,36 @@ public class DriverGroupRestrictions {
         
         if (a.getBanned() && correct)
             System.out.println("Correct");
-        driverGR();
-        System.out.println("Driver ha acabat amb exit");
+        System.out.println("Aquest es el driver de GroupRestrictions");
+        int prova = 0;
+        while (prova != -1) {
+            System.out.println("Escull una funció per provar:");
+            llistatfunctions();
+            Scanner in = new Scanner(System.in);
+            prova = in.nextInt();
+            switch(prova) {
+                case 1:
+                    driverConstructora();
+                     break;
+                case 2:
+                    driverGR();
+                    break;
+            default:
+            }
+        }
+        System.out.println("Driver ha acabat amb exit");        
     }
     
+    private static void llistatfunctions() {
+		System.out.println("-1: Sortir del driver");
+		System.out.println("1: Constructora");
+                System.out.println("2: driverGR");
+	}
+    
     private static void driverGR() throws FileNotFoundException{
-        File file;
-        URL url;
-        url = DriverGroupRestrictions.class.getResource("/test/drivers/GroupRestrictions/JPDriverGroupRestrictions.txt");
-        file = new File(url.toString());
-        Scanner in = new Scanner(file);//(System.in);
+        
+        System.out.println("Anem a provar les estructures de la classe GroupRestrictions");
+        Scanner in = new Scanner(System.in);
         String state, c, s;
         System.out.println("Insert the boolean state of banned");
         state = in.next();
@@ -104,7 +124,16 @@ public class DriverGroupRestrictions {
         while(it.hasNext()) System.out.println("The classroom: " + it.next() + " is banned");
         Iterator<String> it2 = b.getBansubjects().iterator(); 
         while(it2.hasNext()) System.out.println("The subject: " + it2.next() + " is banned");
-        
-        
+        System.out.println("El driver ha acabat amb exit");
+        System.out.println("Sortint del driver");
+    }
+
+    private static void driverConstructora() {
+        System.out.println("Anem a provar el driver de la constructora");
+        Scanner in = new Scanner(System.in);
+        GroupRestrictions GR = new GroupRestrictions();
+        System.out.println("Classe GroupRestrictions creada sense cap excepció");
+	System.out.println("Sortint del driver de Constructora");
+        System.out.println();
     }
 }

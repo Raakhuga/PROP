@@ -54,11 +54,28 @@ public class DriverClassRestrictions {
         
         if (a.getBanned() && correct)
             System.out.println("Correct");
-        driverGR();
-        System.out.println("Driver ha acabat amb exit");
+        
+        System.out.println("Aquest es el driver de ClassRestrictions");
+        int prova = 0;
+        while (prova != -1) {
+            System.out.println("Escull una funció per provar:");
+            llistatfunctions();
+            Scanner in = new Scanner(System.in);
+            prova = in.nextInt();
+            switch(prova) {
+                case 1:
+                    driverConstructora();
+                     break;
+                case 2:
+                    driverCR();
+                    break;
+            default:
+            }
+        }
+        System.out.println("Driver ha acabat amb exit");  
     }
     
-    private static void driverGR(){
+    private static void driverCR(){
         
         Scanner in = new Scanner(System.in);
         String state, s;
@@ -101,5 +118,20 @@ public class DriverClassRestrictions {
         while(it2.hasNext()) System.out.println("The subject: " + it2.next() + " is banned");
         
         
+    }
+
+    private static void llistatfunctions() {
+		System.out.println("-1: Sortir del driver");
+		System.out.println("1: Constructora");
+                System.out.println("2: driverCR");
+    }
+    
+    private static void driverConstructora() {
+        System.out.println("Anem a provar el driver de la constructora");
+        Scanner in = new Scanner(System.in);
+        ClassRestrictions CR = new ClassRestrictions();
+        System.out.println("Classe ClassRestrictions creada sense cap excepció");
+	System.out.println("Sortint del driver de Constructora");
+        System.out.println();
     }
 }
