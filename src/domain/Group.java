@@ -29,8 +29,24 @@ public class Group {
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
-        subGroups = new ArrayList<subGroup>();
+        subGroups = new ArrayList<>();
         this.nMat = nMat;
+        initializeGroupRestrictions();
+        initializeSubjects();
+    }
+    
+    private void initializeGroupRestrictions(){
+        GroupRestrictions gr = new GroupRestrictions();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                GroupRestrictions[i][j] = gr;
+    }
+    
+    private void initializeSubjects(){
+        Subject s = new Subject();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                GroupTimetable[i][j] = s;
     }
 
     public int getNum() {
@@ -99,6 +115,10 @@ public class Group {
     
     public void setType(int day, int hour, String type) {
         this.type[day][hour] = type;
+    }
+    
+    public void removeType(int day, int hour){
+        this.type[day][hour] = null;
     }
 
     public void setTimetable(Subject[][] groupTimetable) {

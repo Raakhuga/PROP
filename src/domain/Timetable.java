@@ -26,6 +26,7 @@ public class Timetable {
         this.hIni = hIni;
         this.hEnd = hEnd;
         initializeClassRestrictions();
+        initializeGroupSubjects();
     }
     
     private void initializeClassRestrictions(){
@@ -33,6 +34,13 @@ public class Timetable {
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
                 restrictions[i][j] = cr;
+    }
+    
+    private void initializeGroupSubjects(){
+        GroupSubject gs = new GroupSubject();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                timetable[i][j] = gs;
     }
 
     public GroupSubject[][] getTimetable() {

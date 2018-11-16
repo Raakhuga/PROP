@@ -22,6 +22,22 @@ public class subGroup {
         this.hIni = hIni;
         this.hEnd = hEnd;
         this.nMat = nMat;
+        initializeGroupRestrictions();
+        initializeSubjects();
+    }
+    
+    private void initializeGroupRestrictions(){
+        GroupRestrictions sgr = new GroupRestrictions();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                subGroupRestrictions[i][j] = sgr;
+    }
+    
+    private void initializeSubjects(){
+        Subject s = new Subject();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                subGroupTimetable[i][j] = s;
     }
     
     public GroupRestrictions[][] getRestrictions() {
@@ -74,6 +90,10 @@ public class subGroup {
     
     public void setType(int day, int hour, String type) {
         this.type[day][hour] = type;
+    }
+    
+    public void removeType(int day, int hour){
+        this.type[day][hour] = null;
     }
     
     public Subject getSubject (int day, int hour) {

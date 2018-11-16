@@ -19,8 +19,8 @@ public class Level {
     /** Constructor **/
     public Level(int iden){
         this.iden = iden;
-        this.subjects = new ArrayList<Subject>();
-        this.groups = new ArrayList<Group>();
+        this.subjects = new ArrayList<>();
+        this.groups = new ArrayList<>();
     }
 
     public int getIden() {
@@ -74,7 +74,7 @@ public class Level {
         int nSubjects, hours;
         nSubjects = in.nextInt();
         String name;
-        List<Subject> subjects = new ArrayList<Subject>();
+        List<Subject> subjects = new ArrayList<>();
         Subject act;
         for(int j = 0; j < nSubjects; j++) {
             System.out.println ("Insert the name of the Subject num: " + j + " of the Level: " + iden);

@@ -9,7 +9,7 @@ public class DriversubGroup {
     private static subGroup sg = new subGroup(0, 0, 0, 0, 0);
     
     public static void main(String[] args) throws Exception{
-        System.out.println("Aquest és el driver de subgroup, anem a crear un subgrup");
+        System.out.println("Aquest és el driver de la classe subgroup, anem a crear un subgrup");
         driverConstructora();
         System.out.println("Ara que està creat el subgrup, escull que vols fer:");
         llistat_funcionalitats();
@@ -30,7 +30,7 @@ public class DriversubGroup {
                         driverRemoveSubject(sg);
                         break;
             }
-            System.out.println("Escull una altre funcionalitat:");
+            System.out.println("Vols fer alguna cosa més?");
             llistat_funcionalitats();
             n = in.nextInt();
         }
