@@ -104,10 +104,9 @@ public class CTRLRestrictions {
             else if (LabBeforeTheory(day, hour, GSNew) && rExtra[4]) return false;
             
             else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
-            System.out.println("Ha acabado las groupRestrictions");
+            System.out.println("grupRestrictions: true");
             return true;
-        }
-        System.out.println("Ha acabado las groupRestrictions");
+         }
         return false;
     }
     
@@ -117,7 +116,6 @@ public class CTRLRestrictions {
     }
     
     private boolean sameLevel(int day, int hour, GroupSubject GSNew){
-        System.out.println("SameLevel");
         /*return (classTimetable.getGroupSubject(day, hour).getnMat() > 0 && 
                 classTimetable.getGroupSubject(day, hour).getSubject().getLevel() == 
                 GSNew.getSubject().getLevel());*/
@@ -133,7 +131,6 @@ public class CTRLRestrictions {
     
     //hay case de laboratorio antes que de teoria
     private boolean LabBeforeTheory(int day, int hour, GroupSubject GSNew) {
-        System.out.println("labBeforeTheory");
         if (GSNew.labGroup()){
             subGroup sub = GSNew.getsubGroup();
             Group act = GSNew.getGroup();
@@ -156,12 +153,12 @@ public class CTRLRestrictions {
     }
     private boolean hourOk(Timetable TB, int day, int hour) {
         //System.out.println("Ha entrado en hour ok");
-        return (0 <= day && day < TB.getnDays()) && (hour >= TB.gethIni() && hour < TB.gethEnd());
+        return (0 <= day && day < TB.getnDays()) && (hour >= 0 && hour < TB.gethEnd() - TB.gethIni());
     }
     
     private boolean hourOk(GroupSubject GSNew, int day, int hour) {
-        System.out.println("HourOk");
-        return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= 0 && hour < (GSNew.getGroup().gethEnd()-GSNew.getGroup().gethIni()));
+        System.out.println("HOUROK day: " + day + " nDays " + GSNew.getGroup().getnDays() + " hEnd " + GSNew.getGroup().gethEnd() + " hIni " + GSNew.getGroup().gethIni());
+        return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= 0 && hour < GSNew.getGroup().gethEnd() - GSNew.getGroup().gethIni());
     }
     
     private boolean isBanned(int day, int hour, Timetable TB) {
@@ -171,7 +168,6 @@ public class CTRLRestrictions {
     }
     
     private boolean isBanned(int day, int hour, GroupSubject GSNew) {
-        System.out.println("isBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupBanned(day, hour);
         else return GSNew.GroupBanned(day, hour);
     }
@@ -181,7 +177,7 @@ public class CTRLRestrictions {
     }
     
     private boolean subjectBanned(int day, int hour, GroupSubject GSNew, String name) {
-        System.out.println("subjectBanned");
+        //System.out.println("Ha entrado en subjectBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupSubjectBanned(day, hour, name);
         else return GSNew.GroupSubjectBanned(day, hour, name);
     }
@@ -192,7 +188,7 @@ public class CTRLRestrictions {
     }
     
     private boolean classroomBanned(int day, int hour, GroupSubject GSNew, String ref) {
-        System.out.println("classroomBanned");
+        
         if (GSNew.issubGroup()) return GSNew.SubGroupClassroomBanned(day, hour, ref);
         else return GSNew.GroupClassroomBanned(day, hour, ref);
     }
