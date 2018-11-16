@@ -50,7 +50,7 @@ public class CTRLRestrictions {
     
     public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew){
         //System.out.println("Ha entrado en la funcion classroomRestrictions");
-        if(classroom.getTimetable().getRestrictions()[day][hour].isFree()){
+        if(classroom.getTimetable().getFree(day,hour)){
             //El aula no esta disponible en dicho lapso de tiempo
             if (!hourOk(classroom.getTimetable(), day, hour) && rBase[0])  return false;
            
@@ -83,8 +83,9 @@ public class CTRLRestrictions {
     }*/
     
     public boolean groupRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
-         if((GSNew.isSubGroup() && GSNew.getSubGroup().getRestriction(day, hour).isFree()) || classroom.getGroup().getRestriction(day, hour).isFree()){
+         if((GSNew.isSubGroup() && GSNew.getSubGroup().getFree(day, hour)) || GSNew.getGroup().getFree(day,hour)){
             //El grupo no puede tener clase en dicho lapso de tiempo
+            System.out.println("Despues del groupRestrictions");
             if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
            
             //El grupo tiene horas bloqueadas en dicho lapso
@@ -123,8 +124,8 @@ public class CTRLRestrictions {
         /*subGroup sub = GSNew.getsubGroup();
         Group act = GSNew.getGroup();*/
         System.out.println("asdfasdfasdf");
-        if (GSNew.isSubGroup()) return !GSNew.getSubGroup().getRestriction(day, hour).isFree();
-        else return !GSNew.getGroup().getRestriction(day, hour).isFree();
+        if (GSNew.isSubGroup()) return !GSNew.getSubGroup().getFree(day, hour);
+        else return !GSNew.getGroup().getFree(day, hour);
         
         //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
     }

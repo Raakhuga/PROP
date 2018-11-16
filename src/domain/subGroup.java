@@ -7,6 +7,7 @@ public class subGroup {
     private GroupRestrictions subGroupRestrictions[][];
     private Subject subGroupTimetable[][];
     private String type[][];
+    private boolean free[][];
     private int nDays;
     private int hEnd;
     private int hIni;
@@ -17,6 +18,7 @@ public class subGroup {
         this.subGroupRestrictions = new GroupRestrictions[nDays][hEnd-hIni];
         this.subGroupTimetable = new Subject[nDays][hEnd-hIni];
         this.type = new String[nDays][hEnd-hIni];
+        free = new boolean[nDays][hEnd-hIni];
         this.Num = num;
         this.nDays = nDays;
         this.hIni = hIni;
@@ -38,6 +40,14 @@ public class subGroup {
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
                 subGroupTimetable[i][j] = s;
+    }
+    
+    public boolean getFree(int day, int hour) {
+        return free[day][hour];
+    }
+    
+    public void setFree(int day, int hour, boolean free) {
+        this.free[day][hour]=free;
     }
     
     public GroupRestrictions[][] getRestrictions() {

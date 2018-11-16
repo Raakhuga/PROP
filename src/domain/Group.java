@@ -14,6 +14,7 @@ public class Group {
     private GroupRestrictions GroupRestrictions[][];
     private Subject GroupTimetable[][];
     private String type[][];
+    private boolean[][] free;
     private int nDays;
     private int hEnd;
     private int hIni;
@@ -26,6 +27,7 @@ public class Group {
         this.GroupRestrictions = new GroupRestrictions[nDays][hEnd-hIni];
         this.GroupTimetable = new Subject[nDays][hEnd-hIni];
         this.type = new String[nDays][hEnd-hIni];
+        this.free = new boolean[nDays][hEnd-hIni];
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
@@ -33,6 +35,7 @@ public class Group {
         this.nMat = nMat;
         initializeGroupRestrictions();
         initializeSubjects();
+        initializeFree();
     }
     
     private void initializeGroupRestrictions(){
@@ -49,6 +52,21 @@ public class Group {
                 GroupTimetable[i][j] = s;
     }
 
+    private void initializeFree(){
+        Subject s = new Subject();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                free[i][j] = true;
+    }
+    
+    public boolean getFree(int day, int hour) {
+        return free[day][hour];
+    }
+    
+    public void setFree(int day, int hour, boolean free) {
+        this.free[day][hour]=free;
+    }
+    
     public int getNum() {
         return num;
     }
