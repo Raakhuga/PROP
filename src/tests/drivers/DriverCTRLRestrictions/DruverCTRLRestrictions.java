@@ -51,9 +51,9 @@ public class DruverCTRLRestrictions {
         Classroom classroom2 = new Classroom(100, "A6002", 5, 8, 20, true, true, true);
         System.out.println("Tenim 2 aules disponibles A6001 i A6002");
         int hIni, hEnd = 0;
-        System.out.println("Vols poder tenir classe de teoria abans del lab? SI/NO");
+        System.out.println("Es pot tenir classe de lab abans de teoria? SI/NO");
         String res = in.next();
-        if (res.equals("SI")) cR.enableRestriction(4);
+        if (res.equals("NO")) cR.enableRestriction(4);
         System.out.println("Vols bloquejar alguna hora d'aquest grup per algun dia? SI/NO");
         String again = in.next();
         while (again.equals("SI")) {
@@ -116,11 +116,28 @@ public class DruverCTRLRestrictions {
             System.out.println("Indica el nom de la assignatura");
             String name = in.next();
             Subject s = new Subject(name, 0, 0);
+            System.out.println("Indica si la assignatura que vols afegir es de: teoria/lab/problem");
+            String type = in.next();
             System.out.println("Indica en quina aules vols situar: A6001/A6002");
             String aula = in.next();
             GroupSubject gs;
-            if (aula.equals("A6001")) gs = new GroupSubject();
-            else
+            if(type.equals("teoria")) gs = new GroupSubject(s,group, 50, true, false, false);
+            else if (type.equals("lab")) gs = new GroupSubject(s,group, 50, false, true, false);
+            else gs = new GroupSubject(s,group, 50, false, false, true);
+            if(aula.equals("A6001")) {
+                if(cR.groupRestrictions(dia, hIni, classroom, gs)) {
+                    group.getRestrictions()[dia][hIni].setFree(false);
+                    System.out.println("S'ha ficat amb exit aquest GroupSubject en la franja d'horari indicada");
+                }
+                else System.out.println("No es possible situar aquest GroupSubject en aquesta franja d'horari");
+            }
+            else {
+                if(cR.groupRestrictions(dia, hIni, classroom2, gs)) {
+                    group.getRestrictions()[dia][hIni].setFree(false);
+                    System.out.println("S'ha ficat amb exit aquest GroupSubject en la franja d'horari indicada");
+                }
+                else System.out.println("No es possible situar aquest GroupSubject en aquesta franja d'horari");
+            }
             //else System.out.println("No es possible situar aquest GroupSubject en aquesta franja d'horari");
             System.out.println("Vols tornar a ficar un nou grouSubject? SI/NO");
             again = in.next();
@@ -225,8 +242,10 @@ public class DruverCTRLRestrictions {
             int day = in.nextInt()-1;
             System.out.println("Introdueix la hora que vols situar aquest GroupSubject");
             hEnd = in.nextInt();
-            if (cR.classroomRestrictions(day, hEnd - 8, classrooms[i], gs)) 
+            if (cR.classroomRestrictions(day, hEnd - 8, classrooms[i], gs)){ 
+               classrooms[i].getTimetable().getRestrictions()[day][hEnd-8].setFree(false);
                System.out.println("S'ha ficat amb exit aquest GroupSubject en la franja d'horari indicada");
+            }
 
             else System.out.println("No es possible situar aquest GroupSubject en aquesta franja d'horari");
             System.out.println("Vols tornar a ficar un nou grouSubject? SI/NO");
