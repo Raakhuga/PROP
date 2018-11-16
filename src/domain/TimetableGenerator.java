@@ -21,13 +21,13 @@ public class TimetableGenerator {
     private List<GroupSubject> problem;
     private int nMaxStudentsGroup;
     private int nMaxStudentsSubgroup;
-    //private CTRLRestrictions ctrlRestrictions;
+    private CTRLRestrictions ctrlRestrictions;
         
     public TimetableGenerator() {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
-        //this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions();
     }
 
     public List<Classroom> getClassrooms() {
@@ -222,14 +222,13 @@ public class TimetableGenerator {
         for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, aux.getTimetable()));
     }*/
     
-    public boolean generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
-        CTRLRestrictions ctrlRestrictions = new CTRLRestrictions();
-        return i_generate(classrooms, gs_list, 0, 0, ctrlRestrictions);
+    public void generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
+        i_generate(classrooms, gs_list, 0, 0);
     }
     
-    public boolean i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs, CTRLRestrictions ctrlRestrictions){
-        boolean fin = false;
-        if (pos_gs >= gs_list.size()) return true;
+    public void i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs){
+        if (pos_gs >= gs_list.size()) return;
+        else if(pos_classroom >= classrooms.size()) return;
         else{
             GroupSubject gs = gs_list.get(pos_gs);
             if (pos_classroom < classrooms.size()){
@@ -260,9 +259,9 @@ public class TimetableGenerator {
                                 }
 
                                 // Llamamos de nuevo a la función con el siguiente grupo-asignatura
-                                fin = i_generate(classrooms, gs_list, 0, pos_gs+1, ctrlRestrictions);
+                                i_generate(classrooms, gs_list, 0, pos_gs+1);
 
-                                if (fin) return true;
+                                //if (fin) return true;
 
                                 classroom.removeHourOfTimetable(i,j);
 
@@ -282,11 +281,8 @@ public class TimetableGenerator {
                 }
                 // Hemos llenado el horario de una clase, cambiamos a la siguiente clase (si la hay)
                 //System.out.println("Cambio de clase");
-                if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs, ctrlRestrictions);
+                if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs);
             }
-            // Hay al menos un grupo-asignatura disponible pero no hay ninguna clase a la que se le pueda asignar
-            //System.out.println("No hi ha cap horari disponible");
-            return true;
         }
     }
     

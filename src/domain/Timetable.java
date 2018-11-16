@@ -32,6 +32,10 @@ public class Timetable {
         initializeFree();
     }
     
+    public void setFree(int day, int hIni, int hEnd, boolean freee) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) free[day][i] = freee;   
+    }
+    
     private void initializeClassRestrictions(){
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
@@ -41,7 +45,7 @@ public class Timetable {
     private void initializeGroupSubjects(){
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
-                timetable[i][j] = new GroupSubject();;
+                timetable[i][j] = new GroupSubject();
     }
     
     private void initializeFree() {
@@ -63,10 +67,9 @@ public class Timetable {
     }
     
     public void restartTimetable() {
-        GroupSubject GS = new GroupSubject();
         for(int i = 0; i < nDays; i++) 
             for(int j = 0; j < hEnd-hIni; j++) {
-                timetable[i][j] = GS;
+                timetable[i][j] =  new GroupSubject();
                 free[i][j]=true;
             }
     }

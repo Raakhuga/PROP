@@ -51,7 +51,6 @@ public class Group {
     }
 
     private void initializeFree(){
-        Subject s = new Subject();
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
                 free[i][j] = true;
@@ -72,6 +71,10 @@ public class Group {
     public int getnDays() {
         return nDays;
     }
+    
+    public void setFree(int day, int hIni, int hEnd, boolean freee) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) free[day][i] = freee;   
+    }
     public void banSubject(int day, int hIni, int hEnd, String name) {
        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].banSubject(name);   
     }
@@ -91,7 +94,7 @@ public class Group {
        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].setBanned(true);
     }
      private boolean hourOk(int day, int hIni, int hEnd) {
-        return (0 <= day && day < nDays) && (hIni < hEnd && hIni >= this.hIni && hEnd <= this.hEnd);
+        return (0 <= day && day < nDays) && (hIni < hEnd && hIni >= 0 && hEnd <= this.hEnd - this.hIni);
     }
     public boolean isBanned(int day, int hour) {
         return GroupRestrictions[day][hour].getBanned();
