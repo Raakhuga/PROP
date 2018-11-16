@@ -83,7 +83,7 @@ public class CTRLRestrictions {
     }*/
     
     public boolean groupRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
-         if(GSNew.getGroup().getRestriction(day, hour).isFree()){
+         if((GSNew.isSubGroup() && GSNew.getSubGroup().getRestriction(day, hour).isFree()) || classroom.getGroup().getRestriction(day, hour).isFree()){
             //El grupo no puede tener clase en dicho lapso de tiempo
             if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
            
@@ -103,8 +103,10 @@ public class CTRLRestrictions {
             else if (LabBeforeTheory(day, hour, GSNew) && rExtra[4]) return false;
             
             else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
+            System.out.println("Ha acabado las groupRestrictions");
             return true;
-         }
+        }
+        System.out.println("Ha acabado las groupRestrictions");
         return false;
     }
     
@@ -114,19 +116,23 @@ public class CTRLRestrictions {
     }
     
     private boolean sameLevel(int day, int hour, GroupSubject GSNew){
+        System.out.println("SameLevel");
         /*return (classTimetable.getGroupSubject(day, hour).getnMat() > 0 && 
                 classTimetable.getGroupSubject(day, hour).getSubject().getLevel() == 
                 GSNew.getSubject().getLevel());*/
         /*subGroup sub = GSNew.getsubGroup();
         Group act = GSNew.getGroup();*/
+        System.out.println("asdfasdfasdf");
         if (GSNew.isSubGroup()) return !GSNew.getSubGroup().getRestriction(day, hour).isFree();
         else return !GSNew.getGroup().getRestriction(day, hour).isFree();
+        
         //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
     }
     
     
     //hay case de laboratorio antes que de teoria
     private boolean LabBeforeTheory(int day, int hour, GroupSubject GSNew) {
+        System.out.println("labBeforeTheory");
         if (GSNew.labGroup()){
             subGroup sub = GSNew.getsubGroup();
             Group act = GSNew.getGroup();
@@ -149,11 +155,12 @@ public class CTRLRestrictions {
     }
     private boolean hourOk(Timetable TB, int day, int hour) {
         //System.out.println("Ha entrado en hour ok");
-        return (0 <= day && day < TB.getnDays()) && (hour >= 0 && hour < TB.gethEnd() - TB.gethIni());
+        return (0 <= day && day < TB.getnDays()) && (hour >= TB.gethIni() && hour < TB.gethEnd());
     }
     
     private boolean hourOk(GroupSubject GSNew, int day, int hour) {
-        return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= 0 && hour < GSNew.getGroup().gethEnd() - GSNew.getGroup().gethIni());
+        System.out.println("HourOk");
+        return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= 0 && hour < (GSNew.getGroup().gethEnd()-GSNew.getGroup().gethIni()));
     }
     
     private boolean isBanned(int day, int hour, Timetable TB) {
@@ -163,6 +170,7 @@ public class CTRLRestrictions {
     }
     
     private boolean isBanned(int day, int hour, GroupSubject GSNew) {
+        System.out.println("isBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupBanned(day, hour);
         else return GSNew.GroupBanned(day, hour);
     }
@@ -172,7 +180,7 @@ public class CTRLRestrictions {
     }
     
     private boolean subjectBanned(int day, int hour, GroupSubject GSNew, String name) {
-        //System.out.println("Ha entrado en subjectBanned");
+        System.out.println("subjectBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupSubjectBanned(day, hour, name);
         else return GSNew.GroupSubjectBanned(day, hour, name);
     }
@@ -183,7 +191,7 @@ public class CTRLRestrictions {
     }
     
     private boolean classroomBanned(int day, int hour, GroupSubject GSNew, String ref) {
-        
+        System.out.println("classroomBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupClassroomBanned(day, hour, ref);
         else return GSNew.GroupClassroomBanned(day, hour, ref);
     }
