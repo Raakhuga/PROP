@@ -79,7 +79,7 @@ public class CTRLRestrictions {
         return true;
     }*/
     
-    public boolean groupRestrictions(int day, int hour, Classroom classroom, Timetable groupTimetable, GroupSubject GSNew) {
+    public boolean groupRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
          if(classroom.getTimetable().getRestrictions()[day][hour].isFree()){
             //El grupo no puede tener clase en dicho lapso de tiempo
             if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
