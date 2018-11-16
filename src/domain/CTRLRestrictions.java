@@ -155,13 +155,13 @@ public class CTRLRestrictions {
         Group act = GSNew.getGroup();*/
         //System.out.println("asdfasdfasdf");
         
-        if (GSNew.isSubGroup()) return GSNew.getGroup().getFree(day, hour);
+        if (GSNew.isSubGroup()) return !GSNew.getGroup().getFree(day, hour);
         else {
             Iterator<subGroup> SGit = GSNew.getGroup().getsubGroups().iterator();
             while(SGit.hasNext()) {
-                if(!SGit.next().getFree(day, hour)) return false;
+                if(!SGit.next().getFree(day, hour)) return true;
             }
-            return true;
+            return false;
         }
         
         //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
@@ -178,14 +178,13 @@ public class CTRLRestrictions {
             for (int i = day; i < GSNew.getGroup().getnDays(); i++) {
                 if (i != day) {
                     for (int j = 0; j < h; j++) {
-                        if(act.getSubject(i, j) == GSNew.getSubject()) return true;
+                        if(act.getSubject(i, j).getName().equals(GSNew.getSubject().getName())) return true;
                     }
                 }
                 else {
                     for (int j = hour; j < h; j++) {
-                        if(act.getSubject(i, j) == GSNew.getSubject()) return true;
+                        if(act.getSubject(i, j).getName().equals(GSNew.getSubject().getName())) return true;
                     }
-                    return false;
                 }
             }
         }
