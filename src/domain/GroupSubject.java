@@ -130,8 +130,14 @@ public class GroupSubject {
     }
     
     public void setSubjectToGroup(int i, int j, Subject s, boolean issubGroup){
-        if (issubGroup) this.subGroup.setSubject(i, j, s);
-        else this.group.setSubject(i, j, s);
+        if (issubGroup) {
+            this.subGroup.setSubject(i, j, s);
+            subGroup.getRestriction(i, j).setFree(false);
+        }
+        else {
+            this.group.setSubject(i, j, s);
+            group.getRestriction(i, j).setFree(false);
+        }
     }
     
     public void removeSubjectOfTimetableFromGroup(int i, int j, boolean issubGroup){
