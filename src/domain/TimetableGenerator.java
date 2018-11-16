@@ -21,13 +21,13 @@ public class TimetableGenerator {
     private List<GroupSubject> problem;
     private int nMaxStudentsGroup;
     private int nMaxStudentsSubgroup;
-    //private CTRLRestrictions ctrlRestrictions;
+    private CTRLRestrictions ctrlRestrictions;
         
     public TimetableGenerator() {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
-        //this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions();
     }
 
     public List<Classroom> getClassrooms() {

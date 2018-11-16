@@ -46,12 +46,13 @@ public class DruverCTRLRestrictions {
         System.out.println("Anem a provar el driver de groupRestrictions");
         Scanner in = new Scanner(System.in);
         CTRLRestrictions cR = new CTRLRestrictions();
-        System.out.println("Indica el numero del grup");
-        int num = in.nextInt();
-        Group group = new Group(num, 5, 8, 20, 50);
         Classroom classroom = new Classroom(100, "A6001", 5, 8, 20, true, true, true);
         Classroom classroom2 = new Classroom(100, "A6002", 5, 8, 20, true, true, true);
         System.out.println("Tenim 2 aules disponibles A6001 i A6002");
+        System.out.println("Indica el numero del grup");
+        int num = in.nextInt();
+        Group group = new Group(num, 5, 8, 20, 50);
+        
         int hIni, hEnd = 0;
         System.out.println("Es pot tenir classe de lab abans de teoria? SI/NO");
         String res = in.next();
@@ -139,7 +140,7 @@ public class DruverCTRLRestrictions {
             }
             else {
                 if(cR.groupRestrictions(dia, hIni, classroom2, gs)) {
-                    group.getRestrictions()[dia][hIni].setFree(false);
+                    group.setFree(dia, hIni, hEnd, false);
                     System.out.println("S'ha ficat amb exit aquest GroupSubject en la franja d'horari indicada");
                 }
                 else System.out.println("No es possible situar aquest GroupSubject en aquesta franja d'horari");

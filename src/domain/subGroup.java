@@ -29,17 +29,15 @@ public class subGroup {
     }
     
     private void initializeGroupRestrictions(){
-        GroupRestrictions sgr = new GroupRestrictions();
-        for(int i = 0; i < nDays; i++)
+          for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
-                subGroupRestrictions[i][j] = sgr;
+                subGroupRestrictions[i][j] = new GroupRestrictions();
     }
     
     private void initializeSubjects(){
-        Subject s = new Subject();
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
-                subGroupTimetable[i][j] = s;
+                subGroupTimetable[i][j] = new Subject();
     }
     
     public boolean getFree(int day, int hour) {
