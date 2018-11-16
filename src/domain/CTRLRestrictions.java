@@ -1,6 +1,8 @@
 
 package domain;
 
+import java.util.Iterator;
+
 
 public class CTRLRestrictions {
     
@@ -152,8 +154,15 @@ public class CTRLRestrictions {
         /*subGroup sub = GSNew.getsubGroup();
         Group act = GSNew.getGroup();*/
         //System.out.println("asdfasdfasdf");
-        if (GSNew.isSubGroup()) return !GSNew.getSubGroup().getFree(day, hour);
-        else return !GSNew.getGroup().getFree(day, hour);
+        
+        if (GSNew.isSubGroup()) return GSNew.getGroup().getFree(day, hour);
+        else {
+            Iterator<subGroup> SGit = GSNew.getGroup().getsubGroups().iterator();
+            while(SGit.hasNext()) {
+                if(!SGit.next().getFree(day, hour)) return false;
+            }
+            return true;
+        }
         
         //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
     }
@@ -166,14 +175,14 @@ public class CTRLRestrictions {
             subGroup sub = GSNew.getsubGroup();
             Group act = GSNew.getGroup();
             int h = sub.gethEnd() - sub.gethIni();
-            for (int i = 0; i < day; i++) {
-                if (i < day) {
+            for (int i = day; i < GSNew.getGroup().getnDays(); i++) {
+                if (i != day) {
                     for (int j = 0; j < h; j++) {
                         if(act.getSubject(i, j) == GSNew.getSubject()) return true;
                     }
                 }
                 else {
-                    for (int j = 0; j < hour; j++) {
+                    for (int j = hour; j < h; j++) {
                         if(act.getSubject(i, j) == GSNew.getSubject()) return true;
                     }
                     return false;
@@ -184,7 +193,7 @@ public class CTRLRestrictions {
     }
     private boolean hourOk(Timetable TB, int day, int hour) {
         //System.out.println("Ha entrado en hour ok");
-        return (0 <= day && day < TB.getnDays()) && (hour >= 0 && hour < TB.gethEnd());
+        return (0 <= day && day < TB.getnDays()) && (hour >= 0 && hour < TB.gethEnd()- TB.gethIni());
     }
     
     private boolean hourOk(GroupSubject GSNew, int day, int hour) {
