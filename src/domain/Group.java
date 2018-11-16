@@ -40,7 +40,27 @@ public class Group {
     public int getnDays() {
         return nDays;
     }
-    
+    public void banSubject(int day, int hIni, int hEnd, String name) {
+       if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].banSubject(name);   
+    }
+     public void UnbanSubject(int day, int hIni, int hEnd, String name) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].unbanSubject(name);   
+    }
+    public void banClassroom(int day, int hIni, int hEnd, String name) {
+       if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].banClassroom(name);   
+    }
+    public void unbanClassroom(int day, int hIni, int hEnd, String name) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].unbanClassroom(name);   
+    }
+     public void unbanTime(int day, int hIni, int hEnd) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].setBanned(false);
+    }
+     public void banTime(int day, int hIni, int hEnd) {
+       if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].setBanned(true);
+    }
+     private boolean hourOk(int day, int hIni, int hEnd) {
+        return (0 <= day && day < nDays) && (hIni < hEnd && hIni >= this.hIni && hEnd <= this.hEnd);
+    }
     public boolean isBanned(int day, int hour) {
         return GroupRestrictions[day][hour].getBanned();
     }
