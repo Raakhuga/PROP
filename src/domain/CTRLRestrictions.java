@@ -141,7 +141,7 @@ public class CTRLRestrictions {
     }
     
     private boolean hourOk(GroupSubject GSNew, int day, int hour) {
-        return (0 <= day && day > GSNew.getGroup().getnDays()) && (hour >= GSNew.getGroup().gethIni() && hour < GSNew.getGroup().gethEnd());
+        return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= GSNew.getGroup().gethIni() && hour < GSNew.getGroup().gethEnd());
     }
     
     private boolean isBanned(int day, int hour, Timetable TB) {
