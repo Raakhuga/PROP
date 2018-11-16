@@ -1,7 +1,6 @@
 
 package tests.drivers.GroupRestrictions;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import domain.*;
 import java.io.File;
 import java.io.FileNotFoundException;
