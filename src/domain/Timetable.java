@@ -14,6 +14,7 @@ public class Timetable {
     /** Atributtes **/
     private GroupSubject timetable[][];
     public ClassRestrictions restrictions[][];
+    private boolean[][] free;
     private final int nDays;
     private final int hIni;
     private final int hEnd;
@@ -22,11 +23,13 @@ public class Timetable {
     public Timetable(int nDays, int hIni, int hEnd){
         timetable = new GroupSubject[nDays][hEnd-hIni];
         restrictions = new ClassRestrictions[nDays][hEnd-hIni];
+        free = new boolean[nDays][hEnd-hIni];
         this.nDays = nDays;
         this.hIni = hIni;
         this.hEnd = hEnd;
         initializeClassRestrictions();
         initializeGroupSubjects();
+        initializeFree();
     }
     
     public void setFree(int day, int hIni, int hEnd, boolean free) {
@@ -46,9 +49,23 @@ public class Timetable {
             for(int j = 0; j < (hEnd-hIni); j++)
                 timetable[i][j] = gs;
     }
+    
+    private void initializeFree() {
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < hEnd-hIni; j++)
+                free[i][j] = true;
+    }
 
     public GroupSubject[][] getTimetable() {
         return timetable;
+    }
+    
+    public boolean getFree(int day, int hour) {
+        return free[day][hour];
+    }
+    
+    public void setFree(int day, int hour, boolean free) {
+        this.free[day][hour] = free;
     }
     
     public void restartTimetable() {
@@ -56,7 +73,7 @@ public class Timetable {
         for(int i = 0; i < nDays; i++) 
             for(int j = 0; j < hEnd-hIni; j++) {
                 timetable[i][j] = GS;
-                restrictions[i][j].setFree(true);
+                free[i][j]=true;
             }
     }
     
@@ -103,7 +120,7 @@ public class Timetable {
     }
     public void setGStoTimetable(GroupSubject gs, int day, int hour){
         timetable[day][hour] = gs;
-        restrictions[day][hour].setFree(false);
+        free[day][hour]=false;
     }
     
     public void removeHourOfTimetable(int day, int hour){
