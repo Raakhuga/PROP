@@ -222,11 +222,12 @@ public class TimetableGenerator {
         for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, aux.getTimetable()));
     }*/
     
-    public void generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
-        i_generate(classrooms, gs_list, 0, 0);
+    /*public void generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
+        CTRLRestrictions ctrlRestrictions = new CTRLRestrictions();
+        i_generate(classrooms, gs_list, 0, 0, ctrlRestrictions);
     }
     
-    public void i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs){
+    public void i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs, CTRLRestrictions ctrlRestrictions){
         if (pos_gs >= gs_list.size()) return;
         else if(pos_classroom >= classrooms.size()) return;
         else{
@@ -237,7 +238,8 @@ public class TimetableGenerator {
                 for(int i = 0; i < classroom.getnDaysFromTimetable(); i++){
                     // Recorremos las horas de un día
                     for(int j = 0; j < (classroom.gethEndFromTimetable()-classroom.gethIniFromTimetable()); j++){
-                        System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef());
+                        if (gs.issubGroup()) System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef()+" amb gs "+gs.getNameSubject()+" "+gs.getsubGroup().getsNum());
+                        System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef()+" amb gs "+gs.getNameSubject()+" "+gs.getGroup().getNum());
                         // Comprobamos restricciones de la clase
                         if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
                             // Comprobamos restricciones de los grupos
@@ -259,7 +261,7 @@ public class TimetableGenerator {
                                 }
 
                                 // Llamamos de nuevo a la función con el siguiente grupo-asignatura
-                                i_generate(classrooms, gs_list, 0, pos_gs+1);
+                                i_generate(classrooms, gs_list, 0, pos_gs+1, ctrlRestrictions);
 
                                 //if (fin) return true;
 
@@ -281,8 +283,76 @@ public class TimetableGenerator {
                 }
                 // Hemos llenado el horario de una clase, cambiamos a la siguiente clase (si la hay)
                 //System.out.println("Cambio de clase");
+                if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs, ctrlRestrictions);
+            }
+        }
+    }*/
+    
+    public boolean generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
+        return i_generate(classrooms, gs_list, 0, 0);
+    }
+    
+    public boolean i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs){
+        boolean fin = false;
+        if (pos_gs >= gs_list.size()) return true;
+        else{
+            GroupSubject gs = gs_list.get(pos_gs);
+            if (pos_classroom < classrooms.size()){
+                Classroom classroom = classrooms.get(pos_classroom);
+                // Recorremos los días del horario
+                for(int i = 0; i < classroom.getnDaysFromTimetable(); i++){
+                    // Recorremos las horas de un día
+                    for(int j = 0; j < (classroom.gethEndFromTimetable()-classroom.gethIniFromTimetable()); j++){
+                        if (gs.issubGroup()) System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef()+" amb gs "+gs.getNameSubject()+" "+gs.getsubGroup().getsNum());
+                        else System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef()+" amb gs "+gs.getNameSubject()+" "+gs.getGroup().getNum());
+                        // Comprobamos restricciones de la clase
+                        if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
+                            // Comprobamos restricciones de los grupos
+                            System.out.println("Antes ctrl restrictions");
+                            if(ctrlRestrictions.groupRestrictions(i, j, classroom,  gs)){
+                                // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
+                                System.out.println("Pot emplenar la franja horària");
+                                classroom.setGStoTimetable(gs, i, j);
+
+                                if (gs.issubGroup()) {
+                                    gs.setSubjectToGroup(i, j, gs.getSubject(), true);
+                                    gs.getSubGroup().setType(i, j, gs.getType());
+                                    gs.getSubGroup().setFree(i,j,false);
+                                }
+                                else {
+                                    gs.setSubjectToGroup(i, j, gs.getSubject(), false);
+                                    gs.getGroup().setType(i, j, gs.getType());
+                                    gs.getGroup().setFree(i,j,false);
+                                }
+
+                                // Llamamos de nuevo a la función con el siguiente grupo-asignatura
+                                fin = i_generate(classrooms, gs_list, 0, pos_gs+1);
+
+                                if (fin) return true;
+
+                                classroom.removeHourOfTimetable(i,j);
+
+                                if (gs.issubGroup()) {
+                                    gs.removeSubjectOfTimetableFromGroup(i, j, true);
+                                    gs.getSubGroup().removeType(i, j);
+                                    gs.getSubGroup().setFree(i,j,true);
+                                }
+                                else {
+                                    gs.removeSubjectOfTimetableFromGroup(i, j, false);
+                                    gs.getGroup().removeType(i, j);
+                                    gs.getGroup().setFree(i,j,true);
+                                }
+                            }
+                        }
+                    }
+                }
+                // Hemos llenado el horario de una clase, cambiamos a la siguiente clase (si la hay)
+                //System.out.println("Cambio de clase");
                 if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs);
             }
+            // Hay al menos un grupo-asignatura disponible pero no hay ninguna clase a la que se le pueda asignar
+            //System.out.println("No hi ha cap horari disponible");
+            return true;
         }
     }
     
