@@ -96,6 +96,10 @@ public class Group {
     public void setType(int day, int hour, String type) {
         this.type[day][hour] = type;
     }
+    
+    public void removeType(int day, int hour){
+        this.type[day][hour] = null;
+    }
 
     public void setTimetable(Subject[][] groupTimetable) {
         this.GroupTimetable = groupTimetable;

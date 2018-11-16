@@ -226,7 +226,8 @@ public class TimetableGenerator {
     
     public boolean i_generate(List<Classroom> classrooms, List<GroupSubject> gs_list, int pos_classroom, int pos_gs, CTRLRestrictions ctrlRestrictions){
         boolean fin = false;
-        if (pos_gs < gs_list.size()){
+        if (pos_gs >= gs_list.size()) return true;
+        else{
             GroupSubject gs = gs_list.get(pos_gs);
             if (pos_classroom < classrooms.size()){
                 Classroom classroom = classrooms.get(pos_classroom);
@@ -254,15 +255,23 @@ public class TimetableGenerator {
                                     gs.getGroup().getRestriction(i, j).setFree(false);
                                 }
 
-                                // Llamamos de nuevo a la función con el siguiente grupo-asignatura, desde el dia=i, hora=j
-                                fin = i_generate(classrooms, gs_list, pos_classroom, pos_gs+1, ctrlRestrictions);
+                                // Llamamos de nuevo a la función con el siguiente grupo-asignatura
+                                fin = i_generate(classrooms, gs_list, 0, pos_gs+1, ctrlRestrictions);
 
                                 if (fin) return true;
 
                                 classroom.removeHourOfTimetable(i,j);
 
-                                if (gs.issubGroup()) gs.removeSubjectOfTimetableFromGroup(i, j, true);
-                                else gs.removeSubjectOfTimetableFromGroup(i, j, false);
+                                if (gs.issubGroup()) {
+                                    gs.removeSubjectOfTimetableFromGroup(i, j, true);
+                                    gs.getSubGroup().removeType(i, j);
+                                    gs.getSubGroup().getRestriction(i, j).setFree(true);
+                                }
+                                else {
+                                    gs.removeSubjectOfTimetableFromGroup(i, j, false);
+                                    gs.getGroup().removeType(i, j);
+                                    gs.getGroup().getRestriction(i, j).setFree(true);
+                                }
                             }
                         }
                     }
@@ -275,7 +284,6 @@ public class TimetableGenerator {
             //System.out.println("No hi ha cap horari disponible");
             return true;
         }
-        return true;
     }
     
     /*public void load(String file) throws FileNotFoundException, IOException{

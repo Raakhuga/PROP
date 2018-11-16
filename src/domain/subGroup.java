@@ -92,6 +92,10 @@ public class subGroup {
         this.type[day][hour] = type;
     }
     
+    public void removeType(int day, int hour){
+        this.type[day][hour] = null;
+    }
+    
     public Subject getSubject (int day, int hour) {
         return subGroupTimetable[day][hour];
     }
