@@ -107,17 +107,11 @@ public class CTRLRestrictions {
         /*return (classTimetable.getGroupSubject(day, hour).getnMat() > 0 && 
                 classTimetable.getGroupSubject(day, hour).getSubject().getLevel() == 
                 GSNew.getSubject().getLevel());*/
-        /*Group act = GSNew.getGroup();
-        if (GSNew.isSubGroup()){
-            subGroup sub = GSNew.getsubGroup();
-            return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
-        }
-        else{
-            return act.getSubject(day, hour) != null;
-        }*/
-        subGroup sub = GSNew.getsubGroup();
-        Group act = GSNew.getGroup();
-        return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
+        /*subGroup sub = GSNew.getsubGroup();
+        Group act = GSNew.getGroup();*/
+        if (GSNew.isSubGroup()) return GSNew.getSubGroup().getSubject(day, hour) != null;
+        else return GSNew.getGroup().getSubject(day, hour) != null;
+        //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
     }
     
     
