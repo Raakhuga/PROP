@@ -121,7 +121,7 @@ public class Timetable {
     }
     
     public void removeHourOfTimetable(int day, int hour){
-        timetable[day][hour] = null;
+        timetable[day][hour] = new GroupSubject();
     }
     
     public void banTime(int day, int hIni, int hEnd) {
