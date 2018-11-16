@@ -240,6 +240,7 @@ public class TimetableGenerator {
                             // Comprobamos restricciones de los grupos
                             if(ctrlRestrictions.groupRestrictions(i, j, classroom, classroom.getTimetable(), gs)){
                                 // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
+                                System.out.println("Pot emplenar la franja horària");
                                 classroom.setGStoTimetable(gs, i, j);
 
                                 if (gs.issubGroup()) {

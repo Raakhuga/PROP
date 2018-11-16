@@ -107,6 +107,14 @@ public class CTRLRestrictions {
         /*return (classTimetable.getGroupSubject(day, hour).getnMat() > 0 && 
                 classTimetable.getGroupSubject(day, hour).getSubject().getLevel() == 
                 GSNew.getSubject().getLevel());*/
+        /*Group act = GSNew.getGroup();
+        if (GSNew.isSubGroup()){
+            subGroup sub = GSNew.getsubGroup();
+            return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
+        }
+        else{
+            return act.getSubject(day, hour) != null;
+        }*/
         subGroup sub = GSNew.getsubGroup();
         Group act = GSNew.getGroup();
         return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
@@ -141,7 +149,7 @@ public class CTRLRestrictions {
     }
     
     private boolean hourOk(GroupSubject GSNew, int day, int hour) {
-        return (0 <= day && day > GSNew.getGroup().getnDays()) && (hour >= GSNew.getGroup().gethIni() && hour < GSNew.getGroup().gethEnd());
+        return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= GSNew.getGroup().gethIni() && hour < GSNew.getGroup().gethEnd());
     }
     
     private boolean isBanned(int day, int hour, Timetable TB) {

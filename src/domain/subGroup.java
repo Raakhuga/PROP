@@ -23,6 +23,7 @@ public class subGroup {
         this.hEnd = hEnd;
         this.nMat = nMat;
         initializeGroupRestrictions();
+        initializeSubjects();
     }
     
     private void initializeGroupRestrictions(){
@@ -30,6 +31,13 @@ public class subGroup {
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
                 subGroupRestrictions[i][j] = sgr;
+    }
+    
+    private void initializeSubjects(){
+        Subject s = new Subject();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                subGroupTimetable[i][j] = s;
     }
     
     public GroupRestrictions[][] getRestrictions() {

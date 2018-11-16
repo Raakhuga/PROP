@@ -32,6 +32,7 @@ public class Group {
         subGroups = new ArrayList<>();
         this.nMat = nMat;
         initializeGroupRestrictions();
+        initializeSubjects();
     }
     
     private void initializeGroupRestrictions(){
@@ -39,6 +40,13 @@ public class Group {
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
                 GroupRestrictions[i][j] = gr;
+    }
+    
+    private void initializeSubjects(){
+        Subject s = new Subject();
+        for(int i = 0; i < nDays; i++)
+            for(int j = 0; j < (hEnd-hIni); j++)
+                GroupTimetable[i][j] = s;
     }
 
     public int getNum() {
