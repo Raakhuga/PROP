@@ -21,13 +21,13 @@ public class TimetableGenerator {
     private List<GroupSubject> problem;
     private int nMaxStudentsGroup;
     private int nMaxStudentsSubgroup;
-    private CTRLRestrictions ctrlRestrictions;
+    //private CTRLRestrictions ctrlRestrictions;
         
     public TimetableGenerator() {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
-        this.ctrlRestrictions = new CTRLRestrictions();
+        //this.ctrlRestrictions = new CTRLRestrictions();
     }
 
     public List<Classroom> getClassrooms() {
@@ -70,9 +70,9 @@ public class TimetableGenerator {
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
     }
 
-    public void setCtrlRestrictions(CTRLRestrictions ctrlRestrictions) {
+    /*public void setCtrlRestrictions(CTRLRestrictions ctrlRestrictions) {
         this.ctrlRestrictions = ctrlRestrictions;
-    }
+    }*/
     
     public void manualLoad() {
         Scanner in = new Scanner(System.in);
@@ -242,6 +242,7 @@ public class TimetableGenerator {
                         // Comprobamos restricciones de la clase
                         if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
                             // Comprobamos restricciones de los grupos
+                            System.out.println("Antes ctrl restrictions");
                             if(ctrlRestrictions.groupRestrictions(i, j, classroom,  gs)){
                                 // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
                                 System.out.println("Pot emplenar la franja horària");
@@ -250,12 +251,12 @@ public class TimetableGenerator {
                                 if (gs.issubGroup()) {
                                     gs.setSubjectToGroup(i, j, gs.getSubject(), true);
                                     gs.getSubGroup().setType(i, j, gs.getType());
-                                    gs.getSubGroup().getRestriction(i, j).setFree(false);
+                                    gs.getSubGroup().setFree(i,j,false);
                                 }
                                 else {
                                     gs.setSubjectToGroup(i, j, gs.getSubject(), false);
                                     gs.getGroup().setType(i, j, gs.getType());
-                                    gs.getGroup().getRestriction(i, j).setFree(false);
+                                    gs.getGroup().setFree(i,j,false);
                                 }
 
                                 // Llamamos de nuevo a la función con el siguiente grupo-asignatura
@@ -268,12 +269,12 @@ public class TimetableGenerator {
                                 if (gs.issubGroup()) {
                                     gs.removeSubjectOfTimetableFromGroup(i, j, true);
                                     gs.getSubGroup().removeType(i, j);
-                                    gs.getSubGroup().getRestriction(i, j).setFree(true);
+                                    gs.getSubGroup().setFree(i,j,true);
                                 }
                                 else {
                                     gs.removeSubjectOfTimetableFromGroup(i, j, false);
                                     gs.getGroup().removeType(i, j);
-                                    gs.getGroup().getRestriction(i, j).setFree(true);
+                                    gs.getGroup().setFree(i,j,true);
                                 }
                             }
                         }
