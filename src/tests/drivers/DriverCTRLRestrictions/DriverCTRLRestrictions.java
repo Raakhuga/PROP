@@ -1,19 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tests.drivers.DriverCTRLRestrictions;
 
-import domain.*;
+import domain.CTRLRestrictions;
+import domain.Classroom;
+import domain.Group;
+import domain.GroupSubject;
+import domain.Subject;
+import domain.subGroup;
 import java.util.Scanner;
 
-/**
- *
- * @author hasee
- */
-public class DruverCTRLRestrictions {
-      public static void main(String[] args) throws Exception{
+
+public class DriverCTRLRestrictions {
+    
+    public static void main(String[] args) throws Exception{
         System.out.println("Aquest es el driver de CTRLRestrictions");
         int prova = 0;
         while (prova != -1) {

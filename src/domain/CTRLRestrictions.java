@@ -51,7 +51,7 @@ public class CTRLRestrictions {
     }
     
     public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew){
-        //System.out.println("Ha entrado en la funcion classroomRestrictions");
+        System.out.println("Ha entrado en la funcion classroomRestrictions");
         if(classroom.getTimetable().getFree(day,hour)){
             //El aula no esta disponible en dicho lapso de tiempo
             if (!hourOk(classroom.getTimetable(), day, hour) && rBase[0]) {
@@ -101,7 +101,8 @@ public class CTRLRestrictions {
     }*/
     
     public boolean groupRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
-         if((GSNew.isSubGroup() && GSNew.getSubGroup().getFree(day, hour)) || GSNew.getGroup().getFree(day,hour)){
+        System.out.println("Ha entrado en la funcion groupRestrictions");
+        if((GSNew.isSubGroup() && GSNew.getSubGroup().getFree(day, hour)) || GSNew.getGroup().getFree(day,hour)){
             //El grupo no puede tener clase en dicho lapso de tiempo
             //System.out.println("Despues del groupRestrictions");
             if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
@@ -135,13 +136,11 @@ public class CTRLRestrictions {
             else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
             //System.out.println("grupRestrictions: true");
             return true;
-        }
-        System.out.println("Ha acabado las groupRestrictions");
+         }
         return false;
     }
     
     private boolean classroomTooSmall(Classroom classroom, GroupSubject GSNew) {
-        //System.out.println("Ha entrado en classroomTooSmall");
         if (GSNew.isSubGroup()) return classroom.getCapacity() < GSNew.getSubGroup().getnMat();
         return classroom.getCapacity() < GSNew.getnMat();
     }
@@ -170,7 +169,6 @@ public class CTRLRestrictions {
     
     //hay case de laboratorio antes que de teoria
     private boolean LabBeforeTheory(int day, int hour, GroupSubject GSNew) {
-        System.out.println("labBeforeTheory");
         if (GSNew.labGroup()){
             subGroup sub = GSNew.getsubGroup();
             Group act = GSNew.getGroup();
@@ -207,7 +205,6 @@ public class CTRLRestrictions {
     }
     
     private boolean isBanned(int day, int hour, GroupSubject GSNew) {
-        System.out.println("isBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupBanned(day, hour);
         else return GSNew.GroupBanned(day, hour);
     }
@@ -217,7 +214,7 @@ public class CTRLRestrictions {
     }
     
     private boolean subjectBanned(int day, int hour, GroupSubject GSNew, String name) {
-        System.out.println("subjectBanned");
+        //System.out.println("Ha entrado en subjectBanned");
         if (GSNew.issubGroup()) return GSNew.SubGroupSubjectBanned(day, hour, name);
         else return GSNew.GroupSubjectBanned(day, hour, name);
     }
@@ -228,7 +225,7 @@ public class CTRLRestrictions {
     }
     
     private boolean classroomBanned(int day, int hour, GroupSubject GSNew, String ref) {
-        System.out.println("classroomBanned");
+        
         if (GSNew.issubGroup()) return GSNew.SubGroupClassroomBanned(day, hour, ref);
         else return GSNew.GroupClassroomBanned(day, hour, ref);
     }
