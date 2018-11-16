@@ -29,6 +29,10 @@ public class Timetable {
         initializeGroupSubjects();
     }
     
+    public void setFree(int day, int hIni, int hEnd, boolean free) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) restrictions[day][i].setFree(free);   
+    }
+    
     private void initializeClassRestrictions(){
         ClassRestrictions cr = new ClassRestrictions();
         for(int i = 0; i < nDays; i++)

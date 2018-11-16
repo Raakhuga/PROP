@@ -85,22 +85,35 @@ public class CTRLRestrictions {
     public boolean groupRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
          if((GSNew.isSubGroup() && GSNew.getSubGroup().getRestriction(day, hour).isFree()) || classroom.getGroup().getRestriction(day, hour).isFree()){
             //El grupo no puede tener clase en dicho lapso de tiempo
-            if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
-           
+            if (!hourOk(GSNew, day, hour) && rBase[0]) {
+                System.out.println("culpa1");
+                return false;
+            }
             //El grupo tiene horas bloqueadas en dicho lapso
-            else if (isBanned(day, hour, GSNew) && rExtra[0]) return false;
-            
+            else if (isBanned(day, hour, GSNew) && rExtra[0]) {
+                System.out.println("culpa2");
+                return false;
+            }
             //El grupo no puede ir a esa clase en dicha franja horaria
-            else if (classroomBanned(day, hour, GSNew, classroom.getRef()) && rExtra[3]) return false;
-            
+            else if (classroomBanned(day, hour, GSNew, classroom.getRef()) && rExtra[3]) {
+                System.out.println("culpa3");
+                return false;
+            }
             //La materia esta bloqueada en dicha franja horaria
-            else if (subjectBanned(day, hour, GSNew, GSNew.getNameSubject()) && rExtra[1]) return false;
-            
+            else if (subjectBanned(day, hour, GSNew, GSNew.getNameSubject()) && rExtra[1]) {
+                System.out.println("culpa4");
+                return false;
+            }
             //Hay solapamiento de dos asignaturas de un mismo nivel
-            else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
-            
+            else if (sameLevel(day, hour, GSNew) && rBase[1]){
+                System.out.println("culpa5");
+                return false;
+            }
             //Hay clase de Lab antes que la de teoria
-            else if (LabBeforeTheory(day, hour, GSNew) && rExtra[4]) return false;
+            else if (LabBeforeTheory(day, hour, GSNew) && rExtra[4]) {
+                System.out.println("culpa6");
+                return false;
+            }
             
             else if (!((GSNew.labGroup() && classroom.isForLab() || GSNew.problemsGroup() && classroom.isForProblems() || GSNew.theoryGroup() && classroom.isForTheory()) && rBase[2])) return false;
             System.out.println("Ha acabado las groupRestrictions");

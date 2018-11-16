@@ -56,6 +56,10 @@ public class Group {
     public int getnDays() {
         return nDays;
     }
+    
+    public void setFree(int day, int hIni, int hEnd, boolean free) {
+        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].setFree(free);   
+    }
     public void banSubject(int day, int hIni, int hEnd, String name) {
        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].banSubject(name);   
     }
