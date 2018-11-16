@@ -33,17 +33,15 @@ public class Timetable {
     }
     
     private void initializeClassRestrictions(){
-        ClassRestrictions cr = new ClassRestrictions();
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
-                restrictions[i][j] = cr;
+                restrictions[i][j] = new ClassRestrictions();
     }
     
     private void initializeGroupSubjects(){
-        GroupSubject gs = new GroupSubject();
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
-                timetable[i][j] = gs;
+                timetable[i][j] = new GroupSubject();;
     }
     
     private void initializeFree() {

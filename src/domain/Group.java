@@ -39,17 +39,15 @@ public class Group {
     }
     
     private void initializeGroupRestrictions(){
-        GroupRestrictions gr = new GroupRestrictions();
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
-                GroupRestrictions[i][j] = gr;
+                GroupRestrictions[i][j] = new GroupRestrictions();
     }
     
     private void initializeSubjects(){
-        Subject s = new Subject();
         for(int i = 0; i < nDays; i++)
             for(int j = 0; j < (hEnd-hIni); j++)
-                GroupTimetable[i][j] = s;
+                GroupTimetable[i][j] = new Subject();
     }
 
     private void initializeFree(){
