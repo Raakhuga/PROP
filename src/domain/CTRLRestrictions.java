@@ -51,7 +51,7 @@ public class CTRLRestrictions {
     }
     
     public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew){
-        //System.out.println("Ha entrado en la funcion classroomRestrictions");
+        System.out.println("Ha entrado en la funcion classroomRestrictions");
         if(classroom.getTimetable().getFree(day,hour)){
             //El aula no esta disponible en dicho lapso de tiempo
             if (!hourOk(classroom.getTimetable(), day, hour) && rBase[0]) {
@@ -101,7 +101,8 @@ public class CTRLRestrictions {
     }*/
     
     public boolean groupRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
-         if((GSNew.isSubGroup() && GSNew.getSubGroup().getFree(day, hour)) || GSNew.getGroup().getFree(day,hour)){
+        System.out.println("Ha entrado en la funcion groupRestrictions");
+        if((GSNew.isSubGroup() && GSNew.getSubGroup().getFree(day, hour)) || GSNew.getGroup().getFree(day,hour)){
             //El grupo no puede tener clase en dicho lapso de tiempo
             //System.out.println("Despues del groupRestrictions");
             if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
@@ -140,25 +141,26 @@ public class CTRLRestrictions {
     }
     
     private boolean classroomTooSmall(Classroom classroom, GroupSubject GSNew) {
-        //System.out.println("Ha entrado en classroomTooSmall");
         if (GSNew.isSubGroup()) return classroom.getCapacity() < GSNew.getSubGroup().getnMat();
         return classroom.getCapacity() < GSNew.getnMat();
     }
     
     private boolean sameLevel(int day, int hour, GroupSubject GSNew){
-        /*return (classTimetable.getGroupSubject(day, hour).getnMat() > 0 && 
-                classTimetable.getGroupSubject(day, hour).getSubject().getLevel() == 
-                GSNew.getSubject().getLevel());*/
-        /*subGroup sub = GSNew.getsubGroup();
-        Group act = GSNew.getGroup();*/
-        //System.out.println("asdfasdfasdf");
-        
-        if (GSNew.isSubGroup()) return GSNew.getGroup().getFree(day, hour);
+        System.out.println("Ha entrado en sameLevel");
+        if (GSNew.isSubGroup()) {
+            System.out.println("Es un subGroup");
+            return GSNew.getSubGroup().getFree(day, hour);
+            //return GSNew.getGroup().getFree(day, hour);
+        }
         else {
             Iterator<subGroup> SGit = GSNew.getGroup().getsubGroups().iterator();
             while(SGit.hasNext()) {
-                if(!SGit.next().getFree(day, hour)) return false;
+                if(!SGit.next().getFree(day, hour)) {
+                    System.out.println("Devuelve false en sameLevel");
+                    return false;
+                }
             }
+            System.out.println("Devuelve true en sameLevel");
             return true;
         }
         
