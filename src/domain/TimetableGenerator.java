@@ -239,7 +239,7 @@ public class TimetableGenerator {
                         // Comprobamos restricciones de la clase
                         if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
                             // Comprobamos restricciones de los grupos
-                            if(ctrlRestrictions.groupRestrictions(i, j, classroom, classroom.getTimetable(), gs)){
+                            if(ctrlRestrictions.groupRestrictions(i, j, classroom, gs)){
                                 // No ha habido ninguna restricción, se puede asignar ese grupo-asignatura a la franja horaria dia=i, hora=j
                                 System.out.println("Pot emplenar la franja horària");
                                 classroom.setGStoTimetable(gs, i, j);
