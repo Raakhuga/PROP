@@ -174,12 +174,15 @@ public class TimetableGenerator {
                         Iterator<subGroup> SGit = subGroups.iterator();
                         for(int j = 0; j < Sact.getTheoryH(); j++) 
                             problem.add(new GroupSubject(Sact, Gact, Gact.getnMat(), true, false, false));
+                            System.out.println("grup: " + Gact.getNum() + " hEnd grup: " + Gact.gethEnd() + " hIni grup: " + Gact.gethIni());
                         while(SGit.hasNext()) {
                             subGroup SGact = SGit.next();
                             for(int j = 0; j < Sact.getLaboratoryH(); j++)
                                 problem.add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, true, false));
+                                System.out.println("grup: " + Gact.getNum() + " hEnd grup: " + Gact.gethEnd() + " hIni grup: " + Gact.gethIni());
                             for(int j = 0; j < Sact.getProblemsH(); j++)
                                 problem.add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, false, true));
+                                System.out.println("grup: " + Gact.getNum() + " hEnd grup: " + Gact.gethEnd() + " hIni grup: " + Gact.gethIni());
                         }
                     }
                 }

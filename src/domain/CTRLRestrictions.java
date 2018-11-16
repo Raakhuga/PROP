@@ -103,7 +103,7 @@ return false;
     }*/
     
     public boolean groupRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
-         if(classroom.getTimetable().getRestrictions()[day][hour].isFree()){
+         if((GSNew.isSubGroup() && GSNew.getSubGroup().getRestriction(day, hour).isFree()) || classroom.getGroup().getRestriction(day, hour).isFree()){
             //El grupo no puede tener clase en dicho lapso de tiempo
             if (!hourOk(GSNew, day, hour) && rBase[0]) return false;
             //El grupo tiene horas bloqueadas en dicho lapso
@@ -116,6 +116,7 @@ return false;
             else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
             //Hay clase de Lab antes que la de teoria
             else if (LabBeforeTheory(day, hour, GSNew) && rExtra[4]) return false;
+            System.out.println("grupRestrictions: true");
             return true;
         }
         return false;
@@ -132,8 +133,10 @@ return false;
                 GSNew.getSubject().getLevel());*/
         /*subGroup sub = GSNew.getsubGroup();
         Group act = GSNew.getGroup();*/
-        if (GSNew.isSubGroup()) return GSNew.getSubGroup().getSubject(day, hour) != null;
-        else return GSNew.getGroup().getSubject(day, hour) != null;
+        System.out.println("asdfasdfasdf");
+        if (GSNew.isSubGroup()) return !GSNew.getSubGroup().getRestriction(day, hour).isFree();
+        else return !GSNew.getGroup().getRestriction(day, hour).isFree();
+        
         //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
     }
     
@@ -166,6 +169,7 @@ return false;
     }
     
     private boolean hourOk(GroupSubject GSNew, int day, int hour) {
+        System.out.println("HOUROK day: " + day + " nDays " + GSNew.getGroup().getnDays() + " hEnd " + GSNew.getGroup().gethEnd() + " hIni " + GSNew.getGroup().gethIni());
         return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= 0 && hour < GSNew.getGroup().gethEnd() - GSNew.getGroup().gethIni());
     }
     
