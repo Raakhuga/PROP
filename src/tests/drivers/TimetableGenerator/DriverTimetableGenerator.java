@@ -242,7 +242,7 @@ public class DriverTimetableGenerator {
             for (int j = 0; j < hEnd-hIni; j++) {
                 System.out.println("A la hora: "+ j);
                 if (timetable.getGroupSubject(i, j).getSubject() != null) printGroupSubject(timetable.getGroupSubject(i, j));
-                else System.out.println("Liure");
+                else System.out.println("Lliure");
                 //printGroupSubject(timetable.getGroupSubject(i ,j));
             }
         }

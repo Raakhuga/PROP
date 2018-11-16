@@ -237,7 +237,8 @@ public class TimetableGenerator {
                 for(int i = 0; i < classroom.getnDaysFromTimetable(); i++){
                     // Recorremos las horas de un día
                     for(int j = 0; j < (classroom.gethEndFromTimetable()-classroom.gethIniFromTimetable()); j++){
-                        System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef());
+                        if (gs.issubGroup()) System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef()+" amb gs "+gs.getNameSubject()+" "+gs.getsubGroup().getsNum());
+                        System.out.println("Iteración i: "+i+" iteración j: "+j+" de la clase: "+classroom.getRef()+" amb gs "+gs.getNameSubject()+" "+gs.getGroup().getNum());
                         // Comprobamos restricciones de la clase
                         if(ctrlRestrictions.classroomRestrictions(i, j, classroom, gs)){
                             // Comprobamos restricciones de los grupos
