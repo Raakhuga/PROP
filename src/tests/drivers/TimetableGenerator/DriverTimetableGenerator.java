@@ -238,7 +238,7 @@ public class DriverTimetableGenerator {
             System.out.println("El dia: " + i);
             for (int j = 0; j < hEnd-hIni; j++) {
                 System.out.println("A la hora: "+ j);
-                if (timetable.getGroupSubject(i, j) != null) printGroupSubject(timetable.getGroupSubject(i, j));
+                if (timetable.getGroupSubject(i, j).getSubject() != null) printGroupSubject(timetable.getGroupSubject(i, j));
                 else System.out.println("Liure");
                 //printGroupSubject(timetable.getGroupSubject(i ,j));
             }
@@ -295,8 +295,9 @@ public class DriverTimetableGenerator {
     public static void main(String[] args) throws Exception{
         manualLoad(p);
         p.generateAllGS();
-        print(p);
+        
         p.generate(p.getClassrooms(), p.getProblem());
+        print(p);   
         driverGR();
         
     }
