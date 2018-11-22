@@ -22,6 +22,7 @@ public class GroupSubject {
         this.group = group;
         this.empty = false;
         this.type = new boolean[3];
+        for(int i = 0; i < 3; i++) type[i] = false;
     }
     
     public GroupSubject() {
@@ -82,6 +83,10 @@ public class GroupSubject {
 
     public void setEmpty(boolean empty) {
         this.empty = empty;
+    }
+        
+    public void setTheory(){
+        type[THEORY] = true;
     }
     
     public void setLaboratory(){

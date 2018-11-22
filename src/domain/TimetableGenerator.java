@@ -158,31 +158,37 @@ public class TimetableGenerator {
         Iterator<StudyProgram> SPit = programs.iterator();
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
-            Map<Integer, Level> levels = SPact.getLevels();
-            Iterator<Level> Lit = levels.values().iterator();
+            List<Level> levels = SPact.getLevels();
+            Iterator<Level> Lit = levels.iterator();
             while(Lit.hasNext()) {
                 Level Lact = Lit.next();
-                List<Group> groups = Lact.getGroups();
-                Iterator<Group> Git = groups.iterator();
-                while(Git.hasNext()) {
-                    Group Gact = Git.next();
-                    List<Subject> subjects = Lact.getSubjects();
-                    Iterator<Subject> Sit = subjects.iterator();
-                    while(Sit.hasNext()) {
-                        Subject Sact = Sit.next();
-                        List<subGroup> subGroups = Gact.getsubGroups();
+                List<Subject> subjects = Lact.getSubjects();
+                Iterator<Subject> Sit = subjects.iterator();
+                while(Sit.hasNext()) {
+                    Subject Sact = Sit.next();
+                    List<Group> groups = Sact.getGroups();
+                    Iterator<Group> Git = groups.iterator();
+                    while(Git.hasNext()) {
+                        Group Gact = Git.next();
+                        List<subGroup> subGroups = Gact.getSubGroups();
                         Iterator<subGroup> SGit = subGroups.iterator();
-                        for(int j = 0; j < Sact.getTheoryH(); j++) 
-                            problem.add(new GroupSubject(Sact, Gact, Gact.getnMat(), true, false, false));
-                            System.out.println("grup: " + Gact.getNum() + " hEnd grup: " + Gact.gethEnd() + " hIni grup: " + Gact.gethIni());
+                        for(int j = 0; j < Sact.getTheoryH(); j++) {
+                            GroupSubject aux = new GroupSubject(Sact, Gact);
+                            aux.setTheory();
+                            problem.add(aux);
+                        }
                         while(SGit.hasNext()) {
                             subGroup SGact = SGit.next();
-                            for(int j = 0; j < Sact.getLaboratoryH(); j++)
-                                problem.add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, true, false));
-                                System.out.println("grup: " + Gact.getNum() + " hEnd grup: " + Gact.gethEnd() + " hIni grup: " + Gact.gethIni());
-                            for(int j = 0; j < Sact.getProblemsH(); j++)
-                                problem.add(new GroupSubject(Sact, Gact, SGact, SGact.getnMat(), false, false, true));
-                                System.out.println("grup: " + Gact.getNum() + " hEnd grup: " + Gact.gethEnd() + " hIni grup: " + Gact.gethIni());
+                            for(int j = 0; j < Sact.getLaboratoryH(); j++) {
+                                GroupSubject aux = new GroupSubject(Sact, SGact);
+                                aux.setLaboratory();
+                                problem.add(aux);
+                            }
+                            for(int j = 0; j < Sact.getProblemsH(); j++) {
+                                GroupSubject aux = new GroupSubject(Sact, SGact);
+                                aux.setProblems();
+                                problem.add(aux);
+                            }
                         }
                     }
                 }

@@ -22,5 +22,6 @@ public class testRandom {
         System.out.println(aux.isSubGroup());
         System.out.println(aux.getNum());
         System.out.println(((subGroup)aux).isSuperEmpty(2,11));
+        System.out.println("Group: " + a.getEnrolled() + " subGroup: " + aux.getEnrolled());
     }
 }

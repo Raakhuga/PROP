@@ -63,6 +63,18 @@ public class Subject {
         nSessions[PROBLEMS] = hours;
     }
     
+    public int getTheoryH() {
+        return nSessions[THEORY];
+    }
+    
+    public int getLaboratoryH() {
+        return nSessions[LABORATORY];
+    }
+    
+    public int getProblemsH() {
+        return nSessions[PROBLEMS];
+    }
+    
     public void addGroup(Group group) {
         groups.add(group);
     }

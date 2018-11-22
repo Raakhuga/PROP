@@ -35,28 +35,83 @@ public class DriverTimetableGenerator {
     }
     
     public static void generateAllGroups(StudyProgram SP, int nMaxStudentsGroup, int nMaxStudentsSubgroup) {
-        Map<Integer,Level> levels = SP.getLevels();
-        Iterator<Level> it = levels.values().iterator();
-        List<Subject> subjects;
-        int nGroups, nSubGroups, nStudents, i, remaining;
-        Subject sact;
+        List<Level> levels = SP.getLevels();
+        Iterator<Level> it = levels.iterator();
+        int nGroups, nStudents, i, remaining;
         Scanner in = new Scanner(System.in);
         while(it.hasNext()) {
             Level act = it.next();
-            i = 1;
-            System.out.println("Insert the number of Students that will course the Level: " + act.getIden());
-            nStudents = in.nextInt();
-            nGroups = nStudents/nMaxStudentsGroup;
-            if (nStudents%nMaxStudentsGroup != 0) nGroups++;
-            for(remaining = nStudents; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
-                addGroup(act, i*10, nMaxStudentsGroup, nMaxStudentsSubgroup);
-                i++;
+            List<Subject> subjects = act.getSubjects();
+            Iterator<Subject> Sit = subjects.iterator();
+            while(Sit.hasNext()) {
+                Subject Sact = Sit.next();
+                i = 1;
+                System.out.println("Insert the number of Students that will course the Subject: " + Sact.getName());
+                nStudents = in.nextInt();
+                nGroups = nStudents/nMaxStudentsGroup;
+                if (nStudents%nMaxStudentsGroup != 0) nGroups++;
+                for(remaining = nStudents; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
+                    addGroup(act, i*10, nMaxStudentsGroup, nMaxStudentsSubgroup);
+                    i++;
+                }
+                if (remaining > 0) addGroup(act, i*10, remaining, nMaxStudentsSubgroup);
             }
-            if (remaining > 0) addGroup(act, i*10, remaining, nMaxStudentsSubgroup);
         }
     }
     
-    public static void manualLoad(TimetableGenerator TG) 
+        public static void manualLoad(TimetableGenerator TG) {
+        Scanner in = new Scanner(System.in);
+        String ref, type, name;
+        int nClassrooms, nSP, nGroups, capacity, nDays, hIni, hEnd, nLevels, id;
+        boolean theory, lab, problems;
+        System.out.println ("Insert the number of maximum Students that a Group can have");
+        TG.setnMaxStudentsGroup(in.nextInt());
+        System.out.println ("Insert the number of maximum Students that a SubGroup can have");
+        TG.setnMaxStudentsSubgroup(in.nextInt());
+        System.out.println ("Insert the number of available Classrooms");
+        nClassrooms = in.nextInt();
+        for(int i = 0; i < nClassrooms; i++) {
+            System.out.println("Insert the reference of the Classroom number: " + i);
+            ref = in.next();
+            System.out.println("Insert the capacity of the Classroom number: " + i);
+            capacity = in.nextInt();
+            System.out.println("Insert the number of availabe days for the Classroom number: " + i);
+            nDays = in.nextInt();
+            System.out.println("Insert the first available hour and the last one of the Classroom number: " + i);
+            hIni = in.nextInt();
+            hEnd = in.nextInt();
+            System.out.println("Insert the type of the Classroom number: " + i);
+            type = in.next();
+            if(type.equals("theory") ||type.equals("Theory")) {
+                theory = true;
+                lab = false; 
+                problems = false;
+            }
+            else if (type.equals("laboratory") || type.equals("Laboratory") || type.equals("lab") || type.equals("Lab")) {
+                theory = false;
+                lab = true; 
+                problems = false;
+            }
+            else {
+                theory = false;
+                lab = false; 
+                problems = true;
+            }
+            TG.addClassroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems);
+        }
+        System.out.println ("Insert the number of available StudyPrograms");
+        nSP = in.nextInt();
+        for(int i = 0; i < nSP; i++) {
+            System.out.println ("Insert the name of the StudyProgam number: " + i);
+            name = in.next();
+            System.out.println ("Insert the number of Levels of the StudyProgram number: " + i);
+            nLevels = in.nextInt();
+            TG.addStudyProgram(name, nLevels, true);
+        }
+        Iterator<StudyProgram> it = TG.getPrograms().iterator();
+        while(it.hasNext()) generateAllGroups(it.next(), TG.getnMaxStudentsGroup(), TG.getnMaxStudentsSubgroup());
+    }
+
     
     private static void printGroupRestrictions (GroupRestrictions GR) {
         Iterator<String> BSit = GR.getBansubjects().iterator();
