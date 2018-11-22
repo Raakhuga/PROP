@@ -20,10 +20,11 @@ public class Group {
         this.subGroups = new ArrayList<>();
     }
     
-    public Group(GroupTimetable timetable, int num, int enrolled) {
-        this.num = num;
-        this.timetable = timetable;
+    public Group(Group group, int enrolled) {
+        this.num = group.getNum();
+        this.timetable = group.getTimetable();
         this.enrolled = enrolled;
+        this.subGroups = group.getSubGroups();
     }
 
     public int getNum() {
@@ -50,6 +51,10 @@ public class Group {
         return enrolled;
     }
     
+    public List<subGroup> getSubGroups() {
+        return subGroups;
+    }
+    
     public GroupTimetable getTimetable() {
         return timetable;
     }
@@ -62,4 +67,19 @@ public class Group {
         return false;
     }
     
+    public boolean isEmpty(int day, int hour) {
+        return timetable.isEmpty(day, hour);
+    }
+    
+    public boolean isBanned(int day, int hour) {
+        return timetable.isBanned(day, hour);
+    }
+    
+    public boolean isSubjectBanned(int day, int hour, String name) {
+        return timetable.isSubjectBanned(day, hour, name);
+    }
+    
+    public boolean isClassroomBanned(int day, int hour, String ref) {
+        return timetable.isClassroomBanned(day, hour, ref);
+    }
 }

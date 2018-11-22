@@ -11,9 +11,9 @@ public class Classroom {
     private final static int LABORATORY = 1;
     private final static int PROBLEMS = 2;
     
-    private String ref;
+    private final String ref;
     private ClassroomTimetable timetable;
-    private int capacity;
+    private final int capacity;
     private boolean type[];
     
     public Classroom(String ref, int capacity, int dIni, int dEnd, int hIni, int hEnd) {
@@ -38,8 +38,8 @@ public class Classroom {
         return type;
     }
 
-    public void setRef(String ref) {
-        this.ref = ref;
+    public int getCapacity() {
+        return capacity;
     }
 
     public void setTimetable(ClassroomTimetable timetable) {

@@ -54,4 +54,12 @@ public class ClassroomTimetable extends Timetable {
     public boolean isBanned(int day, int hour) {
         return restrictions[day][hour].isBanned();
     }
+    
+    public boolean isSubjectBanned(int day, int hour, String name) {
+        return restrictions[day][hour].isSubjectBanned(name);
+    }
+    
+    public boolean isGroupBanned(int day, int hour, int num) {
+        return restrictions[day][hour].isGroupBanned(num);
+    }
 }

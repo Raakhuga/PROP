@@ -73,7 +73,7 @@ public class TimetableGenerator {
     /*public void setCtrlRestrictions(CTRLRestrictions ctrlRestrictions) {
         this.ctrlRestrictions = ctrlRestrictions;
     }*/
-    
+    /*
     public void manualLoad() {
         Scanner in = new Scanner(System.in);
         String ref, type, name;
@@ -125,13 +125,13 @@ public class TimetableGenerator {
         }
         Iterator<StudyProgram> it = programs.iterator();
         while(it.hasNext()) generateAllGroups(it.next());
-    }
+    }*/
     
     public void generateAllGroups(StudyProgram SP) {
-        Map<Integer,Level> levels = SP.getLevels();
-        Iterator<Level> it = levels.values().iterator();
+        List<Level> levels = SP.getLevels();
+        Iterator<Level> it = levels.iterator();
         List<Subject> subjects;
-        int nGroups, nSubGroups, nStudents, i, remaining;
+        int nStudents, i, remaining;
         Subject sact;
         Scanner in = new Scanner(System.in);
         while(it.hasNext()) {

@@ -4,6 +4,7 @@ package domain;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 
 public class GroupSubject {
@@ -34,9 +35,49 @@ public class GroupSubject {
     public Group getGroup() {
         return group;
     }
+    
+    public int getEnrolled() {
+        return group.getEnrolled();
+    }
+    
+    public int getdIni() {
+        return group.getdIni();
+    }
+    
+    public int gethIni() {
+        return group.gethIni();
+    }
+    
+    public int getdEnd() {
+        return group.getdEnd();
+    }
+    
+    public int gethEnd() {
+        return group.gethEnd();
+    }
+    
+    public List<subGroup> getSubGroups() {
+        return group.getSubGroups();
+    }
 
     public boolean isEmpty() {
         return empty;
+    }
+    
+    public boolean isGroupEmpty(int day, int hour) {
+        return group.isEmpty(day,hour);
+    }
+    
+    public boolean isSubjectBanned(int day, int hour, String name) {
+        return group.isSubjectBanned(day, hour, name);
+    }
+    
+    public boolean isClassroomBanned(int day, int hour, String ref) {
+        return group.isClassroomBanned(day, hour, ref);
+    }
+    
+    public boolean isBanned(int day, int hour) {
+        return group.isBanned(day, hour);
     }
 
     public void setEmpty(boolean empty) {

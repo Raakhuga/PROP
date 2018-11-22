@@ -12,10 +12,15 @@ import domain.*;
 public class testRandom {
     public static void main(String[] args) throws Exception{
         Group a = new Group(0, 5, 8, 20, 10, 80);
-        subGroup b = new subGroup(a.getTimetable(), 10, 11, 20);
+        subGroup b = new subGroup(a, 11, 20);
+        
+        ClassSubject aux2[][] = a.getTimetable().getCS();
+        
+        aux2[2][11].setEmpty(false);
         
         Group aux = b;
         System.out.println(aux.isSubGroup());
         System.out.println(aux.getNum());
+        System.out.println(((subGroup)aux).isSuperEmpty(2,11));
     }
 }

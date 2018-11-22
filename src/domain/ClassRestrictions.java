@@ -63,4 +63,12 @@ public class ClassRestrictions {
     public void unbanGroup(int group) {
         bannedGroups.remove(group);
     }
+    
+    public boolean isSubjectBanned(String name) {
+        return bannedSubjects.contains(name);
+    }
+    
+    public boolean isGroupBanned(int num) {
+        return bannedGroups.contains(num);
+    }
 }
