@@ -10,181 +10,81 @@ import java.util.List;
 public class Group {
     
     /** Atributtes **/
-    public int num;
-    private GroupRestrictions GroupRestrictions[][];
-    private Subject GroupTimetable[][];
-    private String type[][];
-    private boolean[][] free;
-    private int nDays;
-    private int hEnd;
-    private int hIni;
-    private List<subGroup> subGroups;
-    private int nMat;
+    private final int dIni;
+    private final int dEnd;
+    private final int hIni;
+    private final int hEnd;
+    private final int enrolled;
+    private GroupRestrictions restrictions[][];
+    //private Timetable timetable[][];
     
     /** Constructor **/
-    public Group(int num, int nDays, int hIni, int hEnd, int nMat){
-        this.num = num;
-        this.GroupRestrictions = new GroupRestrictions[nDays][hEnd-hIni];
-        this.GroupTimetable = new Subject[nDays][hEnd-hIni];
-        this.type = new String[nDays][hEnd-hIni];
-        this.free = new boolean[nDays][hEnd-hIni];
-        this.nDays = nDays;
+    public Group(int dIni, int dEnd, int hIni, int hEnd, int enrolled) {
+        this.dIni = dIni;
+        this.dEnd = dEnd;
         this.hIni = hIni;
         this.hEnd = hEnd;
-        subGroups = new ArrayList<>();
-        this.nMat = nMat;
-        initializeGroupRestrictions();
-        initializeSubjects();
-        initializeFree();
-    }
-    
-    private void initializeGroupRestrictions(){
-        for(int i = 0; i < nDays; i++)
-            for(int j = 0; j < (hEnd-hIni); j++)
-                GroupRestrictions[i][j] = new GroupRestrictions();
-    }
-    
-    private void initializeSubjects(){
-        for(int i = 0; i < nDays; i++)
-            for(int j = 0; j < (hEnd-hIni); j++)
-                GroupTimetable[i][j] = new Subject();
+        this.enrolled = enrolled;
+        restrictions = new GroupRestrictions[7][24];
+        //timetable = new Timetable[7][24];
+        initializeRestrictions();
     }
 
-    private void initializeFree(){
-        for(int i = 0; i < nDays; i++)
-            for(int j = 0; j < (hEnd-hIni); j++)
-                free[i][j] = true;
+    private void initializeRestrictions(){
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 24; j++){
+                restrictions[i][j] = new GroupRestrictions();
+                if (i < dIni) restrictions[i][j].ban();
+                if (j < hIni || j >= hEnd) restrictions[i][j].ban();
+            }
+        }
     }
     
-    public boolean getFree(int day, int hour) {
-        return free[day][hour];
+    private void initializeTimetable() {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 24; j++) {
+                timetable[i][j] = new ClassroomTimetable(dIni, dEnd, hIni, hEnd)
+            }
+        }   
     }
     
-    public void setFree(int day, int hour, boolean free) {
-        this.free[day][hour]=free;
-    }
-    
-    public int getNum() {
-        return num;
+    public int getdIni() {
+        return dIni;
     }
 
-    public int getnDays() {
-        return nDays;
-    }
-    
-    public void setFree(int day, int hIni, int hEnd, boolean freee) {
-        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) free[day][i] = freee;   
-    }
-    public void banSubject(int day, int hIni, int hEnd, String name) {
-       if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].banSubject(name);   
-    }
-     public void UnbanSubject(int day, int hIni, int hEnd, String name) {
-        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].unbanSubject(name);   
-    }
-    public void banClassroom(int day, int hIni, int hEnd, String name) {
-       if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].banClassroom(name);   
-    }
-    public void unbanClassroom(int day, int hIni, int hEnd, String name) {
-        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].unbanClassroom(name);   
-    }
-     public void unbanTime(int day, int hIni, int hEnd) {
-        if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].setBanned(false);
-    }
-     public void banTime(int day, int hIni, int hEnd) {
-       if (hourOk(day, hIni, hEnd)) for (int i = hIni; i < hEnd; i++) GroupRestrictions[day][i].setBanned(true);
-    }
-     private boolean hourOk(int day, int hIni, int hEnd) {
-        return (0 <= day && day < nDays) && (hIni < hEnd && hIni >= 0 && hEnd <= this.hEnd - this.hIni);
-    }
-    public boolean isBanned(int day, int hour) {
-        return GroupRestrictions[day][hour].getBanned();
-    }
-    
-    public boolean subjectBanned(int day, int hour, String name) {
-        return GroupRestrictions[day][hour].subjectBanned(name);
-    }
-    
-    public boolean classroomBanned(int day, int hour, String name) {
-        return GroupRestrictions[day][hour].classroomBanned(name);
-    }
-    
-    public Subject[][] getTimetable() {
-        return GroupTimetable;
-    }
-
-    public int gethEnd() {
-        return hEnd;
+    public int getdEnd() {
+        return dEnd;
     }
 
     public int gethIni() {
         return hIni;
     }
 
-    public List<subGroup> getsubGroups() {
-        return subGroups;
-    }
-    
-    public int getnMat() {
-        return nMat;
-    }
-    
-    public String getType(int day, int hour) {
-        return this.type[day][hour];
-    }
-    
-    public void setType(int day, int hour, String type) {
-        this.type[day][hour] = type;
-    }
-    
-    public void removeType(int day, int hour){
-        this.type[day][hour] = null;
+    public int gethEnd() {
+        return hEnd;
     }
 
-    public void setTimetable(Subject[][] groupTimetable) {
-        this.GroupTimetable = groupTimetable;
-    } 
-    
-    public void removeSubject(int day, int hour){
-        GroupTimetable[day][hour] = null;
+    public int getEnrolled() {
+        return enrolled;
     }
-    
-    public void addSubGroup(subGroup subGroup) {
-        subGroups.add(subGroup);
-    }
-    
-    public subGroup getSpecifiedSubGroup(int num){
-        for(int i = 0; i < subGroups.size(); ++i){
-            if (subGroups.get(i).getsNum() == num) return subGroups.get(i);
-        }
-        return null;
-    }
-    
-    public void removeSubGroup(subGroup subGroup) {
-        subGroups.remove(subGroup);
-    }
-    
+
     public GroupRestrictions[][] getRestrictions() {
-        return GroupRestrictions;
+        return restrictions;
+    }
+
+    public ClassroomTimetable[][] getTimetable() {
+        return timetable;
+    }
+
+    public void setRestrictions(GroupRestrictions[][] restrictions) {
+        this.restrictions = restrictions;
+    }
+
+    public void setTimetable(ClassroomTimetable[][] timetable) {
+        this.timetable = timetable;
     }
     
-    public void setSubject(int day, int hour, Subject subject) {
-        GroupTimetable[day][hour] = subject;
-    }
-    
-    public Subject getSubject (int day, int hour) {
-        return GroupTimetable[day][hour];
-    }
-    
-    public GroupRestrictions getRestriction(int day, int hour) {
-        return GroupRestrictions[day][hour];
-    }
-    
-    public void save() throws IOException {
-        String file = "state.txt";
-        FileWriter writer = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(writer);
-        bw.write("Group");
-        bw.write(num);
-        bw.close(); 
+    public boolean isSubGroup() {
+        return false;
     }
 }

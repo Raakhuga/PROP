@@ -188,7 +188,7 @@ public class CTRLRestrictions {
         }
         return false;
     }
-    private boolean hourOk(Timetable TB, int day, int hour) {
+    private boolean hourOk(ClassroomTimetable TB, int day, int hour) {
         //System.out.println("Ha entrado en hour ok");
         return (0 <= day && day < TB.getnDays()) && (hour >= 0 && hour < TB.gethEnd()- TB.gethIni());
     }
@@ -198,7 +198,7 @@ public class CTRLRestrictions {
         return (0 <= day && day < GSNew.getGroup().getnDays()) && (hour >= 0 && hour < GSNew.getGroup().gethEnd() - GSNew.getGroup().gethIni());
     }
     
-    private boolean isBanned(int day, int hour, Timetable TB) {
+    private boolean isBanned(int day, int hour, ClassroomTimetable TB) {
         //System.out.println("Ha entrado en isbanned");
         
         return TB.isBanned(day, hour);
@@ -209,7 +209,7 @@ public class CTRLRestrictions {
         else return GSNew.GroupBanned(day, hour);
     }
     
-    private boolean subjectBanned(int day, int hour, Timetable TB, String name) {
+    private boolean subjectBanned(int day, int hour, ClassroomTimetable TB, String name) {
         return TB.subjectBanned(day, hour, name);
     }
     
@@ -219,7 +219,7 @@ public class CTRLRestrictions {
         else return GSNew.GroupSubjectBanned(day, hour, name);
     }
     
-    private boolean groupBanned(int day, int hour, Timetable TB, int num) {
+    private boolean groupBanned(int day, int hour, ClassroomTimetable TB, int num) {
         //System.out.println("Ha entrado en groupBanned");
         return TB.groupBanned(day, hour, num);
     }

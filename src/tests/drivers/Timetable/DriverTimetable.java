@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class DriverTimetable {
     
-    private static Timetable t = new Timetable(0, 0, 1);
+    private static ClassroomTimetable t = new ClassroomTimetable(0, 0, 1);
     
     public static void main(String[] args) throws Exception{
         System.out.println("Aquest és el driver de group, anem a crear un grup");
@@ -50,12 +50,12 @@ public class DriverTimetable {
         int hIni = in.nextInt();
         System.out.println("Escriu hora final del dia lectiu");
         int hEnd = in.nextInt();
-        Timetable t = new Timetable(days, hIni, hEnd);
+        ClassroomTimetable t = new ClassroomTimetable(days, hIni, hEnd);
         System.out.println("S'ha creat l'horari amb "+t.getnDays()+" columnes i "+(t.gethEnd()-t.gethIni())+" files");
         System.out.println();
     }
     
-    private static void driverSetGStoTimetable(Timetable t){
+    private static void driverSetGStoTimetable(ClassroomTimetable t){
         System.out.println("Anem a provar el driver de setGStoTimetable");
         Scanner in = new Scanner(System.in);
         System.out.println("Escriu el nom de l'assignatura");
@@ -115,7 +115,7 @@ public class DriverTimetable {
         System.out.println();
     }
     
-    private static void driverGetGroupSubject(Timetable t){
+    private static void driverGetGroupSubject(ClassroomTimetable t){
         System.out.println("Anem a provar el driver de getGroupSubject");
         Scanner in = new Scanner(System.in);
         GroupSubject gs = t.getGroupSubject(2, 2);
@@ -124,7 +124,7 @@ public class DriverTimetable {
         System.out.println();
     }
     
-    private static void driverRemoveHourOfTimetable(Timetable t){
+    private static void driverRemoveHourOfTimetable(ClassroomTimetable t){
         System.out.println("Anem a provar el driver de removeHourOfTimetable");
         Scanner in = new Scanner(System.in);
         System.out.println("Escriu el dia d'on vols treure el group-subject, ha de ser un valor entre 0 i "+(t.getnDays()-1));

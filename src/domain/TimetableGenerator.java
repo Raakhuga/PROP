@@ -285,7 +285,7 @@ public class TimetableGenerator {
                 if (pos_classroom+1 < classrooms.size()) i_generate(classrooms, gs_list, pos_classroom+1, pos_gs, ctrlRestrictions);
             }
         }
-    }*/
+    }
     
     public boolean generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
         return i_generate(classrooms, gs_list, 0, 0);
