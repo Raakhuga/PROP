@@ -50,5 +50,9 @@ public class StudyProgram {
         this.nLevels = nLevels;
     }
 
+    public void addLevel() {
+        nLevels++;
+        levels.add(new Level(nLevels));
+    }
     
 }

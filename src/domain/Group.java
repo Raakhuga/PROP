@@ -82,4 +82,8 @@ public class Group {
     public boolean isClassroomBanned(int day, int hour, String ref) {
         return timetable.isClassroomBanned(day, hour, ref);
     }
+    
+    public void addSubGroup(subGroup subGroup) {
+        subGroups.add(subGroup);
+    }
 }

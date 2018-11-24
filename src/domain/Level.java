@@ -32,4 +32,8 @@ public class Level {
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
+    
+    public void addSubject(String name) {
+        subjects.add(new Subject(name, iden));
+    }
 }

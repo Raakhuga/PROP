@@ -69,64 +69,9 @@ public class TimetableGenerator {
     public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
     }
-
-    /*public void setCtrlRestrictions(CTRLRestrictions ctrlRestrictions) {
-        this.ctrlRestrictions = ctrlRestrictions;
-    }*/
-    /*
-    public void manualLoad() {
-        Scanner in = new Scanner(System.in);
-        String ref, type, name;
-        int nClassrooms, nSP, nGroups, capacity, nDays, hIni, hEnd, nLevels, id;
-        boolean theory, lab, problems;
-        System.out.println ("Insert the number of maximum Students that a Group can have");
-        nMaxStudentsGroup = in.nextInt();
-        System.out.println ("Insert the number of maximum Students that a SubGroup can have");
-        nMaxStudentsSubgroup = in.nextInt();
-        System.out.println ("Insert the number of available Classrooms");
-        nClassrooms = in.nextInt();
-        for(int i = 0; i < nClassrooms; i++) {
-            System.out.println("Insert the reference of the Classroom number: " + i);
-            ref = in.next();
-            System.out.println("Insert the capacity of the Classroom number: " + i);
-            capacity = in.nextInt();
-            System.out.println("Insert the number of availabe days for the Classroom number: " + i);
-            nDays = in.nextInt();
-            System.out.println("Insert the first available hour and the last one of the Classroom number: " + i);
-            hIni = in.nextInt();
-            hEnd = in.nextInt();
-            System.out.println("Insert the type of the Classroom number: " + i);
-            type = in.next();
-            if(type == "theory" ||type == "Theory") {
-                theory = true;
-                lab = false; 
-                problems = false;
-            }
-            else if (type == "laboratory" || type == "Laboratory" || type == "lab" || type == "Lab") {
-                theory = false;
-                lab = true; 
-                problems = false;
-            }
-            else {
-                theory = false;
-                lab = false; 
-                problems = true;
-            }
-            addClassroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems);
-        }
-        System.out.println ("Insert the number of available StudyPrograms");
-        nSP = in.nextInt();
-        for(int i = 0; i < nSP; i++) {
-            System.out.println ("Insert the name of the StudyProgam number: " + i);
-            name = in.next();
-            System.out.println ("Insert the number of Levels of the StudyProgram number: " + i);
-            nLevels = in.nextInt();
-            addStudyProgram(name, nLevels, true);
-        }
-        Iterator<StudyProgram> it = programs.iterator();
-        while(it.hasNext()) generateAllGroups(it.next());
-    }*/
     
+    
+    /*
     public void generateAllGroups(StudyProgram SP) {
         List<Level> levels = SP.getLevels();
         Iterator<Level> it = levels.iterator();
@@ -152,7 +97,7 @@ public class TimetableGenerator {
                 i++;
             }
         }
-    }
+    }*/
     
     public void generateAllGS() {
         Iterator<StudyProgram> SPit = programs.iterator();
@@ -212,21 +157,29 @@ public class TimetableGenerator {
         GroupSubject gsnew = new GroupSubject(subject, sub, 20, false, true, false);*/
     }
     
-    public void addClassroom(int capacity, String ref, int nDays, int hIni, int hEnd, boolean theory, boolean lab, boolean problems) {
-        classrooms.add(new Classroom(capacity, ref, nDays, hIni, hEnd, theory, lab, problems));
+    public void addClassroom(int capacity, String ref, int dIni, int dEnd, int hIni, int hEnd) {
+        classrooms.add(new Classroom(ref, capacity, dIni, dEnd, hIni, hEnd));
     }
     
-    public void addStudyProgram(String name, int nLevels, boolean manual){
-        StudyProgram aux = new StudyProgram(name);
-        for (int i = 0; i < nLevels; i++) aux.addLevels(manual);
-        programs.add(aux);
+    public void addStudyProgram(String name){
+        programs.add(new StudyProgram(name));
     }
     
-    /*public void addGroup(int num, int nDays, int hIni, int hEnd) {
-        Group aux = new Group(num, nDays, hIni, hEnd); 
-        groups.add(aux);
-        for(int i = 1; i <= NUM_OF_SUBGROUPS; i++) groups.add(new subGroup(num+i, num, aux.getTimetable()));
-    }*/
+    public void addLevel(StudyProgram SP) {
+        SP.addLevel();
+    }
+    
+    public void addSubject(Level level, String name) {
+        level.addSubject(name);
+    }
+    
+    public void addGroup(Subject subject, int dIni, int dEnd, int hIni, int hEnd, int num, int enrolled) {
+        subject.addGroup(new Group (dIni, dEnd, hIni, hEnd, num, enrolled));
+    }
+    
+    public void addSubGroup(Group group, int num, int enrolled) {
+        group.addSubGroup(new subGroup(group, num, enrolled));
+    }
     
     public void generate(List<Classroom> classrooms, List<GroupSubject> gs_list){
         i_generate(classrooms, gs_list, 0, 0);
