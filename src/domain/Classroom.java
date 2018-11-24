@@ -89,4 +89,8 @@ public class Classroom {
     public boolean isEmpty(int day, int hour) {
         return timetable.isEmpty(day, hour);
     }
+    
+    public void addToClassTimetable(GroupSubject GS, int day, int hour) {
+        timetable.addGroupSubject(GS, day, hour);
+    }
 }

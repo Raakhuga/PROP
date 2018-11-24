@@ -86,4 +86,8 @@ public class Group {
     public void addSubGroup(subGroup subGroup) {
         subGroups.add(subGroup);
     }
+    
+    public void addToGroupTimetable(ClassSubject CS, int day, int hour) {
+        timetable.addClassSubject(CS, day, hour);
+    }
 }

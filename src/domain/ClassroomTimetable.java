@@ -62,4 +62,8 @@ public class ClassroomTimetable extends Timetable {
     public boolean isGroupBanned(int day, int hour, int num) {
         return restrictions[day][hour].isGroupBanned(num);
     }
+    
+    public void addGroupSubject(GroupSubject GS, int day, int hour) {
+        this.GS[day][hour] = GS;
+    }
 }
