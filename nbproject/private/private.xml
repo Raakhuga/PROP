@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/Subject.java</file>
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/StudyProgram.java</file>
+            <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/ClassroomTimetable.java</file>
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/Group.java</file>
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/Level.java</file>
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/TimetableGenerator.java</file>
@@ -13,6 +14,7 @@
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/subGroup.java</file>
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/GroupSubject.java</file>
             <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/Timetable.java</file>
+            <file>file:/C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/src/domain/GroupTimetable.java</file>
         </group>
     </open-files>
 </project-private>

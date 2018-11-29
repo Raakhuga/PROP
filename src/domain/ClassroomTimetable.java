@@ -38,6 +38,10 @@ public class ClassroomTimetable extends Timetable {
     public ClassRestrictions[][] getRestrictions() {
         return restrictions;
     }
+    
+    public GroupSubject getGroupSubject(int day, int hour) {
+        return GS[day][hour];
+    }
 
     public void setGS(GroupSubject[][] GS) {
         this.GS = GS;
