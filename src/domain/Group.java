@@ -90,4 +90,8 @@ public class Group {
     public void addToGroupTimetable(ClassSubject CS, int day, int hour) {
         timetable.addClassSubject(CS, day, hour);
     }
+    
+    public void removeFromGroupTimetable(int day, int hour) {
+        timetable.removeClassSubject(day, hour);
+    }
 }

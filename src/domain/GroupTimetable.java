@@ -58,4 +58,8 @@ public class GroupTimetable extends Timetable{
     public void addClassSubject(ClassSubject CS, int day, int hour) {
         this.CS[day][hour] = CS;  
     }
+    
+    public void removeClassSubject(int day, int hour) {
+        this.CS[day][hour] = new ClassSubject();
+    }
 }

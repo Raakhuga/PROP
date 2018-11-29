@@ -13,21 +13,21 @@ import java.util.Scanner;
 import java.util.Iterator;
 
 
-public class TimetableGenerator {
-    private final static int NUM_OF_SUBGROUPS = 5;
-            
+public class TimetableGenerator {            
     private List<Classroom> classrooms;
     private List<StudyProgram> programs;
     private List<GroupSubject> problem;
-    private int nMaxStudentsGroup;
-    private int nMaxStudentsSubgroup;
+    private final int nMaxStudentsGroup;
+    private final int nMaxStudentsSubgroup;
     private CTRLRestrictions ctrlRestrictions;
         
-    public TimetableGenerator() {
+    public TimetableGenerator(int nMaxStudentsGroup, int nMaxStudentsSubgroup) {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
         this.ctrlRestrictions = new CTRLRestrictions();
+        this.nMaxStudentsGroup = nMaxStudentsGroup;
+        this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
     }
 
     public List<Classroom> getClassrooms() {
@@ -60,14 +60,6 @@ public class TimetableGenerator {
 
     public void setProblem(List<GroupSubject> problem) {
         this.problem = problem;
-    }
-
-    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
-        this.nMaxStudentsGroup = nMaxStudentsGroup;
-    }
-
-    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
-        this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
     }
     
     public void generateAllGS() {
@@ -138,18 +130,43 @@ public class TimetableGenerator {
     
     public void addToTimetable(Classroom c, Group g, GroupSubject GS, ClassSubject CS, int day, int hour) {
         c.addToClassTimetable(GS, day, hour);
-        g.addToGroupTimetable(CS, day, hour);
+        if(g.isSubGroup()){
+            subGroup aux = (subGroup)g;
+            aux.addToGroupTimetable(CS, day, hour);
+        }
+        else g.addToGroupTimetable(CS, day, hour);
     }
     
-    public void removeFromClassTimetable() {
-    
+    public void removeFromTimetable(Classroom c, Group g, int day, int hour) {
+        c.removeFromClassTimetable(day, hour);
+        g.removeFromGroupTimetable(day, hour);
     }
     
-    public void removeFromGroupTimetable() {
-    
+    public void generateTimetable() {
+        if (classrooms.size() > 0) {
+            Classroom aux = classrooms.get(0);
+            if(i_generateTimetable(0, 0, aux.getdIni(), aux.gethIni())) System.out.println("S'ha generat l'horari correctament");
+            else System.out.println("No es pot generar l'horari");
+        }
     }
     
-    public void removeFromTimetable() {
-        
+    public boolean i_generateTimetable(int pos_classroom, int pos_problem, int fori, int forj) {
+        if (pos_problem >= problem.size()) return false;
+        if (pos_classroom >= classrooms.size()) return false;
+        GroupSubject GS = problem.get(pos_problem);
+        Classroom classroom = classrooms.get(pos_classroom);
+        for (int i = fori; i < classroom.getdEnd(); i++) {
+            for (int j = forj; j < classroom.gethEnd(); j++) {
+                if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
+                    if (ctrlRestrictions.groupRestrictions(j, j, classroom, GS)) {
+                        addToTimetable(classroom, GS.getGroup(), GS, new ClassSubject(classroom, GS.getSubject()), i, j);
+                        if(i_generateTimetable(pos_classroom, pos_problem++, i, j)) return true;
+                        removeFromTimetable(classroom, GS.getGroup(), i, j);
+                    }
+                }
+                return false;
+            }
+        }
+        return false;
     }
 }
