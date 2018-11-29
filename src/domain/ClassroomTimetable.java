@@ -66,4 +66,8 @@ public class ClassroomTimetable extends Timetable {
     public void addGroupSubject(GroupSubject GS, int day, int hour) {
         this.GS[day][hour] = GS;
     }
+    
+    public void removeGroupSubject(int day, int hour) {
+        this.GS[day][hour] = new GroupSubject();
+    }
 }

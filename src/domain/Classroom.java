@@ -41,7 +41,23 @@ public class Classroom {
     public int getCapacity() {
         return capacity;
     }
+    
+    public int getdIni() {
+        return timetable.getdIni();
+    }
 
+    public int getdEnd() {
+        return timetable.getdEnd();
+    }
+    
+    public int gethIni() {
+        return timetable.gethIni();
+    }
+    
+    public int gethEnd() {
+        return timetable.gethEnd();
+    }
+    
     public void setTimetable(ClassroomTimetable timetable) {
         this.timetable = timetable;
     }
@@ -92,5 +108,9 @@ public class Classroom {
     
     public void addToClassTimetable(GroupSubject GS, int day, int hour) {
         timetable.addGroupSubject(GS, day, hour);
+    }
+    
+    public void removeFromClassTimetable(int day, int hour) {
+        timetable.removeGroupSubject(day, hour);
     }
 }

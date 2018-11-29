@@ -41,4 +41,12 @@ public class subGroup extends Group {
     public boolean isClassroomBanned(int day, int hour, String ref) {
         return subtimetable.isClassroomBanned(day, hour, ref);
     }
+    
+    public void addToGroupTimetable(ClassSubject CS, int day, int hour) {
+        subtimetable.addClassSubject(CS, day, hour);
+    }
+    
+    public void removeFromGroupTimetable(int day, int hour) {
+        subtimetable.removeClassSubject(day, hour);
+    }
 }
