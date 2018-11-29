@@ -3,10 +3,7 @@ package tests.drivers.TimetableGenerator;
 import domain.*;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import static tests.drivers.GroupRestrictions.DriverGroupRestrictions.bannedclassrooms;
-import static tests.drivers.GroupRestrictions.DriverGroupRestrictions.bansubjects;
 
 public class DriverTimetableGenerator {
     

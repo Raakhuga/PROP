@@ -1,13 +1,6 @@
 
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 
 public class ClassroomTimetable extends Timetable {
     private GroupSubject GS[][];

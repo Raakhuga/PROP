@@ -1,15 +1,8 @@
 
 package domain;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 import java.util.Iterator;
 
 
@@ -160,7 +153,6 @@ public class TimetableGenerator {
                 if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
                     if (ctrlRestrictions.groupRestrictions(i, j, classroom, GS)) {
                         addToTimetable(classroom, GS.getGroup(), GS, new ClassSubject(classroom, GS.getSubject()), i, j);
-                        System.out.println("Afegida l'assignatura: " + GS.getNameSubject() + " a l'hora: " + j + " el dia: " + i + " a l'aula: " + classroom.getRef());
                         if(pos_problem+1 < problem.size()) {
                             return i_generateTimetable(0, pos_problem+1);
                         }
