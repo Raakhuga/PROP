@@ -77,4 +77,8 @@ public class Subject {
     public void removeGroup(Group group) {
         groups.remove(group);
     }
+    
+    public String saveSubject() {
+        return "s";
+    }
 }

@@ -2,6 +2,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -48,4 +49,14 @@ public class StudyProgram {
         levels.add(new Level(nLevels));
     }
     
+    public String saveLevels() {
+        Iterator<Level> Lit = levels.iterator();
+        String lvls = "";
+        while(Lit.hasNext()) {
+            Level Lact = Lit.next();
+            String lvl = Lact.saveLevel() + "\n";
+            lvls = lvls + lvl;
+        }
+        return lvls;
+    }
 }

@@ -166,4 +166,30 @@ public class TimetableGenerator {
             else return false;
         return true;
     }
+    
+    public String saveClassrooms() {
+        Iterator<Classroom> Cit = classrooms.iterator();
+        String classrooms = "Classrooms:\n";
+        while(Cit.hasNext()) {
+            Classroom Cact = Cit.next();
+            String classroom = (Cact.saveClassroom() + "\n");
+            classrooms = classrooms + classroom;
+        }
+        return classrooms;
+    }
+    
+    public String saveStudyPrograms() {
+        Iterator<StudyProgram> SPit = programs.iterator();
+        String studyprograms = "";
+        while(SPit.hasNext()) {
+            StudyProgram SPact = SPit.next();
+            
+            String studyprogram = SPact.getName() + "\n";
+            studyprogram = studyprogram + "Levels\n";
+            studyprogram = studyprogram + SPact.getnLevels() + "\n";
+            studyprogram = studyprogram + SPact.saveLevels() + "\n";
+            studyprograms = studyprograms + studyprogram;
+        }
+        return studyprograms;
+    }
 }

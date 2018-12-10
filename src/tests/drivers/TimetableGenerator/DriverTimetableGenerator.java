@@ -1,6 +1,7 @@
 
 package tests.drivers.TimetableGenerator;
 import domain.*;
+import persistance.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -215,6 +216,8 @@ public class DriverTimetableGenerator {
         initTimetable();
         load1();
         p.generateAllGS();
+        PersistanceCtrl PC = new PersistanceCtrl();
+        PC.save(p);
         //printGS();
         p.generateTimetable();
         printClassTimetable();

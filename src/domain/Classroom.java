@@ -109,4 +109,8 @@ public class Classroom {
     public void removeFromClassTimetable(int day, int hour) {
         timetable.removeGroupSubject(day, hour);
     }
+    
+    public String saveClassroom(){
+        return (capacity + " " + ref + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + type[THEORY] + " " + type[LABORATORY] + " " + type[PROBLEMS]);
+    }
 }

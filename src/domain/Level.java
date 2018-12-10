@@ -2,6 +2,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Level {
@@ -30,5 +31,16 @@ public class Level {
     
     public void addSubject(String name) {
         subjects.add(new Subject(name, iden));
+    }
+    
+    public String saveLevel() {
+        Iterator<Subject> Sit = subjects.iterator();
+        String subs = "  " + iden + "\n";
+        while(Sit.hasNext()) {
+            Subject Sact = Sit.next();
+            String sub = "  " + Sact.saveSubject() + "\n";
+            subs = subs + sub;
+        }
+        return subs;
     }
 }

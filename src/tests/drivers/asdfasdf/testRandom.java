@@ -23,5 +23,7 @@ public class testRandom {
         System.out.println(aux.getNum());
         System.out.println(((subGroup)aux).isSuperEmpty(2,11));
         System.out.println("Group: " + a.getEnrolled() + " subGroup: " + aux.getEnrolled());
+        String asdf = ("aaaaaasdf" + "\n" + "asldjfañldfj");
+        System.out.println(asdf);
     }
 }
