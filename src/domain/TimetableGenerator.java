@@ -1,15 +1,8 @@
 
 package domain;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 import java.util.Iterator;
 
 
@@ -145,28 +138,32 @@ public class TimetableGenerator {
     public void generateTimetable() {
         if (classrooms.size() > 0) {
             Classroom aux = classrooms.get(0);
-            if(i_generateTimetable(0, 0, aux.getdIni(), aux.gethIni())) System.out.println("S'ha generat l'horari correctament");
+            if(i_generateTimetable(0, 0)) System.out.println("S'ha generat l'horari correctament");
             else System.out.println("No es pot generar l'horari");
         }
     }
     
-    public boolean i_generateTimetable(int pos_classroom, int pos_problem, int fori, int forj) {
+    public boolean i_generateTimetable(int pos_classroom, int pos_problem) {
         if (pos_problem >= problem.size()) return false;
         if (pos_classroom >= classrooms.size()) return false;
         GroupSubject GS = problem.get(pos_problem);
         Classroom classroom = classrooms.get(pos_classroom);
-        for (int i = fori; i < classroom.getdEnd(); i++) {
-            for (int j = forj; j < classroom.gethEnd(); j++) {
+        for (int i = classroom.getdIni(); i < classroom.getdEnd(); i++) {
+            for (int j = classroom.gethIni(); j < classroom.gethEnd(); j++) {
                 if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
-                    if (ctrlRestrictions.groupRestrictions(j, j, classroom, GS)) {
+                    if (ctrlRestrictions.groupRestrictions(i, j, classroom, GS)) {
                         addToTimetable(classroom, GS.getGroup(), GS, new ClassSubject(classroom, GS.getSubject()), i, j);
-                        if(i_generateTimetable(pos_classroom, pos_problem++, i, j)) return true;
+                        if(pos_problem+1 < problem.size()) {
+                            return i_generateTimetable(0, pos_problem+1);
+                        }
                         removeFromTimetable(classroom, GS.getGroup(), i, j);
                     }
                 }
-                return false;
             }
         }
-        return false;
+        if (pos_problem +1 < problem.size()) 
+            if(pos_classroom+1 < classrooms.size()) i_generateTimetable(pos_classroom+1, pos_problem);
+            else return false;
+        return true;
     }
 }

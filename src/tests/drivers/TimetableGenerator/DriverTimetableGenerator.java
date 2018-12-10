@@ -3,16 +3,13 @@ package tests.drivers.TimetableGenerator;
 import domain.*;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import static tests.drivers.GroupRestrictions.DriverGroupRestrictions.bannedclassrooms;
-import static tests.drivers.GroupRestrictions.DriverGroupRestrictions.bansubjects;
 
 public class DriverTimetableGenerator {
     
     private static TimetableGenerator p;
     
-    public void initTimetable() {
+    public static void initTimetable() {
         System.out.println("Introdueixi el nombre maxim d'estudiants que pot tenir un grup");
         Scanner in = new Scanner(System.in);
         int maxStudents = in.nextInt();
@@ -21,10 +18,31 @@ public class DriverTimetableGenerator {
         p = new TimetableGenerator(maxStudents, submaxStudents);
     }
     
-    public void load() {
+    public static void addGroups(int nEst, Subject Sact){
+        int remaining, i = 1;
+        for(remaining = nEst; remaining > p.getnMaxStudentsGroup(); remaining -= p.getnMaxStudentsGroup()){
+            if(remaining >= nEst/2) p.addGroup(Sact, 0, 5, 8, 14, i*10, p.getnMaxStudentsGroup()); //matins
+            else p.addGroup(Sact, 0, 5, 14, 20, i*10, p.getnMaxStudentsGroup()); //tarda
+            i++;
+        }
+        if (remaining > 0) p.addGroup(Sact, 0, 5, 14, 20, i*10, remaining);
+        Iterator<Group> GIT = Sact.getGroups().iterator();
+        while(GIT.hasNext()) {
+            Group Gact = GIT.next();
+            int subremaining, j = 1;
+            for (subremaining = p.getnMaxStudentsGroup(); subremaining > p.getnMaxStudentsSubgroup(); subremaining -= p.getnMaxStudentsSubgroup()) {
+            p.addSubGroup(Gact, Gact.getNum()+j, p.getnMaxStudentsSubgroup());
+            j++;
+            }
+            if(subremaining > 0) p.addSubGroup(Gact, Gact.getNum()+j, subremaining);
+        }
+    }
+    
+    public static void load() {
         System.out.println("Introdueixi el nombre de plans d'estudis desitjat");
         Scanner in = new Scanner(System.in);
-        for (int i = 0; i < in.nextInt(); i++) {
+        int nPlans = in.nextInt();
+        for (int i = 0; i < nPlans; i++) {
             System.out.println("Introdueixi el nom del pla d'estudis numero: " + i);
             p.addStudyProgram(in.next());
         }
@@ -32,7 +50,8 @@ public class DriverTimetableGenerator {
         while(PIT.hasNext()) {
             StudyProgram SPact = PIT.next();
             System.out.println("Introdueixi el numero de nivells del pla d'estudis: " + SPact.getName());
-            for (int i = 0; i < in.nextInt(); i++) {
+            int nLevels = in.nextInt();
+            for (int i = 0; i < nLevels; i++) {
                 p.addLevel(SPact);
             }
             Iterator<Level> LIT = SPact.getLevels().iterator();
@@ -40,8 +59,9 @@ public class DriverTimetableGenerator {
                 Level Lact = LIT.next();
                 System.out.println("Introdueixi el numero de assignaturas que te el nivell: " + Lact.getIden() + 
                         " del pla d'estudis: " + SPact.getName());
-                for (int i = 0; i < in.nextInt(); i++) {
-                    System.out.println("Introdueixi el nom de la assignatura numero: " + i+1 + 
+                int nSubjects = in.nextInt();
+                for (int i = 0; i < nSubjects; i++) {
+                    System.out.println("Introdueixi el nom de la assignatura numero: " + (i+1) + 
                             " del nivell: " + Lact.getIden() + " del pla d'estudis: " + SPact.getName());
                     p.addSubject(Lact, in.next());
                 }
@@ -55,11 +75,10 @@ public class DriverTimetableGenerator {
                     System.out.println("Introdueixi el numero d'hores de Laboratori de la materia: " + Sact.getName());
                     Sact.fillLaboratoryH(in.nextInt());
                     System.out.println("Introdueixi el numero d'estudiants que cursaran la materia: "
-                            + "" + Sact.getName() + "del nivell: " + Sact.getLevel() + " del pla d'estudis: " + 
+                            + "" + Sact.getName() + " del nivell: " + Sact.getLevel() + " del pla d'estudis: " + 
                             SPact.getName());
                     int nEst = in.nextInt();
                     int remaining, i = 1;
-                    if (nEst%p.getnMaxStudentsGroup()!= 0) nGroups++;
                     for(remaining = nEst; remaining > p.getnMaxStudentsGroup(); remaining -= p.getnMaxStudentsGroup()){
                         if(remaining >= nEst/2) p.addGroup(Sact, 0, 5, 8, 14, i*10, p.getnMaxStudentsGroup()); //matins
                         else p.addGroup(Sact, 0, 5, 14, 20, i*10, p.getnMaxStudentsGroup()); //tarda
@@ -80,7 +99,8 @@ public class DriverTimetableGenerator {
             }
         }
         System.out.println("Introdueixi el numero d'aules disponibles");
-        for (int i = 0; i < in.nextInt(); i++) {
+        int nClasses = in.nextInt();
+        for (int i = 0; i < nClasses; i++) {
             System.out.println("Introdueixi la referencia de l'aula numero: " + i+1);
             String ref = in.next();
             System.out.println("Introdueixi la capacitat de l'aula: " + ref);
@@ -97,4 +117,106 @@ public class DriverTimetableGenerator {
         }
     }
     
+    public static void load1() {
+        p.addStudyProgram("FIB"); //Pla d'estudis
+        List<StudyProgram> PIT = p.getPrograms();
+        StudyProgram SPact = PIT.get(0);
+        p.addLevel(SPact);
+        List<Level> LIT = SPact.getLevels();
+        Level Lact = LIT.get(0);
+        p.addSubject(Lact, "FM");
+        p.addSubject(Lact, "F");
+        p.addSubject(Lact, "IC");
+        p.addSubject(Lact, "PRO");
+        List<Subject> SIT = Lact.getSubjects();
+        
+        SIT.get(0).fillTheoryH(3);
+        SIT.get(0).fillPoblemsH(2);
+        SIT.get(0).fillLaboratoryH(0);
+        addGroups(100, SIT.get(0));
+        
+        SIT.get(1).fillTheoryH(3);
+        SIT.get(1).fillPoblemsH(2);
+        SIT.get(1).fillLaboratoryH(0);
+        addGroups(100, SIT.get(1));
+        
+        SIT.get(2).fillTheoryH(3);
+        SIT.get(2).fillPoblemsH(2);
+        SIT.get(2).fillLaboratoryH(0);
+        addGroups(100, SIT.get(2));
+
+        SIT.get(3).fillTheoryH(3);
+        SIT.get(3).fillPoblemsH(2);
+        SIT.get(3).fillLaboratoryH(0);
+        addGroups(100, SIT.get(3));
+
+        p.addClassroom(80, "A1", 0, 5, 8, 20);
+        p.addClassroom(80, "A2", 0, 5, 8, 20);
+        p.addClassroom(20, "A3", 0, 5, 8, 20);
+        p.addClassroom(20, "A4", 0, 5, 8, 20);
+        
+        List<Classroom> classes = p.getClassrooms();
+        
+        classes.get(0).setTheory();
+        classes.get(1).setTheory();
+        classes.get(2).setProblems();
+        classes.get(3).setTheory();
+    }
+    
+    public static void printClassTimetable() {
+        Iterator<Classroom> CIT = p.getClassrooms().iterator();
+        while(CIT.hasNext()) {
+            Classroom Cact = CIT.next();
+            ClassroomTimetable Tact = Cact.getTimetable();
+            System.out.println("Horari de l'aula: " + Cact.getRef());
+            System.out.println("");
+            for(int i = 2*Tact.gethIni() - 1; i < 2*Tact.gethEnd(); i++) {
+                for (int j = Tact.getdIni() - 1 ; j < Tact.getdEnd(); j++) {
+                    if (j == Tact.getdIni() - 1) System.out.print((i/2));
+                    if (j != Tact.getdIni() - 1) System.out.print("\t");
+                    if (i == 2*Tact.gethIni() -1) {
+                        if (j == 0) System.out.print("Dl");
+                        else if (j == 1) System.out.print("Dt");
+                        else if (j == 2) System.out.print("Dc");
+                        else if (j == 3) System.out.print("Dj");
+                        else if (j == 4) System.out.print("Dv");
+                        else if (j == 5) System.out.print("Ds");
+                        else if (j == 6) System.out.print("Dg");
+                    }
+                    if ((i > 2*Tact.gethIni()-1) && (j > Tact.getdIni()-1)){
+                        GroupSubject GSact = Tact.getGroupSubject(j, i/2);
+                        if (i%2 == 0) {
+                            if(GSact.isEmpty()) System.out.print("Buit");
+                            else System.out.print(GSact.getNameSubject());
+                        }
+                        else {
+                            if(GSact.isEmpty()) System.out.print("Buit");
+                            else System.out.print(GSact.getNumGroup());
+                        }
+                    }
+                    if (j+1 == Tact.getdEnd()) System.out.println("");
+                }
+            }
+        }
+    }
+    
+    public static void printGS() {
+        System.out.println();
+        System.out.println("Ara s'expossara el problema");
+        System.out.println();
+        Iterator<GroupSubject> GSIT = p.getProblem().iterator();
+        while(GSIT.hasNext()) {
+            GroupSubject GSact = GSIT.next();
+            System.out.println("Grup: " + GSact.getNumGroup() + " Assignatura: " + GSact.getNameSubject() + " Empty: " + GSact.isEmpty());
+        }
+    }
+    
+    public static void main(String[] args) throws Exception{
+        initTimetable();
+        load1();
+        p.generateAllGS();
+        //printGS();
+        p.generateTimetable();
+        printClassTimetable();
+    }
 }
