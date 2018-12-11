@@ -169,25 +169,22 @@ public class TimetableGenerator {
     
     public String saveClassrooms() {
         Iterator<Classroom> Cit = classrooms.iterator();
-        String classrooms = "Classrooms:\n";
+        String classes = classrooms.size() + "\n" + "Classrooms:\n";
         while(Cit.hasNext()) {
             Classroom Cact = Cit.next();
-            String classroom = (Cact.saveClassroom() + "\n");
-            classrooms = classrooms + classroom;
+            String classroom = "  " + Cact.saveClassroom() + "\n";
+            classes = classes + classroom;
         }
-        return classrooms;
+        return classes;
     }
     
     public String saveStudyPrograms() {
         Iterator<StudyProgram> SPit = programs.iterator();
-        String studyprograms = "";
+        String studyprograms = programs.size() + "\n" + "StudyPrograms:" + "\n";
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
-            
-            String studyprogram = SPact.getName() + "\n";
-            studyprogram = studyprogram + "Levels\n";
-            studyprogram = studyprogram + SPact.getnLevels() + "\n";
-            studyprogram = studyprogram + SPact.saveLevels() + "\n";
+            String studyprogram = "  " + SPact.getName() + "\n";
+            studyprogram = studyprogram + "  " + SPact.saveLevels() + "\n";
             studyprograms = studyprograms + studyprogram;
         }
         return studyprograms;

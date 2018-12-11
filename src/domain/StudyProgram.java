@@ -51,10 +51,10 @@ public class StudyProgram {
     
     public String saveLevels() {
         Iterator<Level> Lit = levels.iterator();
-        String lvls = "";
+        String lvls = levels.size() + "\n" + "  " + "Levels:" + "\n";
         while(Lit.hasNext()) {
             Level Lact = Lit.next();
-            String lvl = Lact.saveLevel() + "\n";
+            String lvl = "  " + Lact.saveLevel() + "\n";
             lvls = lvls + lvl;
         }
         return lvls;

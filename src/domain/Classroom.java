@@ -111,6 +111,6 @@ public class Classroom {
     }
     
     public String saveClassroom(){
-        return (capacity + " " + ref + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + type[THEORY] + " " + type[LABORATORY] + " " + type[PROBLEMS]);
+        return capacity + " " + ref + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + type[THEORY] + " " + type[LABORATORY] + " " + type[PROBLEMS];
     }
 }

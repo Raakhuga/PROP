@@ -1,6 +1,7 @@
 
 package domain;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -90,5 +91,16 @@ public class Group {
     
     public void removeFromGroupTimetable(int day, int hour) {
         timetable.removeClassSubject(day, hour);
+    }
+    
+    public String saveGroup() {
+        Iterator<subGroup> SGit = subGroups.iterator();
+        String sgps = num + " " + enrolled + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + subGroups.size() + "\n" + "          Subgroups:" + "\n";
+        while(SGit.hasNext()) {
+            subGroup SGact = SGit.next();
+            String sgp = "            " + SGact.saveGroup() + "\n";
+            sgps = sgps + sgp;
+        }
+        return sgps;
     }
 }

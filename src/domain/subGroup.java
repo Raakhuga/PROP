@@ -1,6 +1,8 @@
 
 package domain;
 
+import java.util.Iterator;
+
 
 public class subGroup extends Group {
     private final int num;
@@ -48,5 +50,10 @@ public class subGroup extends Group {
     
     public void removeFromGroupTimetable(int day, int hour) {
         subtimetable.removeClassSubject(day, hour);
+    }
+    
+        
+    public String saveGroup() {
+        return num + " " + getEnrolled() + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd();
     }
 }

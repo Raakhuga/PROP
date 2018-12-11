@@ -2,6 +2,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /** Class for the subjects **/
@@ -79,6 +80,13 @@ public class Subject {
     }
     
     public String saveSubject() {
-        return "s";
+        Iterator<Group> Git = groups.iterator();
+        String gps = name + " " + nSessions[THEORY] + " " + nSessions[LABORATORY] + " " + nSessions[PROBLEMS] + " " + level + " " + groups.size() + "\n" + "        Groups:" + "\n" ;
+        while (Git.hasNext()) {
+            Group Gact = Git.next();
+            String gp = "          " + Gact.saveGroup() + "\n";
+            gps = gps + gp;
+        }
+        return gps;
     }
 }
