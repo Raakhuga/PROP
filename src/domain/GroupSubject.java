@@ -1,55 +1,121 @@
 
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.List;
 
 
 public class GroupSubject {
+    private final static int THEORY = 0;
+    private final static int LABORATORY = 1;
+    private final static int PROBLEMS = 2;
     
-    /** Atributtes **/
-    private final Subject subject;
-    private final Group group;
-    private final subGroup subGroup;
-    private final boolean theory;
-    private final boolean lab;
-    private final boolean problems;
-    private final int nMat;
+    private Subject subject;
+    private Group group;
+    private boolean empty;
+    private boolean type[];
     
-    /** Constructor **/
+    public GroupSubject(Subject subject, Group group) {
+        this.subject = subject;
+        this.group = group;
+        this.empty = false;
+        this.type = new boolean[3];
+        for(int i = 0; i < 3; i++) type[i] = false;
+    }
+    
     public GroupSubject() {
-        this.subject = null;
-        this.group = null;
-        this.subGroup = null;
-        this.nMat = 0;
-        this.theory = false;
-        this.lab = false;
-        this.problems = false;
-    }
-    
-    public GroupSubject(Subject subject, Group group, int nMat, boolean theory, boolean lab, boolean problems) {
-        this.subject = subject;
-        this.group = group;
-        this.subGroup = null;
-        this.nMat = nMat;
-        this.theory = theory;
-        this.lab = lab;
-        this.problems = problems;
-    }
-    
-    public GroupSubject(Subject subject, Group group, subGroup subGroup, int nMat, boolean theory, boolean lab, boolean problems) {
-        this.subject = subject;
-        this.group = group;
-        this.subGroup = subGroup;
-        this.nMat = nMat;
-        this.theory = theory;
-        this.lab = lab;
-        this.problems = problems;
+        this.empty = true;
     }
 
-    public subGroup getSubGroup() {
-        return subGroup;
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+    
+    public int getEnrolled() {
+        return group.getEnrolled();
+    }
+    
+    public int getdIni() {
+        return group.getdIni();
+    }
+    
+    public int gethIni() {
+        return group.gethIni();
+    }
+    
+    public int getdEnd() {
+        return group.getdEnd();
+    }
+    
+    public int gethEnd() {
+        return group.gethEnd();
+    }
+    
+    public List<subGroup> getSubGroups() {
+        return group.getSubGroups();
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+    
+    public boolean isGroupEmpty(int day, int hour) {
+        return group.isEmpty(day,hour);
+    }
+    
+    public boolean isSubjectBanned(int day, int hour, String name) {
+        return group.isSubjectBanned(day, hour, name);
+    }
+    
+    public boolean isClassroomBanned(int day, int hour, String ref) {
+        return group.isClassroomBanned(day, hour, ref);
+    }
+    
+    public boolean isBanned(int day, int hour) {
+        return group.isBanned(day, hour);
+    }
+
+    public void setEmpty(boolean empty) {
+        this.empty = empty;
+    }
+        
+    public void setTheory(){
+        type[THEORY] = true;
+    }
+    
+    public void setLaboratory(){
+        type[LABORATORY] = true;
+    }
+    
+    public void setProblems(){
+        type[PROBLEMS] = true;
+    }
+    
+    public void unsetTheory(){
+        type[THEORY] = false;
+    }
+    
+    public void unsetLaboratory(){
+        type[LABORATORY] = false;
+    }
+    
+    public void unsetProblems(){
+        type[PROBLEMS] = false;
+    }
+    
+    public boolean isTheory() {
+        return type[THEORY];
+    }
+    
+    public boolean isLaboratory() {
+        return type[LABORATORY];
+    }
+    
+    public boolean isProblems() {
+        return type[PROBLEMS];
     }
     
     public int getNumGroup() {
@@ -60,106 +126,7 @@ public class GroupSubject {
         return subject.getName();
     }
     
-    public String getType() {
-        String type = "";
-        if (theory) type = "theroy";
-        else if (lab) type = "laboratory";
-        else if (problems) type = "problems";
-        return type;
+    public boolean isSubGroup(){
+        return group.isSubGroup();
     }
-    
-    public boolean isSubGroup() {
-        return subGroup != null;
-    }
-
-    public boolean SubGroupBanned(int day, int hour) {
-        return subGroup.isBanned(day, hour);
-    }
-    
-    public boolean GroupBanned(int day, int hour) {
-        return group.isBanned(day, hour);
-    }
-    
-    public boolean SubGroupSubjectBanned(int day, int hour, String name) {
-        return subGroup.subjectBanned(day, hour, name);
-    }
-    
-    public boolean GroupSubjectBanned(int day, int hour, String name) {
-        return group.subjectBanned(day, hour, name);
-    }
-    
-    public boolean SubGroupClassroomBanned(int day, int hour, String name) {
-        return subGroup.classroomBanned(day, hour, name);
-    }
-    
-    
-    public boolean GroupClassroomBanned(int day, int hour, String name) {
-        return group.classroomBanned(day, hour, name);
-    }
-    
-    public boolean issubGroup() {
-        return this.subGroup != null;
-    }
-    
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-    
-    public subGroup getsubGroup() {
-        return subGroup;
-    }
-    
-    public int getnMat() {
-        return nMat;
-    }
-    
-    public boolean theoryGroup() {
-        return theory;
-    }
-    
-    public boolean labGroup() {
-        return lab;
-    }
-    
-    public boolean problemsGroup() {
-        return problems;
-    }
-    
-    public void setSubjectToGroup(int i, int j, Subject s, boolean issubGroup){
-        if (issubGroup) {
-            this.subGroup.setSubject(i, j, s);
-            //subGroup.getRestriction(i, j).setFree(false);
-        }
-        else {
-            this.group.setSubject(i, j, s);
-            //group.getRestriction(i, j).setFree(false);
-        }
-    }
-    
-    public void removeSubjectOfTimetableFromGroup(int i, int j, boolean issubGroup){
-        if (issubGroup) this.subGroup.removeSubject(i, j);
-        else this.group.removeSubject(i, j);
-    }
-    
-    /*public void save() throws IOException {
-        String file = "state.txt";
-        FileWriter writer = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(writer);
-        bw.write("GroupSubject");
-        bw.write(subject.getName());
-        bw.write(group.getNum());
-        bw.write(nMat);
-        bw.close();
-    }*/
-
-    /*public void FillTime(Classroom Class) {
-        Timetable t = Class.getTimetable();
-        for(int i = tIni; i < tEnd; i++) {
-            t.add(day, i, subject
-        }
-    }*/
 }

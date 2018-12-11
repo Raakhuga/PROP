@@ -1,90 +1,62 @@
 
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.List;
 
 
 public class StudyProgram {
     
     /** Atributtes **/
     private String name;
-    private Map<Integer, Level> levels;
+    private List<Level> levels;
     private int nLevels;
     
     /** Constructor **/
     public StudyProgram(String name){
         this.name = name;
-        this.levels = new HashMap<>();
+        this.levels = new ArrayList<>();
         this.nLevels = 0;
     }
 
     public String getName() {
         return name;
     }
-    
-    public Level getLevel(int id){
-        return levels.get(id);
-    }
 
-
-    public Map<Integer, Level> getLevels() {
+    public List<Level> getLevels() {
         return levels;
     }
 
     public int getnLevels() {
         return nLevels;
     }
-    
-    public void addLevels(boolean manual) {
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLevels(List<Level> levels) {
+        this.levels = levels;
+    }
+
+    public void setnLevels(int nLevels) {
+        this.nLevels = nLevels;
+    }
+
+    public void addLevel() {
         nLevels++;
-        Integer val = new Integer(nLevels);
-        Level act = new Level(nLevels);
-        act.fillLevel(manual);
-        levels.put(val, act);
+        levels.add(new Level(nLevels));
     }
     
-    public void removeLevel(int id) {
-        nLevels--;
-        levels.remove(id);
-    }
-    
-   
-    /*public void fillLevel(boolean manual) {
-        Iterator<> it = levels.iterator();
-        while(it.hasNext()){
-            Level act = it.next();
-            System.out.println ("Insert the number of Subjects of the Level: " + act.getIden());
-            Scanner in = new Scanner(System.in);
-            int nSubjects = in.nextInt();
-            String name;
-            Subject subjects[] = new Subject[nSubjects];
-            for(int j = 0; j < nSubjects; j++) {
-                System.out.println ("Insert the name of the Subject num: " + j + "of the Level: " + act.getIden());
-                name = in.next();
-                subjects[j] = new Subject(name, act);
-                if(manual)subjects[j].manualFillHours();
-            }
-            act.setSubjects(subjects);
-            it.remove();
-            levels.add(act);
+    public String saveLevels() {
+        Iterator<Level> Lit = levels.iterator();
+        String lvls = levels.size() + "\n" + "  " + "Levels:" + "\n";
+        while(Lit.hasNext()) {
+            Level Lact = Lit.next();
+            String lvl = "  " + Lact.saveLevel() + "\n";
+            lvls = lvls + lvl;
         }
-    }*/
-    
-    /*public void save() throws IOException {
-        String file = "state.txt";
-        FileWriter writer = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(writer);
-        bw.write("StudyProgram");
-        bw.write(name);
-        Iterator<Level> it = levels.values().iterator();
-        while(it.hasNext()) it.next().save();
-        bw.write(nLevels);
-        bw.close(); 
-    }  */
+        return lvls;
+    }
 }

@@ -1,87 +1,116 @@
 
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 
 public class Classroom {
+    private final static int THEORY = 0;
+    private final static int LABORATORY = 1;
+    private final static int PROBLEMS = 2;
     
-    /** Atributtes **/
-    private String ref;
-    private int capacity;
-    private Timetable timetable;
-    private final boolean theory;
-    private final boolean lab;
-    private final boolean problems;
-      
-    /** Constructor **/
-    public Classroom(int capacity, String ref, int nDays, int hIni, int hEnd, boolean theory, boolean lab, boolean problems){
-        this.capacity = capacity;
+    private final String ref;
+    private ClassroomTimetable timetable;
+    private final int capacity;
+    private boolean type[];
+    
+    public Classroom(String ref, int capacity, int dIni, int dEnd, int hIni, int hEnd) {
         this.ref = ref;
-        this.timetable = new Timetable(nDays, hIni, hEnd);
-        this.theory = theory;
-        this.lab = lab;
-        this.problems = problems;
-    }
-
-    public int getCapacity() {
-        return capacity;
+        this.timetable = new ClassroomTimetable(dIni, dEnd, hIni, hEnd);
+        this.capacity = capacity;
+        this.type = new boolean[3];
+        this.type[THEORY] = false;
+        this.type[LABORATORY] = false;
+        this.type[PROBLEMS] = false;
     }
 
     public String getRef() {
         return ref;
     }
 
-    public Timetable getTimetable() {
+    public ClassroomTimetable getTimetable() {
         return timetable;
     }
 
-    public void setTimetable(Timetable timetable) {
-        this.timetable = timetable;
+    public boolean[] getType() {
+        return type;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
     
-    public boolean isForTheory(){
-        return theory;
+    public int getdIni() {
+        return timetable.getdIni();
+    }
+
+    public int getdEnd() {
+        return timetable.getdEnd();
     }
     
-    public boolean isForLab(){
-        return lab;
-    }
-    
-    public boolean isForProblems(){
-        return problems;
-    }
-    
-    public int getnDaysFromTimetable(){
-        return timetable.getnDays();
-    }
-    
-    public int gethEndFromTimetable(){
-        return timetable.gethEnd();
-    }
-    
-    public int gethIniFromTimetable(){
+    public int gethIni() {
         return timetable.gethIni();
     }
     
-    public void setGStoTimetable(GroupSubject gs, int i, int j){
-        timetable.setGStoTimetable(gs, i, j);
+    public int gethEnd() {
+        return timetable.gethEnd();
     }
     
-    public void removeHourOfTimetable(int i,int j){
-        timetable.removeHourOfTimetable(i, j);
+    public void setTimetable(ClassroomTimetable timetable) {
+        this.timetable = timetable;
+    }
+
+    public void setType(boolean[] type) {
+        this.type = type;
     }
     
-    /*public void save() throws IOException {
-        String file = "state.txt";
-        FileWriter writer = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(writer);
-        bw.write("Class");
-        bw.write(ref);
-        bw.write(capacity);
-        timetable.save();
-        bw.close();
-    }*/
+    public void setTheory(){
+        type[THEORY] = true;
+    }
+    
+    public void setLaboratory(){
+        type[LABORATORY] = true;
+    }
+    
+    public void setProblems(){
+        type[PROBLEMS] = true;
+    }
+    
+    public void unsetTheory(){
+        type[THEORY] = false;
+    }
+    
+    public void unsetLaboratory(){
+        type[LABORATORY] = false;
+    }
+    
+    public void unsetProblems(){
+        type[PROBLEMS] = false;
+    }
+    
+    public boolean isTheory() {
+        return type[THEORY];
+    }
+    
+    public boolean isLaboratory() {
+        return type[LABORATORY];
+    }
+    
+    public boolean isProblems() {
+        return type[PROBLEMS];
+    }
+    
+    public boolean isEmpty(int day, int hour) {
+        return timetable.isEmpty(day, hour);
+    }
+    
+    public void addToClassTimetable(GroupSubject GS, int day, int hour) {
+        timetable.addGroupSubject(GS, day, hour);
+    }
+    
+    public void removeFromClassTimetable(int day, int hour) {
+        timetable.removeGroupSubject(day, hour);
+    }
+    
+    public String saveClassroom(){
+        return capacity + " " + ref + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + type[THEORY] + " " + type[LABORATORY] + " " + type[PROBLEMS];
+    }
 }

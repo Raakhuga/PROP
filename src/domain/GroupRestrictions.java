@@ -7,52 +7,68 @@ import java.util.Set;
 
 public class GroupRestrictions {
     private boolean banned;
-    private Set<String> bansubjects;
-    private Set<String> banclassrooms;
-    
+    private Set<String> bannedSubjects;
+    private Set<String> bannedClassrooms;
+
     public GroupRestrictions() {
-        banned = false;
-        bansubjects = new HashSet<String>();
-        banclassrooms = new HashSet<String>();
-    }
-
-    public Set<String> getBansubjects() {
-        return bansubjects;
-    }
-
-    public Set<String> getBanclassrooms() {
-        return banclassrooms;
+        this.banned = false;
+        this.bannedSubjects = new HashSet<>();
+        this.bannedClassrooms = new HashSet<>();
     }
     
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public Set<String> getBannedSubjects() {
+        return bannedSubjects;
+    }
+
+    public Set<String> getBannedClassrooms() {
+        return bannedClassrooms;
+    }
+
     public void setBanned(boolean banned) {
         this.banned = banned;
     }
 
-    public void banClassroom(String ref){
-        banclassrooms.add(ref);
+    public void setBannedSubjects(Set<String> bannedSubjects) {
+        this.bannedSubjects = bannedSubjects;
     }
 
-    public void banSubject(String name) {
-        bansubjects.add(name);
+    public void setBannedClassrooms(Set<String> bannedClassrooms) {
+        this.bannedClassrooms = bannedClassrooms;
     }
     
-    public void unbanClassroom(String ref){
-        banclassrooms.remove(ref);
-    }
-     
-    public void unbanSubject(String name) {
-        bansubjects.remove(name);
-    }
-   
-    public boolean subjectBanned(String name) {
-        return bansubjects.contains(name);
+    public void ban() {
+        banned = true;
     }
     
-    public boolean classroomBanned(String ref) {
-        return banclassrooms.contains(ref);
+    public void unban() {
+        banned = false;
     }
-
-    public boolean getBanned() {
-        return banned;
+    
+    public void banSubject(String subject) {
+        bannedSubjects.add(subject);
+    }
+    
+    public void unbanSubject(String subject) {
+        bannedSubjects.remove(subject);
+    }
+    
+    public void banClassroom(String classroom) {
+        bannedClassrooms.add(classroom);
+    }
+    
+    public void unbanClassroom(String classroom) {
+        bannedClassrooms.remove(classroom);
+    }
+    
+    public boolean isSubjectBanned(String name) {
+        return bannedSubjects.contains(name);
+    }
+    
+    public boolean isClassroomBanned(String ref) {
+        return bannedClassrooms.contains(ref);
     }
 }

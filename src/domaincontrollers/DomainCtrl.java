@@ -16,7 +16,7 @@ import domain.Level;
 import domain.StudyProgram;
 import domain.Subject;
 import domain.GroupSubject;
-import domain.Timetable;
+import domain.ClassroomTimetable;
 import java.util.logging.Logger;
 
 /** Class for the controller of the domain **/

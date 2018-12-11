@@ -1,118 +1,59 @@
 
 package domain;
 
+import java.util.Iterator;
 
-public class subGroup {
-    private int Num;
-    private GroupRestrictions subGroupRestrictions[][];
-    private Subject subGroupTimetable[][];
-    private String type[][];
-    private boolean free[][];
-    private int nDays;
-    private int hEnd;
-    private int hIni;
-    private int nMat;
+
+public class subGroup extends Group {
+    private final int num;
+    private GroupTimetable subtimetable;
     
-    
-    public subGroup(int num, int nDays, int hIni, int hEnd, int nMat) {
-        this.subGroupRestrictions = new GroupRestrictions[nDays][hEnd-hIni];
-        this.subGroupTimetable = new Subject[nDays][hEnd-hIni];
-        this.type = new String[nDays][hEnd-hIni];
-        free = new boolean[nDays][hEnd-hIni];
-        this.Num = num;
-        this.nDays = nDays;
-        this.hIni = hIni;
-        this.hEnd = hEnd;
-        this.nMat = nMat;
-        initializeGroupRestrictions();
-        initializeSubjects();
+    public subGroup(Group group, int num, int enrolled) {
+        super(group, enrolled);
+        this.num = num;
+        this.subtimetable = new GroupTimetable(super.getdIni(), super.getdEnd(), super.gethIni(), super.gethEnd());
     }
     
-    private void initializeGroupRestrictions(){
-        for(int i = 0; i < nDays; i++)
-            for(int j = 0; j < (hEnd-hIni); j++)
-                subGroupRestrictions[i][j] = new GroupRestrictions();;
+    public boolean isSubGroup() {
+        return true;
     }
     
-    private void initializeSubjects(){
-        for(int i = 0; i < nDays; i++)
-            for(int j = 0; j < (hEnd-hIni); j++)
-                subGroupTimetable[i][j] = new Subject();;
+    public int getNum(){
+        return num;
     }
     
-    public boolean getFree(int day, int hour) {
-        return free[day][hour];
+    //posible error
+    public boolean isEmpty(int day, int hour) {
+        if(super.isEmpty(day, hour)) return subtimetable.isEmpty(day, hour);
+        return false;
     }
     
-    public void setFree(int day, int hour, boolean free) {
-        this.free[day][hour]=free;
-    }
-    
-    public GroupRestrictions[][] getRestrictions() {
-        return subGroupRestrictions;
+    public boolean isSuperEmpty(int day, int hour) {
+        return super.isEmpty(day, hour);
     }
     
     public boolean isBanned(int day, int hour) {
-        return subGroupRestrictions[day][hour].getBanned();
+        return subtimetable.isBanned(day, hour);
     }
     
-    public boolean subjectBanned(int day, int hour, String name) {
-        return subGroupRestrictions[day][hour].subjectBanned(name);
+    public boolean isSubjectBanned(int day, int hour, String name) {
+        return subtimetable.isSubjectBanned(day, hour, name);
     }
     
-    public boolean classroomBanned(int day, int hour, String name) {
-        return subGroupRestrictions[day][hour].classroomBanned(name);
+    public boolean isClassroomBanned(int day, int hour, String ref) {
+        return subtimetable.isClassroomBanned(day, hour, ref);
     }
     
-    public Subject[][] getTimetable() {
-        return subGroupTimetable;
+    public void addToGroupTimetable(ClassSubject CS, int day, int hour) {
+        subtimetable.addClassSubject(CS, day, hour);
     }
     
-    public void setSubject(int day, int hour, Subject subject){
-        subGroupTimetable[day][hour] = subject;
+    public void removeFromGroupTimetable(int day, int hour) {
+        subtimetable.removeClassSubject(day, hour);
     }
     
-    public void removeSubject(int day, int hour){
-        subGroupTimetable[day][hour] = null;
-    }
-    
-    public int getnMat() {
-        return nMat;
-    }
-
-    public int getnDays() {
-        return nDays;
-    }
-
-    public int gethEnd() {
-        return hEnd;
-    }
-
-    public int gethIni() {
-        return hIni;
-    }
-    
-    public String getType(int day, int hour) {
-        return this.type[day][hour];
-    }
-    
-    public void setType(int day, int hour, String type) {
-        this.type[day][hour] = type;
-    }
-    
-    public void removeType(int day, int hour){
-        this.type[day][hour] = null;
-    }
-    
-    public Subject getSubject (int day, int hour) {
-        return subGroupTimetable[day][hour];
-    }
-    
-    public GroupRestrictions getRestriction(int day, int hour) {
-        return subGroupRestrictions[day][hour];
-    }
-    
-    public int getsNum() {
-        return Num;
+        
+    public String saveGroup() {
+        return num + " " + getEnrolled() + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd();
     }
 }
