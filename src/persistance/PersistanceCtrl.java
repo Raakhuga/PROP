@@ -16,12 +16,14 @@ import java.util.List;
  * @author raakhuga
  */
 public class PersistanceCtrl {
-    public void save(TimetableGenerator TG){
+    public void save(TimetableGenerator TG, String file){
         String state;
         state = TG.saveClassrooms();
         state = state + TG.saveStudyPrograms();
+        state = state + TG.saveRestrictions();
+        System.out.print(state);/*
         try {
-            File file = new  File("./state.txt");
+            File file = new  File("./" + file);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -32,6 +34,9 @@ public class PersistanceCtrl {
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+    }
+    public void load(TimetableGenerator TG, String file) {
+        
     }
 }

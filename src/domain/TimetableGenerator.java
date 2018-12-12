@@ -10,6 +10,7 @@ public class TimetableGenerator {
     private List<Classroom> classrooms;
     private List<StudyProgram> programs;
     private List<GroupSubject> problem;
+    private List<String> addedRestrictions;
     private final int nMaxStudentsGroup;
     private final int nMaxStudentsSubgroup;
     private CTRLRestrictions ctrlRestrictions;
@@ -18,6 +19,7 @@ public class TimetableGenerator {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
+        this.addedRestrictions = new ArrayList<>();
         this.ctrlRestrictions = new CTRLRestrictions();
         this.nMaxStudentsGroup = nMaxStudentsGroup;
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
@@ -135,6 +137,54 @@ public class TimetableGenerator {
         g.removeFromGroupTimetable(day, hour);
     }
     
+    public void ban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
+        g.ban(dIni, dEnd, hIni, hEnd);
+    }
+    
+    public void ban(Classroom c, int dIni, int dEnd, int hIni, int hEnd) {
+        c.ban(dIni, dEnd, hIni, hEnd);
+    }
+    
+    public void unban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
+        g.unban(dIni, dEnd, hIni, hEnd);
+    }
+    
+    public void unban(Classroom c, int dIni, int dEnd, int hIni, int hEnd) {
+        c.unban(dIni, dEnd, hIni, hEnd);
+    }
+    
+    public void banSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        g.banSubject(dIni, dEnd, hIni, hEnd, subject);
+    }
+    
+    public void banSubject(Classroom c, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        c.banSubject(dIni, dEnd, hIni, hEnd, subject);
+    }
+    
+    public void unbanSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        g.unbanSubject(dIni, dEnd, hIni, hEnd, subject);
+    }
+    
+    public void unbanSubject(Classroom c, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        c.unbanSubject(dIni, dEnd, hIni, hEnd, subject);
+    }
+    
+    public void banClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
+        g.banClassroom(dIni, dEnd, hIni, hEnd, ref);
+    }
+
+    public void unbanClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
+        g.unbanClassroom(dIni, dEnd, hIni, hEnd, ref);
+    }
+    
+    public void banGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        c.banGroup(dIni, dEnd, hIni, hEnd, num);
+    }
+    
+    public void unbanGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        c.unbanGroup(dIni, dEnd, hIni, hEnd, num);
+    }
+    
     public void generateTimetable() {
         if (classrooms.size() > 0) {
             Classroom aux = classrooms.get(0);
@@ -144,7 +194,7 @@ public class TimetableGenerator {
     }
     
     public boolean i_generateTimetable(int pos_classroom, int pos_problem) {
-        if (pos_problem >= problem.size()) return false;
+        if (pos_problem >= problem.size()) return true;
         if (pos_classroom >= classrooms.size()) return false;
         GroupSubject GS = problem.get(pos_problem);
         Classroom classroom = classrooms.get(pos_classroom);
@@ -153,29 +203,27 @@ public class TimetableGenerator {
                 if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
                     if (ctrlRestrictions.groupRestrictions(i, j, classroom, GS)) {
                         addToTimetable(classroom, GS.getGroup(), GS, new ClassSubject(classroom, GS.getSubject()), i, j);
-                        if(pos_problem+1 < problem.size()) {
-                            return i_generateTimetable(0, pos_problem+1);
+                        if (!i_generateTimetable(0, pos_problem+1)) {
+                            removeFromTimetable(classroom, GS.getGroup(), i, j);
+                            return false;
                         }
-                        removeFromTimetable(classroom, GS.getGroup(), i, j);
+                        else return true;
                     }
                 }
             }
         }
-        if (pos_problem +1 < problem.size()) 
-            if(pos_classroom+1 < classrooms.size()) i_generateTimetable(pos_classroom+1, pos_problem);
-            else return false;
-        return true;
+        return i_generateTimetable(pos_classroom+1, pos_problem);
     }
     
     public String saveClassrooms() {
         Iterator<Classroom> Cit = classrooms.iterator();
-        String classes = classrooms.size() + "\n" + "Classrooms:\n";
+        String classes = classrooms.size() + "\n" + "Classrooms:";
         while(Cit.hasNext()) {
             Classroom Cact = Cit.next();
-            String classroom = "  " + Cact.saveClassroom() + "\n";
+            String classroom = "\n" + "  " + Cact.saveClassroom();
             classes = classes + classroom;
         }
-        return classes;
+        return classes + "\n";
     }
     
     public String saveStudyPrograms() {
@@ -183,10 +231,14 @@ public class TimetableGenerator {
         String studyprograms = programs.size() + "\n" + "StudyPrograms:" + "\n";
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
-            String studyprogram = "  " + SPact.getName() + "\n";
-            studyprogram = studyprogram + "  " + SPact.saveLevels() + "\n";
+            String studyprogram = "\n" + "  " + SPact.getName();
+            studyprogram = studyprogram + "\n" + "  " + SPact.saveLevels();
             studyprograms = studyprograms + studyprogram;
         }
-        return studyprograms;
+        return studyprograms + "\n";
+    }
+    
+    public String saveRestrictions() {
+        return "Restrictions:\n" + "  " + ctrlRestrictions.saveRestrictions() + "\n";
     }
 }

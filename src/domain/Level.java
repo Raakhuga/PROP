@@ -35,10 +35,10 @@ public class Level {
     
     public String saveLevel() {
         Iterator<Subject> Sit = subjects.iterator();
-        String subs = "  " + iden + " " + subjects.size() + "\n" + "      " + "Subjects:" + "\n";
+        String subs = "  " + iden + " " + subjects.size() + "\n" + "      " + "Subjects:";
         while(Sit.hasNext()) {
             Subject Sact = Sit.next();
-            String sub = "        " + Sact.saveSubject() + "\n";
+            String sub = "\n" + "        " + Sact.saveSubject();
             subs = subs + sub;
         }
         return subs;

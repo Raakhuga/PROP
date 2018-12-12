@@ -134,27 +134,67 @@ public class DriverTimetableGenerator {
         SIT.get(0).fillTheoryH(3);
         SIT.get(0).fillPoblemsH(2);
         SIT.get(0).fillLaboratoryH(0);
-        addGroups(100, SIT.get(0));
+        addGroups(300, SIT.get(0));
+        
+        SIT.get(1).fillTheoryH(3);
+        SIT.get(1).fillPoblemsH(0);
+        SIT.get(1).fillLaboratoryH(2);
+        addGroups(300, SIT.get(1));
+        
+        SIT.get(2).fillTheoryH(3);
+        SIT.get(2).fillPoblemsH(0);
+        SIT.get(2).fillLaboratoryH(2);
+        addGroups(300, SIT.get(2));
+
+        SIT.get(3).fillTheoryH(2);
+        SIT.get(3).fillPoblemsH(0);
+        SIT.get(3).fillLaboratoryH(3);
+        addGroups(300, SIT.get(3));
+        
+        p.addLevel(SPact);
+        Lact = LIT.get(1);
+        p.addSubject(Lact, "PRO2");
+        p.addSubject(Lact, "M1");
+        p.addSubject(Lact, "M2");
+        p.addSubject(Lact, "EC");
+        SIT = Lact.getSubjects();
+        
+        SIT.get(0).fillTheoryH(2);
+        SIT.get(0).fillPoblemsH(0);
+        SIT.get(0).fillLaboratoryH(3);
+        addGroups(200, SIT.get(0));
         
         SIT.get(1).fillTheoryH(3);
         SIT.get(1).fillPoblemsH(2);
         SIT.get(1).fillLaboratoryH(0);
-        addGroups(100, SIT.get(1));
+        addGroups(200, SIT.get(1));
         
         SIT.get(2).fillTheoryH(3);
         SIT.get(2).fillPoblemsH(2);
         SIT.get(2).fillLaboratoryH(0);
-        addGroups(100, SIT.get(2));
+        addGroups(200, SIT.get(2));
 
         SIT.get(3).fillTheoryH(3);
-        SIT.get(3).fillPoblemsH(2);
-        SIT.get(3).fillLaboratoryH(0);
-        addGroups(100, SIT.get(3));
-
+        SIT.get(3).fillPoblemsH(0);
+        SIT.get(3).fillLaboratoryH(2);
+        addGroups(200, SIT.get(3));
+        
         p.addClassroom(80, "A1", 0, 5, 8, 20);
         p.addClassroom(80, "A2", 0, 5, 8, 20);
         p.addClassroom(20, "A3", 0, 5, 8, 20);
         p.addClassroom(20, "A4", 0, 5, 8, 20);
+        p.addClassroom(80, "A5", 0, 5, 8, 20);
+        p.addClassroom(80, "A6", 0, 5, 8, 20);
+        p.addClassroom(20, "A7", 0, 5, 8, 20);
+        p.addClassroom(20, "A8", 0, 5, 8, 20);
+        p.addClassroom(80, "A9", 0, 5, 8, 20);
+        p.addClassroom(80, "A10", 0, 5, 8, 20);
+        p.addClassroom(20, "A11", 0, 5, 8, 20);
+        p.addClassroom(20, "A12", 0, 5, 8, 20);
+        p.addClassroom(80, "A13", 0, 5, 8, 20);
+        p.addClassroom(80, "A14", 0, 5, 8, 20);
+        p.addClassroom(20, "A15", 0, 5, 8, 20);
+        p.addClassroom(20, "A16", 0, 5, 8, 20);
         
         List<Classroom> classes = p.getClassrooms();
         
@@ -162,6 +202,22 @@ public class DriverTimetableGenerator {
         classes.get(1).setTheory();
         classes.get(2).setProblems();
         classes.get(3).setTheory();
+        classes.get(4).setTheory();
+        classes.get(5).setTheory();
+        classes.get(6).setProblems();
+        classes.get(7).setLaboratory();
+        classes.get(8).setTheory();
+        classes.get(9).setTheory();
+        classes.get(10).setProblems();
+        classes.get(11).setLaboratory();
+        classes.get(12).setTheory();
+        classes.get(13).setTheory();
+        classes.get(14).setProblems();
+        classes.get(15).setLaboratory();
+        
+        
+        p.ban(classes.get(0), 2, 3, 8, 20);
+        p.banGroup(classes.get(0), 3, 4, 8, 20, 10);
     }
     
     public static void printClassTimetable() {
@@ -217,7 +273,7 @@ public class DriverTimetableGenerator {
         load1();
         p.generateAllGS();
         PersistanceCtrl PC = new PersistanceCtrl();
-        PC.save(p);
+        PC.save(p, "state.txt");
         //printGS();
         p.generateTimetable();
         printClassTimetable();
