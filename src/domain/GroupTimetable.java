@@ -54,4 +54,36 @@ public class GroupTimetable extends Timetable{
     public boolean isClassroomBanned(int day, int hour, String ref) {
         return restrictions[day][hour].isClassroomBanned(ref);
     }
+    
+    public void ban(int day, int hour) {
+        restrictions[day][hour].ban();
+    }
+    
+    public void unban(int day, int hour) {
+        restrictions[day][hour].unban();
+    }
+    
+    public void banSubject(int day, int hour, String subject) {
+        restrictions[day][hour].banSubject(subject);
+    }
+    
+    public void unbanSubject(int day, int hour, String subject) {
+        restrictions[day][hour].unbanSubject(subject);
+    }
+    
+    public void banClassroom(int day, int hour, String ref) {
+        restrictions[day][hour].banClassroom(ref);
+    }
+    
+    public void unbanClassroom(int day, int hour, String ref) {
+        restrictions[day][hour].unbanClassroom(ref);
+    }
+    
+    public void addClassSubject(ClassSubject CS, int day, int hour) {
+        this.CS[day][hour] = CS;  
+    }
+    
+    public void removeClassSubject(int day, int hour) {
+        this.CS[day][hour] = new ClassSubject();
+    }
 }

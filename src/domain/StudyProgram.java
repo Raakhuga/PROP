@@ -1,15 +1,9 @@
 
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 
 public class StudyProgram {
@@ -50,5 +44,19 @@ public class StudyProgram {
         this.nLevels = nLevels;
     }
 
+    public void addLevel() {
+        nLevels++;
+        levels.add(new Level(nLevels));
+    }
     
+    public String saveLevels() {
+        Iterator<Level> Lit = levels.iterator();
+        String lvls = levels.size() + "\n" + "  " + "Levels:";
+        while(Lit.hasNext()) {
+            Level Lact = Lit.next();
+            String lvl = "\n" + "  " + Lact.saveLevel();
+            lvls = lvls + lvl;
+        }
+        return lvls;
+    }
 }

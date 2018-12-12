@@ -1,13 +1,9 @@
 
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 public class Level {
     
@@ -31,5 +27,20 @@ public class Level {
     
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+    
+    public void addSubject(String name) {
+        subjects.add(new Subject(name, iden));
+    }
+    
+    public String saveLevel() {
+        Iterator<Subject> Sit = subjects.iterator();
+        String subs = "  " + iden + " " + subjects.size() + "\n" + "      " + "Subjects:";
+        while(Sit.hasNext()) {
+            Subject Sact = Sit.next();
+            String sub = "\n" + "        " + Sact.saveSubject();
+            subs = subs + sub;
+        }
+        return subs;
     }
 }

@@ -1,6 +1,9 @@
 
 package domain;
 
+import java.util.Iterator;
+import java.util.List;
+
 
 public class subGroup extends Group {
     private final int num;
@@ -40,5 +43,25 @@ public class subGroup extends Group {
     
     public boolean isClassroomBanned(int day, int hour, String ref) {
         return subtimetable.isClassroomBanned(day, hour, ref);
+    }
+    
+    public void addToGroupTimetable(ClassSubject CS, int day, int hour) {
+        subtimetable.addClassSubject(CS, day, hour);
+    }
+    
+    public void removeFromGroupTimetable(int day, int hour) {
+        subtimetable.removeClassSubject(day, hour);
+    }
+     
+    public String saveGroup() {
+        List<String> addedR = getAddedRestrictions();
+        Iterator<String> Rit = addedR.iterator();
+        String sg = num + " " + getEnrolled() + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + addedR.size() + "\n" + "            Restrictions:"; 
+        while(Rit.hasNext()) {
+            String Ract = Rit.next();
+            String R = "\n" + "              " + Ract;
+            sg = sg + R;
+        }
+        return sg;
     }
 }

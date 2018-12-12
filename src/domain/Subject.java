@@ -1,13 +1,9 @@
 
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
-import javafx.util.Pair;
 
 /** Class for the subjects **/
 public class Subject {
@@ -81,5 +77,16 @@ public class Subject {
     
     public void removeGroup(Group group) {
         groups.remove(group);
+    }
+    
+    public String saveSubject() {
+        Iterator<Group> Git = groups.iterator();
+        String gps = name + " " + nSessions[THEORY] + " " + nSessions[LABORATORY] + " " + nSessions[PROBLEMS] + " " + level + " " + groups.size() + "\n" + "        Groups:";
+        while (Git.hasNext()) {
+            Group Gact = Git.next();
+            String gp = "\n" + "          " + Gact.saveGroup();
+            gps = gps + gp;
+        }
+        return gps;
     }
 }
