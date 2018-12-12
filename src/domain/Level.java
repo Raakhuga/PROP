@@ -29,8 +29,22 @@ public class Level {
         this.subjects = subjects;
     }
     
-    public void addSubject(String name) {
-        subjects.add(new Subject(name, iden));
+    public Subject addSubject(String name) {
+        Subject subject = new Subject(name, iden);
+        subjects.add(subject);
+        return subject;
+    }
+    
+    public void fillTheoryH(Subject subject, int hours) {
+        subject.fillTheoryH(hours);
+    }
+    
+    public void fillLaboratoryH(Subject subject, int hours) {
+        subject.fillLaboratoryH(hours);
+    }
+    
+    public void fillPorblemsH(Subject subject, int hours) {
+        subject.fillProblemsH(hours);
     }
     
     public String saveLevel() {

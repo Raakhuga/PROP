@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class DriverTimetableGenerator {
     
-    private static TimetableGenerator p;
+    public static TimetableGenerator p;
     
     public static void initTimetable() {
         System.out.println("Introdueixi el nombre maxim d'estudiants que pot tenir un grup");
@@ -72,7 +72,7 @@ public class DriverTimetableGenerator {
                     System.out.println("Introdueixi el numero d'hores de Teoria de la materia: " + Sact.getName());
                     Sact.fillTheoryH(in.nextInt());
                     System.out.println("Introdueixi el numero d'hores de Problemes de la materia: " + Sact.getName());
-                    Sact.fillPoblemsH(in.nextInt());
+                    Sact.fillProblemsH(in.nextInt());
                     System.out.println("Introdueixi el numero d'hores de Laboratori de la materia: " + Sact.getName());
                     Sact.fillLaboratoryH(in.nextInt());
                     System.out.println("Introdueixi el numero d'estudiants que cursaran la materia: "
@@ -132,22 +132,22 @@ public class DriverTimetableGenerator {
         List<Subject> SIT = Lact.getSubjects();
         
         SIT.get(0).fillTheoryH(3);
-        SIT.get(0).fillPoblemsH(2);
+        SIT.get(0).fillProblemsH(2);
         SIT.get(0).fillLaboratoryH(0);
         addGroups(300, SIT.get(0));
         
         SIT.get(1).fillTheoryH(3);
-        SIT.get(1).fillPoblemsH(0);
+        SIT.get(1).fillProblemsH(0);
         SIT.get(1).fillLaboratoryH(2);
         addGroups(300, SIT.get(1));
         
         SIT.get(2).fillTheoryH(3);
-        SIT.get(2).fillPoblemsH(0);
+        SIT.get(2).fillProblemsH(0);
         SIT.get(2).fillLaboratoryH(2);
         addGroups(300, SIT.get(2));
 
         SIT.get(3).fillTheoryH(2);
-        SIT.get(3).fillPoblemsH(0);
+        SIT.get(3).fillProblemsH(0);
         SIT.get(3).fillLaboratoryH(3);
         addGroups(300, SIT.get(3));
         
@@ -160,22 +160,22 @@ public class DriverTimetableGenerator {
         SIT = Lact.getSubjects();
         
         SIT.get(0).fillTheoryH(2);
-        SIT.get(0).fillPoblemsH(0);
+        SIT.get(0).fillProblemsH(0);
         SIT.get(0).fillLaboratoryH(3);
         addGroups(200, SIT.get(0));
         
         SIT.get(1).fillTheoryH(3);
-        SIT.get(1).fillPoblemsH(2);
+        SIT.get(1).fillProblemsH(2);
         SIT.get(1).fillLaboratoryH(0);
         addGroups(200, SIT.get(1));
         
         SIT.get(2).fillTheoryH(3);
-        SIT.get(2).fillPoblemsH(2);
+        SIT.get(2).fillProblemsH(2);
         SIT.get(2).fillLaboratoryH(0);
         addGroups(200, SIT.get(2));
 
         SIT.get(3).fillTheoryH(3);
-        SIT.get(3).fillPoblemsH(0);
+        SIT.get(3).fillProblemsH(0);
         SIT.get(3).fillLaboratoryH(2);
         addGroups(200, SIT.get(3));
         
@@ -269,11 +269,18 @@ public class DriverTimetableGenerator {
     }
     
     public static void main(String[] args) throws Exception{
-        initTimetable();
-        load1();
-        p.generateAllGS();
+        //initTimetable();
+        p = new TimetableGenerator();
         PersistanceCtrl PC = new PersistanceCtrl();
-        PC.save(p, "state.txt");
+        //load1();
+        //p = new TimetableGenerator(0, 0);
+        //TimetableGenerator TG = new TimetableGenerator(0, 0);
+        PC.load(p, "src/tests/drivers/asdfasdf/state.txt");
+        
+        //p = TG;
+        p.generateAllGS();
+        
+        PC.save(p, "src/tests/drivers/asdfasdf/statePersist.txt");
         //printGS();
         p.generateTimetable();
         printClassTimetable();

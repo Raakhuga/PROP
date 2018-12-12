@@ -11,8 +11,8 @@ public class TimetableGenerator {
     private List<StudyProgram> programs;
     private List<GroupSubject> problem;
     private List<String> addedRestrictions;
-    private final int nMaxStudentsGroup;
-    private final int nMaxStudentsSubgroup;
+    private int nMaxStudentsGroup;
+    private int nMaxStudentsSubgroup;
     private CTRLRestrictions ctrlRestrictions;
         
     public TimetableGenerator(int nMaxStudentsGroup, int nMaxStudentsSubgroup) {
@@ -22,6 +22,24 @@ public class TimetableGenerator {
         this.addedRestrictions = new ArrayList<>();
         this.ctrlRestrictions = new CTRLRestrictions();
         this.nMaxStudentsGroup = nMaxStudentsGroup;
+        this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
+    }
+    
+    public TimetableGenerator() {
+        this.classrooms = new ArrayList<>();
+        this.programs = new ArrayList<>();
+        this.problem = new ArrayList<>();
+        this.addedRestrictions = new ArrayList<>();
+        this.ctrlRestrictions = new CTRLRestrictions();
+        this.nMaxStudentsGroup = -1;
+        this.nMaxStudentsSubgroup = -1;
+    }
+    
+    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
+        this.nMaxStudentsGroup = nMaxStudentsGroup;
+    }
+    
+    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
     }
 
@@ -99,28 +117,44 @@ public class TimetableGenerator {
         }
     }
     
-    public void addClassroom(int capacity, String ref, int dIni, int dEnd, int hIni, int hEnd) {
-        classrooms.add(new Classroom(ref, capacity, dIni, dEnd, hIni, hEnd));
+    public void setrBase(boolean[] rBase) {
+        ctrlRestrictions.setrBase(rBase);
     }
     
-    public void addStudyProgram(String name){
-        programs.add(new StudyProgram(name));
+    public void setrExtra(boolean[] rExtra) {
+        ctrlRestrictions.setrExtra(rExtra);
     }
     
-    public void addLevel(StudyProgram SP) {
-        SP.addLevel();
+    public Classroom addClassroom(int capacity, String ref, int dIni, int dEnd, int hIni, int hEnd) {
+        Classroom classroom = new Classroom(ref, capacity, dIni, dEnd, hIni, hEnd);
+        classrooms.add(classroom);
+        return classroom;
     }
     
-    public void addSubject(Level level, String name) {
-        level.addSubject(name);
+    public StudyProgram addStudyProgram(String name){
+        StudyProgram program = new StudyProgram(name);
+        programs.add(program);
+        return program;
     }
     
-    public void addGroup(Subject subject, int dIni, int dEnd, int hIni, int hEnd, int num, int enrolled) {
-        subject.addGroup(new Group (dIni, dEnd, hIni, hEnd, num, enrolled));
+    public Level addLevel(StudyProgram SP) {
+        return SP.addLevel();
     }
     
-    public void addSubGroup(Group group, int num, int enrolled) {
-        group.addSubGroup(new subGroup(group, num, enrolled));
+    public Subject addSubject(Level level, String name) {
+        return level.addSubject(name);
+    }
+    
+    public Group addGroup(Subject subject, int dIni, int dEnd, int hIni, int hEnd, int num, int enrolled) {
+        Group group = new Group (dIni, dEnd, hIni, hEnd, num, enrolled); 
+        subject.addGroup(group);
+        return group;
+    }
+    
+    public subGroup addSubGroup(Group group, int num, int enrolled) {
+        subGroup sgroup = new subGroup(group, num, enrolled);
+        group.addSubGroup(sgroup);
+        return sgroup;
     }
     
     public void addToTimetable(Classroom c, Group g, GroupSubject GS, ClassSubject CS, int day, int hour) {
@@ -228,7 +262,7 @@ public class TimetableGenerator {
     
     public String saveStudyPrograms() {
         Iterator<StudyProgram> SPit = programs.iterator();
-        String studyprograms = programs.size() + "\n" + "StudyPrograms:" + "\n";
+        String studyprograms = programs.size() + "\n" + "StudyPrograms:";
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
             String studyprogram = "\n" + "  " + SPact.getName();
@@ -240,5 +274,9 @@ public class TimetableGenerator {
     
     public String saveRestrictions() {
         return "Restrictions:\n" + "  " + ctrlRestrictions.saveRestrictions() + "\n";
+    }
+    
+    public String saveSizes() {
+        return "Max_num_of_students_in_a_group: " + nMaxStudentsGroup + "\n" + "Max_num_of_students_in_a_subgroup: " + nMaxStudentsSubgroup + "\n";
     }
 }

@@ -152,6 +152,14 @@ public class CTRLRestrictions {
         return !(GSNew.isLaboratory() && classroom.isLaboratory() || GSNew.isProblems() && classroom.isProblems() || GSNew.isTheory() && classroom.isTheory());
     }
     
+    public void setrBase(boolean[] rBase) {
+        this.rBase = rBase;
+    }
+    
+    public void setrExtra(boolean[] rExtra) {
+        this.rExtra = rExtra;
+    }
+    
     public void modify_base_rest(int i, boolean state) {
         rBase[i] = state;
     }

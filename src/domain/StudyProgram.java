@@ -44,9 +44,11 @@ public class StudyProgram {
         this.nLevels = nLevels;
     }
 
-    public void addLevel() {
+    public Level addLevel() {
         nLevels++;
-        levels.add(new Level(nLevels));
+        Level level = new Level(nLevels);
+        levels.add(level);
+        return level;
     }
     
     public String saveLevels() {

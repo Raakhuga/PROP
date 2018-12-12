@@ -55,7 +55,7 @@ public class Subject {
         nSessions[LABORATORY] = hours;
     }
     
-    public void fillPoblemsH(int hours) {
+    public void fillProblemsH(int hours) {
         nSessions[PROBLEMS] = hours;
     }
     
