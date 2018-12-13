@@ -30,22 +30,175 @@ public class StateGen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ClassroomsList = new javax.swing.JList<>();
+        ClassroomsLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        StudyProgramList = new javax.swing.JList<>();
+        StudyProgramLabel = new javax.swing.JLabel();
+        AddClassroom = new javax.swing.JButton();
+        ModifyClassroom = new javax.swing.JButton();
+        DeleteClassroom = new javax.swing.JButton();
+        AddStudyProgram = new javax.swing.JButton();
+        ModifyStudyProgram = new javax.swing.JButton();
+        DeleteStudyProgram = new javax.swing.JButton();
+        nEstMaxPerGroupField = new javax.swing.JTextField();
+        nEstPerGroupLabel = new javax.swing.JLabel();
+        nMaxEstPerGroupButton = new javax.swing.JButton();
+        nEstPersubGroupLabel = new javax.swing.JLabel();
+        nEstMaxPersubGroupField = new javax.swing.JTextField();
+        nMaxEstPersubGroupButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 520));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        ClassroomsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(ClassroomsList);
+
+        ClassroomsLabel.setText("Aules:");
+
+        StudyProgramList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(StudyProgramList);
+
+        StudyProgramLabel.setText("Plans d'estudis");
+
+        AddClassroom.setText("Afegir Aula");
+        AddClassroom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddClassroomActionPerformed(evt);
+            }
+        });
+
+        ModifyClassroom.setText("Modificar Aula");
+
+        DeleteClassroom.setText("Esborrar Aula");
+
+        AddStudyProgram.setText("Afegir Pla d'estudis");
+
+        ModifyStudyProgram.setText("Modificar Pla d'estudis");
+
+        DeleteStudyProgram.setText("Esborrar Pla d'estudis");
+
+        nEstPerGroupLabel.setText("Numero maxim d'estudiants per grup:");
+
+        nMaxEstPerGroupButton.setText("Modificar");
+
+        nEstPersubGroupLabel.setText("Numero maxim d'estudiants per grup:");
+
+        nMaxEstPersubGroupButton.setText("Modificar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nEstPersubGroupLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nEstMaxPersubGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nMaxEstPersubGroupButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nEstPerGroupLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nEstMaxPerGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nMaxEstPerGroupButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ClassroomsLabel)
+                            .addComponent(ModifyClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeleteClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(92, 92, 92)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DeleteStudyProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ModifyStudyProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddStudyProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StudyProgramLabel)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClassroomsLabel)
+                    .addComponent(StudyProgramLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddStudyProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ModifyClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ModifyStudyProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DeleteClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteStudyProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nEstPerGroupLabel)
+                    .addComponent(nEstMaxPerGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nMaxEstPerGroupButton))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nEstPersubGroupLabel)
+                    .addComponent(nEstMaxPersubGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nMaxEstPersubGroupButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AddClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddClassroomActionPerformed
+        // TODO add your handling code here:
+        presentationctrl.SwitchFromSGtoAC();
+    }//GEN-LAST:event_AddClassroomActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        ClassroomsList.setModel(presentationctrl.getClassroomsRefs());
+        jScrollPane1.setViewportView(ClassroomsList);
+        StudyProgramList.setModel(presentationctrl.getProgramsNames());
+        jScrollPane2.setViewportView(StudyProgramList);
+    }//GEN-LAST:event_formWindowActivated
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddClassroom;
+    private javax.swing.JButton AddStudyProgram;
+    private javax.swing.JLabel ClassroomsLabel;
+    private javax.swing.JList<String> ClassroomsList;
+    private javax.swing.JButton DeleteClassroom;
+    private javax.swing.JButton DeleteStudyProgram;
+    private javax.swing.JButton ModifyClassroom;
+    private javax.swing.JButton ModifyStudyProgram;
+    private javax.swing.JLabel StudyProgramLabel;
+    private javax.swing.JList<String> StudyProgramList;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField nEstMaxPerGroupField;
+    private javax.swing.JTextField nEstMaxPersubGroupField;
+    private javax.swing.JLabel nEstPerGroupLabel;
+    private javax.swing.JLabel nEstPersubGroupLabel;
+    private javax.swing.JButton nMaxEstPerGroupButton;
+    private javax.swing.JButton nMaxEstPersubGroupButton;
     // End of variables declaration//GEN-END:variables
 }

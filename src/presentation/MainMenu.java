@@ -35,6 +35,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         StateGen.setText("Creacio Manual");
         StateGen.addActionListener(new java.awt.event.ActionListener() {
