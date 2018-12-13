@@ -5,20 +5,26 @@
  */
 package presentation;
 
+import domain.Classroom;
+
 /**
  *
  * @author Raakhuga
  */
-public class AddClassroom extends javax.swing.JFrame {
+public class ModifyClassroom extends javax.swing.JFrame {
     private PresentationCtrl presentationctrl;
+    private Classroom act = null;
     /**
      * Creates new form AddClassroom
      */
-    public AddClassroom(PresentationCtrl presentationctrl) {
+    public ModifyClassroom(PresentationCtrl presentationctrl) {
         initComponents();
         this.presentationctrl = presentationctrl;
+    }   
+    
+    public void setClassroom(Classroom classroom) {
+        this.act = classroom;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,9 +46,10 @@ public class AddClassroom extends javax.swing.JFrame {
         hIniField = new javax.swing.JTextField();
         hEndLabel = new javax.swing.JLabel();
         hEndField = new javax.swing.JTextField();
-        addClassroom = new javax.swing.JButton();
+        modifyClassroomButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Modificar aula");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -80,10 +87,10 @@ public class AddClassroom extends javax.swing.JFrame {
             }
         });
 
-        addClassroom.setText("Afegir");
-        addClassroom.addActionListener(new java.awt.event.ActionListener() {
+        modifyClassroomButton.setText("Modificar");
+        modifyClassroomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addClassroomActionPerformed(evt);
+                modifyClassroomButtonActionPerformed(evt);
             }
         });
 
@@ -109,7 +116,7 @@ public class AddClassroom extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(hEndField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addClassroom))
+                            .addComponent(modifyClassroomButton))
                         .addComponent(CapacityLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -142,7 +149,7 @@ public class AddClassroom extends javax.swing.JFrame {
                         .addComponent(hEndLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hEndField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(addClassroom))
+                    .addComponent(modifyClassroomButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -161,7 +168,7 @@ public class AddClassroom extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hEndFieldActionPerformed
 
-    private void addClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassroomActionPerformed
+    private void modifyClassroomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyClassroomButtonActionPerformed
         // TODO add your handling code here:
         int capacity = Integer.parseInt(capacityField.getText());
         String ref = RefField.getText();
@@ -169,19 +176,35 @@ public class AddClassroom extends javax.swing.JFrame {
         int dEnd = Integer.parseInt(dEndField.getText());
         int hIni = Integer.parseInt(hIniField.getText());
         int hEnd = Integer.parseInt(hEndField.getText());
-        presentationctrl.addClassroom(capacity, ref, dIni, dEnd, hIni, hEnd);
-        presentationctrl.SwitchFromACtoSG();
-    }//GEN-LAST:event_addClassroomActionPerformed
+        presentationctrl.setCapacity(act, capacity);
+        presentationctrl.setRef(act, ref);
+        presentationctrl.setdIni(act, dIni);
+        presentationctrl.setdEnd(act, dEnd);
+        presentationctrl.sethIni(act, hIni);
+        presentationctrl.sethEnd(act, hEnd);
+        presentationctrl.SwitchFromMCtoSG();
+    }//GEN-LAST:event_modifyClassroomButtonActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        int capacity = act.getCapacity();
+        String ref = act.getRef();
+        int dIni = act.getdIni();
+        int dEnd = act.getdEnd();
+        int hIni = act.gethIni();
+        int hEnd = act.gethEnd();
+        capacityField.setText(capacity+"");
+        RefField.setText(ref);
+        dIniField.setText(dIni+"");
+        dEndField.setText(dEnd+"");
+        hIniField.setText(hIni+"");
+        hEndField.setText(hEnd+"");
     }//GEN-LAST:event_formWindowActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CapacityLabel;
     private javax.swing.JTextField RefField;
     private javax.swing.JLabel RefLabel;
-    private javax.swing.JButton addClassroom;
     private javax.swing.JTextField capacityField;
     private javax.swing.JTextField dEndField;
     private javax.swing.JLabel dEndLabel;
@@ -191,5 +214,6 @@ public class AddClassroom extends javax.swing.JFrame {
     private javax.swing.JLabel hEndLabel;
     private javax.swing.JTextField hIniField;
     private javax.swing.JLabel hIniLabel;
+    private javax.swing.JButton modifyClassroomButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -219,6 +219,34 @@ public class TimetableGenerator {
         c.unbanGroup(dIni, dEnd, hIni, hEnd, num);
     }
     
+    public void setCapacity(Classroom c, int capacity) {
+        c.setCapacity(capacity);
+    }
+    
+    public void setRef(Classroom c, String ref) {
+        c.setRef(ref);
+    }
+    
+    public void setdIni(Classroom c, int dIni) {
+        c.setdIni(dIni);
+    }
+    
+    public void setdEnd(Classroom c, int dEni) {
+        c.setdEnd(dEni);
+    }
+    
+    public void sethIni(Classroom c, int hIni) {
+        c.sethIni(hIni);
+    }
+    
+    public void sethEnd(Classroom c, int hEnd) {
+        c.sethEnd(hEnd);
+    }
+    
+    public void removeClassroom(int id) {
+        classrooms.remove(classrooms.get(id));
+    }
+    
     public void generateTimetable() {
         if (classrooms.size() > 0) {
             Classroom aux = classrooms.get(0);

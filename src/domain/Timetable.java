@@ -10,12 +10,12 @@ package domain;
  * @author raakhuga
  */
 abstract class Timetable {
-    private final int dIni;
-    private final int dEnd;
-    private final int hIni;
-    private final int hEnd;
+    private int dIni;
+    private int dEnd;
+    private int hIni;
+    private int hEnd;
 
-    public Timetable(int dIni, int dEnd, int hIni, int hEnd) {
+        public Timetable(int dIni, int dEnd, int hIni, int hEnd) {
         this.dIni = dIni;
         this.dEnd = dEnd;
         this.hIni = hIni;
@@ -36,6 +36,22 @@ abstract class Timetable {
 
     public int gethEnd() {
         return hEnd;
+    }
+    
+    public void setdIni(int dIni) {
+        this.dIni = dIni;
+    }
+
+    public void setdEnd(int dEnd) {
+        this.dEnd = dEnd;
+    }
+
+    public void sethIni(int hIni) {
+        this.hIni = hIni;
+    }
+
+    public void sethEnd(int hEnd) {
+        this.hEnd = hEnd;
     }
     
 }

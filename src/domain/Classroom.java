@@ -11,10 +11,18 @@ public class Classroom {
     private final static int LABORATORY = 1;
     private final static int PROBLEMS = 2;
     
-    private final String ref;
+    private String ref;
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
     private ClassroomTimetable timetable;
     private List<String> addedRestrictions;
-    private final int capacity;
+    private int capacity;
     private boolean type[];
     
     public Classroom(String ref, int capacity, int dIni, int dEnd, int hIni, int hEnd) {
@@ -78,6 +86,22 @@ public class Classroom {
     
     public void setProblems(){
         type[PROBLEMS] = true;
+    }
+    
+    public void setdIni(int dIni) {
+        timetable.setdIni(dIni);
+    }
+
+    public void setdEnd(int dEnd) {
+        timetable.setdEnd(dEnd);
+    }
+
+    public void sethIni(int hIni) {
+        timetable.sethIni(hIni);
+    }
+
+    public void sethEnd(int hEnd) {
+        timetable.sethEnd(hEnd);
     }
     
     public void unsetTheory(){
