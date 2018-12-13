@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class CTRLRestrictions {
     private final static int NUM_RESTR_EXTRA = 5;
     private final static int NUM_RESTR_BASE = 3;
-    public boolean rBase[];
+    private boolean rBase[];
     private boolean rExtra[];
     
    
@@ -152,6 +152,14 @@ public class CTRLRestrictions {
         return !(GSNew.isLaboratory() && classroom.isLaboratory() || GSNew.isProblems() && classroom.isProblems() || GSNew.isTheory() && classroom.isTheory());
     }
     
+    public void setrBase(boolean[] rBase) {
+        this.rBase = rBase;
+    }
+    
+    public void setrExtra(boolean[] rExtra) {
+        this.rExtra = rExtra;
+    }
+    
     public void modify_base_rest(int i, boolean state) {
         rBase[i] = state;
     }
@@ -162,5 +170,9 @@ public class CTRLRestrictions {
     
     public void remove_rest_extra(int i) {
         rExtra[i] = false;
+    }
+    
+    public String saveRestrictions() {
+        return rBase[0] + " " + rBase[1] + " " + rBase[2] + " " + rExtra[0] + " " + rExtra[1] + " " + rExtra[2] + " " + rExtra[3] + " " + rExtra[4];
     }
 }

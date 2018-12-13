@@ -2,6 +2,7 @@
 package domain;
 
 import java.util.Iterator;
+import java.util.List;
 
 
 public class subGroup extends Group {
@@ -51,9 +52,16 @@ public class subGroup extends Group {
     public void removeFromGroupTimetable(int day, int hour) {
         subtimetable.removeClassSubject(day, hour);
     }
-    
-        
+     
     public String saveGroup() {
-        return num + " " + getEnrolled() + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd();
+        List<String> addedR = getAddedRestrictions();
+        Iterator<String> Rit = addedR.iterator();
+        String sg = num + " " + getEnrolled() + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + addedR.size() + "\n" + "            Restrictions:"; 
+        while(Rit.hasNext()) {
+            String Ract = Rit.next();
+            String R = "\n" + "              " + Ract;
+            sg = sg + R;
+        }
+        return sg;
     }
 }
