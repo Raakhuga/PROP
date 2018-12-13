@@ -12,14 +12,14 @@ import java.util.List;
  *
  * @author raakhuga
  */
-public class StateGen extends javax.swing.JFrame {
+public class ClassroomMenu extends javax.swing.JFrame {
     
     PresentationCtrl presentationctrl;
     
     /**
      * Creates new form StateGen
      */
-    public StateGen(PresentationCtrl presentationctrl) {
+    public ClassroomMenu(PresentationCtrl presentationctrl) {
         initComponents();
         this.presentationctrl = presentationctrl;
     }
@@ -126,7 +126,7 @@ public class StateGen extends javax.swing.JFrame {
 
     private void AddClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddClassroomActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromSGtoAC();
+        presentationctrl.SwitchFromCMtoAC();
     }//GEN-LAST:event_AddClassroomActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -139,7 +139,7 @@ public class StateGen extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = ClassroomsList.getSelectedIndex();
         List<Classroom> classrooms = presentationctrl.getClassrooms();
-        presentationctrl.SwitchFromSGtoMC(classrooms.get(index));
+        presentationctrl.SwitchFromCMtoMC(classrooms.get(index));
     }//GEN-LAST:event_ModifyClassroomActionPerformed
 
     private void DeleteClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteClassroomActionPerformed

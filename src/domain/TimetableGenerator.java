@@ -247,6 +247,28 @@ public class TimetableGenerator {
         classrooms.remove(classrooms.get(id));
     }
     
+    public void setTheory(Classroom c, boolean state) {
+        if(state) c.setTheory();
+    }
+    public void setLaboratory(Classroom c, boolean state) {
+        if(state) c.setLaboratory();
+    }
+    public void setProblems(Classroom c, boolean state) {
+        if(state) c.setProblems();
+    }
+    
+    public boolean isTheory(Classroom c) {
+        return c.isTheory();
+    }
+    
+    public boolean isLaboratory(Classroom c) {
+        return c.isLaboratory();
+    }
+    
+    public boolean isProblems(Classroom c) {
+        return c.isProblems();
+    }
+    
     public void generateTimetable() {
         if (classrooms.size() > 0) {
             Classroom aux = classrooms.get(0);

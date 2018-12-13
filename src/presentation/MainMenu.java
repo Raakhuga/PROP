@@ -87,7 +87,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     
     private void StateGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateGenActionPerformed
-        presentationctrl.SwitchFromMMtoSG();
+        presentationctrl.SwitchFromMMtoCM();
     }//GEN-LAST:event_StateGenActionPerformed
 
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed

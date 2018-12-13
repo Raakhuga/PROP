@@ -5,6 +5,8 @@
  */
 package presentation;
 
+import domain.Classroom;
+
 /**
  *
  * @author Raakhuga
@@ -41,6 +43,10 @@ public class AddClassroom extends javax.swing.JFrame {
         hEndLabel = new javax.swing.JLabel();
         hEndField = new javax.swing.JTextField();
         addClassroom = new javax.swing.JButton();
+        typeLabel = new javax.swing.JLabel();
+        theoryRadioButton = new javax.swing.JRadioButton();
+        laboratoryRadioButton = new javax.swing.JRadioButton();
+        problemsRadioButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -87,6 +93,14 @@ public class AddClassroom extends javax.swing.JFrame {
             }
         });
 
+        typeLabel.setText("Tipus:");
+
+        theoryRadioButton.setText("Teoría");
+
+        laboratoryRadioButton.setText("Laboratori");
+
+        problemsRadioButton.setText("Problemes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,12 +111,6 @@ public class AddClassroom extends javax.swing.JFrame {
                     .addComponent(hEndLabel)
                     .addComponent(hIniLabel)
                     .addComponent(dEndLabel)
-                    .addComponent(dIniLabel)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(capacityField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(RefField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(RefLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(dIniField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dEndField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hIniField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -110,7 +118,21 @@ public class AddClassroom extends javax.swing.JFrame {
                             .addComponent(hEndField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addClassroom))
-                        .addComponent(CapacityLabel)))
+                        .addComponent(CapacityLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(capacityField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(RefField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(RefLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(dIniLabel)
+                            .addComponent(dIniField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(typeLabel)
+                            .addComponent(theoryRadioButton)
+                            .addComponent(problemsRadioButton)
+                            .addComponent(laboratoryRadioButton))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,10 +141,10 @@ public class AddClassroom extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(CapacityLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(capacityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(capacityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RefLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RefField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +164,16 @@ public class AddClassroom extends javax.swing.JFrame {
                         .addComponent(hEndLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hEndField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(addClassroom))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(typeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(theoryRadioButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laboratoryRadioButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(problemsRadioButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addClassroom)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -169,8 +200,11 @@ public class AddClassroom extends javax.swing.JFrame {
         int dEnd = Integer.parseInt(dEndField.getText());
         int hIni = Integer.parseInt(hIniField.getText());
         int hEnd = Integer.parseInt(hEndField.getText());
-        presentationctrl.addClassroom(capacity, ref, dIni, dEnd, hIni, hEnd);
-        presentationctrl.SwitchFromACtoSG();
+        Classroom c = presentationctrl.addClassroom(capacity, ref, dIni, dEnd, hIni, hEnd);
+        presentationctrl.setTheory(c, theoryRadioButton.isSelected());
+        presentationctrl.setLaboratory(c, laboratoryRadioButton.isSelected());
+        presentationctrl.setProblems(c, laboratoryRadioButton.isSelected());
+        presentationctrl.SwitchFromACtoCM();
     }//GEN-LAST:event_addClassroomActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -191,5 +225,9 @@ public class AddClassroom extends javax.swing.JFrame {
     private javax.swing.JLabel hEndLabel;
     private javax.swing.JTextField hIniField;
     private javax.swing.JLabel hIniLabel;
+    private javax.swing.JRadioButton laboratoryRadioButton;
+    private javax.swing.JRadioButton problemsRadioButton;
+    private javax.swing.JRadioButton theoryRadioButton;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,13 +32,6 @@
                   <Component id="hEndLabel" min="-2" max="-2" attributes="0"/>
                   <Component id="hIniLabel" min="-2" max="-2" attributes="0"/>
                   <Component id="dEndLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="dIniLabel" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="capacityField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="RefField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="RefLabel" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="dIniField" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
                   <Component id="dEndField" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
                   <Component id="hIniField" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -48,6 +41,24 @@
                           <Component id="addClassroom" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="CapacityLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="capacityField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="RefField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="RefLabel" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="dIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="dIniField" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="theoryRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -60,10 +71,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="CapacityLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="capacityField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+              <Component id="capacityField" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="RefLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="RefField" min="-2" max="-2" attributes="0"/>
@@ -84,7 +95,17 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="hEndField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="addClassroom" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="theoryRadioButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="addClassroom" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -151,6 +172,26 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addClassroomActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="typeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tipus:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="theoryRadioButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Teor&#xed;a"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="laboratoryRadioButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Laboratori"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="problemsRadioButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Problemes"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

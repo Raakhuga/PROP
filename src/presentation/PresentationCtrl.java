@@ -17,7 +17,7 @@ public class PresentationCtrl {
     
     //frames
     private MainMenu mainmenu = null;
-    private StateGen stategen = null;
+    private ClassroomMenu classroommenu = null;
     private AddClassroom addclassroom = null;
     private ModifyClassroom modifyclassroom = null;
     
@@ -33,57 +33,57 @@ public class PresentationCtrl {
         aux.setLocation(dim.width/2-aux.getSize().width/2, dim.height/2-aux.getSize().height/2);
     }
     //sync
-    public void SwitchFromMMtoSG(){
-        if(stategen == null)
-            stategen = new StateGen(this);
+    public void SwitchFromMMtoCM(){
+        if(classroommenu == null)
+            classroommenu = new ClassroomMenu(this);
         mainmenu.setVisible(false);
         mainmenu.setEnabled(false);
-        stategen.setEnabled(true);
-        centerFrame(stategen);
-        stategen.setVisible(true);
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
     }
     
-    public void SwitchFromSGtoMM(){
-        stategen.setVisible(false);
-        stategen.setEnabled(false);
+    public void SwitchFromCMtoMM(){
+        classroommenu.setVisible(false);
+        classroommenu.setEnabled(false);
         mainmenu.setEnabled(true);
         centerFrame(mainmenu);
         mainmenu.setVisible(true);
     }
     
-    public void SwitchFromSGtoAC(){
+    public void SwitchFromCMtoAC(){
         if(addclassroom == null)
             addclassroom = new AddClassroom(this);
-        stategen.setEnabled(false);
+        classroommenu.setEnabled(false);
         addclassroom.setEnabled(true);
         centerFrame(addclassroom);
         addclassroom.setVisible(true);
     }
     
-    public void SwitchFromACtoSG(){
+    public void SwitchFromACtoCM(){
         addclassroom.setVisible(false);
         addclassroom.setEnabled(false);
-        stategen.setEnabled(true);
-        centerFrame(stategen);
-        stategen.setVisible(true);
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
     }
     
-    public void SwitchFromSGtoMC(Classroom classroom){
+    public void SwitchFromCMtoMC(Classroom classroom){
         if(modifyclassroom == null)
             modifyclassroom = new ModifyClassroom(this);
         modifyclassroom.setClassroom(classroom);
-        stategen.setEnabled(false);
+        classroommenu.setEnabled(false);
         modifyclassroom.setEnabled(true);
         centerFrame(modifyclassroom);
         modifyclassroom.setVisible(true);
     }
     
-    public void SwitchFromMCtoSG(){
+    public void SwitchFromMCtoCM(){
         modifyclassroom.setVisible(false);
         modifyclassroom.setEnabled(false);
-        stategen.setEnabled(true);
-        centerFrame(stategen);
-        stategen.setVisible(true);
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
     }
     
     //domain methods
@@ -155,5 +155,29 @@ public class PresentationCtrl {
     
     public void sethEnd(Classroom c, int hEnd) {
         DomainCtrl.sethEnd(c, hEnd);
+    }
+    
+    public void setTheory(Classroom c, boolean state) {
+        DomainCtrl.setTheory(c, state);
+    }
+    
+    public void setLaboratory(Classroom c, boolean state) {
+        DomainCtrl.setLaboratory(c, state);
+    }
+    
+    public void setProblems(Classroom c, boolean state) {
+        DomainCtrl.setProblems(c, state);
+    }
+    
+    public boolean isTheory(Classroom c) {
+        return DomainCtrl.isTheory(c);
+    }
+    
+    public boolean isLaboratory(Classroom c) {
+        return DomainCtrl.isLaboratory(c);
+    }
+    
+    public boolean isProblems(Classroom c) {
+        return DomainCtrl.isProblems(c);
     }
 }
