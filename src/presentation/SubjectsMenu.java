@@ -5,6 +5,11 @@
  */
 package presentation;
 
+import domain.Level;
+import domain.Subject;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author adria
@@ -12,12 +17,14 @@ package presentation;
 public class SubjectsMenu extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
+    Level lvl;
     /**
      * Creates new form SubjectsMenu
      */
-    public SubjectsMenu(PresentationCtrl presentationctrl) {
+    public SubjectsMenu(PresentationCtrl presentationctrl, Level lvl) {
         initComponents();
         this.presentationctrl = presentationctrl;
+        this.lvl = lvl;
     }
 
     /**
@@ -33,9 +40,18 @@ public class SubjectsMenu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         addSubject = new javax.swing.JButton();
         modifySubject = new javax.swing.JButton();
-        eraseSubject = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollBar1 = new javax.swing.JScrollBar();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        SubjectsList = new javax.swing.JList<>();
+        erase = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         exit.setText("Tornar");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -44,7 +60,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú d'Assignatures"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Assignatures"));
 
         addSubject.setText("Afegir");
         addSubject.addActionListener(new java.awt.event.ActionListener() {
@@ -60,10 +76,19 @@ public class SubjectsMenu extends javax.swing.JFrame {
             }
         });
 
-        eraseSubject.setText("Esborrar");
-        eraseSubject.addActionListener(new java.awt.event.ActionListener() {
+        jScrollPane1.setViewportView(jScrollBar1);
+
+        SubjectsList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(SubjectsList);
+
+        erase.setText("Esborrar");
+        erase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eraseSubjectActionPerformed(evt);
+                eraseActionPerformed(evt);
             }
         });
 
@@ -72,37 +97,41 @@ public class SubjectsMenu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(eraseSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modifySubject))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(erase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(modifySubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addSubject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(modifySubject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(eraseSubject)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(erase))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,15 +140,17 @@ public class SubjectsMenu extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(exit)
-                .addGap(14, 14, 14))
+                .addContainerGap())
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("Assignatures");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSubjectActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromSMtoAS();
+        presentationctrl.SwitchFromSMtoAS(lvl);
     }//GEN-LAST:event_addSubjectActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -132,17 +163,30 @@ public class SubjectsMenu extends javax.swing.JFrame {
         presentationctrl.SwitchFromSMtoMS();
     }//GEN-LAST:event_modifySubjectActionPerformed
 
-    private void eraseSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eraseSubjectActionPerformed
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        presentationctrl.SwitchFromSMtoES();
-    }//GEN-LAST:event_eraseSubjectActionPerformed
+        SubjectsList.setModel(getSubjectsName());
+        jScrollPane1.setViewportView(SubjectsList);
+    }//GEN-LAST:event_formWindowActivated
+
+    private void eraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eraseActionPerformed
+        // TODO add your handling code here:
+        int index = SubjectsList.getSelectedIndex();
+        presentationctrl.removeSubject(index);
+        SubjectsList.setModel(presentationctrl.getSubjectsName());
+        jScrollPane1.setViewportView(SubjectsList);
+    }//GEN-LAST:event_eraseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> SubjectsList;
     private javax.swing.JButton addSubject;
-    private javax.swing.JButton eraseSubject;
+    private javax.swing.JButton erase;
     private javax.swing.JButton exit;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton modifySubject;
     // End of variables declaration//GEN-END:variables
 }

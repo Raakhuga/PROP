@@ -137,6 +137,10 @@ public class TimetableGenerator {
         return program;
     }
     
+    public void setNameStudyProgram(StudyProgram sp, String name){
+        sp.setName(name);
+    }
+    
     public Level addLevel(StudyProgram SP) {
         return SP.addLevel();
     }

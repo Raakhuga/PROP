@@ -38,6 +38,7 @@ public class StudyProgram {
 
     public void setLevels(List<Level> levels) {
         this.levels = levels;
+        this.nLevels = levels.size();
     }
 
     public void setnLevels(int nLevels) {
@@ -45,10 +46,16 @@ public class StudyProgram {
     }
 
     public Level addLevel() {
-        nLevels++;
+        if (levels.size() == nLevels) nLevels++;
         Level level = new Level(nLevels);
         levels.add(level);
         return level;
+    }
+    
+    public void removeLevel(Level lvl){
+        Iterator<Level> it = levels.iterator();
+        while (it.hasNext() && lvl != it.next());
+        if (it.hasNext()) it.remove();
     }
     
     public String saveLevels() {
