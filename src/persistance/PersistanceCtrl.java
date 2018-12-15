@@ -34,7 +34,7 @@ public class PersistanceCtrl {
         
         //System.out.print(state);
         try {
-            File file = new  File("./" + path);
+            File file = new  File(path);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -183,6 +183,7 @@ public class PersistanceCtrl {
     public void load(TimetableGenerator TG, String path) {
         File file = new File(path);
         Scanner input;
+        System.out.print("asdfa");
         try {
             input = new Scanner(file);
             String aux;

@@ -10,9 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import persistance.PersistanceCtrl;
 
 public class PresentationCtrl {
     private TimetableGenerator DomainCtrl;
+    private PersistanceCtrl persistancectrl;
     Dimension dim;
     
     //frames
@@ -20,9 +22,12 @@ public class PresentationCtrl {
     private ClassroomMenu classroommenu = null;
     private AddClassroom addclassroom = null;
     private ModifyClassroom modifyclassroom = null;
+    private SaveLoadMenu saveloadmenu = null;
+    
     
     public PresentationCtrl(){
         DomainCtrl = new TimetableGenerator();
+        TimetableGenerator aux = new TimetableGenerator();
         dim = Toolkit.getDefaultToolkit().getScreenSize();
         mainmenu = new MainMenu(this);
         centerFrame(mainmenu);
@@ -41,6 +46,24 @@ public class PresentationCtrl {
         classroommenu.setEnabled(true);
         centerFrame(classroommenu);
         classroommenu.setVisible(true);
+    }
+    
+    public void SwitchFromMMtoSLM(){
+        if(saveloadmenu == null)
+            saveloadmenu = new SaveLoadMenu(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        saveloadmenu.setEnabled(true);
+        centerFrame(saveloadmenu);
+        saveloadmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSLMtoMM(){
+        saveloadmenu.setVisible(false);
+        saveloadmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
     }
     
     public void SwitchFromCMtoMM(){
@@ -86,18 +109,7 @@ public class PresentationCtrl {
         classroommenu.setVisible(true);
     }
     
-    //domain methods
-    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
-        DomainCtrl.setnMaxStudentsGroup(nMaxStudentsGroup);
-    }
-    
-    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
-        DomainCtrl.setnMaxStudentsSubgroup(nMaxStudentsSubgroup);
-    }
-    
-    public List<Classroom> getClassrooms() {
-        return DomainCtrl.getClassrooms();
-    }
+    //presentation methods
     
     public DefaultListModel<String> getClassroomsRefs() {
         List<Classroom> classrooms = DomainCtrl.getClassrooms();
@@ -110,10 +122,6 @@ public class PresentationCtrl {
         return refs;
     }
     
-    public List<StudyProgram> getPrograms() {
-        return DomainCtrl.getPrograms();
-    }
-    
     public DefaultListModel<String> getProgramsNames() {
         List<StudyProgram> programs = DomainCtrl.getPrograms();
         Iterator<StudyProgram> Pit = programs.iterator();
@@ -123,6 +131,23 @@ public class PresentationCtrl {
         }
         if(names.size() == 0) names.addElement("No hi ha cap pla d'estudis al sistema");
         return names;
+    }
+    
+    //domain methods
+    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
+        DomainCtrl.setnMaxStudentsGroup(nMaxStudentsGroup);
+    }
+    
+    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
+        DomainCtrl.setnMaxStudentsSubgroup(nMaxStudentsSubgroup);
+    }
+    
+    public List<Classroom> getClassrooms() {
+        return DomainCtrl.getClassrooms();
+    }
+
+    public List<StudyProgram> getPrograms() {
+        return DomainCtrl.getPrograms();
     }
     
     public Classroom addClassroom(int capacity, String ref, int dIni, int dEnd, int hIni, int hEnd) {
@@ -179,5 +204,14 @@ public class PresentationCtrl {
     
     public boolean isProblems(Classroom c) {
         return DomainCtrl.isProblems(c);
+    }
+    
+    public void load(String path) {
+        //DomainCtrl.loadState(path);
+        DomainCtrl.loadState(path);
+    }
+    
+    public void save(String path) {
+        DomainCtrl.saveState(path);
     }
 }

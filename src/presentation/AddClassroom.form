@@ -29,39 +29,49 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="hEndLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="hIniLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="dEndLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="dEndField" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                  <Component id="hIniField" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="hEndField" min="-2" pref="67" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="addClassroom" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="CapacityLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="hEndLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="hEndSlider" pref="0" max="32767" attributes="0"/>
+                          <Component id="hIniSlider" alignment="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="capacityField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="RefField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="RefLabel" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="dIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="dIniField" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="hEndHLabel" pref="34" max="32767" attributes="0"/>
+                          <Component id="hIniHLabel" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="addClassroom" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="theoryRadioButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="CapacityLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="hIniLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="dEndLabel" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="RefLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dIniBox" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="capacityField" alignment="0" pref="100" max="32767" attributes="0"/>
+                                      <Component id="RefField" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="theoryRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="dEndBox" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,7 +83,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="capacityField" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="RefLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -81,21 +91,16 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dIniLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dIniField" min="-2" max="-2" attributes="0"/>
+                      <Component id="dIniBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dEndLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dEndField" min="-2" max="-2" attributes="0"/>
+                      <Component id="dEndBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="hIniLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="hIniField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="hEndLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="hEndField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="theoryRadioButton" min="-2" max="-2" attributes="0"/>
@@ -103,9 +108,30 @@
                       <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addClassroom" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="hIniHLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="hIniSlider" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="hEndLabel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                              <Component id="hEndHLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="hEndSlider" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Component id="addClassroom" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -133,37 +159,20 @@
         <Property name="text" type="java.lang.String" value="Primer d&#xed;a &#xfa;til de l&apos;aula:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="dIniField">
-    </Component>
     <Component class="javax.swing.JLabel" name="dEndLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Darrer d&#xed;a &#xfa;til de l&apos;aula:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="dEndField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dEndFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="hIniLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Primera hora &#xfa;til de l&apos;aula:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="hIniField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hIniFieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="hEndLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Darrera hora &#xfa;til de l&apos;aula:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="hEndField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hEndFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addClassroom">
       <Properties>
@@ -191,6 +200,73 @@
     <Component class="javax.swing.JRadioButton" name="problemsRadioButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Problemes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="dIniBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="7">
+            <StringItem index="0" value="Dilluns"/>
+            <StringItem index="1" value="Dimarts"/>
+            <StringItem index="2" value="Dimecres"/>
+            <StringItem index="3" value="Dijous"/>
+            <StringItem index="4" value="Divendres"/>
+            <StringItem index="5" value="Dissabte"/>
+            <StringItem index="6" value="Diumenje"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dIniBoxActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="dEndBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="7">
+            <StringItem index="0" value="Dilluns"/>
+            <StringItem index="1" value="Dimarts"/>
+            <StringItem index="2" value="Dimecres"/>
+            <StringItem index="3" value="Dijous"/>
+            <StringItem index="4" value="Divendres"/>
+            <StringItem index="5" value="Dissabte"/>
+            <StringItem index="6" value="Diumenje"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSlider" name="hIniSlider">
+      <Properties>
+        <Property name="maximum" type="int" value="23"/>
+        <Property name="value" type="int" value="8"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="hIniSliderStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSlider" name="hEndSlider">
+      <Properties>
+        <Property name="maximum" type="int" value="23"/>
+        <Property name="value" type="int" value="20"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="hEndSliderStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hIniHLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="8"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hEndHLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="20"/>
       </Properties>
     </Component>
   </SubComponents>
