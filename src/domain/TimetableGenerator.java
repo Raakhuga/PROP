@@ -4,6 +4,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import persistance.PersistanceCtrl;
 
 
 public class TimetableGenerator {            
@@ -14,6 +15,7 @@ public class TimetableGenerator {
     private int nMaxStudentsGroup;
     private int nMaxStudentsSubgroup;
     private CTRLRestrictions ctrlRestrictions;
+    private PersistanceCtrl persistancectrl;
         
     public TimetableGenerator(int nMaxStudentsGroup, int nMaxStudentsSubgroup) {
         this.classrooms = new ArrayList<>();
@@ -23,6 +25,7 @@ public class TimetableGenerator {
         this.ctrlRestrictions = new CTRLRestrictions();
         this.nMaxStudentsGroup = nMaxStudentsGroup;
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
+        this.persistancectrl = new PersistanceCtrl();
     }
     
     public TimetableGenerator() {
@@ -33,6 +36,7 @@ public class TimetableGenerator {
         this.ctrlRestrictions = new CTRLRestrictions();
         this.nMaxStudentsGroup = -1;
         this.nMaxStudentsSubgroup = -1;
+        this.persistancectrl = new PersistanceCtrl();
     }
     
     public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
@@ -328,5 +332,13 @@ public class TimetableGenerator {
     
     public String saveSizes() {
         return "Max_num_of_students_in_a_group: " + nMaxStudentsGroup + "\n" + "Max_num_of_students_in_a_subgroup: " + nMaxStudentsSubgroup + "\n";
+    }
+    
+    public void loadState(String path) {
+        persistancectrl.load(this, path);
+    }
+    
+    public void saveState(String path) {
+        persistancectrl.save(this, path);
     }
 }

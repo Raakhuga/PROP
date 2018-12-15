@@ -45,6 +45,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         Persistance.setText("Guardar / Carregar");
+        Persistance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PersistanceActionPerformed(evt);
+            }
+        });
 
         view.setText("Veure Horari");
         view.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +98,11 @@ public class MainMenu extends javax.swing.JFrame {
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_viewActionPerformed
+
+    private void PersistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersistanceActionPerformed
+        // TODO add your handling code here:
+        presentationctrl.SwitchFromMMtoSLM();
+    }//GEN-LAST:event_PersistanceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
