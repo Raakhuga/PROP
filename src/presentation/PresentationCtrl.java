@@ -23,6 +23,8 @@ public class PresentationCtrl {
     private AddClassroom addclassroom = null;
     private ModifyClassroom modifyclassroom = null;
     private SaveLoadMenu saveloadmenu = null;
+    private SelectClassroom selectclassroom = null;
+    private ClassroomTimetable classroomtimetable = null;
     
     
     public PresentationCtrl(){
@@ -74,6 +76,24 @@ public class PresentationCtrl {
         mainmenu.setVisible(true);
     }
     
+    public void SwitchFromMMtoSC(){
+        if(selectclassroom == null)
+            selectclassroom = new SelectClassroom(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        selectclassroom.setEnabled(true);
+        centerFrame(selectclassroom);
+        selectclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromSCtoMM(){
+        selectclassroom.setVisible(false);
+        selectclassroom.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
     public void SwitchFromCMtoAC(){
         if(addclassroom == null)
             addclassroom = new AddClassroom(this);
@@ -109,6 +129,24 @@ public class PresentationCtrl {
         classroommenu.setVisible(true);
     }
     
+    public void SwitchFromSCtoCTT(Classroom classroom){
+        classroomtimetable = new ClassroomTimetable(this);
+        classroomtimetable.setClassroom(classroom);
+        selectclassroom.setEnabled(false);
+        selectclassroom.setVisible(false);
+        classroomtimetable.setEnabled(true);
+        centerFrame(classroomtimetable);
+        classroomtimetable.setVisible(true);
+    }
+    
+    public void SwitchFromCTTtoSC(){
+        classroomtimetable.setEnabled(false);
+        classroomtimetable.setVisible(false);
+        selectclassroom.setEnabled(true);
+        centerFrame(selectclassroom);
+        selectclassroom.setVisible(true);
+    }
+    
     //presentation methods
     
     public DefaultListModel<String> getClassroomsRefs() {
@@ -134,6 +172,11 @@ public class PresentationCtrl {
     }
     
     //domain methods
+    public void generate() {
+        DomainCtrl.generateAllGS();
+        DomainCtrl.generateTimetable();
+    }
+    
     public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
         DomainCtrl.setnMaxStudentsGroup(nMaxStudentsGroup);
     }

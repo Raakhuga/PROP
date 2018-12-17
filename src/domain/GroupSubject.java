@@ -118,6 +118,12 @@ public class GroupSubject {
         return type[PROBLEMS];
     }
     
+    public String getType() {
+        if(type[THEORY]) return "Teoria";
+        if(type[LABORATORY]) return "Laboratori";
+        return "Problemes";
+    }
+    
     public int getNumGroup() {
         return group.getNum();
     }
