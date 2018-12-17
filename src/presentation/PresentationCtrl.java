@@ -11,7 +11,7 @@ import javax.swing.DefaultListModel;
 public class PresentationCtrl {
     private TimetableGenerator DomainCtrl;
     
-    //frames
+    /** FRAMES **/
     private MainMenu mainmenu = null;
     private StateGen stategen = null;
     private StudyProgramMenu spmenu = null;
@@ -35,7 +35,8 @@ public class PresentationCtrl {
         spmenu.setVisible(true);
     }
     
-    //sync
+    /** SYNCRONIZATION **/
+    // Main menu to State generator
     public void SwitchFromMMtoSG(){
         if(stategen == null)
             stategen = new StateGen(this);
@@ -45,6 +46,7 @@ public class PresentationCtrl {
         stategen.setVisible(true);
     }
     
+    // State generator to Main menu
     public void SwitchFromSGtoMM(){
         mainmenu.setVisible(false);
         mainmenu.setEnabled(false);
@@ -63,6 +65,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(true);
     }
     
+    // Level menu to StudyProgram menu
     public void SwitchFromLMtoSPM(){
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
@@ -70,6 +73,7 @@ public class PresentationCtrl {
         spmenu.setVisible(true);
     }
     
+    // StudyProgram menu to Add StudyProgram
     public void SwitchFromSPMtoASP(){
         if(addsp == null)
             addsp = new AddStudyProgram(this);
@@ -79,6 +83,7 @@ public class PresentationCtrl {
         addsp.setVisible(true);
     }
     
+    // Add StudyProgram to StudyProgram menu
     public void SwitchFromASPtoSPM(){
         addsp.setVisible(false);
         addsp.setEnabled(false);
@@ -86,6 +91,7 @@ public class PresentationCtrl {
         spmenu.setVisible(true);
     }
     
+    // StudyProgram menu to Modify StudyProgram
     public void SwitchFromSPMtoMSP(StudyProgram sp){
         if(modsp == null)
             modsp = new ModifyStudyProgram(this);
@@ -96,6 +102,7 @@ public class PresentationCtrl {
         modsp.setVisible(true);
     }
     
+    // Modify StudyProgram to StudyProgram menu
     public void SwitchFromMSPtoSPM(){
         modsp.setVisible(false);
         modsp.setEnabled(false);
@@ -103,6 +110,7 @@ public class PresentationCtrl {
         spmenu.setVisible(true);
     }
     
+    // StudyProgram menu to Delete StudyProgram
     public void SwitchFromSPMtoDSP(StudyProgram sp){
         if(delsp == null)
             delsp = new DeleteStudyProgram(this);
@@ -113,6 +121,7 @@ public class PresentationCtrl {
         delsp.setVisible(true);
     }
     
+    // Delete StudyProgram to StudyProgram menu
     public void SwitchFromDSPtoSPM(){
         delsp.setVisible(false);
         delsp.setEnabled(false);
@@ -120,7 +129,7 @@ public class PresentationCtrl {
         spmenu.setVisible(true);
     }
     
-    // Level menu to Subjects menu
+    // Level menu to Subject menu
     public void SwitchFromLMtoSM(Level lvl){
         if(subjmenu == null)
             subjmenu = new SubjectsMenu(this);
@@ -131,6 +140,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(true);
     }
     
+    // Subject menu to Level menu
     public void SwitchFromSMtoLM(){
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
@@ -138,7 +148,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(true);
     }
     
-    // Level menu to add level
+    // Level menu to Add Level
     public void SwitchFromLMtoAL(StudyProgram sp){
         if(addlvl == null)
             addlvl = new AddLevel(this);
@@ -149,6 +159,7 @@ public class PresentationCtrl {
         addlvl.setVisible(true);
     }
     
+    // Add Level to Level menu
     public void SwitchFromALtoLM(){
         addlvl.setVisible(false);
         addlvl.setEnabled(false);
@@ -156,6 +167,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(true);
     }
     
+    // Level menu to Modify Level
     public void SwitchFromLMtoML(Level lvl){
         if(modlvl == null)
             modlvl = new ModifyLevel(this);
@@ -166,6 +178,7 @@ public class PresentationCtrl {
         modlvl.setVisible(true);
     }
     
+    // Modify Level to Level menu
     public void SwitchFromMLtoLM(){
         modlvl.setVisible(false);
         modlvl.setEnabled(false);
@@ -173,6 +186,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(true);
     }
     
+    // Level menu to Delete Level
     public void SwitchFromLMtoDL(StudyProgram sp, Level lvl){
         if(dellvl == null)
             dellvl = new DeleteLevel(this);
@@ -184,6 +198,7 @@ public class PresentationCtrl {
         dellvl.setVisible(true);
     }
     
+    // Delete Level to Level menu
     public void SwitchFromDLtoLM(){
         dellvl.setVisible(false);
         dellvl.setEnabled(false);
@@ -191,7 +206,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(true);
     }
     
-    // Subjects Menu to Add Subject
+    // Subject menu to Add Subject
     public void SwitchFromSMtoAS(Level lvl){
         if(addsubj == null)
             addsubj = new AddSubject(this);
@@ -202,6 +217,7 @@ public class PresentationCtrl {
         addsubj.setVisible(true);
     }
     
+    // Add Subject to Subject menu
     public void SwitchFromAStoSM(){
         addsubj.setVisible(false);
         addsubj.setEnabled(false);
@@ -209,7 +225,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(true);
     }
     
-    // Subjects Menu to Modify Subject
+    // Subject menu to Modify Subject
     public void SwitchFromSMtoMS(Subject s){
         if(modsubj == null)
             modsubj = new ModifySubject(this);
@@ -220,6 +236,7 @@ public class PresentationCtrl {
         modsubj.setVisible(true);
     }
     
+    // Modify Subject to Subject menu
     public void SwitchFromMStoSM(){
         modsubj.setVisible(false);
         modsubj.setEnabled(false);
@@ -227,6 +244,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(true);
     }
     
+    // Subject menu to Delete Subject
     public void SwitchFromSMtoDS(Level lvl, Subject s){
         if(delsubj == null)
             delsubj = new DeleteSubject(this);
@@ -238,6 +256,7 @@ public class PresentationCtrl {
         delsubj.setVisible(true);
     }
     
+    // Delete Subject to Subject menu
     public void SwitchFromDStoSM(){
         delsubj.setVisible(false);
         delsubj.setEnabled(false);
@@ -245,18 +264,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(true);
     }
     
-    public List<StudyProgram> getPrograms() {
-        return DomainCtrl.getPrograms();
-    }
-    
-    public List<Level> getLevels(StudyProgram sp){
-        return DomainCtrl.getLevels(sp);
-    }
-    
-    public List<Subject> getSubjects(Level lvl){
-        return DomainCtrl.getSubjects(lvl);
-    }
-    
+    /** PRESENTATION METHODS **/
     public DefaultListModel<String> getStudyProgramsName(){
         List<StudyProgram> studyprograms = DomainCtrl.getPrograms();
         Iterator<StudyProgram> SPit = studyprograms.iterator();
@@ -290,6 +298,27 @@ public class PresentationCtrl {
         return names;
     }
     
+    /** DOMAIN METHODS **/
+    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
+        DomainCtrl.setnMaxStudentsGroup(nMaxStudentsGroup);
+    }
+    
+    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
+        DomainCtrl.setnMaxStudentsSubgroup(nMaxStudentsSubgroup);
+    }
+    
+    public List<StudyProgram> getPrograms() {
+        return DomainCtrl.getPrograms();
+    }
+    
+    public List<Level> getLevels(StudyProgram sp){
+        return DomainCtrl.getLevels(sp);
+    }
+    
+    public List<Subject> getSubjects(Level lvl){
+        return DomainCtrl.getSubjects(lvl);
+    }
+    
     public StudyProgram addStudyProgram(String name) {
         return DomainCtrl.addStudyProgram(name);
     }
@@ -311,28 +340,34 @@ public class PresentationCtrl {
     }
     
     public void deleteLevel(StudyProgram sp, Level lvl){
-        sp.removeLevel(lvl);
+        DomainCtrl.deleteLevel(sp, lvl);
     }
     
     public void deleteSubject(Level lvl, Subject subj){
-        lvl.removeSubject(subj);
+        DomainCtrl.deleteSubject(lvl, subj);
     }
     
     public void setNameStudyProgram(StudyProgram sp, String name){
         DomainCtrl.setNameStudyProgram(sp, name);
     }
 
-    
-    /*private void removeSubject(int id) {
-        DomainCtrl.removeSubject(id);
-    }*/
-    
-    //domain methods
-    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
-        DomainCtrl.setnMaxStudentsGroup(nMaxStudentsGroup);
+    public void setIdenLevel(Level lvl, int iden){
+        DomainCtrl.setIdenLevel(lvl, iden);
     }
     
-    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
-        DomainCtrl.setnMaxStudentsSubgroup(nMaxStudentsSubgroup);
+    public void setNameSubject(Subject s, String name){
+        DomainCtrl.setNameSubject(s, name);
+    }
+    
+    public void setHoursTheory(Subject s, int hours){
+        DomainCtrl.setHoursTheory(s, hours);
+    }
+    
+    public void setHoursLab(Subject s, int hours){
+        DomainCtrl.setHoursLab(s, hours);
+    }
+    
+    public void setHoursProb(Subject s, int hours){
+        DomainCtrl.setHoursProb(s, hours);
     }
 }

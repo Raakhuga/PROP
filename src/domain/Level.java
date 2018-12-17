@@ -8,7 +8,7 @@ import java.util.List;
 public class Level {
     
     /** Atributtes **/
-    private final int iden;
+    private int iden;
     private List<Subject> subjects;
     
     /** Constructor **/
@@ -19,6 +19,10 @@ public class Level {
 
     public int getIden() {
         return iden;
+    }
+
+    public void setIden(int iden) {
+        this.iden = iden;
     }
 
     public List<Subject> getSubjects() {

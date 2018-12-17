@@ -59,9 +59,9 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Modificar pla d'estudis"));
 
-        jLabel1.setText("Nom antic del Pla d'estudis:");
+        jLabel1.setText("Nom antic:");
 
-        jLabel2.setText("Nom nou del Pla d'estudis:");
+        jLabel2.setText("Nom nou:");
 
         oldName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
