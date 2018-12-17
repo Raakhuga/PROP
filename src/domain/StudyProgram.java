@@ -46,7 +46,7 @@ public class StudyProgram {
 
     public Level addLevel() {
         nLevels++;
-        Level level = new Level(nLevels);
+        Level level = new Level(nLevels, name);
         levels.add(level);
         return level;
     }

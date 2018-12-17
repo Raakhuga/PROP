@@ -14,12 +14,14 @@ public class Subject {
     private final String name;
     private int nSessions[];
     private final int level;
+    private String SP;
     private List<Group> groups;
     
-    public Subject(String name, int level) {
+    public Subject(String name, int level, String SP) {
         this.name = name;
         this.nSessions = new int[3];
         this.level = level;
+        this.SP = SP;
         this.groups = new ArrayList<>();
     }
 
@@ -33,6 +35,10 @@ public class Subject {
 
     public int getLevel() {
         return level;
+    }
+    
+    public String getSP(){
+        return SP;
     }
 
     public List<Group> getGroups() {

@@ -23,6 +23,10 @@ public class subGroup extends Group {
         return num;
     }
     
+    public int getSuperNum() {
+        return super.getNum();
+    }
+    
     //posible error
     public boolean isEmpty(int day, int hour) {
         if(super.isEmpty(day, hour)) return subtimetable.isEmpty(day, hour);

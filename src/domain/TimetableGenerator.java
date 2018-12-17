@@ -22,7 +22,7 @@ public class TimetableGenerator {
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
         this.addedRestrictions = new ArrayList<>();
-        this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions(this);
         this.nMaxStudentsGroup = nMaxStudentsGroup;
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
         this.persistancectrl = new PersistanceCtrl();
@@ -33,7 +33,7 @@ public class TimetableGenerator {
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
         this.addedRestrictions = new ArrayList<>();
-        this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions(this);
         this.nMaxStudentsGroup = -1;
         this.nMaxStudentsSubgroup = -1;
         this.persistancectrl = new PersistanceCtrl();
