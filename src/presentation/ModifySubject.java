@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import domain.Subject;
 /**
  *
  * @author adria
@@ -12,12 +13,17 @@ package presentation;
 public class ModifySubject extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
+    Subject s;
     /**
      * Creates new form ModifySubject
      */
     public ModifySubject(PresentationCtrl presentationctrl) {
         initComponents();
         this.presentationctrl = presentationctrl;
+    }
+    
+    public void setSubject(Subject s){
+        this.s = s;
     }
 
     /**

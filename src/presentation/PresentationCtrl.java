@@ -210,9 +210,10 @@ public class PresentationCtrl {
     }
     
     // Subjects Menu to Modify Subject
-    public void SwitchFromSMtoMS(){
+    public void SwitchFromSMtoMS(Subject s){
         if(modsubj == null)
             modsubj = new ModifySubject(this);
+        modsubj.setSubject(s);
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         modsubj.setEnabled(true);
@@ -250,6 +251,10 @@ public class PresentationCtrl {
     
     public List<Level> getLevels(StudyProgram sp){
         return DomainCtrl.getLevels(sp);
+    }
+    
+    public List<Subject> getSubjects(Level lvl){
+        return DomainCtrl.getSubjects(lvl);
     }
     
     public DefaultListModel<String> getStudyProgramsName(){
