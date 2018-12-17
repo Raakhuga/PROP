@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/domain/CTRLRestrictions.java</file>
+            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/domain/StudyProgram.java</file>
             <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/SubjectsMenu.java</file>
-            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/ModifySubject.java</file>
             <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/Main.java</file>
-            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/domaincontrollers/DomainCtrl.java</file>
+            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/ModifyStudyProgram.java</file>
             <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/PresentationCtrl.java</file>
-            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/EraseSubject.java</file>
-            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/MainMenu.java</file>
-            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/AddSubject.java</file>
+            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/presentation/StudyProgramMenu.java</file>
             <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/domain/TimetableGenerator.java</file>
-            <file>file:/C:/Users/adria/Desktop/Proyectos_Netbeans/PROP%202018-2019/src/domain/Subject.java</file>
         </group>
     </open-files>
 </project-private>

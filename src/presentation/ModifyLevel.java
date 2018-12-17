@@ -5,20 +5,25 @@
  */
 package presentation;
 
-import domain.StudyProgram;
+import domain.Level;
 /**
  *
  * @author adria
  */
-public class AddStudyProgram extends javax.swing.JFrame {
+public class ModifyLevel extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
+    Level act;
     /**
-     * Creates new form AddStudyProgram
+     * Creates new form ModifyLevel
      */
-    public AddStudyProgram(PresentationCtrl presentationctrl) {
+    public ModifyLevel(PresentationCtrl presentationctrl) {
         initComponents();
         this.presentationctrl = presentationctrl;
+    }
+    
+    public void setLevel(Level lvl){
+        this.act = lvl;
     }
 
     /**
@@ -31,49 +36,30 @@ public class AddStudyProgram extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        add = new javax.swing.JButton();
+        modify = new javax.swing.JButton();
         exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Afegir pla d'estudis"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Modificar nivell"));
 
-        jLabel1.setText("Nom del pla d'estudis:");
-
-        add.setText("Afegir");
-        add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
-            }
-        });
+        modify.setText("Modificar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(add)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGap(130, 130, 130)
+                .addComponent(modify)
+                .addGap(130, 130, 130))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(add)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(164, Short.MAX_VALUE)
+                .addComponent(modify)
+                .addGap(8, 8, 8))
         );
 
         exit.setText("Tornar");
@@ -111,22 +97,12 @@ public class AddStudyProgram extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromASPtoSPM();
+        presentationctrl.SwitchFromMLtoLM();
     }//GEN-LAST:event_exitActionPerformed
 
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        // TODO add your handling code here:
-        String name = jTextField1.getText();
-        StudyProgram sp = presentationctrl.addStudyProgram(name);
-        presentationctrl.SwitchFromASPtoSPM();
-    }//GEN-LAST:event_addActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton add;
     private javax.swing.JButton exit;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton modify;
     // End of variables declaration//GEN-END:variables
 }

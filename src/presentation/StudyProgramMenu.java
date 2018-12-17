@@ -56,7 +56,7 @@ public class StudyProgramMenu extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú plans d'estudi"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Plans d'estudi"));
 
         StudyProgramsList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -80,6 +80,11 @@ public class StudyProgramMenu extends javax.swing.JFrame {
         });
 
         delete.setText("Esborrar");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         levels.setText("Gestionar nivells");
         levels.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +166,9 @@ public class StudyProgramMenu extends javax.swing.JFrame {
 
     private void levelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levelsActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromSPMtoLM();
+        int index = StudyProgramsList.getSelectedIndex();
+        List<StudyProgram> studyprograms = presentationctrl.getPrograms();
+        presentationctrl.SwitchFromSPMtoLM(studyprograms.get(index));
     }//GEN-LAST:event_levelsActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -180,6 +187,13 @@ public class StudyProgramMenu extends javax.swing.JFrame {
         List<StudyProgram> studyprograms = presentationctrl.getPrograms();
         presentationctrl.SwitchFromSPMtoMSP(studyprograms.get(index));
     }//GEN-LAST:event_modifyActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+        int index = StudyProgramsList.getSelectedIndex();
+        List<StudyProgram> studyprograms = presentationctrl.getPrograms();
+        presentationctrl.SwitchFromSPMtoDSP(studyprograms.get(index));
+    }//GEN-LAST:event_deleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

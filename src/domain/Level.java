@@ -35,6 +35,10 @@ public class Level {
         return subject;
     }
     
+    public void removeSubject(Subject s){
+        subjects.remove(s);
+    }
+    
     public void fillTheoryH(Subject subject, int hours) {
         subject.fillTheoryH(hours);
     }

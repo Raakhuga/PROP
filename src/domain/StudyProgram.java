@@ -45,17 +45,14 @@ public class StudyProgram {
         this.nLevels = nLevels;
     }
 
-    public Level addLevel() {
+    public Level addLevel(Level lvl) {
         if (levels.size() == nLevels) nLevels++;
-        Level level = new Level(nLevels);
-        levels.add(level);
-        return level;
+        levels.add(lvl);
+        return lvl;
     }
     
     public void removeLevel(Level lvl){
-        Iterator<Level> it = levels.iterator();
-        while (it.hasNext() && lvl != it.next());
-        if (it.hasNext()) it.remove();
+        levels.remove(lvl);
     }
     
     public String saveLevels() {

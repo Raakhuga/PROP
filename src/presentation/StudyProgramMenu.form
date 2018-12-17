@@ -82,7 +82,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Men&#xfa; plans d&apos;estudi"/>
+            <TitledBorder title="Plans d&apos;estudi"/>
           </Border>
         </Property>
       </Properties>
@@ -170,6 +170,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Esborrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="levels">
           <Properties>

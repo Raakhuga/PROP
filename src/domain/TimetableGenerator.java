@@ -54,6 +54,14 @@ public class TimetableGenerator {
     public List<GroupSubject> getProblem() {
         return problem;
     }
+    
+    public List<Level> getLevels(StudyProgram sp){        
+        return sp.getLevels();
+    }
+    
+    public List<Subject> getSubjects(Level lvl){
+        return lvl.getSubjects();
+    }
 
     public int getnMaxStudentsGroup() {
         return nMaxStudentsGroup;
@@ -137,12 +145,17 @@ public class TimetableGenerator {
         return program;
     }
     
+    public void deleteStudyProgram(StudyProgram sp){
+        programs.remove(sp);
+    }
+            
     public void setNameStudyProgram(StudyProgram sp, String name){
         sp.setName(name);
     }
     
-    public Level addLevel(StudyProgram SP) {
-        return SP.addLevel();
+    public Level addLevel(int iden, StudyProgram SP) {
+        Level lvl = new Level(iden);
+        return SP.addLevel(lvl);
     }
     
     public Subject addSubject(Level level, String name) {
