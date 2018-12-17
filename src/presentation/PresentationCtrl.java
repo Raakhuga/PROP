@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.Classroom;
+import domain.GroupSubject;
 import domain.StudyProgram;
 import domain.TimetableGenerator;
 import java.awt.Dimension;
@@ -25,6 +26,7 @@ public class PresentationCtrl {
     private SaveLoadMenu saveloadmenu = null;
     private SelectClassroom selectclassroom = null;
     private ClassroomTimetable classroomtimetable = null;
+    private GroupSubjectInfo groupsubjectinfo = null;
     
     
     public PresentationCtrl(){
@@ -145,6 +147,24 @@ public class PresentationCtrl {
         selectclassroom.setEnabled(true);
         centerFrame(selectclassroom);
         selectclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromCTTtoGSI(GroupSubject groupsubject){
+        groupsubjectinfo = new GroupSubjectInfo(this);
+        groupsubjectinfo.setGroupSubject(groupsubject);
+        classroomtimetable.setEnabled(false);
+        classroomtimetable.setVisible(false);
+        groupsubjectinfo.setEnabled(true);
+        centerFrame(groupsubjectinfo);
+        groupsubjectinfo.setVisible(true);
+    }
+    
+    public void SwitchFromGSItoCTT(){
+        groupsubjectinfo.setEnabled(false);
+        groupsubjectinfo.setVisible(false);
+        classroomtimetable.setEnabled(true);
+        centerFrame(classroomtimetable);
+        classroomtimetable.setVisible(true);
     }
     
     //presentation methods

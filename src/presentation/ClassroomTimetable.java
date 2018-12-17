@@ -136,6 +136,11 @@ public class ClassroomTimetable extends javax.swing.JFrame {
                     JButton Bact = new JButton(cont);
                     Bact.setSize(160, 60);
                     Bact.setLocation(120+(j-act.getdIni())*160, 80+(i-act.gethIni())*60);
+                    Bact.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            presentationctrl.SwitchFromCTTtoGSI(GSact);
+                        }
+                    });
                     getContentPane().add(Bact);
                     buttonr.add(Bact);
                 }
