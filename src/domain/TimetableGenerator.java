@@ -305,7 +305,7 @@ public class TimetableGenerator {
     
     public String saveClassrooms() {
         Iterator<Classroom> Cit = classrooms.iterator();
-        String classes = classrooms.size() + "\n" + "Classrooms:";
+        String classes = "Num_Classrooms: " + classrooms.size() + "\n" + "Classrooms:";
         while(Cit.hasNext()) {
             Classroom Cact = Cit.next();
             String classroom = "\n" + "  " + Cact.saveClassroom();
@@ -316,10 +316,10 @@ public class TimetableGenerator {
     
     public String saveStudyPrograms() {
         Iterator<StudyProgram> SPit = programs.iterator();
-        String studyprograms = programs.size() + "\n" + "StudyPrograms:";
+        String studyprograms = "Num_StudyPrograms: " + programs.size() + "\n" + "StudyPrograms:";
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
-            String studyprogram = "\n" + "  " + SPact.getName();
+            String studyprogram = "\n" + "  Name: " + SPact.getName();
             studyprogram = studyprogram + "\n" + "  " + SPact.saveLevels();
             studyprograms = studyprograms + studyprogram;
         }

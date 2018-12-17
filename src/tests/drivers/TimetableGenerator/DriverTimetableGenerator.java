@@ -269,18 +269,18 @@ public class DriverTimetableGenerator {
     }
     
     public static void main(String[] args) throws Exception{
-        initTimetable();
-        //p = new TimetableGenerator();
-        //PersistanceCtrl PC = new PersistanceCtrl();
-        load1();
+        //initTimetable();
+        p = new TimetableGenerator();
+        PersistanceCtrl PC = new PersistanceCtrl();
+        //load1();
         //p = new TimetableGenerator(0, 0);
         //TimetableGenerator TG = new TimetableGenerator(0, 0);
-        //PC.load(p, "src/tests/drivers/asdfasdf/state.txt");
+        PC.load(p, "src/tests/drivers/asdfasdf/statePersist.txt");
         //PC.load(p, "C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/state.state");
         //p = TG;
         p.generateAllGS();
         
-        //PC.save(p, "src/tests/drivers/asdfasdf/statePersist.txt");
+        PC.save(p, "src/tests/drivers/asdfasdf/statePersist.txt");
         //printGS();
         p.generateTimetable();
         printClassTimetable();

@@ -254,7 +254,7 @@ public class Classroom {
     }
     
     public String saveClassroom(){
-        String croom = capacity + " " + ref + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + type[THEORY] + " " + type[LABORATORY] + " " + type[PROBLEMS] + " " + addedRestrictions.size() + "\n" + "  " + "Restrictions:"; 
+        String croom = "Capacity: " + capacity + " Reference: " + ref + " First_day: " + getdIni() + " Last_day: " + getdEnd() + " First_hour: " + gethIni() + " Last_hour: " + gethEnd() + " Theory: " + type[THEORY] + " Laboratory: " + type[LABORATORY] + " Problems: " + type[PROBLEMS] + " Num_Restrictions: " + addedRestrictions.size() + "\n" + "  " + "Restrictions:"; 
         Iterator<String> Rit = addedRestrictions.iterator();
         while(Rit.hasNext()) {
             String Ract = Rit.next();

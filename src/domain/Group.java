@@ -216,13 +216,13 @@ public class Group {
     public String saveGroup() {
         Iterator<subGroup> SGit = subGroups.iterator();
         Iterator<String> Rit = addedRestrictions.iterator();
-        String sgps = num + " " + enrolled + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " +  addedRestrictions.size() + "\n" + "          Restrictions:";
+        String sgps = "Num: " + num + " Enrolled: " + enrolled + " First_day: " + getdIni() + " Last_day: " + getdEnd() + " First_hour: " + gethIni() + " Last_hour: " + gethEnd() + " Num_Restrictions: " +  addedRestrictions.size() + "\n" + "          Restrictions:";
         while(Rit.hasNext()) {
             String Ract = Rit.next();
             String R = "\n" + "            " + Ract;
             sgps = sgps + R;
         }
-        sgps = sgps + "\n" + "          " + subGroups.size() + "\n" + "          Subgroups:";
+        sgps = sgps + "\n" + "          Num_subGroups: " + subGroups.size() + "\n" + "          Subgroups:";
         while(SGit.hasNext()) {
             subGroup SGact = SGit.next();
             String sgp = "\n" + "            " + SGact.saveGroup();
