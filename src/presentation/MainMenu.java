@@ -5,6 +5,8 @@
  */
 package presentation;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author raakhuga
@@ -28,7 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        StateGen = new javax.swing.JButton();
+        ManualConfiguration = new javax.swing.JButton();
         Persistance = new javax.swing.JButton();
         view = new javax.swing.JButton();
         restrictions = new javax.swing.JButton();
@@ -38,10 +40,10 @@ public class MainMenu extends javax.swing.JFrame {
         setTitle("Menu Principal");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        StateGen.setText("Creacio Manual");
-        StateGen.addActionListener(new java.awt.event.ActionListener() {
+        ManualConfiguration.setText("Configuració Manual");
+        ManualConfiguration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StateGenActionPerformed(evt);
+                ManualConfigurationActionPerformed(evt);
             }
         });
 
@@ -77,7 +79,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(generateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(restrictions, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StateGen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ManualConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Persistance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(137, Short.MAX_VALUE))
@@ -86,7 +88,7 @@ public class MainMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(StateGen, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ManualConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Persistance, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -102,9 +104,10 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void StateGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateGenActionPerformed
-        presentationctrl.SwitchFromMMtoCM();
-    }//GEN-LAST:event_StateGenActionPerformed
+    private void ManualConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualConfigurationActionPerformed
+        if(presentationctrl.getFirst()) presentationctrl.SwitchFromMMtoFT();
+        else presentationctrl.SwitchFromMMtoSM();
+    }//GEN-LAST:event_ManualConfigurationActionPerformed
 
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         // TODO add your handling code here:
@@ -118,13 +121,16 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         // TODO add your handling code here:
-        presentationctrl.generate();
+        if(presentationctrl.generate()) 
+            JOptionPane.showMessageDialog(this, "S'ha generat l'horari correctament.", "Generació:", JOptionPane.INFORMATION_MESSAGE);
+        else 
+            JOptionPane.showMessageDialog(this, "No s'ha pogut generar l'horari.", "Generació:", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_generateButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ManualConfiguration;
     private javax.swing.JButton Persistance;
-    private javax.swing.JButton StateGen;
     private javax.swing.JButton generateButton;
     private javax.swing.JButton restrictions;
     private javax.swing.JButton view;

@@ -28,9 +28,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Name" alignment="0" pref="327" max="32767" attributes="0"/>
+                          <Component id="Name" alignment="0" max="32767" attributes="0"/>
                           <Component id="savePath" max="32767" attributes="0"/>
-                          <Component id="loadPath" alignment="0" max="32767" attributes="0"/>
+                          <Component id="loadPath" alignment="0" min="-2" pref="327" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" pref="65" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -124,6 +124,9 @@
     <Component class="javax.swing.JLabel" name="loadPath">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xa0;"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[327, 23]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="loadPathButton">

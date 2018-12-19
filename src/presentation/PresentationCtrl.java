@@ -1,11 +1,13 @@
 package presentation;
 
 import domain.Classroom;
+import domain.Group;
 import domain.GroupSubject;
 import domain.StudyProgram;
 import domain.TimetableGenerator;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +19,7 @@ public class PresentationCtrl {
     private TimetableGenerator DomainCtrl;
     private PersistanceCtrl persistancectrl;
     Dimension dim;
+    private boolean first;
     
     //frames
     private MainMenu mainmenu = null;
@@ -26,13 +29,15 @@ public class PresentationCtrl {
     private SaveLoadMenu saveloadmenu = null;
     private SelectClassroom selectclassroom = null;
     private ClassroomTimetable classroomtimetable = null;
-    private GroupSubjectInfo groupsubjectinfo = null;
+    private GroupTimetable grouptimetable = null;
+    private firstTime firstime = null;
+    private SelectionMenu selectionmenu = null;
     
     
     public PresentationCtrl(){
         DomainCtrl = new TimetableGenerator();
-        TimetableGenerator aux = new TimetableGenerator();
         dim = Toolkit.getDefaultToolkit().getScreenSize();
+        first = true;
         mainmenu = new MainMenu(this);
         centerFrame(mainmenu);
         mainmenu.setVisible(true);
@@ -60,6 +65,44 @@ public class PresentationCtrl {
         saveloadmenu.setEnabled(true);
         centerFrame(saveloadmenu);
         saveloadmenu.setVisible(true);
+    }
+    
+    public void SwitchFromMMtoFT(){
+        if(firstime == null)
+            firstime = new firstTime(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        firstime.setEnabled(true);
+        centerFrame(firstime);
+        firstime.setVisible(true);
+    }
+    
+    public void SwitchFromMMtoSM(){
+        if(selectionmenu == null)
+            selectionmenu = new SelectionMenu(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
+    }
+    
+    public void SwitchFromFTtoMM(){
+        firstime.setVisible(false);
+        firstime.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromFTtoSM(){
+        if(selectionmenu == null)
+            selectionmenu = new SelectionMenu(this);
+        firstime.setVisible(false);
+        firstime.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
     }
     
     public void SwitchFromSLMtoMM(){
@@ -137,8 +180,8 @@ public class PresentationCtrl {
         selectclassroom.setEnabled(false);
         selectclassroom.setVisible(false);
         classroomtimetable.setEnabled(true);
-        centerFrame(classroomtimetable);
         classroomtimetable.setVisible(true);
+        centerFrame(classroomtimetable);
     }
     
     public void SwitchFromCTTtoSC(){
@@ -149,22 +192,59 @@ public class PresentationCtrl {
         selectclassroom.setVisible(true);
     }
     
-    public void SwitchFromCTTtoGSI(GroupSubject groupsubject){
-        groupsubjectinfo = new GroupSubjectInfo(this);
-        groupsubjectinfo.setGroupSubject(groupsubject);
+    
+    public void SwitchFromCTTtoGTT(Group group){
+        grouptimetable = new GroupTimetable(this);
+        grouptimetable.setGroup(group);
         classroomtimetable.setEnabled(false);
         classroomtimetable.setVisible(false);
-        groupsubjectinfo.setEnabled(true);
-        centerFrame(groupsubjectinfo);
-        groupsubjectinfo.setVisible(true);
+        grouptimetable.setEnabled(true);
+        grouptimetable.setVisible(true);
+        centerFrame(grouptimetable);
     }
     
-    public void SwitchFromGSItoCTT(){
-        groupsubjectinfo.setEnabled(false);
-        groupsubjectinfo.setVisible(false);
+    public void SwitchFromGTTtoCTT(){
+        grouptimetable.setEnabled(false);
+        grouptimetable.setVisible(false);
         classroomtimetable.setEnabled(true);
-        centerFrame(classroomtimetable);
         classroomtimetable.setVisible(true);
+        centerFrame(classroomtimetable);
+    }
+    
+    public void SwitchFromGTTtoCTT(Classroom classroom){
+        classroomtimetable = new ClassroomTimetable(this);
+        classroomtimetable.setClassroom(classroom);
+        grouptimetable.setEnabled(false);
+        grouptimetable.setVisible(false);
+        classroomtimetable.setEnabled(true);
+        classroomtimetable.setVisible(true);
+        centerFrame(classroomtimetable);
+    }
+    
+    public void SwitchFromSMtoCM(){
+        if(classroommenu == null)
+            classroommenu = new ClassroomMenu(this);
+        selectionmenu.setVisible(false);
+        selectionmenu.setEnabled(false);
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
+    }
+    
+    public void SwitchFromCMtoSM(){
+        classroommenu.setVisible(false);
+        classroommenu.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSMtoMM() {
+        selectionmenu.setVisible(false);
+        selectionmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
     }
     
     //presentation methods
@@ -191,10 +271,23 @@ public class PresentationCtrl {
         return names;
     }
     
+    public void setFirst(boolean first) {
+        this.first = first;
+    }
+    
+    public boolean getFirst() {
+        return first;
+    }
+    
     //domain methods
-    public void generate() {
+    public boolean generate() {
+        this.save("./aux.state");
+        DomainCtrl = new TimetableGenerator();
+        this.load("./aux.state");
         DomainCtrl.generateAllGS();
-        DomainCtrl.generateTimetable();
+        File file = new File("./aux.state");
+        file.delete();
+        return DomainCtrl.generateTimetable();
     }
     
     public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
@@ -269,9 +362,14 @@ public class PresentationCtrl {
         return DomainCtrl.isProblems(c);
     }
     
+    public void removeState() {
+        DomainCtrl = new TimetableGenerator();
+    }
+    
     public void load(String path) {
         //DomainCtrl.loadState(path);
         DomainCtrl.loadState(path);
+        first = false;
     }
     
     public void save(String path) {

@@ -2,39 +2,39 @@ Max_num_of_students_in_a_group: 80
 Max_num_of_students_in_a_subgroup: 20
 Num_Classrooms: 16
 Classrooms:
-  Capacity: 80 Reference: A1 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 2
+  Capacity: 80 Reference: A1 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 2
   Restrictions:
     Bloquejar_franja  2 3 8 20
     Bloquejar_grup 10 3 4 8 20
-  Capacity: 80 Reference: A2 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 80 Reference: A2 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A3 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
+  Capacity: 20 Reference: A3 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A4 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 20 Reference: A4 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 80 Reference: A5 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 80 Reference: A5 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 80 Reference: A6 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 80 Reference: A6 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A7 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
+  Capacity: 20 Reference: A7 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A8 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: false Laboratory: true Problems: false Num_Restrictions: 0
+  Capacity: 20 Reference: A8 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: true Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 80 Reference: A9 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 80 Reference: A9 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 80 Reference: A10 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 80 Reference: A10 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A11 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
+  Capacity: 20 Reference: A11 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A12 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: false Laboratory: true Problems: false Num_Restrictions: 0
+  Capacity: 20 Reference: A12 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: true Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 80 Reference: A13 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 80 Reference: A13 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 80 Reference: A14 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
+  Capacity: 80 Reference: A14 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A15 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
+  Capacity: 20 Reference: A15 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
   Restrictions:
-  Capacity: 20 Reference: A16 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 20 Theory: false Laboratory: true Problems: false Num_Restrictions: 0
+  Capacity: 20 Reference: A16 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: true Problems: false Num_Restrictions: 0
   Restrictions:
 Num_StudyPrograms: 1
 StudyPrograms:
@@ -43,359 +43,311 @@ StudyPrograms:
   Levels:
     Iden: 1 Num_subjects: 4
       Subjects:
-        Name: FM Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: 1 StudyProgram: FIB Num_groups: 4
+        Name: FM Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 30 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 30 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 31 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 32 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 33 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 34 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-          Num: 40 Enrolled: 60 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 40 Enrolled: 60 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 41 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 41 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 42 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 42 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 43 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 43 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 44 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 44 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: F Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: 1 StudyProgram: FIB Num_groups: 4
+        Name: F Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 30 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 30 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 31 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 32 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 33 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 34 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-          Num: 40 Enrolled: 60 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 40 Enrolled: 60 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 41 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 41 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 42 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 42 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 43 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 43 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 44 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 44 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: IC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: 1 StudyProgram: FIB Num_groups: 4
+        Name: IC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 30 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 30 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 31 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 32 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 33 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 34 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-          Num: 40 Enrolled: 60 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 40 Enrolled: 60 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 41 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 41 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 42 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 42 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 43 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 43 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 44 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 44 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: PRO Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Level: 1 StudyProgram: FIB Num_groups: 4
+        Name: PRO Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 30 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 30 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 31 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 32 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 33 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 34 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-          Num: 40 Enrolled: 60 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
+          Num: 40 Enrolled: 60 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 41 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 41 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 42 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 42 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 43 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 43 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 44 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 44 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
     Iden: 2 Num_subjects: 4
       Subjects:
-        Name: PRO2 Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Level: 2 StudyProgram: FIB Num_groups: 3
+        Name: PRO2 Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-          Num: 30 Enrolled: 40 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
-          Restrictions:
-          Num_subGroups: 4
-          Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-        Name: M1 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: 2 StudyProgram: FIB Num_groups: 3
+        Name: M1 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-          Num: 30 Enrolled: 40 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
-          Restrictions:
-          Num_subGroups: 4
-          Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-        Name: M2 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: 2 StudyProgram: FIB Num_groups: 3
+        Name: M2 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-          Num: 30 Enrolled: 40 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
-          Restrictions:
-          Num_subGroups: 4
-          Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-        Name: EC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: 2 StudyProgram: FIB Num_groups: 3
+        Name: EC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
         Groups:
-          Num: 10 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 11 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 11 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 12 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 12 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 13 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 13 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-            Num: 14 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 14 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_restrictions: 0
             Restrictions:
-          Num: 20 Enrolled: 80 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
+          Num: 20 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
           Restrictions:
           Num_subGroups: 4
           Subgroups:
-            Num: 21 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 21 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 22 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 22 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 23 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
+            Num: 23 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-            Num: 24 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 8 Last_hour: 14 Num_restrictions: 0
-            Restrictions:
-          Num: 30 Enrolled: 40 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_Restrictions: 0
-          Restrictions:
-          Num_subGroups: 4
-          Subgroups:
-            Num: 31 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 32 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 33 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
-            Restrictions:
-            Num: 34 Enrolled: 20 First_day: 0 Last_day: 5 First_hour: 14 Last_hour: 20 Num_restrictions: 0
+            Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
 Restrictions:
-  true true true false false false false false
+  true true true true false false false false false

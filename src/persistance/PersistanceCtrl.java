@@ -309,14 +309,16 @@ public class PersistanceCtrl {
                                     }
                                 }
                             }
+                            TG.fixTimetables(level);
                         }
                     }
                 }
                 aux = input.next();
-                boolean rBase[] = new boolean[3];
+                boolean rBase[] = new boolean[4];
                 rBase[0] = input.nextBoolean();
                 rBase[1] = input.nextBoolean();
                 rBase[2] = input.nextBoolean();
+                rBase[3] = input.nextBoolean();
                 boolean rExtra[] = new boolean[5];
                 rExtra[0] = input.nextBoolean();
                 rExtra[1] = input.nextBoolean();

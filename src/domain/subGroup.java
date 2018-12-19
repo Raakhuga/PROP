@@ -27,6 +27,14 @@ public class subGroup extends Group {
         return super.getNum();
     }
     
+    public GroupTimetable getSubTimetable() {
+        return subtimetable;
+    }
+    
+    public void setSubTimetable(GroupTimetable subtimetable) {
+        this.subtimetable = subtimetable;
+    }
+    
     //posible error
     public boolean isEmpty(int day, int hour) {
         if(super.isEmpty(day, hour)) return subtimetable.isEmpty(day, hour);
@@ -39,6 +47,11 @@ public class subGroup extends Group {
     
     public boolean isBanned(int day, int hour) {
         return subtimetable.isBanned(day, hour);
+    }
+    
+    public boolean isOut(int day, int hour) {
+        if(super.isOut(day, hour)) return true;
+        else return subtimetable.isOut(day, hour);
     }
     
     public boolean isSubjectBanned(int day, int hour, String name) {

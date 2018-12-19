@@ -13,15 +13,15 @@ public class Subject {
     
     private final String name;
     private int nSessions[];
-    private final int level;
-    private String SP;
+    private Level level;
+    //private StudyProgram SP;
     private List<Group> groups;
     
-    public Subject(String name, int level, String SP) {
+    public Subject(String name, Level level) {
         this.name = name;
         this.nSessions = new int[3];
         this.level = level;
-        this.SP = SP;
+        //this.SP = SP;
         this.groups = new ArrayList<>();
     }
 
@@ -33,13 +33,14 @@ public class Subject {
         return nSessions;
     }
 
-    public int getLevel() {
+    public Level getLevel() {
         return level;
     }
     
+    /*
     public String getSP(){
         return SP;
-    }
+    }*/
 
     public List<Group> getGroups() {
         return groups;
@@ -87,7 +88,7 @@ public class Subject {
     
     public String saveSubject() {
         Iterator<Group> Git = groups.iterator();
-        String gps = "Name: " + name + " Num_sessions_theory: " + nSessions[THEORY] + " Num_sessions_laboratory: " + nSessions[LABORATORY] + " Num_sessions_problems: " + nSessions[PROBLEMS] + " Level: " + level +" StudyProgram: " + SP +  " Num_groups: " + groups.size() + "\n" + "        Groups:";
+        String gps = "Name: " + name + " Num_sessions_theory: " + nSessions[THEORY] + " Num_sessions_laboratory: " + nSessions[LABORATORY] + " Num_sessions_problems: " + nSessions[PROBLEMS] + " Level: " + "levelATENCION" +" StudyProgram: " + "SPATENCION" +  " Num_groups: " + groups.size() + "\n" + "        Groups:";
         while (Git.hasNext()) {
             Group Gact = Git.next();
             String gp = "\n" + "          " + Gact.saveGroup();

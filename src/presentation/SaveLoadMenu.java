@@ -72,6 +72,7 @@ public class SaveLoadMenu extends javax.swing.JFrame {
         jLabel2.setText("Seleccioneu on voleu guardar l'estat:");
 
         loadPath.setText(" ");
+        loadPath.setMaximumSize(new java.awt.Dimension(327, 23));
 
         loadPathButton.setText("Carrega");
         loadPathButton.addActionListener(new java.awt.event.ActionListener() {
@@ -105,9 +106,9 @@ public class SaveLoadMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                            .addComponent(Name)
                             .addComponent(savePath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loadPath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(loadPath, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 65, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(savePathButton)
@@ -190,8 +191,12 @@ public class SaveLoadMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (loadPath.getText() == " ") 
             JOptionPane.showMessageDialog(this, "Trieu un arxiu", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        else
+        else {
+            presentationctrl.removeState();
             presentationctrl.load(loadPath.getText());
+            JOptionPane.showMessageDialog(this, "S'ha realitzat la carrega correctament.", "Càrrega:", JOptionPane.INFORMATION_MESSAGE);
+            presentationctrl.SwitchFromSLMtoMM();
+        }
     }//GEN-LAST:event_loadPathButtonActionPerformed
 
     private void savePathButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePathButtonActionPerformed
@@ -200,8 +205,9 @@ public class SaveLoadMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Trieu un directori", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else {
             String path = savePath.getText() + "\\" + Name.getText() + ".state";
-            System.out.print(path);
             presentationctrl.save(path);
+            JOptionPane.showMessageDialog(this, "S'ha guardat correctament.", "Guardat:", JOptionPane.INFORMATION_MESSAGE);
+            presentationctrl.SwitchFromSLMtoMM();
         }
     }//GEN-LAST:event_savePathButtonActionPerformed
 

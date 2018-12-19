@@ -17,8 +17,8 @@ public class ClassroomTimetable extends Timetable {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 24; j++){
                 restrictions[i][j] = new ClassRestrictions();
-                if (i < super.getdIni()) restrictions[i][j].ban();
-                if (j < super.gethIni() || j >= super.gethEnd()) restrictions[i][j].ban();
+                if (i < super.getdIni() || i > super.getdEnd()) restrictions[i][j].setOut(true);
+                if (j < super.gethIni() || j >= super.gethEnd()) restrictions[i][j].setOut(true);
                 GS[i][j] = new GroupSubject();
             }
         }
@@ -34,6 +34,10 @@ public class ClassroomTimetable extends Timetable {
     
     public GroupSubject getGroupSubject(int day, int hour) {
         return GS[day][hour];
+    }
+    
+    public boolean isOut(int day, int hour) {
+        return restrictions[day][hour].isOut();
     }
 
     public void setGS(GroupSubject[][] GS) {
