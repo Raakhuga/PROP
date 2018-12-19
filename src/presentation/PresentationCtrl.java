@@ -31,8 +31,8 @@ public class PresentationCtrl {
         DomainCtrl = new TimetableGenerator();
         mainmenu = new MainMenu(this);
         mainmenu.setVisible(true);
-        spmenu = new StudyProgramMenu(this);
-        spmenu.setVisible(true);
+        /*spmenu = new StudyProgramMenu(this);
+        spmenu.setVisible(true);*/
     }
     
     /** SYNCRONIZATION **/
