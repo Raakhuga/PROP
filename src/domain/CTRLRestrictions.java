@@ -9,13 +9,15 @@ public class CTRLRestrictions {
     private final static int NUM_RESTR_BASE = 3;
     private boolean rBase[];
     private boolean rExtra[];
+    private TimetableGenerator TG;
     
    
-    public CTRLRestrictions() {
+    public CTRLRestrictions(TimetableGenerator TG) {
         rBase = new boolean[NUM_RESTR_BASE];
         rExtra = new boolean[NUM_RESTR_EXTRA];
         for (int i = 0; i < NUM_RESTR_BASE; i++) rBase[i] = true;
         for (int i = 0; i < NUM_RESTR_EXTRA; i++) rExtra[i] = false;
+        this.TG = TG;
     }
     
     public void enableRestriction(int i) {
@@ -73,16 +75,46 @@ public class CTRLRestrictions {
         Group act = GSNew.getGroup();*/
         //System.out.println("asdfasdfasdf");
         
-        if (GSNew.isSubGroup()) return !GSNew.isGroupEmpty(day, hour);
+        
+        int size = TG.getClassrooms().size();
+        for (int i = 0; i < size; i++) {
+            Classroom Cact = TG.getClassrooms().get(i);
+            ClassroomTimetable Tact = Cact.getTimetable();
+            if(!Tact.isEmpty(day, hour)) {
+                if(Tact.getGroupSubject(day, hour).getSubject().getSP().equals(GSNew.getSubject().getSP())) {
+                    if(Tact.getGroupSubject(day, hour).getSubject().getLevel() == GSNew.getSubject().getLevel()) {
+                        if (GSNew.isSubGroup()) {
+                            subGroup SG = (subGroup)GSNew.getGroup();
+                            int num = SG.getSuperNum();
+                            int subNum = SG.getNum();
+                            if(Tact.getGroupSubject(day, hour).getGroup().isSubGroup()) {
+                                subGroup TSG = (subGroup)Tact.getGroupSubject(day,hour).getGroup();
+                                int TsubNum = TSG.getNum();
+                                if (TsubNum == subNum) return true;
+                            }
+                            else {
+                                if(Tact.getGroupSubject(day, hour).getNumGroup() == num) return true;
+                            }
+                        }
+                        else {
+                            if (Tact.getGroupSubject(day, hour).getNumGroup() >= GSNew.getNumGroup() && Tact.getGroupSubject(day, hour).getNumGroup() < GSNew.getNumGroup() + 10) return true;
+                        }
+                    }
+                }
+            }
+        }
+        /*
+        if (GSNew.isSubGroup()) return !GSNew.isGroupEmpty(day,hour);
         else {
             Iterator<subGroup> SGit = GSNew.getSubGroups().iterator();
             while(SGit.hasNext()) {
                 if(!SGit.next().isEmpty(day, hour)) return true;
             }
             return false;
-        }
+        }*/
         
         //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
+        return false;
     }
     
     

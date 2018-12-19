@@ -4,6 +4,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import persistance.PersistanceCtrl;
 
 
 public class TimetableGenerator {            
@@ -14,15 +15,17 @@ public class TimetableGenerator {
     private int nMaxStudentsGroup;
     private int nMaxStudentsSubgroup;
     private CTRLRestrictions ctrlRestrictions;
+    private PersistanceCtrl persistancectrl;
         
     public TimetableGenerator(int nMaxStudentsGroup, int nMaxStudentsSubgroup) {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
         this.addedRestrictions = new ArrayList<>();
-        this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions(this);
         this.nMaxStudentsGroup = nMaxStudentsGroup;
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
+        this.persistancectrl = new PersistanceCtrl();
     }
     
     public TimetableGenerator() {
@@ -30,9 +33,10 @@ public class TimetableGenerator {
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
         this.addedRestrictions = new ArrayList<>();
-        this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions(this);
         this.nMaxStudentsGroup = -1;
         this.nMaxStudentsSubgroup = -1;
+        this.persistancectrl = new PersistanceCtrl();
     }
     
     public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
@@ -219,6 +223,56 @@ public class TimetableGenerator {
         c.unbanGroup(dIni, dEnd, hIni, hEnd, num);
     }
     
+    public void setCapacity(Classroom c, int capacity) {
+        c.setCapacity(capacity);
+    }
+    
+    public void setRef(Classroom c, String ref) {
+        c.setRef(ref);
+    }
+    
+    public void setdIni(Classroom c, int dIni) {
+        c.setdIni(dIni);
+    }
+    
+    public void setdEnd(Classroom c, int dEni) {
+        c.setdEnd(dEni);
+    }
+    
+    public void sethIni(Classroom c, int hIni) {
+        c.sethIni(hIni);
+    }
+    
+    public void sethEnd(Classroom c, int hEnd) {
+        c.sethEnd(hEnd);
+    }
+    
+    public void removeClassroom(int id) {
+        classrooms.remove(classrooms.get(id));
+    }
+    
+    public void setTheory(Classroom c, boolean state) {
+        if(state) c.setTheory();
+    }
+    public void setLaboratory(Classroom c, boolean state) {
+        if(state) c.setLaboratory();
+    }
+    public void setProblems(Classroom c, boolean state) {
+        if(state) c.setProblems();
+    }
+    
+    public boolean isTheory(Classroom c) {
+        return c.isTheory();
+    }
+    
+    public boolean isLaboratory(Classroom c) {
+        return c.isLaboratory();
+    }
+    
+    public boolean isProblems(Classroom c) {
+        return c.isProblems();
+    }
+    
     public void generateTimetable() {
         if (classrooms.size() > 0) {
             Classroom aux = classrooms.get(0);
@@ -251,7 +305,7 @@ public class TimetableGenerator {
     
     public String saveClassrooms() {
         Iterator<Classroom> Cit = classrooms.iterator();
-        String classes = classrooms.size() + "\n" + "Classrooms:";
+        String classes = "Num_Classrooms: " + classrooms.size() + "\n" + "Classrooms:";
         while(Cit.hasNext()) {
             Classroom Cact = Cit.next();
             String classroom = "\n" + "  " + Cact.saveClassroom();
@@ -262,10 +316,10 @@ public class TimetableGenerator {
     
     public String saveStudyPrograms() {
         Iterator<StudyProgram> SPit = programs.iterator();
-        String studyprograms = programs.size() + "\n" + "StudyPrograms:";
+        String studyprograms = "Num_StudyPrograms: " + programs.size() + "\n" + "StudyPrograms:";
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
-            String studyprogram = "\n" + "  " + SPact.getName();
+            String studyprogram = "\n" + "  Name: " + SPact.getName();
             studyprogram = studyprogram + "\n" + "  " + SPact.saveLevels();
             studyprograms = studyprograms + studyprogram;
         }
@@ -278,5 +332,13 @@ public class TimetableGenerator {
     
     public String saveSizes() {
         return "Max_num_of_students_in_a_group: " + nMaxStudentsGroup + "\n" + "Max_num_of_students_in_a_subgroup: " + nMaxStudentsSubgroup + "\n";
+    }
+    
+    public void loadState(String path) {
+        persistancectrl.load(this, path);
+    }
+    
+    public void saveState(String path) {
+        persistancectrl.save(this, path);
     }
 }

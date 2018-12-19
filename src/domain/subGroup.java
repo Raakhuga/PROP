@@ -23,6 +23,10 @@ public class subGroup extends Group {
         return num;
     }
     
+    public int getSuperNum() {
+        return super.getNum();
+    }
+    
     //posible error
     public boolean isEmpty(int day, int hour) {
         if(super.isEmpty(day, hour)) return subtimetable.isEmpty(day, hour);
@@ -56,7 +60,7 @@ public class subGroup extends Group {
     public String saveGroup() {
         List<String> addedR = getAddedRestrictions();
         Iterator<String> Rit = addedR.iterator();
-        String sg = num + " " + getEnrolled() + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + addedR.size() + "\n" + "            Restrictions:"; 
+        String sg = "Num: " + num + " Enrolled: " + getEnrolled() + " First_day: " + getdIni() + " Last_day: " + getdEnd() + " First_hour: " + gethIni() + " Last_hour: " + gethEnd() + " Num_restrictions: " + addedR.size() + "\n" + "            Restrictions:"; 
         while(Rit.hasNext()) {
             String Ract = Rit.next();
             String R = "\n" + "              " + Ract;
