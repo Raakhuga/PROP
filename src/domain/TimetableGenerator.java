@@ -170,6 +170,26 @@ public class TimetableGenerator {
         else g.addToGroupTimetable(CS, day, hour);
     }
     
+    public void generateGroups(int nEst, Subject Sact){
+        int remaining, i = 1;
+        for(remaining = nEst; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
+            if(remaining >= nEst/2) addGroup(Sact, 0, 5, 8, 14, i*10, nMaxStudentsGroup); //matins
+            else addGroup(Sact, 0, 5, 14, 20, i*10,nMaxStudentsGroup); //tarda
+            i++;
+        }
+        if (remaining > 0) addGroup(Sact, 0, 5, 14, 20, i*10, remaining);
+        Iterator<Group> GIT = Sact.getGroups().iterator();
+        while(GIT.hasNext()) {
+            Group Gact = GIT.next();
+            int subremaining, j = 1;
+            for (subremaining = nMaxStudentsGroup; subremaining > nMaxStudentsSubgroup; subremaining -= nMaxStudentsSubgroup) {
+            addSubGroup(Gact, Gact.getNum()+j, nMaxStudentsSubgroup);
+            j++;
+            }
+            if(subremaining > 0) addSubGroup(Gact, Gact.getNum()+j, subremaining);
+        }
+    }
+    
     public void removeFromTimetable(Classroom c, Group g, int day, int hour) {
         c.removeFromClassTimetable(day, hour);
         g.removeFromGroupTimetable(day, hour);
