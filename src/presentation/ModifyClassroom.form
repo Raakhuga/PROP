@@ -17,6 +17,8 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.ButtonGroup" name="booleanGroup">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -187,11 +189,17 @@
       <SubComponents>
         <Component class="javax.swing.JRadioButton" name="laboratoryRadioButton">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="booleanGroup"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Laboratori"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="theoryRadioButton">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="booleanGroup"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Teor&#xed;a"/>
           </Properties>
         </Component>
@@ -224,6 +232,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="problemsRadioButton">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="booleanGroup"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Problemes"/>
           </Properties>
         </Component>

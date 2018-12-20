@@ -36,6 +36,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
     private void initComponents() {
 
         jDialog1 = new javax.swing.JDialog();
+        booleanGroup = new javax.swing.ButtonGroup();
         modifyClassroomButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         laboratoryRadioButton = new javax.swing.JRadioButton();
@@ -85,8 +86,10 @@ public class ModifyClassroom extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Modificar Aula:"));
 
+        booleanGroup.add(laboratoryRadioButton);
         laboratoryRadioButton.setText("Laboratori");
 
+        booleanGroup.add(theoryRadioButton);
         theoryRadioButton.setText("Teoría");
 
         CapacityLabel.setText("Nombre màxim d'estudiants que caben a l'aula:");
@@ -106,6 +109,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
 
         dIniLabel.setText("Primer día útil de l'aula:");
 
+        booleanGroup.add(problemsRadioButton);
         problemsRadioButton.setText("Problemes");
 
         hEndSlider.setMaximum(23);
@@ -154,8 +158,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hIniHLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hEndHLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(110, 110, 110))
+                            .addComponent(hEndHLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(hIniLabel)
                     .addComponent(dEndLabel)
                     .addComponent(CapacityLabel)
@@ -320,6 +323,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
     private javax.swing.JLabel CapacityLabel;
     private javax.swing.JTextField RefField;
     private javax.swing.JLabel RefLabel;
+    private javax.swing.ButtonGroup booleanGroup;
     private javax.swing.JTextField capacityField;
     private javax.swing.JComboBox<String> dEndBox;
     private javax.swing.JLabel dEndLabel;
