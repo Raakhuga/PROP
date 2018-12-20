@@ -820,15 +820,17 @@ public class PresentationCtrl {
     
     //domain methods
     public boolean generate() {
-        this.save("./aux.state");
+        /*this.save("./aux.state");
         System.out.println("guardo");
         DomainCtrl = new TimetableGenerator();
-        this.load("./aux.state");
+        this.load("./aux.state");*/
+        DomainCtrl.deleteAllGS();
         DomainCtrl.generateAllGS();
-        System.out.println("leo");
+        /*System.out.println("leo");
         File file = new File("./aux.state");
         file.delete();
-        System.out.println("borro");
+        System.out.println("borro");*/
+        DomainCtrl.resetTimetables();
         return DomainCtrl.generateTimetable();
     }
     
@@ -1101,6 +1103,10 @@ public class PresentationCtrl {
     
     public void setHoursProb(Subject s, int hours){
         DomainCtrl.setHoursProb(s, hours);
+    }
+    
+    public int getnMaxStudentsGroup() {
+        return DomainCtrl.getnMaxStudentsGroup();
     }
     
     public void fixTimetables(Level level) {
