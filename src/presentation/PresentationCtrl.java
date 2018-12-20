@@ -43,17 +43,13 @@ public class PresentationCtrl {
     private GroupMenu groupmenu = null;
     private SelectClassroom selectclassroom = null;
     private ClassroomTimetable classroomtimetable = null;
-    private GroupSubjectInfo groupsubjectinfo = null;
     private ModifyGroup modifygroup = null;
     private AddGroup addgroup = null;
-    private SubGroupMenu subgroupmenu = null;
+    private subGroupMenu subgroupmenu = null;
     private ModifysubGroup modifysubgroup = null;
     private AddsubGroup addsubgroup = null;
     private RestrictionMenu restrictionmenu = null;
     private AddClassroomResMenu addcRmenu = null;
-    private SaveLoadMenu saveloadmenu = null;
-    private SelectClassroom selectclassroom = null;
-    private ClassroomTimetable classroomtimetable = null;
     private GroupTimetable grouptimetable = null;
     private firstTime firstime = null;
     private SelectionMenu selectionmenu = null;
@@ -135,15 +131,7 @@ public class PresentationCtrl {
         restrictionmenu.setVisible(true);
     }
     
-    public void SwitchFromMMtoSLM(){
-        if(saveloadmenu == null)
-            saveloadmenu = new SaveLoadMenu(this);
-        mainmenu.setVisible(false);
-        mainmenu.setEnabled(false);
-        saveloadmenu.setEnabled(true);
-        centerFrame(saveloadmenu);
-        saveloadmenu.setVisible(true);
-    }
+    
     
     public void SwitchFromSLMtoMM(){
         saveloadmenu.setVisible(false);
@@ -191,14 +179,7 @@ public class PresentationCtrl {
         selectionmenu.setVisible(true);
     }
     
-    public void SwitchFromSLMtoMM(){
-        saveloadmenu.setVisible(false);
-        saveloadmenu.setEnabled(false);
-        mainmenu.setEnabled(true);
-        centerFrame(mainmenu);
-        mainmenu.setVisible(true);
-    }
-    
+
     public void SwitchFromCMtoMM(){
         classroommenu.setVisible(false);
         classroommenu.setEnabled(false);
@@ -270,7 +251,7 @@ public class PresentationCtrl {
     }
     public void SwitchFromGMtosGM(Group g) {
         if (subgroupmenu == null)
-            subgroupmenu = new SubGroupMenu(g, this);
+            subgroupmenu = new subGroupMenu(g, this);
         groupmenu.setEnabled(false);
         groupmenu.setVisible(false);
         subgroupmenu.setEnabled(true);
@@ -297,6 +278,7 @@ public class PresentationCtrl {
         addgroup.setEnabled(true);
         centerFrame(addgroup);
         addgroup.setVisible(true);
+    }
     public void SwitchFromSCtoCTT(Classroom classroom){
         classroomtimetable = new ClassroomTimetable(this);
         classroomtimetable.setClassroom(classroom);
@@ -313,6 +295,8 @@ public class PresentationCtrl {
         groupmenu.setEnabled(true);
         centerFrame(groupmenu);
         groupmenu.setVisible(true);
+    }
+    
     public void SwitchFromCTTtoSC(){
         classroomtimetable.setEnabled(false);
         classroomtimetable.setVisible(false);
@@ -332,6 +316,7 @@ public class PresentationCtrl {
         modifysubgroup.setEnabled(true);
         centerFrame(modifysubgroup);
         modifysubgroup.setVisible(true); 
+    }
     
     public void SwitchFromCTTtoGTT(Group group){
         grouptimetable = new GroupTimetable(this);
@@ -386,41 +371,7 @@ public class PresentationCtrl {
     }
     //end of restriccions switches
     
-    public void SwitchFromSCtoCTT(Classroom classroom){
-        classroomtimetable = new ClassroomTimetable(this);
-        classroomtimetable.setClassroom(classroom);
-        selectclassroom.setEnabled(false);
-        selectclassroom.setVisible(false);
-        classroomtimetable.setEnabled(true);
-        centerFrame(classroomtimetable);
-        classroomtimetable.setVisible(true);
-    }
     
-    public void SwitchFromCTTtoSC(){
-        classroomtimetable.setEnabled(false);
-        classroomtimetable.setVisible(false);
-        selectclassroom.setEnabled(true);
-        centerFrame(selectclassroom);
-        selectclassroom.setVisible(true);
-    }
-    
-    public void SwitchFromCTTtoGSI(GroupSubject groupsubject){
-        groupsubjectinfo = new GroupSubjectInfo(this);
-        groupsubjectinfo.setGroupSubject(groupsubject);
-        classroomtimetable.setEnabled(false);
-        classroomtimetable.setVisible(false);
-        groupsubjectinfo.setEnabled(true);
-        centerFrame(groupsubjectinfo);
-        groupsubjectinfo.setVisible(true);
-    }
-    
-    public void SwitchFromGSItoCTT(){
-        groupsubjectinfo.setEnabled(false);
-        groupsubjectinfo.setVisible(false);
-        classroomtimetable.setEnabled(true);
-        centerFrame(classroomtimetable);
-        classroomtimetable.setVisible(true);
-    }
     
     //presentation methods
     
@@ -790,10 +741,6 @@ public class PresentationCtrl {
     }
     
     //domain methods
-    public void generate() {
-        DomainCtrl.generateAllGS();
-        DomainCtrl.generateTimetable();
-    }
     
     public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
         DomainCtrl.setnMaxStudentsGroup(nMaxStudentsGroup);
@@ -865,22 +812,9 @@ public class PresentationCtrl {
     }
     
     /** DOMAIN METHODS **/
-    public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
-        DomainCtrl.setnMaxStudentsGroup(nMaxStudentsGroup);
-    }
     
-    public void setnMaxStudentsSubgroup(int nMaxStudentsSubgroup) {
-        DomainCtrl.setnMaxStudentsSubgroup(nMaxStudentsSubgroup);
-    }
-    
-    public List<Classroom> getClassrooms() {
-        return DomainCtrl.getClassrooms();
-    }
 
-    public List<StudyProgram> getPrograms() {
-        return DomainCtrl.getPrograms();
-    }
-    
+        
     public Classroom addClassroom(int capacity, String ref, int dIni, int dEnd, int hIni, int hEnd) {
         return DomainCtrl.addClassroom(capacity, ref, dIni, dEnd, hIni, hEnd);
     }
@@ -897,8 +831,8 @@ public class PresentationCtrl {
         DomainCtrl.removeClassroom(id);
     }
     
-    public void removeGroup(int id, Subject sub) {
-        DomainCtrl.removeGroup(id, sub);
+    public void removeGroup(Group group, Subject sub) {
+        DomainCtrl.removeGroup(group, sub);
     }
     
     public void setCapacity(Classroom c, int capacity) {
@@ -959,7 +893,7 @@ public class PresentationCtrl {
     }
 
     public List<Group> getGroup(Subject mSub) {
-        return DomainCtrl.getGroups(mSub);
+        return DomainCtrl.getGroupsRefs(mSub);
     }
 
     public void setNum(Group g, int num) {
@@ -990,8 +924,8 @@ public class PresentationCtrl {
         DomainCtrl.setEnrolled(g, enrolled);
     }   
 
-    public void removeSubGroup(int index, Group g) {
-        DomainCtrl.removeSubGroup(index, g);
+    public void removeSubGroup(subGroup s, Group g) {
+        DomainCtrl.removeSubGroup(s, g);
     }
 
     public List<subGroup> getsubGroup(Group g) {
@@ -1060,25 +994,7 @@ public class PresentationCtrl {
     public void removeState() {
         DomainCtrl = new TimetableGenerator();
     }
-    
-    public void load(String path) {
-        //DomainCtrl.loadState(path);
-        DomainCtrl.loadState(path);
-        first = false;
-    }
-    
-    public void save(String path) {
-        DomainCtrl.saveState(path);
-    }
-    
-    public List<Level> getLevels(StudyProgram sp){
-        return DomainCtrl.getLevels(sp);
-    }
-    
-    public List<Subject> getSubjects(Level lvl){
-        return DomainCtrl.getSubjects(lvl);
-    }
-    
+       
     public StudyProgram addStudyProgram(String name) {
         return DomainCtrl.addStudyProgram(name);
     }

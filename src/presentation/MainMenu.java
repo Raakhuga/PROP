@@ -62,6 +62,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         restrictions.setText("Restriccions");
+        restrictions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restrictionsActionPerformed(evt);
+            }
+        });
 
         generateButton.setText("Generar Horari");
         generateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +131,11 @@ public class MainMenu extends javax.swing.JFrame {
         else 
             JOptionPane.showMessageDialog(this, "No s'ha pogut generar l'horari.", "Generació:", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_generateButtonActionPerformed
+
+    private void restrictionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restrictionsActionPerformed
+        // TODO add your handling code here:
+        presentationctrl.SwitchFromMMtoRM();
+    }//GEN-LAST:event_restrictionsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

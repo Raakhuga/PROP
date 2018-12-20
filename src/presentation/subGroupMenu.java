@@ -14,13 +14,13 @@ import java.util.List;
  *
  * @author hasee
  */
-public class SubGroupMenu extends javax.swing.JFrame {
+public class subGroupMenu extends javax.swing.JFrame {
     private PresentationCtrl presentationctrl;
     private Group g;
     /**
      * Creates new form GroupMenu
      */
-    public SubGroupMenu(Group g, PresentationCtrl presentationctrl) {
+    public subGroupMenu(Group g, PresentationCtrl presentationctrl) {
         initComponents();
         this.g = g;
         presentationctrl = presentationctrl;
@@ -142,7 +142,8 @@ public class SubGroupMenu extends javax.swing.JFrame {
     private void DeleteBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBottomActionPerformed
         // TODO add your handling code here:
         int index = SubGroupList.getSelectedIndex();
-        presentationctrl.removeSubGroup(index, g);
+        List<subGroup> sublist = presentationctrl.getsubGroup(g);
+        presentationctrl.removeSubGroup(sublist.get(index), g);
         SubGroupList.setModel(presentationctrl.getsubGroupsRefs(g));
         jScrollPane2.setViewportView(SubGroupList);
     }//GEN-LAST:event_DeleteBottomActionPerformed

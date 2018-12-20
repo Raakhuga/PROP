@@ -137,7 +137,8 @@ public class GroupMenu extends javax.swing.JFrame {
     private void DeleteBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBottomActionPerformed
         // TODO add your handling code here:
         int index = GroupList.getSelectedIndex();
-        presentationctrl.removeGroup(index, mSub);
+        List<Group> grouplist = presentationctrl.getGroup(mSub);
+        presentationctrl.removeGroup(grouplist.get(index), mSub);
         GroupList.setModel(presentationctrl.getGroupsRefs(mSub));
         jScrollPane2.setViewportView(GroupList);
     }//GEN-LAST:event_DeleteBottomActionPerformed

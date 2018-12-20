@@ -244,7 +244,9 @@ public class DriverTimetableGenerator {
         }*/
         
         p.ban(classes.get(0), 2, 3, 8, 20);
+        p.removeRestriction(classes.get(0), 0);
         p.banGroup(classes.get(0), 3, 4, 8, 20, 10);
+        p.removeRestriction(classes.get(0), 0);
     }
     
     public static void printClassTimetable() {
@@ -296,13 +298,13 @@ public class DriverTimetableGenerator {
     }
     
     public static void main(String[] args) throws Exception{
-        //initTimetable();
-        p = new TimetableGenerator();
+        initTimetable();
+        //p = new TimetableGenerator();
         PersistanceCtrl PC = new PersistanceCtrl();
-        //load1();
+        load1();
         //p = new TimetableGenerator(0, 0);
         //TimetableGenerator TG = new TimetableGenerator(0, 0);
-        PC.load(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
+        //PC.load(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
         //PC.load(p, "C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/state.state");
         //p = TG;
         

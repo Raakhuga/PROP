@@ -2,10 +2,8 @@ Max_num_of_students_in_a_group: 80
 Max_num_of_students_in_a_subgroup: 20
 Num_Classrooms: 16
 Classrooms:
-  Capacity: 80 Reference: A1 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 2
+  Capacity: 80 Reference: A1 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
-    Bloquejar_franja dia_inicial: 2 dia_final: 3 hora_inicial: 8 hora_final: 20
-    Bloquejar_grup 10 dia_inicial: 3 dia_final: 4 hora_inicial: 8 hora_final: 20
   Capacity: 80 Reference: A2 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
   Capacity: 20 Reference: A3 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0

@@ -483,4 +483,69 @@ public class TimetableGenerator {
     public void saveState(String path) {
         persistancectrl.save(this, path);
     }
+
+    public List<Group> getGroupsRefs(Subject sub) {
+        return sub.getGroups();
+    }
+
+    public List<subGroup> getsubGroup(Group g) {
+        return g.getSubGroups();
+    }
+
+    public void removeGroup(Group group, Subject sub) {
+        sub.removeGroup(group);
+    }
+
+    public void setNum(Group g, int num) {
+        g.setNum(num);
+    }
+
+    public void setEnrolled(Group g, int enrolled) {
+        g.setEnrolled(enrolled);
+    }
+
+    public void removeSubGroup(subGroup s, Group g) {
+        g.removesubGroup(s);
+    }
+
+    public void sethIni(Group g, int hIni) {
+        g.sethIni(hIni);
+    }
+
+    public void setdIni(Group g, int dIni) {
+        g.setdIni(dIni);
+    }
+
+    public void setdEnd(Group g, int dEnd) {
+        g.setdEnd(dEnd);
+    }
+
+    public void sethEnd(Group g, int hEnd) {
+        g.sethEnd(hEnd);
+    }
+
+    public List<String> getRestrictions(Classroom c) {
+        return c.getRestrictions();
+    }
+
+    public List<String> getRestrictions(Group g) {
+        return g.getAddedRestrictions();
+    }
+
+    public List<Level> getLevel(StudyProgram sp) {
+        return sp.getLevels();
+    }
+
+    public List<Subject> getSubject(Level lvl) {
+        return lvl.getSubjects();
+    }
+    
+    public void removeRestriction(Classroom c, int id) {
+        c.removeRestriction(id);
+    }
+    
+    public void removeRestriction(Group g, int id) {
+        g.removeRestriction(id);
+    }
+
 }
