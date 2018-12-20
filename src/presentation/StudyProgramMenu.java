@@ -7,6 +7,7 @@ package presentation;
 
 import domain.StudyProgram;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -177,9 +178,18 @@ public class StudyProgramMenu extends javax.swing.JFrame {
 
     private void levelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levelsActionPerformed
         // TODO add your handling code here:
-        int index = StudyProgramsList.getSelectedIndex();
-        List<StudyProgram> studyprograms = presentationctrl.getPrograms();
-        presentationctrl.SwitchFromSPMtoLM(studyprograms.get(index));
+        if(StudyProgramsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = StudyProgramsList.getSelectedIndex();
+            if (StudyProgramsList.getSelectedValue().equals("No hi ha cap pla d'estudis al sistema")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<StudyProgram> studyprograms = presentationctrl.getPrograms();
+                presentationctrl.SwitchFromSPMtoLM(studyprograms.get(index));
+            }
+        }
     }//GEN-LAST:event_levelsActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -195,16 +205,34 @@ public class StudyProgramMenu extends javax.swing.JFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        int index = StudyProgramsList.getSelectedIndex();
-        List<StudyProgram> studyprograms = presentationctrl.getPrograms();
-        presentationctrl.SwitchFromSPMtoMSP(studyprograms.get(index));
+        if(StudyProgramsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = StudyProgramsList.getSelectedIndex();
+            if (StudyProgramsList.getSelectedValue().equals("No hi ha cap pla d'estudis al sistema")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<StudyProgram> studyprograms = presentationctrl.getPrograms();
+                presentationctrl.SwitchFromSPMtoMSP(studyprograms.get(index));
+            }
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        int index = StudyProgramsList.getSelectedIndex();
-        List<StudyProgram> studyprograms = presentationctrl.getPrograms();
-        presentationctrl.SwitchFromSPMtoDSP(studyprograms.get(index));
+        if(StudyProgramsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = StudyProgramsList.getSelectedIndex();
+             if (StudyProgramsList.getSelectedValue().equals("No hi ha cap pla d'estudis al sistema")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<StudyProgram> studyprograms = presentationctrl.getPrograms();
+                presentationctrl.SwitchFromSPMtoDSP(studyprograms.get(index));
+            }
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void mainmenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainmenuButtonActionPerformed

@@ -145,7 +145,7 @@ public class Classroom {
     public void unban(int dIni, int dEnd, int hIni, int hEnd) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unban(i, j);
-        addedRestrictions.add("Desbloquejar_franja " + "dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
+        //addedRestrictions.add("Desbloquejar_franja " + "dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
@@ -157,7 +157,7 @@ public class Classroom {
     public void unbanSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanSubject(i, j, subject);
-        addedRestrictions.add("Desbloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
+        //addedRestrictions.add("Desbloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banGroup(int dIni, int dEnd, int hIni, int hEnd, int num) {
@@ -169,7 +169,7 @@ public class Classroom {
     public void unbanGroup(int dIni, int dEnd, int hIni, int hEnd, int num) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanGroup(i, j, num);
-        addedRestrictions.add("Desbloquejar_grup " + num + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
+        //addedRestrictions.add("Desbloquejar_grup " + num + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     private String getNextString(int It, int NIt, String sentence) {
@@ -184,17 +184,22 @@ public class Classroom {
         int It = 0;
         int NIt = restriction.indexOf(" ",It+1);
         String word = restriction.substring(It,NIt);
+        String aux;
         switch (word) {
             case "Bloquejar_franja":
                 {
+                    aux = getNextString(It, NIt, restriction);
                     int dIni = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int dEnd = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int hIni = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int hEnd = Integer.parseInt(getNextString(It, NIt, restriction));
                     unban(dIni, dEnd, hIni, hEnd);
                     break;
                 }
-            case "Desbloquejar_franja":
+            /*case "Desbloquejar_franja":
                 {
                     int dIni = Integer.parseInt(getNextString(It, NIt, restriction));
                     int dEnd = Integer.parseInt(getNextString(It, NIt, restriction));
@@ -202,18 +207,22 @@ public class Classroom {
                     int hEnd = Integer.parseInt(getNextString(It, NIt, restriction));
                     ban(dIni, dEnd, hIni, hEnd);
                     break;
-                }
+                }*/
             case "Bloquejar_assignatura":
                 {
                     String subject = getNextString(It, NIt, restriction);
+                    aux = getNextString(It, NIt, restriction);
                     int dIni = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int dEnd = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int hIni = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int hEnd = Integer.parseInt(getNextString(It, NIt, restriction));
                     unbanSubject(dIni, dEnd, hIni, hEnd, subject);
                     break;
                 }
-            case "Desbloquejar_assignatura":
+            /*case "Desbloquejar_assignatura":
                 {
                     String subject = getNextString(It, NIt, restriction);
                     int dIni = Integer.parseInt(getNextString(It, NIt, restriction));
@@ -222,18 +231,22 @@ public class Classroom {
                     int hEnd = Integer.parseInt(getNextString(It, NIt, restriction));
                     banSubject(dIni, dEnd, hIni, hEnd, subject);
                     break;
-                }
+                }*/
             case "Bloquejar_grup":
                 {
                     int num = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int dIni = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int dEnd = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int hIni = Integer.parseInt(getNextString(It, NIt, restriction));
+                    aux = getNextString(It, NIt, restriction);
                     int hEnd = Integer.parseInt(getNextString(It, NIt, restriction));
                     unbanGroup(dIni, dEnd, hIni, hEnd, num);
                     break;
                 }
-            case "Desbloquejar_grup":
+            /*case "Desbloquejar_grup":
                 {
                     int num = Integer.parseInt(getNextString(It, NIt, restriction));
                     int dIni = Integer.parseInt(getNextString(It, NIt, restriction));
@@ -242,7 +255,7 @@ public class Classroom {
                     int hEnd = Integer.parseInt(getNextString(It, NIt, restriction));
                     banGroup(dIni, dEnd, hIni, hEnd, num);
                     break;
-                }
+                }*/
             default:
                 break;
         }

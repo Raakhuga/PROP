@@ -6,6 +6,7 @@
 package presentation;
 
 import domain.StudyProgram;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -39,9 +40,9 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        oldName = new javax.swing.JTextField();
         newName = new javax.swing.JTextField();
         modify = new javax.swing.JButton();
+        oldName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -62,12 +63,6 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
         jLabel1.setText("Nom antic:");
 
         jLabel2.setText("Nom nou:");
-
-        oldName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oldNameActionPerformed(evt);
-            }
-        });
 
         newName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +86,9 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(oldName))
+                        .addGap(12, 12, 12)
+                        .addComponent(oldName, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -106,11 +102,11 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(oldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(oldName, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(newName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,10 +141,6 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void oldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oldNameActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         String name = act.getName();
@@ -158,8 +150,13 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
         String name = newName.getText();
-        presentationctrl.setNameStudyProgram(act,name);
-        presentationctrl.SwitchFromMSPtoSPM();
+        if(name.equals("")) {
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            presentationctrl.setNameStudyProgram(act,name);
+            presentationctrl.SwitchFromMSPtoSPM();
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -179,6 +176,6 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton modify;
     private javax.swing.JTextField newName;
-    private javax.swing.JTextField oldName;
+    private javax.swing.JLabel oldName;
     // End of variables declaration//GEN-END:variables
 }
