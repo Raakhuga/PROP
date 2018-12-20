@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="boolGroup">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -79,43 +83,32 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="hEndHLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="118" pref="118" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="hIniHLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="hEndHLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="hIniHLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="CapacityLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="hIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="dEndLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="hIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="dEndLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="RefLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="dIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="dIniBox" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="capacityField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="RefField" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
-                                      <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
-                                      <Component id="typeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="theoryRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Component id="RefLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="dIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="dIniBox" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="capacityField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="RefField" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="dEndBox" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="47" pref="47" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="typeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="theoryRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <Component id="dEndBox" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
@@ -187,6 +180,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="theoryRadioButton">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="boolGroup"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Teor&#xed;a"/>
           </Properties>
         </Component>
@@ -198,6 +194,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="laboratoryRadioButton">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="boolGroup"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Laboratori"/>
           </Properties>
         </Component>
@@ -205,6 +204,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="problemsRadioButton">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="boolGroup"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Problemes"/>
           </Properties>
         </Component>

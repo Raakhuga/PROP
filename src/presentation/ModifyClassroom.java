@@ -248,7 +248,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
 
     private void modifyClassroomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyClassroomButtonActionPerformed
         // TODO add your handling code here:
-        int capacity = Integer.parseInt(capacityField.getText());
+        String capacity = capacityField.getText();
         String ref = RefField.getText();
         int dIni = dIniBox.getSelectedIndex();
         int dEnd = dEndBox.getSelectedIndex();
@@ -258,8 +258,14 @@ public class ModifyClassroom extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
         if (hIni >= hEnd) 
             JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if (capacity.equals("") || ref.equals("") || (!theoryRadioButton.isSelected() && !laboratoryRadioButton.isSelected() && !problemsRadioButton.isSelected())) {
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+        else if (!presentationctrl.isInt(capacity)){
+            JOptionPane.showMessageDialog(this, "La capacitat ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
         else {
-            presentationctrl.setCapacity(act, capacity);
+            presentationctrl.setCapacity(act, Integer.parseInt(capacity));
             presentationctrl.setRef(act, ref);
             presentationctrl.setdIni(act, dIni);
             presentationctrl.setdEnd(act, dEnd);
@@ -268,7 +274,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
             presentationctrl.SwitchFromMCtoCM();
             presentationctrl.setTheory(act, theoryRadioButton.isSelected());
             presentationctrl.setLaboratory(act, laboratoryRadioButton.isSelected());
-            presentationctrl.setProblems(act, laboratoryRadioButton.isSelected());
+            presentationctrl.setProblems(act, problemsRadioButton.isSelected());
         }
     }//GEN-LAST:event_modifyClassroomButtonActionPerformed
 

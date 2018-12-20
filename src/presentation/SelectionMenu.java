@@ -45,7 +45,7 @@ public class SelectionMenu extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        selectLabel.setText("Seleccioni la estructura que vol configurar:");
+        selectLabel.setText("Seleccioni l'estructura que vol configurar:");
 
         classroomButton.setText("Aules");
         classroomButton.addActionListener(new java.awt.event.ActionListener() {

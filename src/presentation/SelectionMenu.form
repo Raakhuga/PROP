@@ -98,7 +98,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="selectLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Seleccioni la estructura que vol configurar:"/>
+            <Property name="text" type="java.lang.String" value="Seleccioni l&apos;estructura que vol configurar:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="classroomButton">

@@ -66,6 +66,16 @@ public class PresentationCtrl {
     private void centerFrame(JFrame aux) {
         aux.setLocation(dim.width/2-aux.getSize().width/2, dim.height/2-aux.getSize().height/2);
     }
+    
+    public boolean isInt(String text) {
+        try {
+            Integer.parseInt(text);
+            return true;
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
+    }
     //sync
     /*
     public void SwitchFromMMtoCM(){
