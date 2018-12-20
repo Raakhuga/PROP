@@ -133,12 +133,12 @@ public class ClassroomTimetable extends javax.swing.JFrame {
                 }
                 else {
                     GroupSubject GSact = act.getTimetable().getGroupSubject(j, i);
-                    if(GSact.isEmpty()) cont = " ";
+                    if(GSact.isEmpty()) cont = "";
                     else cont = "<html>" + GSact.getNameSubject() + "<br/>Grup: " + GSact.getNumGroup() + "<br/>" + GSact.getType() + "</html>";
                     JButton Bact = new JButton(cont);
                     Bact.setSize(160, 60);
                     Bact.setLocation(120+(j-act.getdIni())*160, 80+(i-act.gethIni())*60);
-                    if(!Bact.getText().equals(" "))  {
+                    if(!Bact.getText().equals(""))  {
                         Bact.addActionListener(new java.awt.event.ActionListener() {
                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 presentationctrl.SwitchFromCTTtoGTT(GSact.getGroup());
@@ -150,6 +150,7 @@ public class ClassroomTimetable extends javax.swing.JFrame {
                         if (act.getTimetable().isBanned(j, i)) Bact.setBackground(Color.RED);
                         else Bact.setBackground(Color.GRAY);
                         Bact.setForeground(Color.RED);
+                        Bact.setEnabled(false);
                     }
                     getContentPane().add(Bact);
                 }
@@ -163,7 +164,7 @@ public class ClassroomTimetable extends javax.swing.JFrame {
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        JLabel Title = new JLabel("Classroom: " + act.getRef());
+        JLabel Title = new JLabel("Aula: " + act.getRef());
         Title.setSize(200, 20);
         Title.setLocation(20, 20);
         getContentPane().add(Title);

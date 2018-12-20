@@ -186,9 +186,8 @@ public class ClassroomMenu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Afegeixi una aula.", "Atenció:", JOptionPane.WARNING_MESSAGE);
             }
             else {
-                presentationctrl.removeClassroom(index);
-                ClassroomsList.setModel(presentationctrl.getClassroomsRefs());
-                jScrollPane1.setViewportView(ClassroomsList);
+                System.out.println(index);
+                presentationctrl.SwitchFromCMtoDC(index);
             }
         }
     }//GEN-LAST:event_DeleteClassroomActionPerformed

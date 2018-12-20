@@ -51,7 +51,6 @@ public class subGroupMenu extends javax.swing.JFrame {
         SubGroupList = new javax.swing.JList<>();
         AddBottom = new javax.swing.JButton();
         modifybottom = new javax.swing.JButton();
-        numGroup = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         mainMenuButton = new javax.swing.JButton();
 
@@ -143,17 +142,13 @@ public class subGroupMenu extends javax.swing.JFrame {
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(numGroup))
+                        .addGap(0, 4, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(numGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mainMenuButton)
@@ -174,10 +169,7 @@ public class subGroupMenu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Afegeixi un subgrup.", "Atenció:", JOptionPane.WARNING_MESSAGE);
             }
             else {
-                List<subGroup> sublist = presentationctrl.getsubGroup(g);
-                presentationctrl.removeSubGroup(sublist.get(index), g);
-                SubGroupList.setModel(presentationctrl.getsubGroupsRefs(g));
-                jScrollPane2.setViewportView(SubGroupList);
+                presentationctrl.SwitchFromsGMtoDsG(index, g);
             }
         }
     }//GEN-LAST:event_DeleteBottomActionPerformed
@@ -200,7 +192,6 @@ public class subGroupMenu extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        numGroup.setText(Integer.toString(g.getNum()));
         SubGroupList.setModel(presentationctrl.getsubGroupsRefs(g));
         jScrollPane2.setViewportView(SubGroupList);       
     }//GEN-LAST:event_formWindowActivated
@@ -222,10 +213,6 @@ public class subGroupMenu extends javax.swing.JFrame {
         presentationctrl.SwitchFromsGMtoMM();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBottom;
     private javax.swing.JButton DeleteBottom;
@@ -235,6 +222,5 @@ public class subGroupMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton mainMenuButton;
     private javax.swing.JButton modifybottom;
-    private javax.swing.JLabel numGroup;
     // End of variables declaration//GEN-END:variables
 }

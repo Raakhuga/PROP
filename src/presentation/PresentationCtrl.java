@@ -66,6 +66,9 @@ public class PresentationCtrl {
     private ModifySubject modsubj = null;
     private DeleteSubject delsubj = null;
     private autoGenerateMenu agmenu = null;
+    private DeleteClassroom deleteclassroom = null;
+    private DeleteGroup deletegroup = null;
+    private DeletesubGroup deletesubgroup = null;
     
     
     public PresentationCtrl(){
@@ -551,7 +554,7 @@ public class PresentationCtrl {
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         delsp.setEnabled(true);
-        centerFrame(spmenu);
+        centerFrame(delsp);
         delsp.setVisible(true);
     }
     
@@ -744,6 +747,63 @@ public class PresentationCtrl {
         mainmenu.setEnabled(true);
         centerFrame(mainmenu);
         mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromDCtoCM() {
+        deleteclassroom.setVisible(false);
+        deleteclassroom.setEnabled(false);
+        classroommenu.setEnabled(true);
+        classroommenu.setVisible(true);
+    }
+    
+    public void SwitchFromCMtoDC(int id) {
+        if(deleteclassroom == null)
+            deleteclassroom = new DeleteClassroom(this);
+        deleteclassroom.setId(id);
+        classroommenu.setVisible(false);
+        classroommenu.setEnabled(false);
+        deleteclassroom.setEnabled(true);
+        centerFrame(deleteclassroom);
+        deleteclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromDGtoGM() {
+        deletegroup.setVisible(false);
+        deletegroup.setEnabled(false);
+        groupmenu.setEnabled(true);
+        groupmenu.setVisible(true);
+    }
+    
+    public void SwitchFromGMtoDG(int id, Subject s) {
+        if(deletegroup == null)
+            deletegroup = new DeleteGroup(this);
+        deletegroup.setId(id);
+        deletegroup.setGroup(this.getGroup(s).get(id));
+        deletegroup.setSubject(s);
+        groupmenu.setVisible(false);
+        groupmenu.setEnabled(false);
+        deletegroup.setEnabled(true);
+        centerFrame(deletegroup);
+        deletegroup.setVisible(true);
+    }
+    
+    public void SwitchFromDsGtosGM() {
+        deletesubgroup.setVisible(false);
+        deletesubgroup.setEnabled(false);
+        subgroupmenu.setEnabled(true);
+        subgroupmenu.setVisible(true);
+    }
+    
+    public void SwitchFromsGMtoDsG(int id, Group g) {
+        if(deletesubgroup == null)
+            deletesubgroup = new DeletesubGroup(this);
+        deletesubgroup.setId(id);
+        deletesubgroup.setGroup(g);
+        subgroupmenu.setVisible(false);
+        subgroupmenu.setEnabled(false);
+        deletesubgroup.setEnabled(true);
+        centerFrame(deletesubgroup);
+        deletesubgroup.setVisible(true);
     }
     
     //presentation methods

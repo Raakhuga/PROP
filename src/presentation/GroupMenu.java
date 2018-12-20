@@ -177,10 +177,7 @@ public class GroupMenu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Afegeixi un grup.", "Atenció:", JOptionPane.WARNING_MESSAGE);
             }
             else {
-                List<Group> grouplist = presentationctrl.getGroup(mSub);
-                presentationctrl.removeGroup(grouplist.get(index), mSub);
-                GroupList.setModel(presentationctrl.getGroupsRefs(mSub));
-                jScrollPane2.setViewportView(GroupList);
+                presentationctrl.SwitchFromGMtoDG(index, mSub);
             }
         }
     }//GEN-LAST:event_DeleteBottomActionPerformed
