@@ -80,6 +80,7 @@ public class PresentationCtrl {
     
     private void centerFrame(JFrame aux) {
         aux.setLocation(dim.width/2-aux.getSize().width/2, dim.height/2-aux.getSize().height/2);
+        aux.setResizable(false);
     }
     
     public boolean isInt(String text) {
