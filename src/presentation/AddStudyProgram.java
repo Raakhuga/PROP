@@ -6,6 +6,7 @@
 package presentation;
 
 import domain.StudyProgram;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -14,12 +15,17 @@ import javax.swing.JOptionPane;
 public class AddStudyProgram extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
+    DefaultListModel<String> studyprograms;
     /**
      * Creates new form AddStudyProgram
      */
     public AddStudyProgram(PresentationCtrl presentationctrl) {
         initComponents();
         this.presentationctrl = presentationctrl;
+    }
+    
+    public void setList(DefaultListModel<String> studyprograms){
+        this.studyprograms = studyprograms;
     }
 
     /**
@@ -120,8 +126,13 @@ public class AddStudyProgram extends javax.swing.JFrame {
         String name = jTextField1.getText();
         if(name.equals("")) JOptionPane.showMessageDialog(this, "Has d'introduir un nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else {
-            StudyProgram sp = presentationctrl.addStudyProgram(name);
-            presentationctrl.SwitchFromASPtoSPM();
+            if(!studyprograms.contains(name)){
+                StudyProgram sp = presentationctrl.addStudyProgram(name);
+                presentationctrl.SwitchFromASPtoSPM();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ja hi ha un pla d'estudis amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_addActionPerformed
 
