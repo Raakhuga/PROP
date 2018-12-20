@@ -190,7 +190,7 @@ public class TimetableGenerator {
         s.fillProblemsH(hours);
     }
     
-    public Level addLevel(int iden, StudyProgram SP) {
+    public Level addLevel(StudyProgram SP, int iden) {
         Level lvl = new Level(iden);
         return SP.addLevel(lvl);
     }

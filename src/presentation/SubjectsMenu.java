@@ -47,6 +47,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
         SubjectsList = new javax.swing.JList<>();
         delete = new javax.swing.JButton();
         groups = new javax.swing.JButton();
+        mainmenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -125,8 +126,15 @@ public class SubjectsMenu extends javax.swing.JFrame {
                 .addComponent(delete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(groups)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        mainmenuButton.setText("Menú Principal");
+        mainmenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainmenuButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,7 +144,9 @@ public class SubjectsMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(mainmenuButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -144,9 +154,11 @@ public class SubjectsMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exit)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exit)
+                    .addComponent(mainmenuButton))
                 .addContainerGap())
         );
 
@@ -160,6 +172,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
+        presentationctrl.fixTimetables(lvl);
         presentationctrl.SwitchFromSMtoLM();
     }//GEN-LAST:event_exitActionPerformed
 
@@ -188,6 +201,12 @@ public class SubjectsMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_groupsActionPerformed
 
+    private void mainmenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainmenuButtonActionPerformed
+        // TODO add your handling code here:
+        presentationctrl.fixTimetables(lvl);
+        presentationctrl.SwitchFromSjMtoMM();
+    }//GEN-LAST:event_mainmenuButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> SubjectsList;
@@ -197,6 +216,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
     private javax.swing.JButton groups;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton mainmenuButton;
     private javax.swing.JButton modifySubject;
     // End of variables declaration//GEN-END:variables
 }

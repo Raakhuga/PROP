@@ -53,7 +53,7 @@ public class DriverTimetableGenerator {
             System.out.println("Introdueixi el numero de nivells del pla d'estudis: " + SPact.getName());
             int nLevels = in.nextInt();
             for (int i = 0; i < nLevels; i++) {
-                p.addLevel(SPact);
+                p.addLevel(SPact, i);
             }
             Iterator<Level> LIT = SPact.getLevels().iterator();
             while(LIT.hasNext()) {
@@ -122,7 +122,7 @@ public class DriverTimetableGenerator {
         p.addStudyProgram("FIB"); //Pla d'estudis
         List<StudyProgram> PIT = p.getPrograms();
         StudyProgram SPact = PIT.get(0);
-        p.addLevel(SPact);
+        p.addLevel(SPact,1);
         List<Level> LIT = SPact.getLevels();
         Level Lact = LIT.get(0);
         p.addSubject(Lact, "FM");
@@ -152,7 +152,7 @@ public class DriverTimetableGenerator {
         p.generateGroups(SIT.get(3),300,0,4);
         p.fixTimetables(Lact);
         
-        p.addLevel(SPact);
+        p.addLevel(SPact,2);
         Lact = LIT.get(1);
         p.addSubject(Lact, "PRO2");
         p.addSubject(Lact, "M1");
@@ -221,6 +221,7 @@ public class DriverTimetableGenerator {
         GS.setTheory();
         CTRLRestrictions ctrlRestrictions = new CTRLRestrictions(p);
         ClassSubject CS = new ClassSubject(classes.get(0), SIT.get(2));
+        /*
         if (ctrlRestrictions.classroomRestrictions(3, 10, classes.get(0), GS)) {
             System.out.println("primero");
             if (ctrlRestrictions.groupRestrictions(3, 10, classes.get(0), GS)) {
@@ -240,7 +241,7 @@ public class DriverTimetableGenerator {
             if (ctrlRestrictions.groupRestrictions(3, 10, classes.get(0), GS)) {
                 System.out.println("segundo");
             }
-        }
+        }*/
         
         p.ban(classes.get(0), 2, 3, 8, 20);
         p.banGroup(classes.get(0), 3, 4, 8, 20, 10);
@@ -295,13 +296,13 @@ public class DriverTimetableGenerator {
     }
     
     public static void main(String[] args) throws Exception{
-        initTimetable();
-        //p = new TimetableGenerator();
+        //initTimetable();
+        p = new TimetableGenerator();
         PersistanceCtrl PC = new PersistanceCtrl();
-        load1();
+        //load1();
         //p = new TimetableGenerator(0, 0);
         //TimetableGenerator TG = new TimetableGenerator(0, 0);
-        //PC.load(p, "src/tests/drivers/asdfasdf/statePersist.txt");
+        PC.load(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
         //PC.load(p, "C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/state.state");
         //p = TG;
         
@@ -309,7 +310,7 @@ public class DriverTimetableGenerator {
         
         //p.generateAllGS();
         
-        //PC.save(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
+        PC.save(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
         //printGS();
         //p.generateTimetable();
         //printClassTimetable();

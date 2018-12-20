@@ -4,8 +4,8 @@ Num_Classrooms: 16
 Classrooms:
   Capacity: 80 Reference: A1 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 2
   Restrictions:
-    Bloquejar_franja  2 3 8 20
-    Bloquejar_grup 10 3 4 8 20
+    Bloquejar_franja dia_inicial: 2 dia_final: 3 hora_inicial: 8 hora_final: 20
+    Bloquejar_grup 10 dia_inicial: 3 dia_final: 4 hora_inicial: 8 hora_final: 20
   Capacity: 80 Reference: A2 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: true Laboratory: false Problems: false Num_Restrictions: 0
   Restrictions:
   Capacity: 20 Reference: A3 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 20 Theory: false Laboratory: false Problems: true Num_Restrictions: 0
@@ -43,7 +43,7 @@ StudyPrograms:
   Levels:
     Iden: 1 Num_subjects: 4
       Subjects:
-        Name: FM Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
+        Name: FM Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Num_groups: 4
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
@@ -93,7 +93,7 @@ StudyPrograms:
             Restrictions:
             Num: 44 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: F Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
+        Name: F Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Num_groups: 4
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
@@ -143,7 +143,7 @@ StudyPrograms:
             Restrictions:
             Num: 44 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: IC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
+        Name: IC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Num_groups: 4
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
@@ -193,7 +193,7 @@ StudyPrograms:
             Restrictions:
             Num: 44 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: PRO Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 4
+        Name: PRO Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Num_groups: 4
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
@@ -245,7 +245,7 @@ StudyPrograms:
             Restrictions:
     Iden: 2 Num_subjects: 4
       Subjects:
-        Name: PRO2 Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
+        Name: PRO2 Num_sessions_theory: 2 Num_sessions_laboratory: 3 Num_sessions_problems: 0 Num_groups: 2
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
@@ -271,7 +271,7 @@ StudyPrograms:
             Restrictions:
             Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: M1 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
+        Name: M1 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Num_groups: 2
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
@@ -297,7 +297,7 @@ StudyPrograms:
             Restrictions:
             Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: M2 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
+        Name: M2 Num_sessions_theory: 3 Num_sessions_laboratory: 0 Num_sessions_problems: 2 Num_groups: 2
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:
@@ -323,7 +323,7 @@ StudyPrograms:
             Restrictions:
             Num: 24 Enrolled: 20 First_day: 0 Last_day: 4 First_hour: 14 Last_hour: 20 Num_restrictions: 0
             Restrictions:
-        Name: EC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Level: levelATENCION StudyProgram: SPATENCION Num_groups: 2
+        Name: EC Num_sessions_theory: 3 Num_sessions_laboratory: 2 Num_sessions_problems: 0 Num_groups: 2
         Groups:
           Num: 10 Enrolled: 80 First_day: 0 Last_day: 4 First_hour: 8 Last_hour: 14 Num_Restrictions: 0
           Restrictions:

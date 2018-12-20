@@ -93,7 +93,7 @@ public class Subject {
     
     public String saveSubject() {
         Iterator<Group> Git = groups.iterator();
-        String gps = "Name: " + name + " Num_sessions_theory: " + nSessions[THEORY] + " Num_sessions_laboratory: " + nSessions[LABORATORY] + " Num_sessions_problems: " + nSessions[PROBLEMS] + " Level: " + "levelATENCION" +" StudyProgram: " + "SPATENCION" +  " Num_groups: " + groups.size() + "\n" + "        Groups:";
+        String gps = "Name: " + name + " Num_sessions_theory: " + nSessions[THEORY] + " Num_sessions_laboratory: " + nSessions[LABORATORY] + " Num_sessions_problems: " + nSessions[PROBLEMS] + " Num_groups: " + groups.size() + "\n" + "        Groups:";
         while (Git.hasNext()) {
             Group Gact = Git.next();
             String gp = "\n" + "          " + Gact.saveGroup();

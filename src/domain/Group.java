@@ -99,37 +99,37 @@ public class Group {
     public void ban(int dIni, int dEnd, int hIni, int hEnd) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.ban(i, j);
-        addedRestrictions.add("Bloquejar_franja " + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_franja " + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unban(int dIni, int dEnd, int hIni, int hEnd) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unban(i, j);
-        addedRestrictions.add("Desbloquejar_franja " + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_franja " + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.banSubject(i, j, subject);
-        addedRestrictions.add("Bloquejar_assignatura " + subject + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unbanSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanSubject(i, j, subject);
-        addedRestrictions.add("Desbloquejar_assignatura " + subject + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banClassroom(int dIni, int dEnd, int hIni, int hEnd, String ref) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.banClassroom(i, j, ref);
-        addedRestrictions.add("Bloquejar_aula " + ref + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_aula " + ref + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unbanClassroom(int dIni, int dEnd, int hIni, int hEnd, String ref) {
         for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanClassroom(i, j, ref);
-        addedRestrictions.add("Desbloquejar_aula " + ref + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_aula " + ref + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     private String getNextString(int It, int NIt, String sentence) {

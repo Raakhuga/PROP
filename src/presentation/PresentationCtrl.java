@@ -38,7 +38,6 @@ public class PresentationCtrl {
     private GroupTimetable grouptimetable = null;
     private firstTime firstime = null;
     private SelectionMenu selectionmenu = null;
-    private StateGen stategen = null;
     private StudyProgramMenu spmenu = null;
     private AddStudyProgram addsp = null;
     private ModifyStudyProgram modsp = null;
@@ -68,11 +67,14 @@ public class PresentationCtrl {
         aux.setLocation(dim.width/2-aux.getSize().width/2, dim.height/2-aux.getSize().height/2);
     }
     //sync
+    /*
     public void SwitchFromMMtoCM(){
         if(classroommenu == null)
             classroommenu = new ClassroomMenu(this);
+    }*/
     /** SYNCRONIZATION **/
     // Main menu to State generator
+    /*
     public void SwitchFromMMtoSG(){
         if(stategen == null)
             stategen = new StateGen(this);
@@ -81,13 +83,11 @@ public class PresentationCtrl {
         classroommenu.setEnabled(true);
         centerFrame(classroommenu);
         classroommenu.setVisible(true);
-    }
+    }*/
     
     public void SwitchFromMMtoSLM(){
         if(saveloadmenu == null)
             saveloadmenu = new SaveLoadMenu(this);
-    // State generator to Main menu
-    public void SwitchFromSGtoMM(){
         mainmenu.setVisible(false);
         mainmenu.setEnabled(false);
         saveloadmenu.setEnabled(true);
@@ -275,6 +275,280 @@ public class PresentationCtrl {
         mainmenu.setVisible(true);
     }
     
+    public void SwitchFromSMtoSPM() {
+        if(spmenu == null)
+            spmenu = new StudyProgramMenu(this);
+        selectionmenu.setVisible(false);
+        selectionmenu.setEnabled(false);
+        spmenu.setEnabled(true);
+        centerFrame(spmenu);
+        spmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSPMtoSM() {
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSPMtoMM() {
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    // StudyProgram menu to Level menu
+    public void SwitchFromSPMtoLM(StudyProgram sp){
+        if(lvlmenu == null)
+            lvlmenu = new LevelMenu(this);
+        lvlmenu.setStudyProgram(sp);
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
+        lvlmenu.setVisible(true);
+    }
+    
+    // Level menu to StudyProgram menu
+    public void SwitchFromLMtoSPM(){
+        lvlmenu.setVisible(false);
+        lvlmenu.setEnabled(false);
+        spmenu.setEnabled(true);
+        centerFrame(spmenu);
+        spmenu.setVisible(true);
+    }
+    
+    // StudyProgram menu to Add StudyProgram
+    public void SwitchFromSPMtoASP(){
+        if(addsp == null)
+            addsp = new AddStudyProgram(this);
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        addsp.setEnabled(true);
+        centerFrame(addsp);
+        addsp.setVisible(true);
+    }
+    
+    // Add StudyProgram to StudyProgram menu
+    public void SwitchFromASPtoSPM(){
+        addsp.setVisible(false);
+        addsp.setEnabled(false);
+        spmenu.setEnabled(true);
+        centerFrame(spmenu);
+        spmenu.setVisible(true);
+    }
+    
+    // StudyProgram menu to Modify StudyProgram
+    public void SwitchFromSPMtoMSP(StudyProgram sp){
+        if(modsp == null)
+            modsp = new ModifyStudyProgram(this);
+        modsp.setStudyProgram(sp);
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        modsp.setEnabled(true);
+        centerFrame(modsp);
+        modsp.setVisible(true);
+    }
+    
+    // Modify StudyProgram to StudyProgram menu
+    public void SwitchFromMSPtoSPM(){
+        modsp.setVisible(false);
+        modsp.setEnabled(false);
+        spmenu.setEnabled(true);
+        centerFrame(spmenu);
+        spmenu.setVisible(true);
+    }
+    
+    // StudyProgram menu to Delete StudyProgram
+    public void SwitchFromSPMtoDSP(StudyProgram sp){
+        if(delsp == null)
+            delsp = new DeleteStudyProgram(this);
+        delsp.setStudyProgram(sp);
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        delsp.setEnabled(true);
+        centerFrame(spmenu);
+        delsp.setVisible(true);
+    }
+    
+    // Delete StudyProgram to StudyProgram menu
+    public void SwitchFromDSPtoSPM(){
+        delsp.setVisible(false);
+        delsp.setEnabled(false);
+        spmenu.setEnabled(true);
+        centerFrame(spmenu);
+        spmenu.setVisible(true);
+    }
+    
+    // Level menu to Subject menu
+    public void SwitchFromLMtoSM(Level lvl){
+        if(subjmenu == null)
+            subjmenu = new SubjectsMenu(this);
+        subjmenu.setLevel(lvl);
+        lvlmenu.setVisible(false);
+        lvlmenu.setEnabled(false);
+        subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
+        subjmenu.setVisible(true);
+    }
+    
+    // Subject menu to Level menu
+    public void SwitchFromSMtoLM(){
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
+        lvlmenu.setVisible(true);
+    }
+    
+    // Level menu to Add Level
+    public void SwitchFromLMtoAL(StudyProgram sp){
+        if(addlvl == null)
+            addlvl = new AddLevel(this);
+        addlvl.setStudyProgram(sp);
+        lvlmenu.setVisible(false);
+        lvlmenu.setEnabled(false);
+        addlvl.setEnabled(true);
+        centerFrame(addlvl);
+        addlvl.setVisible(true);
+    }
+    
+    // Add Level to Level menu
+    public void SwitchFromALtoLM(){
+        addlvl.setVisible(false);
+        addlvl.setEnabled(false);
+        lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
+        lvlmenu.setVisible(true);
+    }
+    
+    // Level menu to Modify Level
+    public void SwitchFromLMtoML(Level lvl){
+        if(modlvl == null)
+            modlvl = new ModifyLevel(this);
+        modlvl.setLevel(lvl);
+        lvlmenu.setVisible(false);
+        lvlmenu.setEnabled(false);
+        modlvl.setEnabled(true);
+        centerFrame(modlvl);
+        modlvl.setVisible(true);
+    }
+    
+    // Modify Level to Level menu
+    public void SwitchFromMLtoLM(){
+        modlvl.setVisible(false);
+        modlvl.setEnabled(false);
+        lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
+        lvlmenu.setVisible(true);
+    }
+    
+    // Level menu to Delete Level
+    public void SwitchFromLMtoDL(StudyProgram sp, Level lvl){
+        if(dellvl == null)
+            dellvl = new DeleteLevel(this);
+        dellvl.setStudyProgram(sp);
+        dellvl.setLevel(lvl);
+        lvlmenu.setVisible(false);
+        lvlmenu.setEnabled(false);
+        dellvl.setEnabled(true);
+        centerFrame(dellvl);
+        dellvl.setVisible(true);
+    }
+    
+    // Delete Level to Level menu
+    public void SwitchFromDLtoLM(){
+        dellvl.setVisible(false);
+        dellvl.setEnabled(false);
+        lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
+        lvlmenu.setVisible(true);
+    }
+    
+    // Subject menu to Add Subject
+    public void SwitchFromSMtoAS(Level lvl){
+        if(addsubj == null)
+            addsubj = new AddSubject(this);
+        addsubj.setLevel(lvl);
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        addsubj.setEnabled(true);
+        centerFrame(addsubj);
+        addsubj.setVisible(true);
+    }
+    
+    // Add Subject to Subject menu
+    public void SwitchFromAStoSM(){
+        addsubj.setVisible(false);
+        addsubj.setEnabled(false);
+        subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
+        subjmenu.setVisible(true);
+    }
+    
+    // Subject menu to Modify Subject
+    public void SwitchFromSMtoMS(Subject s){
+        if(modsubj == null)
+            modsubj = new ModifySubject(this);
+        modsubj.setSubject(s);
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        modsubj.setEnabled(true);
+        centerFrame(modsubj);
+        modsubj.setVisible(true);
+    }
+    
+    // Modify Subject to Subject menu
+    public void SwitchFromMStoSM(){
+        modsubj.setVisible(false);
+        modsubj.setEnabled(false);
+        subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
+        subjmenu.setVisible(true);
+    }
+    
+    // Subject menu to Delete Subject
+    public void SwitchFromSMtoDS(Level lvl, Subject s){
+        if(delsubj == null)
+            delsubj = new DeleteSubject(this);
+        delsubj.setLevel(lvl);
+        delsubj.setSubject(s);
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        delsubj.setEnabled(true);
+        centerFrame(delsubj);
+        delsubj.setVisible(true);
+    }
+    
+    // Delete Subject to Subject menu
+    public void SwitchFromDStoSM(){
+        delsubj.setVisible(false);
+        delsubj.setEnabled(false);
+        subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
+        subjmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSjMtoMM() {
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromLMtoMM() {
+        lvlmenu.setVisible(false);
+        lvlmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
     //presentation methods
     
     public DefaultListModel<String> getClassroomsRefs() {
@@ -316,216 +590,6 @@ public class PresentationCtrl {
         File file = new File("./aux.state");
         file.delete();
         return DomainCtrl.generateTimetable();
-    }
-    
-    // StudyProgram menu to Level menu
-    public void SwitchFromSPMtoLM(StudyProgram sp){
-        if(lvlmenu == null)
-            lvlmenu = new LevelMenu(this);
-        lvlmenu.setStudyProgram(sp);
-        spmenu.setVisible(false);
-        spmenu.setEnabled(false);
-        lvlmenu.setEnabled(true);
-        lvlmenu.setVisible(true);
-    }
-    
-    // Level menu to StudyProgram menu
-    public void SwitchFromLMtoSPM(){
-        lvlmenu.setVisible(false);
-        lvlmenu.setEnabled(false);
-        spmenu.setEnabled(true);
-        spmenu.setVisible(true);
-    }
-    
-    // StudyProgram menu to Add StudyProgram
-    public void SwitchFromSPMtoASP(){
-        if(addsp == null)
-            addsp = new AddStudyProgram(this);
-        spmenu.setVisible(false);
-        spmenu.setEnabled(false);
-        addsp.setEnabled(true);
-        addsp.setVisible(true);
-    }
-    
-    // Add StudyProgram to StudyProgram menu
-    public void SwitchFromASPtoSPM(){
-        addsp.setVisible(false);
-        addsp.setEnabled(false);
-        spmenu.setEnabled(true);
-        spmenu.setVisible(true);
-    }
-    
-    // StudyProgram menu to Modify StudyProgram
-    public void SwitchFromSPMtoMSP(StudyProgram sp){
-        if(modsp == null)
-            modsp = new ModifyStudyProgram(this);
-        modsp.setStudyProgram(sp);
-        spmenu.setVisible(false);
-        spmenu.setEnabled(false);
-        modsp.setEnabled(true);
-        modsp.setVisible(true);
-    }
-    
-    // Modify StudyProgram to StudyProgram menu
-    public void SwitchFromMSPtoSPM(){
-        modsp.setVisible(false);
-        modsp.setEnabled(false);
-        spmenu.setEnabled(true);
-        spmenu.setVisible(true);
-    }
-    
-    // StudyProgram menu to Delete StudyProgram
-    public void SwitchFromSPMtoDSP(StudyProgram sp){
-        if(delsp == null)
-            delsp = new DeleteStudyProgram(this);
-        delsp.setStudyProgram(sp);
-        spmenu.setVisible(false);
-        spmenu.setEnabled(false);
-        delsp.setEnabled(true);
-        delsp.setVisible(true);
-    }
-    
-    // Delete StudyProgram to StudyProgram menu
-    public void SwitchFromDSPtoSPM(){
-        delsp.setVisible(false);
-        delsp.setEnabled(false);
-        spmenu.setEnabled(true);
-        spmenu.setVisible(true);
-    }
-    
-    // Level menu to Subject menu
-    public void SwitchFromLMtoSM(Level lvl){
-        if(subjmenu == null)
-            subjmenu = new SubjectsMenu(this);
-        subjmenu.setLevel(lvl);
-        lvlmenu.setVisible(false);
-        lvlmenu.setEnabled(false);
-        subjmenu.setEnabled(true);
-        subjmenu.setVisible(true);
-    }
-    
-    // Subject menu to Level menu
-    public void SwitchFromSMtoLM(){
-        subjmenu.setVisible(false);
-        subjmenu.setEnabled(false);
-        lvlmenu.setEnabled(true);
-        lvlmenu.setVisible(true);
-    }
-    
-    // Level menu to Add Level
-    public void SwitchFromLMtoAL(StudyProgram sp){
-        if(addlvl == null)
-            addlvl = new AddLevel(this);
-        addlvl.setStudyProgram(sp);
-        lvlmenu.setVisible(false);
-        lvlmenu.setEnabled(false);
-        addlvl.setEnabled(true);
-        addlvl.setVisible(true);
-    }
-    
-    // Add Level to Level menu
-    public void SwitchFromALtoLM(){
-        addlvl.setVisible(false);
-        addlvl.setEnabled(false);
-        lvlmenu.setEnabled(true);
-        lvlmenu.setVisible(true);
-    }
-    
-    // Level menu to Modify Level
-    public void SwitchFromLMtoML(Level lvl){
-        if(modlvl == null)
-            modlvl = new ModifyLevel(this);
-        modlvl.setLevel(lvl);
-        lvlmenu.setVisible(false);
-        lvlmenu.setEnabled(false);
-        modlvl.setEnabled(true);
-        modlvl.setVisible(true);
-    }
-    
-    // Modify Level to Level menu
-    public void SwitchFromMLtoLM(){
-        modlvl.setVisible(false);
-        modlvl.setEnabled(false);
-        lvlmenu.setEnabled(true);
-        lvlmenu.setVisible(true);
-    }
-    
-    // Level menu to Delete Level
-    public void SwitchFromLMtoDL(StudyProgram sp, Level lvl){
-        if(dellvl == null)
-            dellvl = new DeleteLevel(this);
-        dellvl.setStudyProgram(sp);
-        dellvl.setLevel(lvl);
-        lvlmenu.setVisible(false);
-        lvlmenu.setEnabled(false);
-        dellvl.setEnabled(true);
-        dellvl.setVisible(true);
-    }
-    
-    // Delete Level to Level menu
-    public void SwitchFromDLtoLM(){
-        dellvl.setVisible(false);
-        dellvl.setEnabled(false);
-        lvlmenu.setEnabled(true);
-        lvlmenu.setVisible(true);
-    }
-    
-    // Subject menu to Add Subject
-    public void SwitchFromSMtoAS(Level lvl){
-        if(addsubj == null)
-            addsubj = new AddSubject(this);
-        addsubj.setLevel(lvl);
-        subjmenu.setVisible(false);
-        subjmenu.setEnabled(false);
-        addsubj.setEnabled(true);
-        addsubj.setVisible(true);
-    }
-    
-    // Add Subject to Subject menu
-    public void SwitchFromAStoSM(){
-        addsubj.setVisible(false);
-        addsubj.setEnabled(false);
-        subjmenu.setEnabled(true);
-        subjmenu.setVisible(true);
-    }
-    
-    // Subject menu to Modify Subject
-    public void SwitchFromSMtoMS(Subject s){
-        if(modsubj == null)
-            modsubj = new ModifySubject(this);
-        modsubj.setSubject(s);
-        subjmenu.setVisible(false);
-        subjmenu.setEnabled(false);
-        modsubj.setEnabled(true);
-        modsubj.setVisible(true);
-    }
-    
-    // Modify Subject to Subject menu
-    public void SwitchFromMStoSM(){
-        modsubj.setVisible(false);
-        modsubj.setEnabled(false);
-        subjmenu.setEnabled(true);
-        subjmenu.setVisible(true);
-    }
-    
-    // Subject menu to Delete Subject
-    public void SwitchFromSMtoDS(Level lvl, Subject s){
-        if(delsubj == null)
-            delsubj = new DeleteSubject(this);
-        delsubj.setLevel(lvl);
-        delsubj.setSubject(s);
-        subjmenu.setVisible(false);
-        subjmenu.setEnabled(false);
-        delsubj.setEnabled(true);
-        delsubj.setVisible(true);
-    }
-    
-    // Delete Subject to Subject menu
-    public void SwitchFromDStoSM(){
-        delsubj.setVisible(false);
-        delsubj.setEnabled(false);
-        subjmenu.setEnabled(true);
-        subjmenu.setVisible(true);
     }
     
     /** PRESENTATION METHODS **/
@@ -649,10 +713,6 @@ public class PresentationCtrl {
         DomainCtrl.saveState(path);
     }
     
-    public List<StudyProgram> getPrograms() {
-        return DomainCtrl.getPrograms();
-    }
-    
     public List<Level> getLevels(StudyProgram sp){
         return DomainCtrl.getLevels(sp);
     }
@@ -666,7 +726,7 @@ public class PresentationCtrl {
     }
     
     public Level addLevel(int iden, StudyProgram sp){
-        return DomainCtrl.addLevel(iden, sp);
+        return DomainCtrl.addLevel(sp, iden);
     }
     
     public Subject addSubject(String name, Level lvl, int theory, int lab, int prob){
@@ -711,5 +771,9 @@ public class PresentationCtrl {
     
     public void setHoursProb(Subject s, int hours){
         DomainCtrl.setHoursProb(s, hours);
+    }
+    
+    public void fixTimetables(Level level) {
+        DomainCtrl.fixTimetables(level);
     }
 }

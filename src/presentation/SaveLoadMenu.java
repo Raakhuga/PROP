@@ -60,7 +60,7 @@ public class SaveLoadMenu extends javax.swing.JFrame {
             }
         });
 
-        backButton.setText("Enrere");
+        backButton.setText("Tornar");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);

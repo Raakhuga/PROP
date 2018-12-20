@@ -49,7 +49,7 @@ public class SelectClassroom extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(ClassroomsList);
 
-        backButton.setText("Enrere");
+        backButton.setText("Tornar");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);

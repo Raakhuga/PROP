@@ -7,6 +7,7 @@ package presentation;
 
 import domain.Classroom;
 import domain.GroupSubject;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -86,7 +87,6 @@ public class ClassroomTimetable extends javax.swing.JFrame {
 
     private void generateButtons(){
         for(int i = act.gethIni()-1; i < act.gethEnd(); i++) {
-            List<JButton> buttonr = new ArrayList<>();
             for(int j = act.getdIni()-1; j <= act.getdEnd(); j++) {
                 String cont = "";
                 if (i == act.gethIni() -1){
@@ -133,21 +133,27 @@ public class ClassroomTimetable extends javax.swing.JFrame {
                 }
                 else {
                     GroupSubject GSact = act.getTimetable().getGroupSubject(j, i);
-                    if(GSact.isEmpty()) cont = "Buit";
+                    if(GSact.isEmpty()) cont = " ";
                     else cont = "<html>" + GSact.getNameSubject() + "<br/>Grup: " + GSact.getNumGroup() + "<br/>" + GSact.getType() + "</html>";
                     JButton Bact = new JButton(cont);
                     Bact.setSize(160, 60);
                     Bact.setLocation(120+(j-act.getdIni())*160, 80+(i-act.gethIni())*60);
-                    if(!Bact.getText().equals("Buit")) Bact.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                            presentationctrl.SwitchFromCTTtoGTT(GSact.getGroup());
-                        }
-                    });
+                    if(!Bact.getText().equals(" "))  {
+                        Bact.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                presentationctrl.SwitchFromCTTtoGTT(GSact.getGroup());
+                            }
+                        });
+                        Bact.setBackground(Color.WHITE);
+                    }
+                    else {
+                        if (act.getTimetable().isBanned(j, i)) Bact.setBackground(Color.RED);
+                        else Bact.setBackground(Color.GRAY);
+                        Bact.setForeground(Color.RED);
+                    }
                     getContentPane().add(Bact);
-                    buttonr.add(Bact);
                 }
             }
-            buttons.add(buttonr);
         }
     }
     
@@ -165,9 +171,9 @@ public class ClassroomTimetable extends javax.swing.JFrame {
         this.setSize(400+(act.getdEnd())*160, 240+(act.gethEnd()-act.gethIni())*60);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        backButton = new JButton("Enrere");
+        backButton = new JButton("Tornar");
         backButton.setSize(120, 40);
-        backButton.setLocation(this.getWidth() - 240, this.getHeight() - 120);
+        backButton.setLocation((400+(act.getdEnd())*160) - 240, (240+(act.gethEnd()-act.gethIni())*60) - 120);
         getContentPane().add(backButton);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

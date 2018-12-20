@@ -8,7 +8,7 @@ import java.util.List;
 public class Level {
     
     /** Atributtes **/
-    private final int iden;
+    private int iden;
     //private String SP;
     private List<Subject> subjects;
     
