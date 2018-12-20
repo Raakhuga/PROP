@@ -6,6 +6,8 @@
 package presentation;
 
 import domain.Subject;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -14,6 +16,7 @@ public class ModifySubject extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
     Subject act;
+    DefaultListModel<String> subjects;
     /**
      * Creates new form ModifySubject
      */
@@ -24,6 +27,10 @@ public class ModifySubject extends javax.swing.JFrame {
     
     public void setSubject(Subject s){
         this.act = s;
+    }
+    
+    public void setList(DefaultListModel<String> subjects){
+        this.subjects = subjects;
     }
 
     /**
@@ -173,14 +180,30 @@ public class ModifySubject extends javax.swing.JFrame {
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
         String n = name.getText();
-        int theo = Integer.parseInt(theory.getText());
-        int labo = Integer.parseInt(lab.getText());
-        int probs = Integer.parseInt(prob.getText());
-        presentationctrl.setNameSubject(act, n);
-        presentationctrl.setHoursTheory(act, theo);
-        presentationctrl.setHoursLab(act, labo);
-        presentationctrl.setHoursProb(act, probs);
-        presentationctrl.SwitchFromAStoSM();
+        String theo = theory.getText();
+        String labo = lab.getText();
+        String probs = prob.getText();
+        if(n.equals("") || theo.equals("") || labo.equals("") || probs.equals("")){
+            JOptionPane.showMessageDialog(this, "Has d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(!presentationctrl.isInt(theo))
+            JOptionPane.showMessageDialog(this, "El camp Número sessions teoria ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if (!presentationctrl.isInt(labo))
+            JOptionPane.showMessageDialog(this, "El camp Número sessions laboratori ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if (!presentationctrl.isInt(probs))
+            JOptionPane.showMessageDialog(this, "El camp Número sessions problemes ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else{
+            if(subjects.contains(n)){
+                presentationctrl.setNameSubject(act, n);
+                presentationctrl.setHoursTheory(act, Integer.parseInt(theo));
+                presentationctrl.setHoursLab(act, Integer.parseInt(labo));
+                presentationctrl.setHoursProb(act, Integer.parseInt(probs));
+                presentationctrl.SwitchFromAStoSM();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ja hi ha una assignatura amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
