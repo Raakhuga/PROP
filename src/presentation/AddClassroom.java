@@ -31,6 +31,7 @@ public class AddClassroom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        boolGroup = new javax.swing.ButtonGroup();
         addClassroom = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         typeLabel = new javax.swing.JLabel();
@@ -70,13 +71,16 @@ public class AddClassroom extends javax.swing.JFrame {
 
         typeLabel.setText("Tipus:");
 
+        boolGroup.add(theoryRadioButton);
         theoryRadioButton.setText("Teoría");
 
         CapacityLabel.setText("Nombre màxim d'estudiants que caben a l'aula:");
         CapacityLabel.setToolTipText("");
 
+        boolGroup.add(laboratoryRadioButton);
         laboratoryRadioButton.setText("Laboratori");
 
+        boolGroup.add(problemsRadioButton);
         problemsRadioButton.setText("Problemes");
 
         RefLabel.setText("Nom de l'aula:");
@@ -132,33 +136,26 @@ public class AddClassroom extends javax.swing.JFrame {
                             .addComponent(hIniSlider, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(hEndHLabel)
-                                .addGap(118, 118, 118))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(hIniHLabel)
-                                .addGap(126, 126, 126))))
+                            .addComponent(hEndHLabel)
+                            .addComponent(hIniHLabel)))
                     .addComponent(CapacityLabel)
+                    .addComponent(hIniLabel)
+                    .addComponent(dEndLabel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hIniLabel)
-                            .addComponent(dEndLabel)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(RefLabel)
-                                    .addComponent(dIniLabel)
-                                    .addComponent(dIniBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(capacityField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(RefField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(problemsRadioButton)
-                                    .addComponent(laboratoryRadioButton)
-                                    .addComponent(typeLabel)
-                                    .addComponent(theoryRadioButton)))
-                            .addComponent(dEndBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)))
+                            .addComponent(RefLabel)
+                            .addComponent(dIniLabel)
+                            .addComponent(dIniBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(capacityField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(RefField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(problemsRadioButton)
+                            .addComponent(laboratoryRadioButton)
+                            .addComponent(typeLabel)
+                            .addComponent(theoryRadioButton)))
+                    .addComponent(dEndBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -235,7 +232,7 @@ public class AddClassroom extends javax.swing.JFrame {
    
     private void addClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassroomActionPerformed
         // TODO add your handling code here:
-        int capacity = Integer.parseInt(capacityField.getText());
+        String capacity = capacityField.getText();
         String ref = RefField.getText();
         int dIni = Integer.parseInt(dIniBox.getSelectedIndex()+"");   
         int dEnd = Integer.parseInt(dEndBox.getSelectedIndex()+"");
@@ -245,11 +242,17 @@ public class AddClassroom extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
         if (hIni >= hEnd) 
             JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if (capacity.equals("") || ref.equals("") || (!theoryRadioButton.isSelected() && !laboratoryRadioButton.isSelected() && !problemsRadioButton.isSelected())) {
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+        else if (!presentationctrl.isInt(capacity)){
+            JOptionPane.showMessageDialog(this, "La capacitat ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
         else {
-            Classroom c = presentationctrl.addClassroom(capacity, ref, dIni, dEnd, hIni, hEnd);
+            Classroom c = presentationctrl.addClassroom(Integer.parseInt(capacity), ref, dIni, dEnd, hIni, hEnd);
             presentationctrl.setTheory(c, theoryRadioButton.isSelected());
             presentationctrl.setLaboratory(c, laboratoryRadioButton.isSelected());
-            presentationctrl.setProblems(c, laboratoryRadioButton.isSelected());
+            presentationctrl.setProblems(c, problemsRadioButton.isSelected());
             presentationctrl.SwitchFromACtoCM();
         }
     }//GEN-LAST:event_addClassroomActionPerformed
@@ -277,6 +280,7 @@ public class AddClassroom extends javax.swing.JFrame {
     private javax.swing.JTextField RefField;
     private javax.swing.JLabel RefLabel;
     private javax.swing.JButton addClassroom;
+    private javax.swing.ButtonGroup boolGroup;
     private javax.swing.JTextField capacityField;
     private javax.swing.JComboBox<String> dEndBox;
     private javax.swing.JLabel dEndLabel;

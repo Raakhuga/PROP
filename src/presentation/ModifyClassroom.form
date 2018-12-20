@@ -101,7 +101,6 @@
                               <Component id="hIniHLabel" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="hEndHLabel" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="110" pref="110" max="-2" attributes="0"/>
                       </Group>
                       <Component id="hIniLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="dEndLabel" min="-2" max="-2" attributes="0"/>
