@@ -35,6 +35,10 @@ public class Classroom {
         this.type[LABORATORY] = false;
         this.type[PROBLEMS] = false;
     }
+    
+    public boolean isOut(int day, int hour) {
+        return timetable.isOut(day, hour);
+    }
 
     public String getRef() {
         return ref;
@@ -133,39 +137,39 @@ public class Classroom {
     }
 
     public void ban(int dIni, int dEnd, int hIni, int hEnd) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.ban(i, j);
-        addedRestrictions.add("Bloquejar_franja " + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_franja " + "dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unban(int dIni, int dEnd, int hIni, int hEnd) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unban(i, j);
-        addedRestrictions.add("Desbloquejar_franja " + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_franja " + "dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.banSubject(i, j, subject);
-        addedRestrictions.add("Bloquejar_assignatura " + subject + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unbanSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanSubject(i, j, subject);
-        addedRestrictions.add("Desbloquejar_assignatura " + subject + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banGroup(int dIni, int dEnd, int hIni, int hEnd, int num) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.banGroup(i, j, num);
-        addedRestrictions.add("Bloquejar_grup " + num + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_grup " + num + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unbanGroup(int dIni, int dEnd, int hIni, int hEnd, int num) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanGroup(i, j, num);
-        addedRestrictions.add("Desbloquejar_grup " + num + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_grup " + num + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     private String getNextString(int It, int NIt, String sentence) {
@@ -254,7 +258,7 @@ public class Classroom {
     }
     
     public String saveClassroom(){
-        String croom = capacity + " " + ref + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " + type[THEORY] + " " + type[LABORATORY] + " " + type[PROBLEMS] + " " + addedRestrictions.size() + "\n" + "  " + "Restrictions:"; 
+        String croom = "Capacity: " + capacity + " Reference: " + ref + " First_day: " + getdIni() + " Last_day: " + getdEnd() + " First_hour: " + gethIni() + " Last_hour: " + gethEnd() + " Theory: " + type[THEORY] + " Laboratory: " + type[LABORATORY] + " Problems: " + type[PROBLEMS] + " Num_Restrictions: " + addedRestrictions.size() + "\n" + "  " + "Restrictions:"; 
         Iterator<String> Rit = addedRestrictions.iterator();
         while(Rit.hasNext()) {
             String Ract = Rit.next();

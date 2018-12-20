@@ -24,6 +24,8 @@ public class GroupSubject {
     
     public GroupSubject() {
         this.empty = true;
+        this.type = new boolean[3];
+        for(int i = 0; i < 3; i++) type[i] = false;
     }
 
     public Subject getSubject() {
@@ -116,6 +118,12 @@ public class GroupSubject {
     
     public boolean isProblems() {
         return type[PROBLEMS];
+    }
+    
+    public String getType() {
+        if(type[THEORY]) return "Teoria";
+        if(type[LABORATORY]) return "Laboratori";
+        return "Problemes";
     }
     
     public int getNumGroup() {

@@ -32,6 +32,10 @@ public class Group {
         return num;
     }
     
+    public boolean isOut(int day, int hour) {
+        return timetable.isOut(day, hour);
+    }
+    
     public int getdIni() {
         return timetable.getdIni();
     }
@@ -68,6 +72,10 @@ public class Group {
         this.timetable = timetable;
     }
     
+    public void setAddedRestrictions(List<String> addedRestrictions) {
+        this.addedRestrictions = addedRestrictions;
+    }
+    
     public boolean isSubGroup() {
         return false;
     }
@@ -89,39 +97,39 @@ public class Group {
     }
     
     public void ban(int dIni, int dEnd, int hIni, int hEnd) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.ban(i, j);
-        addedRestrictions.add("Bloquejar_franja " + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_franja " + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unban(int dIni, int dEnd, int hIni, int hEnd) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unban(i, j);
-        addedRestrictions.add("Desbloquejar_franja " + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_franja " + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.banSubject(i, j, subject);
-        addedRestrictions.add("Bloquejar_assignatura " + subject + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unbanSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanSubject(i, j, subject);
-        addedRestrictions.add("Desbloquejar_assignatura " + subject + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void banClassroom(int dIni, int dEnd, int hIni, int hEnd, String ref) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.banClassroom(i, j, ref);
-        addedRestrictions.add("Bloquejar_aula " + ref + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Bloquejar_aula " + ref + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     public void unbanClassroom(int dIni, int dEnd, int hIni, int hEnd, String ref) {
-        for(int i = dIni; i < dEnd; i++) 
+        for(int i = dIni; i <= dEnd; i++) 
             for (int j = hIni; j < hEnd; j++) timetable.unbanClassroom(i, j, ref);
-        addedRestrictions.add("Desbloquejar_aula " + ref + " " + dIni + " " + dEnd + " " + hIni + " " + hEnd);
+        addedRestrictions.add("Desbloquejar_aula " + ref + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
     private String getNextString(int It, int NIt, String sentence) {
@@ -216,13 +224,13 @@ public class Group {
     public String saveGroup() {
         Iterator<subGroup> SGit = subGroups.iterator();
         Iterator<String> Rit = addedRestrictions.iterator();
-        String sgps = num + " " + enrolled + " " + getdIni() + " " + getdEnd() + " " + gethIni() + " " + gethEnd() + " " +  addedRestrictions.size() + "\n" + "          Restrictions:";
+        String sgps = "Num: " + num + " Enrolled: " + enrolled + " First_day: " + getdIni() + " Last_day: " + getdEnd() + " First_hour: " + gethIni() + " Last_hour: " + gethEnd() + " Num_Restrictions: " +  addedRestrictions.size() + "\n" + "          Restrictions:";
         while(Rit.hasNext()) {
             String Ract = Rit.next();
             String R = "\n" + "            " + Ract;
             sgps = sgps + R;
         }
-        sgps = sgps + "\n" + "          " + subGroups.size() + "\n" + "          Subgroups:";
+        sgps = sgps + "\n" + "          Num_subGroups: " + subGroups.size() + "\n" + "          Subgroups:";
         while(SGit.hasNext()) {
             subGroup SGact = SGit.next();
             String sgp = "\n" + "            " + SGact.saveGroup();
