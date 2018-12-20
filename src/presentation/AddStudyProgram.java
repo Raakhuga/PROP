@@ -6,6 +6,7 @@
 package presentation;
 
 import domain.StudyProgram;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -117,8 +118,11 @@ public class AddStudyProgram extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
         String name = jTextField1.getText();
-        StudyProgram sp = presentationctrl.addStudyProgram(name);
-        presentationctrl.SwitchFromASPtoSPM();
+        if(name.equals("")) JOptionPane.showMessageDialog(this, "Has d'introduir un nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            StudyProgram sp = presentationctrl.addStudyProgram(name);
+            presentationctrl.SwitchFromASPtoSPM();
+        }
     }//GEN-LAST:event_addActionPerformed
 
 
