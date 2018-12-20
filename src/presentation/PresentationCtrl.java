@@ -65,6 +65,7 @@ public class PresentationCtrl {
     private AddSubject addsubj = null;
     private ModifySubject modsubj = null;
     private DeleteSubject delsubj = null;
+    private autoGenerateMenu agmenu = null;
     
     
     public PresentationCtrl(){
@@ -231,14 +232,63 @@ public class PresentationCtrl {
         groupmenu.setVisible(true);
     }
     
-    public void SwitchFromGMtosGM(Group g) {
+    public void SwitchFromGMtosGM(Group g, Level lvl) {
         if (subgroupmenu == null)
-            subgroupmenu = new subGroupMenu(g, this);
+            subgroupmenu = new subGroupMenu(this);
+        subgroupmenu.setGroup(g);
+        subgroupmenu.setLevel(lvl);
         groupmenu.setEnabled(false);
         groupmenu.setVisible(false);
         subgroupmenu.setEnabled(true);
         centerFrame(subgroupmenu);
         subgroupmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSMtoAG(Subject s, Level lvl) {
+        if (agmenu == null)
+            agmenu = new autoGenerateMenu(this);
+        agmenu.setSubject(s);
+        agmenu.setLevel(lvl);
+        subjmenu.setEnabled(false);
+        subjmenu.setVisible(false);
+        agmenu.setEnabled(true);
+        centerFrame(agmenu);
+        agmenu.setVisible(true);
+    }
+    
+    public void SwitchFromAGtoSM() {
+        agmenu.setVisible(false);
+        agmenu.setEnabled(false);
+        subjmenu.setEnabled(true);
+        subjmenu.setVisible(true);
+    }
+    
+    public void SwitchFromGMtoMM() {
+        groupmenu.setVisible(false);
+        groupmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromGMtoSM() {
+        groupmenu.setVisible(false);
+        groupmenu.setEnabled(false);
+        subjmenu.setEnabled(true);
+        subjmenu.setVisible(true);
+    }
+    
+    public void SwitchFromsGMtoMM() {
+        subgroupmenu.setVisible(false);
+        subgroupmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromsGMtoGM(){
+        subgroupmenu.setVisible(false);
+        subgroupmenu.setEnabled(false);
+        groupmenu.setEnabled(true);
+        groupmenu.setVisible(true);
     }
      
     public void SwitchFromGMtoMG(Group g) {
@@ -254,7 +304,8 @@ public class PresentationCtrl {
     
     public void SwitchFromGMtoAG(Subject sub) {
         if(addgroup == null)
-            addgroup = new AddGroup(this, sub);
+            addgroup = new AddGroup(this);
+        addgroup.setSubject(sub);
         groupmenu.setEnabled(false);
         groupmenu.setVisible(false);
         addgroup.setEnabled(true);
@@ -600,10 +651,11 @@ public class PresentationCtrl {
     }
     
     // Subject menu to Group menu
-    public void SwitchFromSMtoGM(Subject s){
+    public void SwitchFromSMtoGM(Subject s, Level l){
         if(groupmenu == null)
             groupmenu = new GroupMenu(this);
         groupmenu.setSubj(s);
+        groupmenu.setLevel(l);
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         groupmenu.setEnabled(true);
@@ -724,7 +776,7 @@ public class PresentationCtrl {
       Iterator<Group> Git = groupList.iterator();
       DefaultListModel<String> refs = new DefaultListModel<>();
       while(Git.hasNext()) {
-          refs.addElement(Integer.toString(Git.next().getNum()));
+          refs.addElement(Git.next().getNum()+"");
       }
       if(refs.size() == 0) refs.addElement("No hi ha cap grup al sistema");
       return refs;
@@ -734,7 +786,7 @@ public class PresentationCtrl {
       Iterator<subGroup> it = subgroupList.iterator();
       DefaultListModel<String> refs = new DefaultListModel<>();
       while(it.hasNext()) {
-          refs.addElement(Integer.toString(it.next().getNum()));
+          refs.addElement(it.next().getNum()+"");
       }
       if(refs.size() == 0) refs.addElement("No hi ha cap subgrup al sistema");
       return refs;
@@ -769,11 +821,14 @@ public class PresentationCtrl {
     //domain methods
     public boolean generate() {
         this.save("./aux.state");
+        System.out.println("guardo");
         DomainCtrl = new TimetableGenerator();
         this.load("./aux.state");
         DomainCtrl.generateAllGS();
+        System.out.println("leo");
         File file = new File("./aux.state");
         file.delete();
+        System.out.println("borro");
         return DomainCtrl.generateTimetable();
     }
     
@@ -885,6 +940,7 @@ public class PresentationCtrl {
     
     public void load(String path) {
         //DomainCtrl.loadState(path);
+        first = false;
         DomainCtrl.loadState(path);
     }
     
@@ -939,7 +995,7 @@ public class PresentationCtrl {
       while(it.hasNext()) {
           refs.addElement(it.next());
       }
-      if(refs.size() == 0) refs.addElement("No hi ha cap restriccions al sistema");
+      if(refs.size() == 0) refs.addElement("No hi ha cap restricció al sistema");
       return refs;
     }
     
@@ -950,7 +1006,7 @@ public class PresentationCtrl {
       while(it.hasNext()) {
           refs.addElement(it.next());
       }
-      if(refs.size() == 0) refs.addElement("No hi ha cap restriccions al sistema");
+      if(refs.size() == 0) refs.addElement("No hi ha cap restricció al sistema");
       return refs;
     }
     
@@ -1049,5 +1105,9 @@ public class PresentationCtrl {
     
     public void fixTimetables(Level level) {
         DomainCtrl.fixTimetables(level);
+    }
+    
+    public void generateGroups(Subject s, int enrolled, int dIni, int dEnd) {
+        DomainCtrl.generateGroups(s, enrolled, dIni, dEnd);
     }
 }

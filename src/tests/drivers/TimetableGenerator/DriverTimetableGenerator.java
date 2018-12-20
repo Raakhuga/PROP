@@ -310,11 +310,11 @@ public class DriverTimetableGenerator {
         
         
         
-        //p.generateAllGS();
+        p.generateAllGS();
         
         PC.save(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
         //printGS();
-        //p.generateTimetable();
-        //printClassTimetable();
+        p.generateTimetable();
+        printClassTimetable();
     }
 }
