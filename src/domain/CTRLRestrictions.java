@@ -6,16 +6,18 @@ import java.util.Iterator;
 
 public class CTRLRestrictions {
     private final static int NUM_RESTR_EXTRA = 5;
-    private final static int NUM_RESTR_BASE = 3;
+    private final static int NUM_RESTR_BASE = 4;
     private boolean rBase[];
     private boolean rExtra[];
+    private TimetableGenerator TG;
     
    
-    public CTRLRestrictions() {
+    public CTRLRestrictions(TimetableGenerator TG) {
         rBase = new boolean[NUM_RESTR_BASE];
         rExtra = new boolean[NUM_RESTR_EXTRA];
         for (int i = 0; i < NUM_RESTR_BASE; i++) rBase[i] = true;
         for (int i = 0; i < NUM_RESTR_EXTRA; i++) rExtra[i] = false;
+        this.TG = TG;
     }
     
     public void enableRestriction(int i) {
@@ -37,6 +39,7 @@ public class CTRLRestrictions {
             else if (classroomTooSmall(classroom, GSNew) && rBase[1]) return false;
             //El tipus de aula no es la mateixa amb el de GroupSubject
             else if (notSameType(classroom, GSNew) && rBase[2]) return false;
+            else if (outOfRange(day, hour, classroom, GSNew) && rBase[3]) return false;
             return true;
         }
         return false;
@@ -54,10 +57,18 @@ public class CTRLRestrictions {
             else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
             //Hay clase de Lab antes que la de teoria
             else if (LabBeforeTheory(day, hour, GSNew) && rExtra[4]) return false;
+            else if (outOfRange(day, hour, classroom, GSNew) && rBase[3]) return false;
             return true;
-         }
+        }
         return false;
     }
+    
+    private boolean outOfRange(int day, int hour, Classroom classroom, GroupSubject GSNew) {
+        if (classroom.isOut(day, hour)) return true;
+        if (GSNew.getGroup().isOut(day, hour)) return true;
+        return false;
+    }
+    
     
     private boolean classroomTooSmall(Classroom classroom, GroupSubject GSNew) {
         /*if (GSNew.isSubGroup()) return classroom.getCapacity() < GSNew.getSubGroup().getnMat();
@@ -73,7 +84,36 @@ public class CTRLRestrictions {
         Group act = GSNew.getGroup();*/
         //System.out.println("asdfasdfasdf");
         
-        if (GSNew.isSubGroup()) return !GSNew.isGroupEmpty(day, hour);
+        /*
+        int size = TG.getClassrooms().size();
+        for (int i = 0; i < size; i++) {
+            Classroom Cact = TG.getClassrooms().get(i);
+            ClassroomTimetable Tact = Cact.getTimetable();
+            if(!Tact.isEmpty(day, hour)) {
+                if(Tact.getGroupSubject(day, hour).getSubject().getSP().equals(GSNew.getSubject().getSP())) {
+                    if(Tact.getGroupSubject(day, hour).getSubject().getLevel() == GSNew.getSubject().getLevel()) {
+                        if (GSNew.isSubGroup()) {
+                            subGroup SG = (subGroup)GSNew.getGroup();
+                            int num = SG.getSuperNum();
+                            int subNum = SG.getNum();
+                            if(Tact.getGroupSubject(day, hour).getGroup().isSubGroup()) {
+                                subGroup TSG = (subGroup)Tact.getGroupSubject(day,hour).getGroup();
+                                int TsubNum = TSG.getNum();
+                                if (TsubNum == subNum) return true;
+                            }
+                            else {
+                                if(Tact.getGroupSubject(day, hour).getNumGroup() == num) return true;
+                            }
+                        }
+                        else {
+                            if (Tact.getGroupSubject(day, hour).getNumGroup() >= GSNew.getNumGroup() && Tact.getGroupSubject(day, hour).getNumGroup() < GSNew.getNumGroup() + 10) return true;
+                        }
+                    }
+                }
+            }
+        }*/
+        
+        if (GSNew.isSubGroup()) return !GSNew.isGroupEmpty(day,hour);
         else {
             Iterator<subGroup> SGit = GSNew.getSubGroups().iterator();
             while(SGit.hasNext()) {
@@ -83,6 +123,7 @@ public class CTRLRestrictions {
         }
         
         //return sub.getSubject(day, hour) != null || act.getSubject(day, hour) != null;
+        //return false;
     }
     
     
@@ -90,7 +131,7 @@ public class CTRLRestrictions {
     private boolean LabBeforeTheory(int day, int hour, GroupSubject GSNew) {
         if (GSNew.isLaboratory()){
             subGroup sub = (subGroup)GSNew.getGroup();
-            for (int i = day; i < sub.getdEnd(); i++) {
+            for (int i = day; i <= sub.getdEnd(); i++) {
                 if (i != day) {
                     for (int j = 0; j < sub.gethEnd(); j++) {
                         if(!sub.isSuperEmpty(i, j)) return true;
@@ -173,6 +214,6 @@ public class CTRLRestrictions {
     }
     
     public String saveRestrictions() {
-        return rBase[0] + " " + rBase[1] + " " + rBase[2] + " " + rExtra[0] + " " + rExtra[1] + " " + rExtra[2] + " " + rExtra[3] + " " + rExtra[4];
+        return rBase[0] + " " + rBase[1] + " " + rBase[2] + " " + rBase[3] + " " + rExtra[0] + " " + rExtra[1] + " " + rExtra[2] + " " + rExtra[3] + " " + rExtra[4];
     }
 }

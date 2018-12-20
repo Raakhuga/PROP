@@ -45,6 +45,7 @@ public class LevelMenu extends javax.swing.JFrame {
         modify = new javax.swing.JButton();
         add = new javax.swing.JButton();
         exit = new javax.swing.JButton();
+        mainmenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -129,6 +130,13 @@ public class LevelMenu extends javax.swing.JFrame {
             }
         });
 
+        mainmenuButton.setText("Menú Principal");
+        mainmenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainmenuButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,7 +146,8 @@ public class LevelMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(mainmenuButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exit)))
                 .addContainerGap())
         );
@@ -148,7 +157,9 @@ public class LevelMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exit)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exit)
+                    .addComponent(mainmenuButton))
                 .addContainerGap())
         );
 
@@ -192,6 +203,11 @@ public class LevelMenu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(LevelsList);
     }//GEN-LAST:event_formWindowActivated
 
+    private void mainmenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainmenuButtonActionPerformed
+        // TODO add your handling code here:
+        presentationctrl.SwitchFromLMtoMM();
+    }//GEN-LAST:event_mainmenuButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> LevelsList;
@@ -200,6 +216,7 @@ public class LevelMenu extends javax.swing.JFrame {
     private javax.swing.JButton exit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mainmenuButton;
     private javax.swing.JButton modify;
     private javax.swing.JButton subjects;
     // End of variables declaration//GEN-END:variables

@@ -53,7 +53,7 @@ public class DriverTimetableGenerator {
             System.out.println("Introdueixi el numero de nivells del pla d'estudis: " + SPact.getName());
             int nLevels = in.nextInt();
             for (int i = 0; i < nLevels; i++) {
-                p.addLevel(SPact);
+                p.addLevel(SPact, i);
             }
             Iterator<Level> LIT = SPact.getLevels().iterator();
             while(LIT.hasNext()) {
@@ -122,7 +122,7 @@ public class DriverTimetableGenerator {
         p.addStudyProgram("FIB"); //Pla d'estudis
         List<StudyProgram> PIT = p.getPrograms();
         StudyProgram SPact = PIT.get(0);
-        p.addLevel(SPact);
+        p.addLevel(SPact,1);
         List<Level> LIT = SPact.getLevels();
         Level Lact = LIT.get(0);
         p.addSubject(Lact, "FM");
@@ -134,24 +134,25 @@ public class DriverTimetableGenerator {
         SIT.get(0).fillTheoryH(3);
         SIT.get(0).fillProblemsH(2);
         SIT.get(0).fillLaboratoryH(0);
-        addGroups(300, SIT.get(0));
+        p.generateGroups(SIT.get(0),300,0,4);
         
         SIT.get(1).fillTheoryH(3);
         SIT.get(1).fillProblemsH(0);
         SIT.get(1).fillLaboratoryH(2);
-        addGroups(300, SIT.get(1));
+        p.generateGroups(SIT.get(1),300,0,4);
         
         SIT.get(2).fillTheoryH(3);
         SIT.get(2).fillProblemsH(0);
         SIT.get(2).fillLaboratoryH(2);
-        addGroups(300, SIT.get(2));
+        p.generateGroups(SIT.get(2),300,0,4);
 
         SIT.get(3).fillTheoryH(2);
         SIT.get(3).fillProblemsH(0);
         SIT.get(3).fillLaboratoryH(3);
-        addGroups(300, SIT.get(3));
+        p.generateGroups(SIT.get(3),300,0,4);
+        p.fixTimetables(Lact);
         
-        p.addLevel(SPact);
+        p.addLevel(SPact,2);
         Lact = LIT.get(1);
         p.addSubject(Lact, "PRO2");
         p.addSubject(Lact, "M1");
@@ -162,39 +163,40 @@ public class DriverTimetableGenerator {
         SIT.get(0).fillTheoryH(2);
         SIT.get(0).fillProblemsH(0);
         SIT.get(0).fillLaboratoryH(3);
-        addGroups(200, SIT.get(0));
+        p.generateGroups(SIT.get(0),100,0,4);
         
         SIT.get(1).fillTheoryH(3);
         SIT.get(1).fillProblemsH(2);
         SIT.get(1).fillLaboratoryH(0);
-        addGroups(200, SIT.get(1));
+        p.generateGroups(SIT.get(1),100,0,4);
         
         SIT.get(2).fillTheoryH(3);
         SIT.get(2).fillProblemsH(2);
         SIT.get(2).fillLaboratoryH(0);
-        addGroups(200, SIT.get(2));
+        p.generateGroups(SIT.get(2),100,0,4);
 
         SIT.get(3).fillTheoryH(3);
         SIT.get(3).fillProblemsH(0);
         SIT.get(3).fillLaboratoryH(2);
-        addGroups(200, SIT.get(3));
+        p.generateGroups(SIT.get(3),100,0,4);
+        p.fixTimetables(Lact);
         
-        p.addClassroom(80, "A1", 0, 5, 8, 20);
-        p.addClassroom(80, "A2", 0, 5, 8, 20);
-        p.addClassroom(20, "A3", 0, 5, 8, 20);
-        p.addClassroom(20, "A4", 0, 5, 8, 20);
-        p.addClassroom(80, "A5", 0, 5, 8, 20);
-        p.addClassroom(80, "A6", 0, 5, 8, 20);
-        p.addClassroom(20, "A7", 0, 5, 8, 20);
-        p.addClassroom(20, "A8", 0, 5, 8, 20);
-        p.addClassroom(80, "A9", 0, 5, 8, 20);
-        p.addClassroom(80, "A10", 0, 5, 8, 20);
-        p.addClassroom(20, "A11", 0, 5, 8, 20);
-        p.addClassroom(20, "A12", 0, 5, 8, 20);
-        p.addClassroom(80, "A13", 0, 5, 8, 20);
-        p.addClassroom(80, "A14", 0, 5, 8, 20);
-        p.addClassroom(20, "A15", 0, 5, 8, 20);
-        p.addClassroom(20, "A16", 0, 5, 8, 20);
+        p.addClassroom(80, "A1", 0, 4, 8, 20);
+        p.addClassroom(80, "A2", 0, 4, 8, 20);
+        p.addClassroom(20, "A3", 0, 4, 8, 20);
+        p.addClassroom(20, "A4", 0, 4, 8, 20);
+        p.addClassroom(80, "A5", 0, 4, 8, 20);
+        p.addClassroom(80, "A6", 0, 4, 8, 20);
+        p.addClassroom(20, "A7", 0, 4, 8, 20);
+        p.addClassroom(20, "A8", 0, 4, 8, 20);
+        p.addClassroom(80, "A9", 0, 4, 8, 20);
+        p.addClassroom(80, "A10", 0, 4, 8, 20);
+        p.addClassroom(20, "A11", 0, 4, 8, 20);
+        p.addClassroom(20, "A12", 0, 4, 8, 20);
+        p.addClassroom(80, "A13", 0, 4, 8, 20);
+        p.addClassroom(80, "A14", 0, 4, 8, 20);
+        p.addClassroom(20, "A15", 0, 4, 8, 20);
+        p.addClassroom(20, "A16", 0, 4, 8, 20);
         
         List<Classroom> classes = p.getClassrooms();
         
@@ -215,6 +217,31 @@ public class DriverTimetableGenerator {
         classes.get(14).setProblems();
         classes.get(15).setLaboratory();
         
+        GroupSubject GS = new GroupSubject(SIT.get(2), SIT.get(2).getGroups().get(0));
+        GS.setTheory();
+        CTRLRestrictions ctrlRestrictions = new CTRLRestrictions(p);
+        ClassSubject CS = new ClassSubject(classes.get(0), SIT.get(2));
+        /*
+        if (ctrlRestrictions.classroomRestrictions(3, 10, classes.get(0), GS)) {
+            System.out.println("primero");
+            if (ctrlRestrictions.groupRestrictions(3, 10, classes.get(0), GS)) {
+                System.out.println("segundo");
+            }
+        }
+        p.addToTimetable(classes.get(0), SIT.get(2).getGroups().get(0), GS, CS, 3, 10);
+        if (ctrlRestrictions.classroomRestrictions(3, 10, classes.get(0), GS)) {
+            System.out.println("primero");
+            if (ctrlRestrictions.groupRestrictions(3, 10, classes.get(0), GS)) {
+                System.out.println("segundo");
+            }
+        }
+        p.removeFromTimetable(classes.get(0), SIT.get(2).getGroups().get(0), 3, 10);
+        if (ctrlRestrictions.classroomRestrictions(3, 10, classes.get(0), GS)) {
+            System.out.println("primero");
+            if (ctrlRestrictions.groupRestrictions(3, 10, classes.get(0), GS)) {
+                System.out.println("segundo");
+            }
+        }*/
         
         p.ban(classes.get(0), 2, 3, 8, 20);
         p.banGroup(classes.get(0), 3, 4, 8, 20, 10);
@@ -275,14 +302,17 @@ public class DriverTimetableGenerator {
         //load1();
         //p = new TimetableGenerator(0, 0);
         //TimetableGenerator TG = new TimetableGenerator(0, 0);
-        PC.load(p, "src/tests/drivers/asdfasdf/state.txt");
-        
+        PC.load(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
+        //PC.load(p, "C:/Users/Raakhuga/Documents/NetBeansProjects/PROP/state.state");
         //p = TG;
-        p.generateAllGS();
         
-        PC.save(p, "src/tests/drivers/asdfasdf/statePersist.txt");
+        
+        
+        //p.generateAllGS();
+        
+        PC.save(p, "src/tests/drivers/asdfasdf/NstatePersist.state");
         //printGS();
-        p.generateTimetable();
-        printClassTimetable();
+        //p.generateTimetable();
+        //printClassTimetable();
     }
 }

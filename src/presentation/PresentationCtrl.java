@@ -1,6 +1,19 @@
 package presentation;
 
+import domain.Classroom;
+import domain.Group;
+import domain.GroupSubject;
+import domain.StudyProgram;
 import domain.TimetableGenerator;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import persistance.PersistanceCtrl;
 import domain.Level;
 import domain.Subject;
 import domain.StudyProgram;
@@ -10,10 +23,21 @@ import javax.swing.DefaultListModel;
 
 public class PresentationCtrl {
     private TimetableGenerator DomainCtrl;
+    private PersistanceCtrl persistancectrl;
+    Dimension dim;
+    private boolean first;
     
     /** FRAMES **/
     private MainMenu mainmenu = null;
-    private StateGen stategen = null;
+    private ClassroomMenu classroommenu = null;
+    private AddClassroom addclassroom = null;
+    private ModifyClassroom modifyclassroom = null;
+    private SaveLoadMenu saveloadmenu = null;
+    private SelectClassroom selectclassroom = null;
+    private ClassroomTimetable classroomtimetable = null;
+    private GroupTimetable grouptimetable = null;
+    private firstTime firstime = null;
+    private SelectionMenu selectionmenu = null;
     private StudyProgramMenu spmenu = null;
     private AddStudyProgram addsp = null;
     private ModifyStudyProgram modsp = null;
@@ -27,31 +51,254 @@ public class PresentationCtrl {
     private ModifySubject modsubj = null;
     private DeleteSubject delsubj = null;
     
+    
     public PresentationCtrl(){
         DomainCtrl = new TimetableGenerator();
+        dim = Toolkit.getDefaultToolkit().getScreenSize();
+        first = true;
         mainmenu = new MainMenu(this);
+        centerFrame(mainmenu);
         mainmenu.setVisible(true);
         /*spmenu = new StudyProgramMenu(this);
         spmenu.setVisible(true);*/
     }
     
+    private void centerFrame(JFrame aux) {
+        aux.setLocation(dim.width/2-aux.getSize().width/2, dim.height/2-aux.getSize().height/2);
+    }
+    //sync
+    /*
+    public void SwitchFromMMtoCM(){
+        if(classroommenu == null)
+            classroommenu = new ClassroomMenu(this);
+    }*/
     /** SYNCRONIZATION **/
     // Main menu to State generator
+    /*
     public void SwitchFromMMtoSG(){
         if(stategen == null)
             stategen = new StateGen(this);
         mainmenu.setVisible(false);
         mainmenu.setEnabled(false);
-        stategen.setEnabled(true);
-        stategen.setVisible(true);
-    }
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
+    }*/
     
-    // State generator to Main menu
-    public void SwitchFromSGtoMM(){
+    public void SwitchFromMMtoSLM(){
+        if(saveloadmenu == null)
+            saveloadmenu = new SaveLoadMenu(this);
         mainmenu.setVisible(false);
         mainmenu.setEnabled(false);
-        stategen.setEnabled(true);
-        stategen.setVisible(true);
+        saveloadmenu.setEnabled(true);
+        centerFrame(saveloadmenu);
+        saveloadmenu.setVisible(true);
+    }
+    
+    public void SwitchFromMMtoFT(){
+        if(firstime == null)
+            firstime = new firstTime(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        firstime.setEnabled(true);
+        centerFrame(firstime);
+        firstime.setVisible(true);
+    }
+    
+    public void SwitchFromMMtoSM(){
+        if(selectionmenu == null)
+            selectionmenu = new SelectionMenu(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
+    }
+    
+    public void SwitchFromFTtoMM(){
+        firstime.setVisible(false);
+        firstime.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromFTtoSM(){
+        if(selectionmenu == null)
+            selectionmenu = new SelectionMenu(this);
+        firstime.setVisible(false);
+        firstime.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSLMtoMM(){
+        saveloadmenu.setVisible(false);
+        saveloadmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromCMtoMM(){
+        classroommenu.setVisible(false);
+        classroommenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromMMtoSC(){
+        if(selectclassroom == null)
+            selectclassroom = new SelectClassroom(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        selectclassroom.setEnabled(true);
+        centerFrame(selectclassroom);
+        selectclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromSCtoMM(){
+        selectclassroom.setVisible(false);
+        selectclassroom.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromCMtoAC(){
+        if(addclassroom == null)
+            addclassroom = new AddClassroom(this);
+        classroommenu.setEnabled(false);
+        addclassroom.setEnabled(true);
+        centerFrame(addclassroom);
+        addclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromACtoCM(){
+        addclassroom.setVisible(false);
+        addclassroom.setEnabled(false);
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
+    }
+    
+    public void SwitchFromCMtoMC(Classroom classroom){
+        if(modifyclassroom == null)
+            modifyclassroom = new ModifyClassroom(this);
+        modifyclassroom.setClassroom(classroom);
+        classroommenu.setEnabled(false);
+        modifyclassroom.setEnabled(true);
+        centerFrame(modifyclassroom);
+        modifyclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromMCtoCM(){
+        modifyclassroom.setVisible(false);
+        modifyclassroom.setEnabled(false);
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
+    }
+    
+    public void SwitchFromSCtoCTT(Classroom classroom){
+        classroomtimetable = new ClassroomTimetable(this);
+        classroomtimetable.setClassroom(classroom);
+        selectclassroom.setEnabled(false);
+        selectclassroom.setVisible(false);
+        classroomtimetable.setEnabled(true);
+        classroomtimetable.setVisible(true);
+        centerFrame(classroomtimetable);
+    }
+    
+    public void SwitchFromCTTtoSC(){
+        classroomtimetable.setEnabled(false);
+        classroomtimetable.setVisible(false);
+        selectclassroom.setEnabled(true);
+        centerFrame(selectclassroom);
+        selectclassroom.setVisible(true);
+    }
+    
+    
+    public void SwitchFromCTTtoGTT(Group group){
+        grouptimetable = new GroupTimetable(this);
+        grouptimetable.setGroup(group);
+        classroomtimetable.setEnabled(false);
+        classroomtimetable.setVisible(false);
+        grouptimetable.setEnabled(true);
+        grouptimetable.setVisible(true);
+        centerFrame(grouptimetable);
+    }
+    
+    public void SwitchFromGTTtoCTT(){
+        grouptimetable.setEnabled(false);
+        grouptimetable.setVisible(false);
+        classroomtimetable.setEnabled(true);
+        classroomtimetable.setVisible(true);
+        centerFrame(classroomtimetable);
+    }
+    
+    public void SwitchFromGTTtoCTT(Classroom classroom){
+        classroomtimetable = new ClassroomTimetable(this);
+        classroomtimetable.setClassroom(classroom);
+        grouptimetable.setEnabled(false);
+        grouptimetable.setVisible(false);
+        classroomtimetable.setEnabled(true);
+        classroomtimetable.setVisible(true);
+        centerFrame(classroomtimetable);
+    }
+    
+    public void SwitchFromSMtoCM(){
+        if(classroommenu == null)
+            classroommenu = new ClassroomMenu(this);
+        selectionmenu.setVisible(false);
+        selectionmenu.setEnabled(false);
+        classroommenu.setEnabled(true);
+        centerFrame(classroommenu);
+        classroommenu.setVisible(true);
+    }
+    
+    public void SwitchFromCMtoSM(){
+        classroommenu.setVisible(false);
+        classroommenu.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSMtoMM() {
+        selectionmenu.setVisible(false);
+        selectionmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSMtoSPM() {
+        if(spmenu == null)
+            spmenu = new StudyProgramMenu(this);
+        selectionmenu.setVisible(false);
+        selectionmenu.setEnabled(false);
+        spmenu.setEnabled(true);
+        centerFrame(spmenu);
+        spmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSPMtoSM() {
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        selectionmenu.setEnabled(true);
+        centerFrame(selectionmenu);
+        selectionmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSPMtoMM() {
+        spmenu.setVisible(false);
+        spmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
     }
     
     // StudyProgram menu to Level menu
@@ -62,6 +309,7 @@ public class PresentationCtrl {
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
         lvlmenu.setVisible(true);
     }
     
@@ -70,6 +318,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
         spmenu.setEnabled(true);
+        centerFrame(spmenu);
         spmenu.setVisible(true);
     }
     
@@ -80,6 +329,7 @@ public class PresentationCtrl {
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         addsp.setEnabled(true);
+        centerFrame(addsp);
         addsp.setVisible(true);
     }
     
@@ -88,6 +338,7 @@ public class PresentationCtrl {
         addsp.setVisible(false);
         addsp.setEnabled(false);
         spmenu.setEnabled(true);
+        centerFrame(spmenu);
         spmenu.setVisible(true);
     }
     
@@ -99,6 +350,7 @@ public class PresentationCtrl {
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         modsp.setEnabled(true);
+        centerFrame(modsp);
         modsp.setVisible(true);
     }
     
@@ -107,6 +359,7 @@ public class PresentationCtrl {
         modsp.setVisible(false);
         modsp.setEnabled(false);
         spmenu.setEnabled(true);
+        centerFrame(spmenu);
         spmenu.setVisible(true);
     }
     
@@ -118,6 +371,7 @@ public class PresentationCtrl {
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         delsp.setEnabled(true);
+        centerFrame(spmenu);
         delsp.setVisible(true);
     }
     
@@ -126,6 +380,7 @@ public class PresentationCtrl {
         delsp.setVisible(false);
         delsp.setEnabled(false);
         spmenu.setEnabled(true);
+        centerFrame(spmenu);
         spmenu.setVisible(true);
     }
     
@@ -137,6 +392,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
         subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
         subjmenu.setVisible(true);
     }
     
@@ -145,6 +401,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
         lvlmenu.setVisible(true);
     }
     
@@ -156,6 +413,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
         addlvl.setEnabled(true);
+        centerFrame(addlvl);
         addlvl.setVisible(true);
     }
     
@@ -164,6 +422,7 @@ public class PresentationCtrl {
         addlvl.setVisible(false);
         addlvl.setEnabled(false);
         lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
         lvlmenu.setVisible(true);
     }
     
@@ -175,6 +434,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
         modlvl.setEnabled(true);
+        centerFrame(modlvl);
         modlvl.setVisible(true);
     }
     
@@ -183,6 +443,7 @@ public class PresentationCtrl {
         modlvl.setVisible(false);
         modlvl.setEnabled(false);
         lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
         lvlmenu.setVisible(true);
     }
     
@@ -195,6 +456,7 @@ public class PresentationCtrl {
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
         dellvl.setEnabled(true);
+        centerFrame(dellvl);
         dellvl.setVisible(true);
     }
     
@@ -203,6 +465,7 @@ public class PresentationCtrl {
         dellvl.setVisible(false);
         dellvl.setEnabled(false);
         lvlmenu.setEnabled(true);
+        centerFrame(lvlmenu);
         lvlmenu.setVisible(true);
     }
     
@@ -214,6 +477,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         addsubj.setEnabled(true);
+        centerFrame(addsubj);
         addsubj.setVisible(true);
     }
     
@@ -222,6 +486,7 @@ public class PresentationCtrl {
         addsubj.setVisible(false);
         addsubj.setEnabled(false);
         subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
         subjmenu.setVisible(true);
     }
     
@@ -233,6 +498,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         modsubj.setEnabled(true);
+        centerFrame(modsubj);
         modsubj.setVisible(true);
     }
     
@@ -241,6 +507,7 @@ public class PresentationCtrl {
         modsubj.setVisible(false);
         modsubj.setEnabled(false);
         subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
         subjmenu.setVisible(true);
     }
     
@@ -253,6 +520,7 @@ public class PresentationCtrl {
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         delsubj.setEnabled(true);
+        centerFrame(delsubj);
         delsubj.setVisible(true);
     }
     
@@ -261,7 +529,67 @@ public class PresentationCtrl {
         delsubj.setVisible(false);
         delsubj.setEnabled(false);
         subjmenu.setEnabled(true);
+        centerFrame(subjmenu);
         subjmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSjMtoMM() {
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromLMtoMM() {
+        lvlmenu.setVisible(false);
+        lvlmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+    
+    //presentation methods
+    
+    public DefaultListModel<String> getClassroomsRefs() {
+        List<Classroom> classrooms = DomainCtrl.getClassrooms();
+        Iterator<Classroom> Cit = classrooms.iterator();
+        DefaultListModel<String> refs = new DefaultListModel<>();
+        while(Cit.hasNext()) {
+            refs.addElement(Cit.next().getRef());
+        }
+        if(refs.size() == 0) refs.addElement("No hi ha cap aula al sistema");
+        return refs;
+    }
+    
+    public DefaultListModel<String> getProgramsNames() {
+        List<StudyProgram> programs = DomainCtrl.getPrograms();
+        Iterator<StudyProgram> Pit = programs.iterator();
+        DefaultListModel<String> names = new DefaultListModel<>();
+        while(Pit.hasNext()) {
+            names.addElement(Pit.next().getName());
+        }
+        if(names.size() == 0) names.addElement("No hi ha cap pla d'estudis al sistema");
+        return names;
+    }
+    
+    public void setFirst(boolean first) {
+        this.first = first;
+    }
+    
+    public boolean getFirst() {
+        return first;
+    }
+    
+    //domain methods
+    public boolean generate() {
+        this.save("./aux.state");
+        DomainCtrl = new TimetableGenerator();
+        this.load("./aux.state");
+        DomainCtrl.generateAllGS();
+        File file = new File("./aux.state");
+        file.delete();
+        return DomainCtrl.generateTimetable();
     }
     
     /** PRESENTATION METHODS **/
@@ -307,8 +635,82 @@ public class PresentationCtrl {
         DomainCtrl.setnMaxStudentsSubgroup(nMaxStudentsSubgroup);
     }
     
+    public List<Classroom> getClassrooms() {
+        return DomainCtrl.getClassrooms();
+    }
+
     public List<StudyProgram> getPrograms() {
         return DomainCtrl.getPrograms();
+    }
+    
+    public Classroom addClassroom(int capacity, String ref, int dIni, int dEnd, int hIni, int hEnd) {
+        return DomainCtrl.addClassroom(capacity, ref, dIni, dEnd, hIni, hEnd);
+    }
+    
+    public void removeClassroom(int id) {
+        DomainCtrl.removeClassroom(id);
+    }
+    
+    public void setCapacity(Classroom c, int capacity) {
+        DomainCtrl.setCapacity(c, capacity);
+    }
+    
+    public void setRef(Classroom c, String ref) {
+        DomainCtrl.setRef(c, ref);
+    }
+    
+    public void setdIni(Classroom c, int dIni) {
+        DomainCtrl.setdIni(c, dIni);
+    }
+    
+    public void setdEnd(Classroom c, int dEnd) {
+        DomainCtrl.setdEnd(c, dEnd);
+    }
+    
+    public void sethIni(Classroom c, int hIni) {
+        DomainCtrl.sethIni(c, hIni);
+    }
+    
+    public void sethEnd(Classroom c, int hEnd) {
+        DomainCtrl.sethEnd(c, hEnd);
+    }
+    
+    public void setTheory(Classroom c, boolean state) {
+        DomainCtrl.setTheory(c, state);
+    }
+    
+    public void setLaboratory(Classroom c, boolean state) {
+        DomainCtrl.setLaboratory(c, state);
+    }
+    
+    public void setProblems(Classroom c, boolean state) {
+        DomainCtrl.setProblems(c, state);
+    }
+    
+    public boolean isTheory(Classroom c) {
+        return DomainCtrl.isTheory(c);
+    }
+    
+    public boolean isLaboratory(Classroom c) {
+        return DomainCtrl.isLaboratory(c);
+    }
+    
+    public boolean isProblems(Classroom c) {
+        return DomainCtrl.isProblems(c);
+    }
+    
+    public void removeState() {
+        DomainCtrl = new TimetableGenerator();
+    }
+    
+    public void load(String path) {
+        //DomainCtrl.loadState(path);
+        DomainCtrl.loadState(path);
+        first = false;
+    }
+    
+    public void save(String path) {
+        DomainCtrl.saveState(path);
     }
     
     public List<Level> getLevels(StudyProgram sp){
@@ -324,7 +726,7 @@ public class PresentationCtrl {
     }
     
     public Level addLevel(int iden, StudyProgram sp){
-        return DomainCtrl.addLevel(iden, sp);
+        return DomainCtrl.addLevel(sp, iden);
     }
     
     public Subject addSubject(String name, Level lvl, int theory, int lab, int prob){
@@ -369,5 +771,9 @@ public class PresentationCtrl {
     
     public void setHoursProb(Subject s, int hours){
         DomainCtrl.setHoursProb(s, hours);
+    }
+    
+    public void fixTimetables(Level level) {
+        DomainCtrl.fixTimetables(level);
     }
 }

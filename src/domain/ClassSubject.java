@@ -24,6 +24,14 @@ public class ClassSubject {
         return subject;
     }
     
+    public String getNameSubject() {
+        return subject.getName();
+    }
+    
+    public String getRefClassroom() {
+        return classroom.getRef();
+    }
+    
     public boolean isEmpty() {
         return empty;
     }

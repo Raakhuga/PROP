@@ -9,11 +9,13 @@ public class Level {
     
     /** Atributtes **/
     private int iden;
+    //private String SP;
     private List<Subject> subjects;
     
     /** Constructor **/
     public Level(int iden){
         this.iden = iden;
+        //this.SP = SP;
         this.subjects = new ArrayList<>();
     }
 
@@ -34,7 +36,7 @@ public class Level {
     }
     
     public Subject addSubject(String name) {
-        Subject subject = new Subject(name, iden);
+        Subject subject = new Subject(name, this);
         subjects.add(subject);
         return subject;
     }
@@ -57,7 +59,7 @@ public class Level {
     
     public String saveLevel() {
         Iterator<Subject> Sit = subjects.iterator();
-        String subs = "  " + iden + " " + subjects.size() + "\n" + "      " + "Subjects:";
+        String subs = "  Iden: " + iden + " Num_subjects: " + subjects.size() + "\n" + "      " + "Subjects:";
         while(Sit.hasNext()) {
             Subject Sact = Sit.next();
             String sub = "\n" + "        " + Sact.saveSubject();

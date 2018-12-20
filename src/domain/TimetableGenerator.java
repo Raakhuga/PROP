@@ -1,9 +1,11 @@
 
 package domain;
 
+import static java.lang.Integer.min;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import persistance.PersistanceCtrl;
 
 
 public class TimetableGenerator {            
@@ -14,15 +16,17 @@ public class TimetableGenerator {
     private int nMaxStudentsGroup;
     private int nMaxStudentsSubgroup;
     private CTRLRestrictions ctrlRestrictions;
+    private PersistanceCtrl persistancectrl;
         
     public TimetableGenerator(int nMaxStudentsGroup, int nMaxStudentsSubgroup) {
         this.classrooms = new ArrayList<>();
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
         this.addedRestrictions = new ArrayList<>();
-        this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions(this);
         this.nMaxStudentsGroup = nMaxStudentsGroup;
         this.nMaxStudentsSubgroup = nMaxStudentsSubgroup;
+        this.persistancectrl = new PersistanceCtrl();
     }
     
     public TimetableGenerator() {
@@ -30,9 +34,10 @@ public class TimetableGenerator {
         this.programs = new ArrayList<>();
         this.problem = new ArrayList<>();
         this.addedRestrictions = new ArrayList<>();
-        this.ctrlRestrictions = new CTRLRestrictions();
+        this.ctrlRestrictions = new CTRLRestrictions(this);
         this.nMaxStudentsGroup = -1;
         this.nMaxStudentsSubgroup = -1;
+        this.persistancectrl = new PersistanceCtrl();
     }
     
     public void setnMaxStudentsGroup(int nMaxStudentsGroup) {
@@ -125,6 +130,10 @@ public class TimetableGenerator {
         }
     }
     
+    public void deleteAllGS() {
+        problem = new ArrayList<>();
+    }
+    
     public void setrBase(boolean[] rBase) {
         ctrlRestrictions.setrBase(rBase);
     }
@@ -181,7 +190,7 @@ public class TimetableGenerator {
         s.fillProblemsH(hours);
     }
     
-    public Level addLevel(int iden, StudyProgram SP) {
+    public Level addLevel(StudyProgram SP, int iden) {
         Level lvl = new Level(iden);
         return SP.addLevel(lvl);
     }
@@ -209,6 +218,65 @@ public class TimetableGenerator {
             aux.addToGroupTimetable(CS, day, hour);
         }
         else g.addToGroupTimetable(CS, day, hour);
+    }
+    
+    public void generateGroups(Subject Sact, int nEst, int dIni, int dEnd){
+        int remaining, i = 1;
+        for(remaining = nEst; remaining > nMaxStudentsGroup; remaining -= nMaxStudentsGroup){
+            if(remaining >= nEst/2) addGroup(Sact, dIni, dEnd, 8, 14, i*10, nMaxStudentsGroup); //matins
+            else addGroup(Sact, dIni, dEnd, 14, 20, i*10,nMaxStudentsGroup); //tarda
+            i++;
+        }
+        if (remaining > 0) addGroup(Sact, dIni, dEnd, 14, 20, i*10, remaining);
+        Iterator<Group> GIT = Sact.getGroups().iterator();
+        while(GIT.hasNext()) {
+            Group Gact = GIT.next();
+            int subremaining, j = 1;
+            for (subremaining = nMaxStudentsGroup; subremaining > nMaxStudentsSubgroup; subremaining -= nMaxStudentsSubgroup) {
+                addSubGroup(Gact, Gact.getNum()+j, nMaxStudentsSubgroup);
+                j++;
+            }
+            if(subremaining > 0) addSubGroup(Gact, Gact.getNum()+j, subremaining);
+        }
+    }
+    
+    public void fixTimetables(Level level) {
+        Iterator<Subject> Sit = level.getSubjects().iterator();
+        Subject Dsubject = null;
+        while(Sit.hasNext()) {
+            Subject Sact = Sit.next();
+            if(Dsubject == null) Dsubject = Sact;
+            else if (Sact.getGroups().size() > Dsubject.getGroups().size()) Dsubject = Sact;
+            else if (Sact.getGroups().size() == Dsubject.getGroups().size()) {
+                List<Group> Dgroups = Dsubject.getGroups();
+                List<Group> groups = Sact.getGroups();
+                if(groups.get(groups.size()-1).getSubGroups().size() > Dgroups.get(Dgroups.size()-1).getSubGroups().size()) Dsubject = Sact;
+            }
+        }
+        Sit = level.getSubjects().iterator();
+        while(Sit.hasNext()) {
+            Subject Sact = Sit.next();
+            List<Group> Dgroups = Dsubject.getGroups();
+            if(Dsubject != Sact) {
+                List<Group> Groups = Sact.getGroups();
+                for(int i = 0; i < Groups.size(); i++) {
+                    Group group = Groups.get(i);
+                    Group Dgroup = Dgroups.get(i);
+                    group.setTimetable(Dgroup.getTimetable());
+                    group.setAddedRestrictions(Dgroup.getAddedRestrictions());
+                    List<subGroup> subgroups = group.getSubGroups();
+                    List<subGroup> dsubgroups = Dgroup.getSubGroups();
+                    for (int j = 0; j < subgroups.size(); j++) {
+                        subGroup subgroup = subgroups.get(j);
+                        subGroup dsubgroup = dsubgroups.get(j);
+                        subgroup.setTimetable(dsubgroup.getTimetable());
+                        subgroup.setAddedRestrictions(dsubgroup.getAddedRestrictions());
+                        subgroup.setSubTimetable(dsubgroup.getSubTimetable());
+                    }
+                }
+            }
+                
+        }
     }
     
     public void removeFromTimetable(Classroom c, Group g, int day, int hour) {
@@ -264,12 +332,62 @@ public class TimetableGenerator {
         c.unbanGroup(dIni, dEnd, hIni, hEnd, num);
     }
     
-    public void generateTimetable() {
-        if (classrooms.size() > 0) {
-            Classroom aux = classrooms.get(0);
-            if(i_generateTimetable(0, 0)) System.out.println("S'ha generat l'horari correctament");
-            else System.out.println("No es pot generar l'horari");
+    public void setCapacity(Classroom c, int capacity) {
+        c.setCapacity(capacity);
+    }
+    
+    public void setRef(Classroom c, String ref) {
+        c.setRef(ref);
+    }
+    
+    public void setdIni(Classroom c, int dIni) {
+        c.setdIni(dIni);
+    }
+    
+    public void setdEnd(Classroom c, int dEni) {
+        c.setdEnd(dEni);
+    }
+    
+    public void sethIni(Classroom c, int hIni) {
+        c.sethIni(hIni);
+    }
+    
+    public void sethEnd(Classroom c, int hEnd) {
+        c.sethEnd(hEnd);
+    }
+    
+    public void removeClassroom(int id) {
+        classrooms.remove(classrooms.get(id));
+    }
+    
+    public void setTheory(Classroom c, boolean state) {
+        if(state) c.setTheory();
+    }
+    public void setLaboratory(Classroom c, boolean state) {
+        if(state) c.setLaboratory();
+    }
+    public void setProblems(Classroom c, boolean state) {
+        if(state) c.setProblems();
+    }
+    
+    public boolean isTheory(Classroom c) {
+        return c.isTheory();
+    }
+    
+    public boolean isLaboratory(Classroom c) {
+        return c.isLaboratory();
+    }
+    
+    public boolean isProblems(Classroom c) {
+        return c.isProblems();
+    }
+    
+    public boolean generateTimetable() {
+        if (problem.size() > 0) {
+            if(i_generateTimetable(0, 0)) return true;
+            else return false;
         }
+        else return false;
     }
     
     public boolean i_generateTimetable(int pos_classroom, int pos_problem) {
@@ -277,7 +395,7 @@ public class TimetableGenerator {
         if (pos_classroom >= classrooms.size()) return false;
         GroupSubject GS = problem.get(pos_problem);
         Classroom classroom = classrooms.get(pos_classroom);
-        for (int i = classroom.getdIni(); i < classroom.getdEnd(); i++) {
+        for (int i = classroom.getdIni(); i <= classroom.getdEnd(); i++) {
             for (int j = classroom.gethIni(); j < classroom.gethEnd(); j++) {
                 if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
                     if (ctrlRestrictions.groupRestrictions(i, j, classroom, GS)) {
@@ -294,9 +412,42 @@ public class TimetableGenerator {
         return i_generateTimetable(pos_classroom+1, pos_problem);
     }
     
+    public void resetTimetables() {
+        for(Classroom classroom : classrooms) {
+            int dIni = classroom.getdIni();
+            int dEnd = classroom.getdEnd();
+            int hIni = classroom.gethIni();
+            int hEnd = classroom.gethEnd();
+            for (int i = dIni; i <= dEnd; i++)
+                for (int j = hIni; j < hEnd; j++) classroom.removeFromClassTimetable(i, j);
+        }
+        for(StudyProgram program : programs) {
+            for(Level level : program.getLevels()) {
+                for(Subject subject : level.getSubjects()) {
+                    for (Group group : subject.getGroups()) {
+                        int dIni = group.getdIni();
+                        int dEnd = group.getdEnd();
+                        int hIni = group.gethIni();
+                        int hEnd = group.gethEnd();
+                        for (int i = dIni; i <= dEnd; i++)
+                            for (int j = hIni; j < hEnd; j++) group.removeFromGroupTimetable(i, j);
+                        for(subGroup subgroup : group.getSubGroups()) {
+                            dIni = subgroup.getdIni();
+                            dEnd = subgroup.getdEnd();
+                            hIni = subgroup.gethIni();
+                            hEnd = subgroup.gethEnd();
+                            for (int i = dIni; i <= dEnd; i++)
+                                for (int j = hIni; j < hEnd; j++) group.removeFromGroupTimetable(i, j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     public String saveClassrooms() {
         Iterator<Classroom> Cit = classrooms.iterator();
-        String classes = classrooms.size() + "\n" + "Classrooms:";
+        String classes = "Num_Classrooms: " + classrooms.size() + "\n" + "Classrooms:";
         while(Cit.hasNext()) {
             Classroom Cact = Cit.next();
             String classroom = "\n" + "  " + Cact.saveClassroom();
@@ -307,10 +458,10 @@ public class TimetableGenerator {
     
     public String saveStudyPrograms() {
         Iterator<StudyProgram> SPit = programs.iterator();
-        String studyprograms = programs.size() + "\n" + "StudyPrograms:";
+        String studyprograms = "Num_StudyPrograms: " + programs.size() + "\n" + "StudyPrograms:";
         while(SPit.hasNext()) {
             StudyProgram SPact = SPit.next();
-            String studyprogram = "\n" + "  " + SPact.getName();
+            String studyprogram = "\n" + "  Name: " + SPact.getName();
             studyprogram = studyprogram + "\n" + "  " + SPact.saveLevels();
             studyprograms = studyprograms + studyprogram;
         }
@@ -323,5 +474,13 @@ public class TimetableGenerator {
     
     public String saveSizes() {
         return "Max_num_of_students_in_a_group: " + nMaxStudentsGroup + "\n" + "Max_num_of_students_in_a_subgroup: " + nMaxStudentsSubgroup + "\n";
+    }
+    
+    public void loadState(String path) {
+        persistancectrl.load(this, path);
+    }
+    
+    public void saveState(String path) {
+        persistancectrl.save(this, path);
     }
 }
