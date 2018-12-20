@@ -10,6 +10,7 @@ import domain.Subject;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -166,7 +167,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
 
     private void addSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSubjectActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromSMtoAS(lvl);
+        presentationctrl.SwitchFromSMtoAS(lvl, presentationctrl.getSubjectsName(lvl));
     }//GEN-LAST:event_addSubjectActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -177,9 +178,18 @@ public class SubjectsMenu extends javax.swing.JFrame {
 
     private void modifySubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifySubjectActionPerformed
         // TODO add your handling code here:
-        int index = SubjectsList.getSelectedIndex();
-        List<Subject> subjects = presentationctrl.getSubjects(lvl);
-        presentationctrl.SwitchFromSMtoMS(subjects.get(index));
+        if(SubjectsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = SubjectsList.getSelectedIndex();
+            if (SubjectsList.getSelectedValue().equals("No hi ha cap assignatura al sistema en aquest nivell")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Subject> subjects = presentationctrl.getSubjects(lvl);
+                presentationctrl.SwitchFromSMtoMS(subjects.get(index), presentationctrl.getSubjectsName(lvl));
+            }
+        }
     }//GEN-LAST:event_modifySubjectActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -190,14 +200,32 @@ public class SubjectsMenu extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        int index = SubjectsList.getSelectedIndex();
-        List<Subject> subjects = presentationctrl.getSubjects(lvl);
-        presentationctrl.SwitchFromSMtoDS(lvl, subjects.get(index));
+        if(SubjectsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = SubjectsList.getSelectedIndex();
+            if (SubjectsList.getSelectedValue().equals("No hi ha cap assignatura al sistema en aquest nivell")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Subject> subjects = presentationctrl.getSubjects(lvl);
+                presentationctrl.SwitchFromSMtoDS(lvl, subjects.get(index));
+            }
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void groupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupsActionPerformed
         // TODO add your handling code here:
-        
+        if(SubjectsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = SubjectsList.getSelectedIndex();
+            if (SubjectsList.getSelectedValue().equals("No hi ha cap assignatura al sistema en aquest nivell")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+            }
+        }        
     }//GEN-LAST:event_groupsActionPerformed
 
     private void mainmenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainmenuButtonActionPerformed
