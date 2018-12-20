@@ -89,8 +89,7 @@
                       </Group>
                       <Component id="CapacityLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="hIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="dEndLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="RefLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="dIniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -99,18 +98,19 @@
                                   <Component id="capacityField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="RefField" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="dEndLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="dEndBox" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
                               <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="typeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="theoryRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="dEndBox" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,7 +123,7 @@
                   <Component id="capacityField" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="RefLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="RefField" min="-2" max="-2" attributes="0"/>
@@ -135,9 +135,6 @@
                           <Component id="dEndLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="dEndBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="hIniLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
@@ -147,9 +144,11 @@
                           <Component id="laboratoryRadioButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="problemsRadioButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="hIniLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="hIniHLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="hIniSlider" min="-2" max="-2" attributes="0"/>

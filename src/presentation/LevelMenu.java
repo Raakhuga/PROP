@@ -8,6 +8,7 @@ package presentation;
 import domain.StudyProgram;
 import domain.Level;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -173,28 +174,55 @@ public class LevelMenu extends javax.swing.JFrame {
 
     private void subjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectsActionPerformed
         // TODO add your handling code here:
-        int index = LevelsList.getSelectedIndex();
-        List<Level> levels = presentationctrl.getLevels(act);
-        presentationctrl.SwitchFromLMtoSM(levels.get(index));
+        if(LevelsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni un nivell.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = LevelsList.getSelectedIndex();
+            if (LevelsList.getSelectedValue().equals("No hi ha cap nivell al sistema en aquest pla d'estudis")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi un nivell.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Level> levels = presentationctrl.getLevels(act);
+                presentationctrl.SwitchFromLMtoSM(levels.get(index));
+            }
+        }
     }//GEN-LAST:event_subjectsActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromLMtoAL(act);
+        presentationctrl.SwitchFromLMtoAL(act, presentationctrl.getLevelsIden(act));
     }//GEN-LAST:event_addActionPerformed
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        int index = LevelsList.getSelectedIndex();
-        List<Level> levels = presentationctrl.getLevels(act);
-        presentationctrl.SwitchFromLMtoML(levels.get(index));
+        if(LevelsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni un nivell.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = LevelsList.getSelectedIndex();
+            if (LevelsList.getSelectedValue().equals("No hi ha cap nivell al sistema en aquest pla d'estudis")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi un nivell.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Level> levels = presentationctrl.getLevels(act);
+                presentationctrl.SwitchFromLMtoML(levels.get(index), presentationctrl.getLevelsIden(act));
+            }
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        int index = LevelsList.getSelectedIndex();
-        List<Level> levels = presentationctrl.getLevels(act);
-        presentationctrl.SwitchFromLMtoDL(act, levels.get(index));
+        if(LevelsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni un nivell.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = LevelsList.getSelectedIndex();
+            if (LevelsList.getSelectedValue().equals("No hi ha cap nivell al sistema en aquest pla d'estudis")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi un nivell.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Level> levels = presentationctrl.getLevels(act);
+                presentationctrl.SwitchFromLMtoDL(act, levels.get(index));
+            }
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

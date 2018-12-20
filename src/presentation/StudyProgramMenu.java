@@ -200,7 +200,7 @@ public class StudyProgramMenu extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromSPMtoASP();
+        presentationctrl.SwitchFromSPMtoASP(presentationctrl.getProgramsNames());
     }//GEN-LAST:event_addActionPerformed
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
@@ -214,7 +214,7 @@ public class StudyProgramMenu extends javax.swing.JFrame {
             }
             else {
                 List<StudyProgram> studyprograms = presentationctrl.getPrograms();
-                presentationctrl.SwitchFromSPMtoMSP(studyprograms.get(index));
+                presentationctrl.SwitchFromSPMtoMSP(studyprograms.get(index), presentationctrl.getProgramsNames());
             }
         }
     }//GEN-LAST:event_modifyActionPerformed
@@ -225,7 +225,7 @@ public class StudyProgramMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seleccioni un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else {
             int index = StudyProgramsList.getSelectedIndex();
-             if (StudyProgramsList.getSelectedValue().equals("No hi ha cap pla d'estudis al sistema")) {
+            if (StudyProgramsList.getSelectedValue().equals("No hi ha cap pla d'estudis al sistema")) {
                 JOptionPane.showMessageDialog(this, "Afegeixi un pla d'estudis.", "Atenció:", JOptionPane.WARNING_MESSAGE);
             }
             else {

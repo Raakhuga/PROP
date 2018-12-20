@@ -6,6 +6,8 @@
 package presentation;
 
 import domain.Level;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -14,6 +16,7 @@ public class ModifyLevel extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
     Level act;
+    DefaultListModel<String> levelsIden;
     /**
      * Creates new form ModifyLevel
      */
@@ -25,6 +28,10 @@ public class ModifyLevel extends javax.swing.JFrame {
     public void setLevel(Level lvl){
         this.act = lvl;
     }
+    
+    public void setList(DefaultListModel<String> levels){
+        this.levelsIden = levels;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,13 +42,16 @@ public class ModifyLevel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         modify = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        oldIden = new javax.swing.JTextField();
         newIden = new javax.swing.JTextField();
+        oldIden = new javax.swing.JLabel();
         exit = new javax.swing.JButton();
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -78,20 +88,20 @@ public class ModifyLevel extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(newIden))
+                                .addComponent(newIden, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(oldIden, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))))
+                                .addComponent(oldIden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(oldIden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(oldIden))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -148,17 +158,31 @@ public class ModifyLevel extends javax.swing.JFrame {
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
         String iden = newIden.getText();
-        presentationctrl.setIdenLevel(act,Integer.parseInt(iden));
-        presentationctrl.SwitchFromMSPtoSPM();
+        if(iden.equals("")){
+            JOptionPane.showMessageDialog(this, "Has d'introduir un identificador vàlid.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(!presentationctrl.isInt(iden)){
+            JOptionPane.showMessageDialog(this, "L'identificador ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);            
+        }
+        else{
+            if(!levelsIden.contains(iden)){
+                presentationctrl.setIdenLevel(act,Integer.parseInt(iden));
+                presentationctrl.SwitchFromMLtoLM();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ja hi ha un nivell amb aquest identificador.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton modify;
     private javax.swing.JTextField newIden;
-    private javax.swing.JTextField oldIden;
+    private javax.swing.JLabel oldIden;
     // End of variables declaration//GEN-END:variables
 }
