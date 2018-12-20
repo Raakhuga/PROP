@@ -16,8 +16,8 @@ public class GroupTimetable extends Timetable{
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 24; j++){
                 restrictions[i][j] = new GroupRestrictions();
-                if (i < super.getdIni()) restrictions[i][j].ban();
-                if (j < super.gethIni() || j >= super.gethEnd()) restrictions[i][j].ban();
+                if (i < super.getdIni() || i > super.getdEnd()) restrictions[i][j].setOut(true);
+                if (j < super.gethIni() || j >= super.gethEnd()) restrictions[i][j].setOut(true);
                 CS[i][j] = new ClassSubject();
             }
         }
@@ -25,6 +25,14 @@ public class GroupTimetable extends Timetable{
 
     public ClassSubject[][] getCS() {
         return CS;
+    }
+    
+    public boolean isOut(int day, int hour) {
+        return restrictions[day][hour].isOut();
+    }
+    
+    public ClassSubject getClassSubject(int day, int hour) {
+        return CS[day][hour];
     }
 
     public GroupRestrictions[][] getRestrictions() {

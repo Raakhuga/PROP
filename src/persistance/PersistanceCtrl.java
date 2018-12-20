@@ -50,21 +50,30 @@ public class PersistanceCtrl {
     
     private void addRestClassroom(Classroom c, Scanner input) {
         String type = input.next();
+        String aux;
         switch (type) {
             case "Bloquejar_franja":
                 {
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     c.ban(dIni, dEnd, hIni, hEnd);
                     break;
                 }
             case "Desbloquejar_franja":
                 {
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     c.unban(dIni, dEnd, hIni, hEnd);
                     break;
@@ -72,9 +81,13 @@ public class PersistanceCtrl {
             case "Bloquejar_assignatura":
                 {
                     String subject = input.next();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     c.banSubject(dIni, dEnd, hIni, hEnd, subject);
                     break;
@@ -82,9 +95,13 @@ public class PersistanceCtrl {
             case "Desbloquejar_assignatura":
                 {
                     String subject = input.next();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     c.unbanSubject(dIni, dEnd, hIni, hEnd, subject);
                     break;
@@ -92,9 +109,13 @@ public class PersistanceCtrl {
             case "Bloquejar_grup":
                 {
                     int num = input.nextInt();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     c.banGroup(dIni, dEnd, hIni, hEnd, num);
                     break;
@@ -102,9 +123,13 @@ public class PersistanceCtrl {
             case "Desbloquejar_grup":
                 {
                     int num = input.nextInt();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     c.unbanGroup(dIni, dEnd, hIni, hEnd, num);
                     break;
@@ -116,21 +141,30 @@ public class PersistanceCtrl {
     
     private void addRestGroup(Group group, Scanner input) {
         String type = input.next();
+        String aux;
         switch (type) {
             case "Bloquejar_franja":
                 {
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     group.ban(dIni, dEnd, hIni, hEnd);
                     break;
                 }
             case "Desbloquejar_franja":
                 {
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     group.unban(dIni, dEnd, hIni, hEnd);
                     break;
@@ -138,19 +172,28 @@ public class PersistanceCtrl {
             case "Bloquejar_assignatura":
                 {
                     String sub = input.next();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
+                    aux = input.next();
                     group.banSubject(dIni, dEnd, hIni, hEnd, sub);
                     break;
                 }
             case "Desbloquejar_assignatura":
                 {
                     String sub = input.next();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     group.unbanSubject(dIni, dEnd, hIni, hEnd, sub);
                     break;
@@ -158,9 +201,13 @@ public class PersistanceCtrl {
             case "Bloquejar_aula":
                 {
                     String ref = input.next();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     group.banClassroom(dIni, dEnd, hIni, hEnd, ref);
                     break;
@@ -168,9 +215,13 @@ public class PersistanceCtrl {
             case "Desbloquejar_aula":
                 {
                     String ref = input.next();
+                    aux = input.next();
                     int dIni = input.nextInt();
+                    aux = input.next();
                     int dEnd = input.nextInt();
+                    aux = input.next();
                     int hIni = input.nextInt();
+                    aux = input.next();
                     int hEnd = input.nextInt();
                     group.unbanClassroom(dIni, dEnd, hIni, hEnd, ref);
                     break;
@@ -243,7 +294,7 @@ public class PersistanceCtrl {
                     for (int j = 0; j < numLevels; j++) {
                         aux = input.next();
                         int iden = input.nextInt();
-                        Level level = TG.addLevel(SP);
+                        Level level = TG.addLevel(SP, iden);
                         aux = input.next();
                         int numSubjects = input.nextInt();
                         aux = input.next();
@@ -257,10 +308,6 @@ public class PersistanceCtrl {
                             subject.fillLaboratoryH(input.nextInt());
                             aux = input.next();
                             subject.fillProblemsH(input.nextInt());
-                            aux = input.next();
-                            aux = input.next();
-                            aux = input.next();
-                            aux = input.next();
                             aux = input.next();
                             int numGroups = input.nextInt();
                             aux = input.next();
@@ -309,14 +356,16 @@ public class PersistanceCtrl {
                                     }
                                 }
                             }
+                            TG.fixTimetables(level);
                         }
                     }
                 }
                 aux = input.next();
-                boolean rBase[] = new boolean[3];
+                boolean rBase[] = new boolean[4];
                 rBase[0] = input.nextBoolean();
                 rBase[1] = input.nextBoolean();
                 rBase[2] = input.nextBoolean();
+                rBase[3] = input.nextBoolean();
                 boolean rExtra[] = new boolean[5];
                 rExtra[0] = input.nextBoolean();
                 rExtra[1] = input.nextBoolean();

@@ -8,19 +8,23 @@ import java.util.List;
 public class Level {
     
     /** Atributtes **/
-    private final int iden;
-    private String SP;
+    private int iden;
+    //private String SP;
     private List<Subject> subjects;
     
     /** Constructor **/
-    public Level(int iden, String SP){
+    public Level(int iden){
         this.iden = iden;
-        this.SP = SP;
+        //this.SP = SP;
         this.subjects = new ArrayList<>();
     }
 
     public int getIden() {
         return iden;
+    }
+
+    public void setIden(int iden) {
+        this.iden = iden;
     }
 
     public List<Subject> getSubjects() {
@@ -32,9 +36,13 @@ public class Level {
     }
     
     public Subject addSubject(String name) {
-        Subject subject = new Subject(name, iden, SP);
+        Subject subject = new Subject(name, this);
         subjects.add(subject);
         return subject;
+    }
+    
+    public void removeSubject(Subject s){
+        subjects.remove(s);
     }
     
     public void fillTheoryH(Subject subject, int hours) {

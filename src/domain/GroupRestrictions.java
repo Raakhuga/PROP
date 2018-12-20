@@ -7,17 +7,27 @@ import java.util.Set;
 
 public class GroupRestrictions {
     private boolean banned;
+    private boolean out;
     private Set<String> bannedSubjects;
     private Set<String> bannedClassrooms;
 
     public GroupRestrictions() {
         this.banned = false;
+        this.out = false;
         this.bannedSubjects = new HashSet<>();
         this.bannedClassrooms = new HashSet<>();
     }
     
     public boolean isBanned() {
         return banned;
+    }
+    
+    public void setOut(boolean out){
+        this.out = out;
+    }
+    
+    public boolean isOut() {
+        return out;
     }
 
     public Set<String> getBannedSubjects() {
