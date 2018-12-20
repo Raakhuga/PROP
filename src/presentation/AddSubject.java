@@ -191,7 +191,7 @@ public class AddSubject extends javax.swing.JFrame {
         else if (!presentationctrl.isInt(probs))
             JOptionPane.showMessageDialog(this, "El camp Número sessions problemes ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else {
-            if(subjects.contains(n)){
+            if(!subjects.contains(n)){
                 Subject subj = presentationctrl.addSubject(n, lvl, Integer.parseInt(theo), Integer.parseInt(labo), Integer.parseInt(probs));
                 presentationctrl.SwitchFromAStoSM();
             }

@@ -168,7 +168,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
 
     private void addSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSubjectActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromSMtoAS(lvl);
+        presentationctrl.SwitchFromSMtoAS(lvl, presentationctrl.getSubjectsName(lvl));
     }//GEN-LAST:event_addSubjectActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -188,7 +188,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
             }
             else {
                 List<Subject> subjects = presentationctrl.getSubjects(lvl);
-                presentationctrl.SwitchFromSMtoMS(subjects.get(index));
+                presentationctrl.SwitchFromSMtoMS(subjects.get(index), presentationctrl.getSubjectsName(lvl));
             }
         }
     }//GEN-LAST:event_modifySubjectActionPerformed

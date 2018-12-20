@@ -480,10 +480,11 @@ public class PresentationCtrl {
     }
     
     // Subject menu to Add Subject
-    public void SwitchFromSMtoAS(Level lvl){
+    public void SwitchFromSMtoAS(Level lvl, DefaultListModel<String> subjects){
         if(addsubj == null)
             addsubj = new AddSubject(this);
         addsubj.setLevel(lvl);
+        addsubj.setList(subjects);
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         addsubj.setEnabled(true);
@@ -501,10 +502,11 @@ public class PresentationCtrl {
     }
     
     // Subject menu to Modify Subject
-    public void SwitchFromSMtoMS(Subject s){
+    public void SwitchFromSMtoMS(Subject s, DefaultListModel<String> subjects){
         if(modsubj == null)
             modsubj = new ModifySubject(this);
         modsubj.setSubject(s);
+        modsubj.setList(subjects);
         subjmenu.setVisible(false);
         subjmenu.setEnabled(false);
         modsubj.setEnabled(true);
