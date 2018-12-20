@@ -38,17 +38,21 @@ public class StudyProgram {
 
     public void setLevels(List<Level> levels) {
         this.levels = levels;
+        this.nLevels = levels.size();
     }
 
     public void setnLevels(int nLevels) {
         this.nLevels = nLevels;
     }
 
-    public Level addLevel() {
-        nLevels++;
-        Level level = new Level(nLevels);
-        levels.add(level);
-        return level;
+    public Level addLevel(Level lvl) {
+        if (levels.size() == nLevels) nLevels++;
+        levels.add(lvl);
+        return lvl;
+    }
+    
+    public void removeLevel(Level lvl){
+        levels.remove(lvl);
     }
     
     public String saveLevels() {

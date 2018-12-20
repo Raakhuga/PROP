@@ -23,6 +23,10 @@ public class Level {
         return iden;
     }
 
+    public void setIden(int iden) {
+        this.iden = iden;
+    }
+
     public List<Subject> getSubjects() {
         return subjects;
     }
@@ -35,6 +39,10 @@ public class Level {
         Subject subject = new Subject(name, this);
         subjects.add(subject);
         return subject;
+    }
+    
+    public void removeSubject(Subject s){
+        subjects.remove(s);
     }
     
     public void fillTheoryH(Subject subject, int hours) {

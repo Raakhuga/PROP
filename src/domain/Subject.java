@@ -11,7 +11,7 @@ public class Subject {
     private final static int LABORATORY = 1;
     private final static int PROBLEMS = 2;
     
-    private final String name;
+    private String name;
     private int nSessions[];
     private Level level;
     //private StudyProgram SP;
@@ -45,6 +45,11 @@ public class Subject {
     public List<Group> getGroups() {
         return groups;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public void setnSessions(int[] nSessions) {
         this.nSessions = nSessions;
