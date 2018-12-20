@@ -223,13 +223,14 @@ public class PresentationCtrl {
     }
     
     //Group Switches
-     public void SwitchFromMGtoGM() {
+    public void SwitchFromMGtoGM() {
         modifygroup.setVisible(false);
         modifygroup.setEnabled(false);
         groupmenu.setEnabled(true);
         centerFrame(groupmenu);
         groupmenu.setVisible(true);
     }
+    
     public void SwitchFromGMtosGM(Group g) {
         if (subgroupmenu == null)
             subgroupmenu = new subGroupMenu(g, this);
@@ -596,6 +597,18 @@ public class PresentationCtrl {
         lvlmenu.setEnabled(true);
         centerFrame(lvlmenu);
         lvlmenu.setVisible(true);
+    }
+    
+    // Subject menu to Group menu
+    public void SwitchFromSMtoGM(Subject s){
+        if(groupmenu == null)
+            groupmenu = new GroupMenu(this);
+        groupmenu.setSubj(s);
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        groupmenu.setEnabled(true);
+        centerFrame(groupmenu);
+        groupmenu.setVisible(true);
     }
     
     // Subject menu to Add Subject

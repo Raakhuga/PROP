@@ -27,6 +27,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
         this.presentationctrl = presentationctrl;
     }
     
+    
     public void setLevel(Level lvl){
         this.lvl = lvl;
     }
@@ -224,6 +225,8 @@ public class SubjectsMenu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Afegeixi una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
             }
             else {
+                List<Subject> subjects = presentationctrl.getSubjects(lvl);
+                presentationctrl.SwitchFromSMtoGM(subjects.get(index));
             }
         }        
     }//GEN-LAST:event_groupsActionPerformed

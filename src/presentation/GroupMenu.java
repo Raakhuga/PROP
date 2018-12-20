@@ -19,11 +19,14 @@ public class GroupMenu extends javax.swing.JFrame {
     /**
      * Creates new form GroupMenu
      */
-    public GroupMenu(Subject sub, PresentationCtrl presentationctrl) {
+    public GroupMenu(PresentationCtrl presentationctrl) {
         initComponents();
-        mSub = sub;
         presentationctrl = presentationctrl;
         
+    }
+    
+    public void setSubj(Subject s){
+        this.mSub = s;
     }
 
     /**
