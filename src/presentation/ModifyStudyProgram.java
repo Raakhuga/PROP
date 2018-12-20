@@ -6,6 +6,7 @@
 package presentation;
 
 import domain.StudyProgram;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -15,6 +16,7 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
     private StudyProgram act = null;
+    DefaultListModel<String> studyprograms;
     /**
      * Creates new form ModifyStudyProgram
      */
@@ -25,6 +27,10 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
     
     public void setStudyProgram(StudyProgram sp){
         this.act = sp;
+    }
+    
+    public void setList(DefaultListModel<String> studyprograms){
+        this.studyprograms = studyprograms;
     }
 
     /**
@@ -151,11 +157,16 @@ public class ModifyStudyProgram extends javax.swing.JFrame {
         // TODO add your handling code here:
         String name = newName.getText();
         if(name.equals("")) {
-            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Has d'introduir un nom nou.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         }
         else {
-            presentationctrl.setNameStudyProgram(act,name);
-            presentationctrl.SwitchFromMSPtoSPM();
+            if(!studyprograms.contains(name)){
+                presentationctrl.setNameStudyProgram(act,name);
+                presentationctrl.SwitchFromMSPtoSPM();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ja hi ha un pla d'estudis amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_modifyActionPerformed
 

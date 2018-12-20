@@ -7,6 +7,8 @@ package presentation;
 
 import domain.Level;
 import domain.StudyProgram;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author adria
@@ -15,6 +17,7 @@ public class AddLevel extends javax.swing.JFrame {
 
     PresentationCtrl presentationctrl;
     StudyProgram sp;
+    DefaultListModel<String> levelsIden;
     /**
      * Creates new form AddLevel
      */
@@ -25,6 +28,10 @@ public class AddLevel extends javax.swing.JFrame {
     
     public void setStudyProgram(StudyProgram sp){
         this.sp = sp;
+    }
+    
+    public void setList(DefaultListModel<String> levels){
+        this.levelsIden = levels;
     }
 
     /**
@@ -132,9 +139,22 @@ public class AddLevel extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-        int iden = Integer.parseInt(jTextField1.getText());
-        Level lvl = presentationctrl.addLevel(iden, sp);
-        presentationctrl.SwitchFromALtoLM();
+        String iden = jTextField1.getText();
+        if(iden.equals("")){
+            JOptionPane.showMessageDialog(this, "Has d'introduir un identificador vàlid.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(!presentationctrl.isInt(iden)){
+            JOptionPane.showMessageDialog(this, "L'identificador ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);            
+        }
+        else{
+            if (!levelsIden.contains(iden)){
+                Level lvl = presentationctrl.addLevel(Integer.parseInt(iden), sp);
+                presentationctrl.SwitchFromALtoLM();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ja hi ha un nivell amb aquest identificador.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_addActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

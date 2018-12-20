@@ -109,7 +109,6 @@
                               <Component id="theoryRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="dEndBox" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>

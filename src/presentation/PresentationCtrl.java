@@ -23,7 +23,7 @@ import javax.swing.DefaultListModel;
 
 public class PresentationCtrl {
     private TimetableGenerator DomainCtrl;
-    private PersistanceCtrl persistancectrl;
+    //private PersistanceCtrl persistancectrl;
     Dimension dim;
     private boolean first;
     
@@ -59,8 +59,6 @@ public class PresentationCtrl {
         mainmenu = new MainMenu(this);
         centerFrame(mainmenu);
         mainmenu.setVisible(true);
-        /*spmenu = new StudyProgramMenu(this);
-        spmenu.setVisible(true);*/
     }
     
     private void centerFrame(JFrame aux) {
@@ -76,25 +74,8 @@ public class PresentationCtrl {
             return false;
         }
     }
-    //sync
-    /*
-    public void SwitchFromMMtoCM(){
-        if(classroommenu == null)
-            classroommenu = new ClassroomMenu(this);
-    }*/
-    /** SYNCRONIZATION **/
-    // Main menu to State generator
-    /*
-    public void SwitchFromMMtoSG(){
-        if(stategen == null)
-            stategen = new StateGen(this);
-        mainmenu.setVisible(false);
-        mainmenu.setEnabled(false);
-        classroommenu.setEnabled(true);
-        centerFrame(classroommenu);
-        classroommenu.setVisible(true);
-    }*/
-    
+
+    /** SYNCRONIZATION **/    
     public void SwitchFromMMtoSLM(){
         if(saveloadmenu == null)
             saveloadmenu = new SaveLoadMenu(this);
@@ -333,9 +314,10 @@ public class PresentationCtrl {
     }
     
     // StudyProgram menu to Add StudyProgram
-    public void SwitchFromSPMtoASP(){
+    public void SwitchFromSPMtoASP(DefaultListModel<String> studyprograms){
         if(addsp == null)
             addsp = new AddStudyProgram(this);
+        addsp.setList(studyprograms);
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         addsp.setEnabled(true);
@@ -353,10 +335,11 @@ public class PresentationCtrl {
     }
     
     // StudyProgram menu to Modify StudyProgram
-    public void SwitchFromSPMtoMSP(StudyProgram sp){
+    public void SwitchFromSPMtoMSP(StudyProgram sp, DefaultListModel<String> studyprograms){
         if(modsp == null)
             modsp = new ModifyStudyProgram(this);
         modsp.setStudyProgram(sp);
+        modsp.setList(studyprograms);
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         modsp.setEnabled(true);
@@ -416,10 +399,11 @@ public class PresentationCtrl {
     }
     
     // Level menu to Add Level
-    public void SwitchFromLMtoAL(StudyProgram sp){
+    public void SwitchFromLMtoAL(StudyProgram sp, DefaultListModel<String> levels){
         if(addlvl == null)
             addlvl = new AddLevel(this);
         addlvl.setStudyProgram(sp);
+        addlvl.setList(levels);
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
         addlvl.setEnabled(true);
@@ -437,10 +421,11 @@ public class PresentationCtrl {
     }
     
     // Level menu to Modify Level
-    public void SwitchFromLMtoML(Level lvl){
+    public void SwitchFromLMtoML(Level lvl, DefaultListModel<String> levels){
         if(modlvl == null)
             modlvl = new ModifyLevel(this);
         modlvl.setLevel(lvl);
+        modlvl.setList(levels);
         lvlmenu.setVisible(false);
         lvlmenu.setEnabled(false);
         modlvl.setEnabled(true);
