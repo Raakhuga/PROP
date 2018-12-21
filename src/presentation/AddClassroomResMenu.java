@@ -461,7 +461,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -488,6 +488,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        name.setText(clas.getRef());
     }//GEN-LAST:event_formWindowActivated
 
     private void groupnumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupnumActionPerformed
@@ -547,7 +548,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
             presentationctrl.SwitchFromAClassResMtoRM();
         }
         else{
-            JOptionPane.showMessageDialog(this, "No hi ha una assignatura amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hi ha cap assignatura amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         }
             
     }//GEN-LAST:event_addSubjectResBotoomActionPerformed
