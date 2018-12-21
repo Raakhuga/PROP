@@ -1333,39 +1333,39 @@ public class PresentationCtrl {
         DomainCtrl.generateGroups(s, enrolled, dIni, dEnd);
     }
 
-    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, String name) {
-        DomainCtrl.banSubject(clas,dIni, dEnd, hIni, hEnd, name);
+    public boolean addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        return DomainCtrl.banSubject(clas,dIni, dEnd, hIni, hEnd, name);
     }
-    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, int num) {
-        DomainCtrl.banGroup(clas, dIni, dEnd, hIni, hEnd, num);
+    public boolean addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        return DomainCtrl.banGroup(clas, dIni, dEnd, hIni, hEnd, num);
     }
 
     public boolean subjectscontain(String name) {
         return DomainCtrl.containSubject(name);
     }
 
-    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd) {
-        DomainCtrl.ban(clas, dIni, dEnd, hIni, hEnd);
+    public boolean addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd) {
+        return DomainCtrl.ban(clas, dIni, dEnd, hIni, hEnd);
     }
 
-    public void addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd, String name) {
-        DomainCtrl.banClassroom(group, dIni, dEnd, hIni, hEnd, name);
+    public boolean addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        return DomainCtrl.banClassroom(group, dIni, dEnd, hIni, hEnd, name);
     }
 
     public boolean classcontain(String name) {
         return DomainCtrl.containClass(name);
     }
 
-    public void addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd) {
-        DomainCtrl.ban(group, dIni, dEnd, hIni, hEnd);
+    public boolean addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd) {
+        return DomainCtrl.ban(group, dIni, dEnd, hIni, hEnd);
     }
 
-    public void addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd) {
-        DomainCtrl.ban(subgroup, dIni, dEnd, hIni, hEnd);
+    public boolean addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd) {
+        return DomainCtrl.ban(subgroup, dIni, dEnd, hIni, hEnd);
     }
 
-    public void addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd, String name) {
-        DomainCtrl.banClassroom(subgroup, dIni, dEnd, hIni, hEnd, name);
+    public boolean addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        return DomainCtrl.banClassroom(subgroup, dIni, dEnd, hIni, hEnd, name);
     }
 
     void removeRestriction(Classroom clas, int selectedIndex) {
