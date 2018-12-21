@@ -55,7 +55,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
         add = new javax.swing.JButton();
         remove = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        samelvl = new javax.swing.JCheckBox();
+        hours = new javax.swing.JCheckBox();
         groupRes = new javax.swing.JCheckBox();
         subjectRes = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
@@ -124,10 +124,10 @@ public class RestrictionMenu extends javax.swing.JFrame {
 
         jLabel5.setText("Restriccions actives:");
 
-        samelvl.setText("Restringir hores");
-        samelvl.addActionListener(new java.awt.event.ActionListener() {
+        hours.setText("Restringir hores");
+        hours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                samelvlActionPerformed(evt);
+                hoursActionPerformed(evt);
             }
         });
 
@@ -232,7 +232,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                                                     .addComponent(jLabel5)
                                                     .addComponent(subjectRes)
                                                     .addComponent(groupRes)
-                                                    .addComponent(samelvl)
+                                                    .addComponent(hours)
                                                     .addComponent(crRes)
                                                     .addComponent(lbtRes))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -285,7 +285,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addGap(10, 10, 10)
-                                .addComponent(samelvl)
+                                .addComponent(hours)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(groupRes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -328,7 +328,18 @@ public class RestrictionMenu extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+        if (hours.isSelected()) presentationctrl.activeRes(0);
+        else presentationctrl.disactiveRes(0);
+        if (groupRes.isSelected()) presentationctrl.activeRes(2);
+        else  presentationctrl.activeRes(2);
+        if (subjectRes.isSelected()) presentationctrl.activeRes(1);
+        else presentationctrl.activeRes(1);
+        if (lbtRes.isSelected()) presentationctrl.activeRes(4);
+        else presentationctrl.activeRes(4);
+        if (crRes.isSelected()) presentationctrl.activeRes(3);
+        else presentationctrl.activeRes(3);
         presentationctrl.SwitchFromRMtoMM();
+        
     }//GEN-LAST:event_backActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -348,9 +359,9 @@ public class RestrictionMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addActionPerformed
 
-    private void samelvlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samelvlActionPerformed
+    private void hoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_samelvlActionPerformed
+    }//GEN-LAST:event_hoursActionPerformed
 
     private void groupResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupResActionPerformed
         // TODO add your handling code here:
@@ -532,6 +543,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
     private javax.swing.JList<String> groupList;
     private javax.swing.JCheckBox groupRes;
     private javax.swing.JScrollPane groupScroll;
+    private javax.swing.JCheckBox hours;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -547,7 +559,6 @@ public class RestrictionMenu extends javax.swing.JFrame {
     private javax.swing.JButton remove;
     private javax.swing.JList<String> resList;
     private javax.swing.JScrollPane resScroll;
-    private javax.swing.JCheckBox samelvl;
     private javax.swing.JList<String> subGroupList;
     private javax.swing.JScrollPane subGroupScroll;
     private javax.swing.JScrollPane subScroll;

@@ -489,6 +489,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         name.setText(clas.getRef());
+        this.setSize(500,500);
     }//GEN-LAST:event_formWindowActivated
 
     private void groupnumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupnumActionPerformed

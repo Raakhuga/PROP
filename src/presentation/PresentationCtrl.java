@@ -1368,12 +1368,20 @@ public class PresentationCtrl {
         DomainCtrl.banClassroom(subgroup, dIni, dEnd, hIni, hEnd, name);
     }
 
-    void removeRestriction(Classroom clas, int selectedIndex) {
+    public void removeRestriction(Classroom clas, int selectedIndex) {
         DomainCtrl.removeRestriction(clas, selectedIndex);
     }
 
-    void removeRestriction(Group g, int selectedIndex) {
+    public void removeRestriction(Group g, int selectedIndex) {
         DomainCtrl.removeRestriction(g, selectedIndex);
+    }
+
+    public void activeRes(int i) {
+        DomainCtrl.activeRes(i);
+    }
+
+    public void disactiveRes(int i) {
+        DomainCtrl.disableRes(i);
     }
 
 }
