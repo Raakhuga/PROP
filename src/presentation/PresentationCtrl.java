@@ -885,9 +885,11 @@ public class PresentationCtrl {
         mctimetable.setVisible(true);
     }
     
-    public void SwitchFromMSCtoMCT() {
+    public void SwitchFromMSCtoMCT(Classroom c) {
+        mctimetable = new ModifyClassroomTimetable(this);
         msclassroom.setVisible(false);
         msclassroom.setEnabled(false);
+        mctimetable.setClassroom(c);
         mctimetable.setEnabled(true);
         centerFrame(mctimetable);
         mctimetable.setVisible(true);

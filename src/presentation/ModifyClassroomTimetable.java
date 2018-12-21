@@ -213,14 +213,20 @@ public class ModifyClassroomTimetable extends javax.swing.JFrame {
     }
     
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        origin = null;        
-        presentationctrl.SwitchFromMCTtoMSC();
+        if (origin != null) {
+            origin = null;
+            presentationctrl.SwitchFromMCTtoMSC();
+        }
+        else 
+            presentationctrl.SwitchFromMCTtoSC();
     }
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        JLabel Title = new JLabel("Selecciona l'hora que vulguis cambiar" + act.getRef());
-        Title.setSize(200, 20);
+        JLabel Title;
+        if (origin == null) Title = new JLabel("Selecciona l'hora que vulguis cambiar");
+        else Title = new JLabel("Selecciona una hora disponible.");
+        Title.setSize(500, 20);
         Title.setLocation(20, 20);
         getContentPane().add(Title);
         generateButtons();
