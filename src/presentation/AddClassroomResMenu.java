@@ -543,7 +543,9 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
         int dEnd = Integer.parseInt(dEndBox1.getSelectedIndex()+"");
         int hIni = Integer.parseInt(hIniHLabel1.getText());
         int hEnd = Integer.parseInt(hEndHLabel1.getText());
-        if(!presentationctrl.subjectscontain(name))
+        if(name.equals(""))
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if(!presentationctrl.subjectscontain(name))
             JOptionPane.showMessageDialog(this, "No hi ha cap assignatura amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else if(!presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd, name))
             JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);
@@ -562,6 +564,8 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
         if (hIni >= hEnd)
             JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if (num.equals(""))
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else if (!presentationctrl.isInt(num))
             JOptionPane.showMessageDialog(this, "El numero de grup ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else if(!presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd, Integer.parseInt(num)))

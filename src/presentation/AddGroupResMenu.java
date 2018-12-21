@@ -394,7 +394,9 @@ public class AddGroupResMenu extends javax.swing.JFrame {
         int dEnd = Integer.parseInt(dEndBox1.getSelectedIndex()+"");
         int hIni = Integer.parseInt(hIniHLabel1.getText());
         int hEnd = Integer.parseInt(hEndHLabel1.getText());
-        if(!presentationctrl.classcontain(name))
+        if(name.equals(""))
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if(!presentationctrl.classcontain(name))
             JOptionPane.showMessageDialog(this, "No hi ha cap aula amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else if(!presentationctrl.addGroupRes(group, dIni, dEnd, hIni, hEnd, name))
             JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);
