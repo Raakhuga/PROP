@@ -65,6 +65,10 @@ public class PresentationCtrl {
     private AddSubject addsubj = null;
     private ModifySubject modsubj = null;
     private DeleteSubject delsubj = null;
+    private autoGenerateMenu agmenu = null;
+    private DeleteClassroom deleteclassroom = null;
+    private DeleteGroup deletegroup = null;
+    private DeletesubGroup deletesubgroup = null;
     private AddGroupResMenu addgroupresmenu = null;
     private AddsubGroupResMenu addsubgroupresmenu = null;
 
@@ -82,6 +86,7 @@ public class PresentationCtrl {
     
     private void centerFrame(JFrame aux) {
         aux.setLocation(dim.width/2-aux.getSize().width/2, dim.height/2-aux.getSize().height/2);
+        aux.setResizable(false);
     }
     
     public boolean isInt(String text) {
@@ -190,9 +195,10 @@ public class PresentationCtrl {
         mainmenu.setVisible(true);
     }
     
-    public void SwitchFromCMtoAC(){
+    public void SwitchFromCMtoAC(DefaultListModel<String> classrooms){
         if(addclassroom == null)
             addclassroom = new AddClassroom(this);
+        addclassroom.setList(classrooms);
         classroommenu.setEnabled(false);
         addclassroom.setEnabled(true);
         centerFrame(addclassroom);
@@ -215,10 +221,11 @@ public class PresentationCtrl {
         classroommenu.setVisible(true);
     }
     
-    public void SwitchFromCMtoMC(Classroom classroom){
+    public void SwitchFromCMtoMC(Classroom classroom, DefaultListModel<String> classrooms){
         if(modifyclassroom == null)
             modifyclassroom = new ModifyClassroom(this);
         modifyclassroom.setClassroom(classroom);
+        modifyclassroom.setList(classrooms);
         classroommenu.setEnabled(false);
         modifyclassroom.setEnabled(true);
         centerFrame(modifyclassroom);
@@ -226,21 +233,71 @@ public class PresentationCtrl {
     }
     
     //Group Switches
-     public void SwitchFromMGtoGM() {
+    public void SwitchFromMGtoGM() {
         modifygroup.setVisible(false);
         modifygroup.setEnabled(false);
         groupmenu.setEnabled(true);
         centerFrame(groupmenu);
         groupmenu.setVisible(true);
     }
-    public void SwitchFromGMtosGM(Group g) {
+    
+    public void SwitchFromGMtosGM(Group g, Level lvl) {
         if (subgroupmenu == null)
-            subgroupmenu = new subGroupMenu(g, this);
+            subgroupmenu = new subGroupMenu(this);
+        subgroupmenu.setGroup(g);
+        subgroupmenu.setLevel(lvl);
         groupmenu.setEnabled(false);
         groupmenu.setVisible(false);
         subgroupmenu.setEnabled(true);
         centerFrame(subgroupmenu);
         subgroupmenu.setVisible(true);
+    }
+    
+    public void SwitchFromSMtoAG(Subject s, Level lvl) {
+        if (agmenu == null)
+            agmenu = new autoGenerateMenu(this);
+        agmenu.setSubject(s);
+        agmenu.setLevel(lvl);
+        subjmenu.setEnabled(false);
+        subjmenu.setVisible(false);
+        agmenu.setEnabled(true);
+        centerFrame(agmenu);
+        agmenu.setVisible(true);
+    }
+    
+    public void SwitchFromAGtoSM() {
+        agmenu.setVisible(false);
+        agmenu.setEnabled(false);
+        subjmenu.setEnabled(true);
+        subjmenu.setVisible(true);
+    }
+    
+    public void SwitchFromGMtoMM() {
+        groupmenu.setVisible(false);
+        groupmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromGMtoSM() {
+        groupmenu.setVisible(false);
+        groupmenu.setEnabled(false);
+        subjmenu.setEnabled(true);
+        subjmenu.setVisible(true);
+    }
+    
+    public void SwitchFromsGMtoMM() {
+        subgroupmenu.setVisible(false);
+        subgroupmenu.setEnabled(false);
+        mainmenu.setEnabled(true);
+        mainmenu.setVisible(true);
+    }
+    
+    public void SwitchFromsGMtoGM(){
+        subgroupmenu.setVisible(false);
+        subgroupmenu.setEnabled(false);
+        groupmenu.setEnabled(true);
+        groupmenu.setVisible(true);
     }
      
     public void SwitchFromGMtoMG(Group g) {
@@ -256,7 +313,8 @@ public class PresentationCtrl {
     
     public void SwitchFromGMtoAG(Subject sub) {
         if(addgroup == null)
-            addgroup = new AddGroup(this, sub);
+            addgroup = new AddGroup(this);
+        addgroup.setSubject(sub);
         groupmenu.setEnabled(false);
         groupmenu.setVisible(false);
         addgroup.setEnabled(true);
@@ -520,7 +578,7 @@ public class PresentationCtrl {
         spmenu.setVisible(false);
         spmenu.setEnabled(false);
         delsp.setEnabled(true);
-        centerFrame(spmenu);
+        centerFrame(delsp);
         delsp.setVisible(true);
     }
     
@@ -620,6 +678,19 @@ public class PresentationCtrl {
         lvlmenu.setVisible(true);
     }
     
+    // Subject menu to Group menu
+    public void SwitchFromSMtoGM(Subject s, Level l){
+        if(groupmenu == null)
+            groupmenu = new GroupMenu(this);
+        groupmenu.setSubj(s);
+        groupmenu.setLevel(l);
+        subjmenu.setVisible(false);
+        subjmenu.setEnabled(false);
+        groupmenu.setEnabled(true);
+        centerFrame(groupmenu);
+        groupmenu.setVisible(true);
+    }
+    
     // Subject menu to Add Subject
     public void SwitchFromSMtoAS(Level lvl, DefaultListModel<String> subjects){
         if(addsubj == null)
@@ -702,6 +773,63 @@ public class PresentationCtrl {
         mainmenu.setVisible(true);
     }
     
+    public void SwitchFromDCtoCM() {
+        deleteclassroom.setVisible(false);
+        deleteclassroom.setEnabled(false);
+        classroommenu.setEnabled(true);
+        classroommenu.setVisible(true);
+    }
+    
+    public void SwitchFromCMtoDC(int id) {
+        if(deleteclassroom == null)
+            deleteclassroom = new DeleteClassroom(this);
+        deleteclassroom.setId(id);
+        classroommenu.setVisible(false);
+        classroommenu.setEnabled(false);
+        deleteclassroom.setEnabled(true);
+        centerFrame(deleteclassroom);
+        deleteclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromDGtoGM() {
+        deletegroup.setVisible(false);
+        deletegroup.setEnabled(false);
+        groupmenu.setEnabled(true);
+        groupmenu.setVisible(true);
+    }
+    
+    public void SwitchFromGMtoDG(int id, Subject s) {
+        if(deletegroup == null)
+            deletegroup = new DeleteGroup(this);
+        deletegroup.setId(id);
+        deletegroup.setGroup(this.getGroup(s).get(id));
+        deletegroup.setSubject(s);
+        groupmenu.setVisible(false);
+        groupmenu.setEnabled(false);
+        deletegroup.setEnabled(true);
+        centerFrame(deletegroup);
+        deletegroup.setVisible(true);
+    }
+    
+    public void SwitchFromDsGtosGM() {
+        deletesubgroup.setVisible(false);
+        deletesubgroup.setEnabled(false);
+        subgroupmenu.setEnabled(true);
+        subgroupmenu.setVisible(true);
+    }
+    
+    public void SwitchFromsGMtoDsG(int id, Group g) {
+        if(deletesubgroup == null)
+            deletesubgroup = new DeletesubGroup(this);
+        deletesubgroup.setId(id);
+        deletesubgroup.setGroup(g);
+        subgroupmenu.setVisible(false);
+        subgroupmenu.setEnabled(false);
+        deletesubgroup.setEnabled(true);
+        centerFrame(deletesubgroup);
+        deletesubgroup.setVisible(true);
+    }
+    
      public void SwitchFromAClassResMtoRM() {
          restrictionmenu.setEnabled(true);
          addcRmenu.setEnabled(false);
@@ -757,7 +885,7 @@ public class PresentationCtrl {
       Iterator<Group> Git = groupList.iterator();
       DefaultListModel<String> refs = new DefaultListModel<>();
       while(Git.hasNext()) {
-          refs.addElement(Integer.toString(Git.next().getNum()));
+          refs.addElement(Git.next().getNum()+"");
       }
       if(refs.size() == 0) refs.addElement("No hi ha cap grup al sistema");
       return refs;
@@ -767,7 +895,7 @@ public class PresentationCtrl {
       Iterator<subGroup> it = subgroupList.iterator();
       DefaultListModel<String> refs = new DefaultListModel<>();
       while(it.hasNext()) {
-          refs.addElement(Integer.toString(it.next().getNum()));
+          refs.addElement(it.next().getNum()+"");
       }
       if(refs.size() == 0) refs.addElement("No hi ha cap subgrup al sistema");
       return refs;
@@ -801,12 +929,17 @@ public class PresentationCtrl {
     
     //domain methods
     public boolean generate() {
-        this.save("./aux.state");
+        /*this.save("./aux.state");
+        System.out.println("guardo");
         DomainCtrl = new TimetableGenerator();
-        this.load("./aux.state");
+        this.load("./aux.state");*/
+        DomainCtrl.deleteAllGS();
         DomainCtrl.generateAllGS();
+        /*System.out.println("leo");
         File file = new File("./aux.state");
         file.delete();
+        System.out.println("borro");*/
+        DomainCtrl.resetTimetables();
         return DomainCtrl.generateTimetable();
     }
     
@@ -918,6 +1051,7 @@ public class PresentationCtrl {
     
     public void load(String path) {
         //DomainCtrl.loadState(path);
+        first = false;
         DomainCtrl.loadState(path);
     }
     
@@ -972,7 +1106,7 @@ public class PresentationCtrl {
       while(it.hasNext()) {
           refs.addElement(it.next());
       }
-      if(refs.size() == 0) refs.addElement("No hi ha cap restriccions al sistema");
+      if(refs.size() == 0) refs.addElement("No hi ha cap restricció al sistema");
       return refs;
     }
     
@@ -983,7 +1117,7 @@ public class PresentationCtrl {
       while(it.hasNext()) {
           refs.addElement(it.next());
       }
-      if(refs.size() == 0) refs.addElement("No hi ha cap restriccions al sistema");
+      if(refs.size() == 0) refs.addElement("No hi ha cap restricció al sistema");
       return refs;
     }
     
@@ -1080,8 +1214,16 @@ public class PresentationCtrl {
         DomainCtrl.setHoursProb(s, hours);
     }
     
+    public int getnMaxStudentsGroup() {
+        return DomainCtrl.getnMaxStudentsGroup();
+    }
+    
     public void fixTimetables(Level level) {
         DomainCtrl.fixTimetables(level);
+    }
+    
+    public void generateGroups(Subject s, int enrolled, int dIni, int dEnd) {
+        DomainCtrl.generateGroups(s, enrolled, dIni, dEnd);
     }
 
     public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, String name) {

@@ -91,24 +91,28 @@ public class GroupTimetable extends javax.swing.JFrame {
                         ClassSubject subCSact = subact.getSubTimetable().getClassSubject(j, i);
                         if(!CSact.isEmpty()) cont = "<html>Aula: " + CSact.getRefClassroom() + "<br/>Assignatura: " + CSact.getNameSubject()  + "<br/>" + subact.getSuperNum() + " " + CSact.getClassroom().getTimetable().getGroupSubject(j, i).getType() + "</html>";
                         else if (!subCSact.isEmpty()) cont = "<html>Aula: " + subCSact.getRefClassroom() + "<br/>Assignatura: " + subCSact.getNameSubject()  + "<br/>" + subact.getNum() + " " + subCSact.getClassroom().getTimetable().getGroupSubject(j, i).getType() + "</html>";
-                        else cont = " ";
+                        else cont = "";
                     }
                     else {
-                        if(CSact.isEmpty()) cont = " ";
+                        if(CSact.isEmpty()) cont = "";
                         else cont = "<html>Aula: " + CSact.getRefClassroom() + "<br/>Assignatura: " + CSact.getNameSubject()  + "<br/>" + CSact.getClassroom().getTimetable().getGroupSubject(j, i).getType() + "</html>";
                     }
                     JButton Bact = new JButton(cont);
                     Bact.setSize(160, 60);
                     Bact.setLocation(120+(j-act.getdIni())*160, 80+(i-act.gethIni())*60);
-                    if(!Bact.getText().equals(" ")) Bact.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                            presentationctrl.SwitchFromGTTtoCTT(CSact.getClassroom());
-                        }
-                    });
+                    if(!Bact.getText().equals("")) {
+                        Bact.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                presentationctrl.SwitchFromGTTtoCTT(CSact.getClassroom());
+                            }
+                        });
+                        Bact.setBackground(Color.WHITE);
+                    }
                     else {
                         if (act.getTimetable().isBanned(j, i)) Bact.setBackground(Color.RED);
                         else Bact.setBackground(Color.GRAY);
                         Bact.setForeground(Color.RED);
+                        Bact.setEnabled(false);
                     }
                     getContentPane().add(Bact);
                 }

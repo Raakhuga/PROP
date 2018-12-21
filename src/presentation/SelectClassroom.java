@@ -7,6 +7,7 @@ package presentation;
 
 import domain.Classroom;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -102,9 +103,18 @@ public class SelectClassroom extends javax.swing.JFrame {
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
         // TODO add your handling code here:
-        int index = ClassroomsList.getSelectedIndex();
-        List<Classroom> classrooms = presentationctrl.getClassrooms();
-        presentationctrl.SwitchFromSCtoCTT(classrooms.get(index));
+        if(ClassroomsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni un grup.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = ClassroomsList.getSelectedIndex();
+            if (ClassroomsList.getSelectedValue().equals("No hi ha cap aula al sistema")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi un grup.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Classroom> classrooms = presentationctrl.getClassrooms();
+                presentationctrl.SwitchFromSCtoCTT(classrooms.get(index));
+            }
+        }
     }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

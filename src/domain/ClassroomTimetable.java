@@ -13,7 +13,7 @@ public class ClassroomTimetable extends Timetable {
         initialize();
     }
     
-    private void initialize(){
+    public void initialize(){
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 24; j++){
                 restrictions[i][j] = new ClassRestrictions();
