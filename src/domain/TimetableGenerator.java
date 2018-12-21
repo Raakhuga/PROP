@@ -534,4 +534,11 @@ public class TimetableGenerator {
         g.removeRestriction(id);
     }
 
+    public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
+        return ctrlRestrictions.classroomRestrictions(day, hour, classroom, GSNew);
+    }
+    
+    public boolean groupRestrictions(int day, int hour, Classroom clasroom, GroupSubject GSNew) {
+        return ctrlRestrictions.groupRestrictions(day, hour, clasroom, GSNew);
+    }
 }
