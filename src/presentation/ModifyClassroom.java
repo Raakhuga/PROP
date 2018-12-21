@@ -6,6 +6,7 @@
 package presentation;
 
 import domain.Classroom;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 public class ModifyClassroom extends javax.swing.JFrame {
     private PresentationCtrl presentationctrl;
     private Classroom act = null;
+    private DefaultListModel<String> classrooms;
     /**
      * Creates new form AddClassroom
      */
@@ -25,6 +27,10 @@ public class ModifyClassroom extends javax.swing.JFrame {
     
     public void setClassroom(Classroom classroom) {
         this.act = classroom;
+    }
+    
+    public void setList(DefaultListModel<String> classrooms){
+        this.classrooms = classrooms;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,6 +63,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
         capacityField = new javax.swing.JTextField();
         dEndBox = new javax.swing.JComboBox<>();
         RefField = new javax.swing.JTextField();
+        exit = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -225,15 +232,25 @@ public class ModifyClassroom extends javax.swing.JFrame {
                     .addComponent(hEndSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        exit.setText("Tornar");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(modifyClassroomButton)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(modifyClassroomButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exit)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -241,9 +258,11 @@ public class ModifyClassroom extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modifyClassroomButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modifyClassroomButton)
+                    .addComponent(exit))
+                .addContainerGap())
         );
 
         pack();
@@ -268,16 +287,21 @@ public class ModifyClassroom extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La capacitat ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         }
         else {
-            presentationctrl.setCapacity(act, Integer.parseInt(capacity));
-            presentationctrl.setRef(act, ref);
-            presentationctrl.setdIni(act, dIni);
-            presentationctrl.setdEnd(act, dEnd);
-            presentationctrl.sethIni(act, hIni);
-            presentationctrl.sethEnd(act, hEnd);
-            presentationctrl.SwitchFromMCtoCM();
-            presentationctrl.setTheory(act, theoryRadioButton.isSelected());
-            presentationctrl.setLaboratory(act, laboratoryRadioButton.isSelected());
-            presentationctrl.setProblems(act, problemsRadioButton.isSelected());
+            if(!classrooms.contains(ref)){
+                presentationctrl.setCapacity(act, Integer.parseInt(capacity));
+                presentationctrl.setRef(act, ref);
+                presentationctrl.setdIni(act, dIni);
+                presentationctrl.setdEnd(act, dEnd);
+                presentationctrl.sethIni(act, hIni);
+                presentationctrl.sethEnd(act, hEnd);
+                presentationctrl.SwitchFromMCtoCM();
+                presentationctrl.setTheory(act, theoryRadioButton.isSelected());
+                presentationctrl.setLaboratory(act, laboratoryRadioButton.isSelected());
+                presentationctrl.setProblems(act, problemsRadioButton.isSelected());
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ja hi ha una classe amb aquesta referència.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_modifyClassroomButtonActionPerformed
 
@@ -319,6 +343,11 @@ public class ModifyClassroom extends javax.swing.JFrame {
         hEndHLabel.setText(hEndSlider.getValue()+"");
     }//GEN-LAST:event_hEndSliderStateChanged
 
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        presentationctrl.SwitchFromMCtoCM();
+    }//GEN-LAST:event_exitActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CapacityLabel;
     private javax.swing.JTextField RefField;
@@ -329,6 +358,7 @@ public class ModifyClassroom extends javax.swing.JFrame {
     private javax.swing.JLabel dEndLabel;
     private javax.swing.JComboBox<String> dIniBox;
     private javax.swing.JLabel dIniLabel;
+    private javax.swing.JButton exit;
     private javax.swing.JLabel hEndHLabel;
     private javax.swing.JLabel hEndLabel;
     private javax.swing.JSlider hEndSlider;

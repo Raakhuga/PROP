@@ -70,6 +70,9 @@ public class PresentationCtrl {
     private DeleteClassroom deleteclassroom = null;
     private DeleteGroup deletegroup = null;
     private DeletesubGroup deletesubgroup = null;
+    private AddGroupResMenu addgroupresmenu = null;
+    private AddsubGroupResMenu addsubgroupresmenu = null;
+
     private ModifyClassroomTimetable mctimetable = null;
     private ModifySelectClassroom msclassroom = null;
     
@@ -195,9 +198,10 @@ public class PresentationCtrl {
         mainmenu.setVisible(true);
     }
     
-    public void SwitchFromCMtoAC(){
+    public void SwitchFromCMtoAC(DefaultListModel<String> classrooms){
         if(addclassroom == null)
             addclassroom = new AddClassroom(this);
+        addclassroom.setList(classrooms);
         classroommenu.setEnabled(false);
         addclassroom.setEnabled(true);
         centerFrame(addclassroom);
@@ -220,10 +224,11 @@ public class PresentationCtrl {
         classroommenu.setVisible(true);
     }
     
-    public void SwitchFromCMtoMC(Classroom classroom){
+    public void SwitchFromCMtoMC(Classroom classroom, DefaultListModel<String> classrooms){
         if(modifyclassroom == null)
             modifyclassroom = new ModifyClassroom(this);
         modifyclassroom.setClassroom(classroom);
+        modifyclassroom.setList(classrooms);
         classroommenu.setEnabled(false);
         modifyclassroom.setEnabled(true);
         centerFrame(modifyclassroom);
@@ -408,6 +413,25 @@ public class PresentationCtrl {
     }
 
     public void SwitchFromRMtoAGR(Group g) {
+        if (addgroupresmenu == null)
+            addgroupresmenu = new AddGroupResMenu(this);
+        addgroupresmenu.setGroup(g);
+        addgroupresmenu.setEnabled(true);
+        centerFrame(addgroupresmenu);
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        addgroupresmenu.setVisible(true);
+    }  
+    
+    public void SwitchFromRMtoAsGR(subGroup sG) {
+          if (addsubgroupresmenu == null)
+            addsubgroupresmenu = new AddsubGroupResMenu(this);
+        addsubgroupresmenu.setsubGroup(sG);
+        addsubgroupresmenu.setEnabled(true);
+        centerFrame(addsubgroupresmenu);
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        addsubgroupresmenu.setVisible(true);
     }
     //end of restriccions switches
     
@@ -809,6 +833,30 @@ public class PresentationCtrl {
         deletesubgroup.setVisible(true);
     }
     
+     public void SwitchFromAClassResMtoRM() {
+         restrictionmenu.setEnabled(true);
+         addcRmenu.setEnabled(false);
+         addcRmenu.setVisible(false);
+         centerFrame(restrictionmenu);
+         restrictionmenu.setVisible(true);
+         
+    }
+     
+    public void SwitchFromAsubGroupResMtoRM() {
+        addsubgroupresmenu.setVisible(false);
+        addsubgroupresmenu.setEnabled(false);
+        restrictionmenu.setEnabled(true);
+        centerFrame(restrictionmenu);
+        restrictionmenu.setVisible(true);
+    }
+      public void SwitchFromAGroupResMtoRM() {
+        addgroupresmenu.setVisible(false);
+        addgroupresmenu.setEnabled(false);
+        restrictionmenu.setEnabled(true);
+        centerFrame(restrictionmenu);
+        restrictionmenu.setVisible(true);
+      }
+    
     public void SwitchFromMCTtoMSC(GroupSubject GS, int day, int hour, Classroom c) {
         if(msclassroom == null)
             msclassroom = new ModifySelectClassroom(this);
@@ -871,6 +919,13 @@ public class PresentationCtrl {
         msclassroom.setVisible(true);
     }
     
+    public void SwitchFromRMtoMM() {
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
     //presentation methods
     
     public boolean groupRestrictions(Classroom c, GroupSubject GS, int day, int hour) {
@@ -1275,4 +1330,48 @@ public class PresentationCtrl {
     public void generateGroups(Subject s, int enrolled, int dIni, int dEnd) {
         DomainCtrl.generateGroups(s, enrolled, dIni, dEnd);
     }
+
+    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        DomainCtrl.banSubject(clas,dIni, dEnd, hIni, hEnd, name);
+    }
+    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        DomainCtrl.banGroup(clas, dIni, dEnd, hIni, hEnd, num);
+    }
+
+    public boolean subjectscontain(String name) {
+        return DomainCtrl.containSubject(name);
+    }
+
+    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd) {
+        DomainCtrl.ban(clas, dIni, dEnd, hIni, hEnd);
+    }
+
+    public void addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        DomainCtrl.banClassroom(group, dIni, dEnd, hIni, hEnd, name);
+    }
+
+    public boolean classcontain(String name) {
+        return DomainCtrl.containClass(name);
+    }
+
+    public void addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd) {
+        DomainCtrl.ban(group, dIni, dEnd, hIni, hEnd);
+    }
+
+    public void addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd) {
+        DomainCtrl.ban(subgroup, dIni, dEnd, hIni, hEnd);
+    }
+
+    public void addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        DomainCtrl.banClassroom(subgroup, dIni, dEnd, hIni, hEnd, name);
+    }
+
+    void removeRestriction(Classroom clas, int selectedIndex) {
+        DomainCtrl.removeRestriction(clas, selectedIndex);
+    }
+
+    void removeRestriction(Group g, int selectedIndex) {
+        DomainCtrl.removeRestriction(g, selectedIndex);
+    }
+
 }

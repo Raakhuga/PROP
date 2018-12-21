@@ -151,7 +151,7 @@ public class ClassroomMenu extends javax.swing.JFrame {
 
     private void AddClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddClassroomActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromCMtoAC();
+        presentationctrl.SwitchFromCMtoAC(presentationctrl.getClassroomsRefs());
     }//GEN-LAST:event_AddClassroomActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -171,7 +171,7 @@ public class ClassroomMenu extends javax.swing.JFrame {
             }
             else {
                 List<Classroom> classrooms = presentationctrl.getClassrooms();
-                presentationctrl.SwitchFromCMtoMC(classrooms.get(index));
+                presentationctrl.SwitchFromCMtoMC(classrooms.get(index), presentationctrl.getClassroomsRefs());
             }
         }
     }//GEN-LAST:event_ModifyClassroomActionPerformed
