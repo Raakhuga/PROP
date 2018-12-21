@@ -399,7 +399,6 @@ public class TimetableGenerator {
                 if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
                     if (ctrlRestrictions.groupRestrictions(i, j, classroom, GS)) {
                         addToTimetable(classroom, GS.getGroup(), GS, new ClassSubject(classroom, GS.getSubject()), i, j);
-                        System.out.println(classroom.getRef());
                         if (!i_generateTimetable(0, pos_problem+1)) {
                             removeFromTimetable(classroom, GS.getGroup(), i, j);
                             return false;

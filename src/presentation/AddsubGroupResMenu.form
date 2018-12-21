@@ -71,8 +71,8 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Banejar aula">
-                <Property name="tabTitle" type="java.lang.String" value="Banejar aula"/>
+              <JTabbedPaneConstraints tabName="Bloquejar aula">
+                <Property name="tabTitle" type="java.lang.String" value="Bloquejar aula"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -270,8 +270,8 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Banejar hora">
-                <Property name="tabTitle" type="java.lang.String" value="Banejar hora"/>
+              <JTabbedPaneConstraints tabName="Bloquejar hora">
+                <Property name="tabTitle" type="java.lang.String" value="Bloquejar hora"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

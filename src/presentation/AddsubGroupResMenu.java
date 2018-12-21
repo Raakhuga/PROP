@@ -198,7 +198,7 @@ public class AddsubGroupResMenu extends javax.swing.JFrame {
                         .addComponent(addClassroomResBotoom))))
         );
 
-        jTabbedPane1.addTab("Banejar aula", jPanel2);
+        jTabbedPane1.addTab("Bloquejar aula", jPanel2);
 
         dIniLabel2.setText("Selecciona el primer dia a bloquejar:");
 
@@ -302,7 +302,7 @@ public class AddsubGroupResMenu extends javax.swing.JFrame {
                 .addComponent(addHourResBottom))
         );
 
-        jTabbedPane1.addTab("Banejar hora", jPanel3);
+        jTabbedPane1.addTab("Bloquejar hora", jPanel3);
 
         backBottom.setText("Tornar");
         backBottom.addActionListener(new java.awt.event.ActionListener() {

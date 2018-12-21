@@ -177,7 +177,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
                     .addComponent(dIniLabel1)
                     .addComponent(dIniBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dEndBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +214,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
                         .addComponent(addSubjectResBotoom))))
         );
 
-        jTabbedPane1.addTab("Banejar assignatura", jPanel2);
+        jTabbedPane1.addTab("Bloquejar assignatura", jPanel2);
 
         jLabel3.setText("Introdueixi el numero del grup que vol bloquejar:");
 
@@ -300,7 +300,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
                                 .addComponent(hEndLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addGroupResBotoom)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +337,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
                         .addComponent(addGroupResBotoom))))
         );
 
-        jTabbedPane1.addTab("Banejar grup", jPanel1);
+        jTabbedPane1.addTab("Bloquejar grup", jPanel1);
 
         dIniLabel2.setText("Selecciona el primer dia a bloquejar:");
 
@@ -408,7 +408,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hIniHLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hEndHLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addHourResBottom)
@@ -441,7 +441,7 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
                 .addComponent(addHourResBottom))
         );
 
-        jTabbedPane1.addTab("Banejar hora", jPanel3);
+        jTabbedPane1.addTab("Bloquejar hora", jPanel3);
 
         backBottom.setText("Tornar");
         backBottom.addActionListener(new java.awt.event.ActionListener() {

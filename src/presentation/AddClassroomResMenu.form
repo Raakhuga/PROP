@@ -84,8 +84,8 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Banejar assignatura">
-                <Property name="tabTitle" type="java.lang.String" value="Banejar assignatura"/>
+              <JTabbedPaneConstraints tabName="Bloquejar assignatura">
+                <Property name="tabTitle" type="java.lang.String" value="Bloquejar assignatura"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -124,7 +124,7 @@
                           <Component id="dIniBox1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="dEndBox1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="112" max="32767" attributes="0"/>
+                      <EmptySpace pref="154" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -285,8 +285,8 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Banejar grup">
-                <Property name="tabTitle" type="java.lang.String" value="Banejar grup"/>
+              <JTabbedPaneConstraints tabName="Bloquejar grup">
+                <Property name="tabTitle" type="java.lang.String" value="Bloquejar grup"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -324,7 +324,7 @@
                               <Component id="addGroupResBotoom" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="112" max="32767" attributes="0"/>
+                      <EmptySpace pref="120" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -485,8 +485,8 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Banejar hora">
-                <Property name="tabTitle" type="java.lang.String" value="Banejar hora"/>
+              <JTabbedPaneConstraints tabName="Bloquejar hora">
+                <Property name="tabTitle" type="java.lang.String" value="Bloquejar hora"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -515,7 +515,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="191" max="32767" attributes="0"/>
+                      <EmptySpace pref="225" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>

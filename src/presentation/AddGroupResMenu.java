@@ -198,7 +198,7 @@ public class AddGroupResMenu extends javax.swing.JFrame {
                         .addComponent(addClassroomResBotoom))))
         );
 
-        jTabbedPane1.addTab("Banejar aula", jPanel2);
+        jTabbedPane1.addTab("Bloquejar aula", jPanel2);
 
         dIniLabel2.setText("Selecciona el primer dia a bloquejar:");
 
