@@ -384,7 +384,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
         lbtRes.setSelected(presentationctrl.rExtra(4));
         if (actual != 0) {
             if (actual == 1) {
-                if (crList.getSelectedIndex() != -1){
+                if (!crList.isSelectionEmpty()){
                     presentationctrl.removeRestriction(clas, resList.getSelectedIndex());
                     int index = crList.getSelectedIndex();
                     List<Classroom> classrooms = presentationctrl.getClassrooms();
@@ -393,7 +393,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                 }
             }
             else if (actual == 3) {
-                if(subGroupList.getSelectedIndex() != -1) {
+                if(!subGroupList.isSelectionEmpty()) {
                     presentationctrl.removeRestriction(g, resList.getSelectedIndex());
                     int index = groupList.getSelectedIndex();
                     List<Group> groups = presentationctrl.getGroup(sub);
@@ -403,7 +403,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                 }
             }
             else {
-                if (groupList.getSelectedIndex() != -1) {
+                if (!groupList.isSelectionEmpty()) {
                     int index = subGroupList.getSelectedIndex();
                     List<subGroup> subgroups = presentationctrl.getsubGroup(g);
                     resList.setModel(presentationctrl.getRestrictions(subgroups.get(index)));
@@ -502,7 +502,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
-        if (resList.getSelectedIndex() != -1) {
+        if (!resList.isSelectionEmpty()) {
             if (actual == 1) {
                 presentationctrl.removeRestriction(clas, resList.getSelectedIndex());
                 int index = crList.getSelectedIndex();

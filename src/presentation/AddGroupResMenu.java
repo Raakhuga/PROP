@@ -302,7 +302,7 @@ public class AddGroupResMenu extends javax.swing.JFrame {
                 .addComponent(addHourResBottom))
         );
 
-        jTabbedPane1.addTab("Banejar hora", jPanel3);
+        jTabbedPane1.addTab("Bloquejar hora", jPanel3);
 
         backBottom.setText("Tornar");
         backBottom.addActionListener(new java.awt.event.ActionListener() {
