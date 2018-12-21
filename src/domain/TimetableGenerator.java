@@ -231,7 +231,7 @@ public class TimetableGenerator {
         while(GIT.hasNext()) {
             Group Gact = GIT.next();
             int subremaining, j = 1;
-            for (subremaining = nMaxStudentsGroup; subremaining > nMaxStudentsSubgroup; subremaining -= nMaxStudentsSubgroup) {
+            for (subremaining = Gact.getEnrolled(); subremaining > nMaxStudentsSubgroup; subremaining -= nMaxStudentsSubgroup) {
                 addSubGroup(Gact, Gact.getNum()+j, nMaxStudentsSubgroup);
                 j++;
             }
