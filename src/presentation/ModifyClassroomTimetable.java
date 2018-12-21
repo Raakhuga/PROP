@@ -13,7 +13,9 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
@@ -21,17 +23,21 @@ import javax.swing.SwingConstants;
  *
  * @author Raakhuga
  */
-public class ClassroomTimetable extends javax.swing.JFrame {
+public class ModifyClassroomTimetable extends javax.swing.JFrame {
     private PresentationCtrl presentationctrl;
     private Classroom act = null;
+    private Classroom corig;
     private List< List<JButton> > buttons;
     private JButton backButton;
-    private JButton modifyButton;
+    private GroupSubject origin = null;
+    private int dorig;
+    private int horig;
+    
     
     /**
      * Creates new form ClassroomTimetable
      */
-    public ClassroomTimetable(PresentationCtrl presentationctrl) {
+    public ModifyClassroomTimetable(PresentationCtrl presentationctrl) {
         initComponents();
         /*
         timetable = new JTable();
@@ -54,6 +60,22 @@ public class ClassroomTimetable extends javax.swing.JFrame {
     
     public void setClassroom(Classroom classroom) {
         this.act = classroom;
+    }
+    
+    public void setGroupSubject(GroupSubject origin) {
+        this.origin = origin;
+    }
+    
+    public void setCorig(Classroom c) {
+        this.corig = c;
+    }
+    
+    public void setDorig(int dorig) {
+        this.dorig = dorig;
+    }
+    
+    public void setHorig(int horig) {
+        this.horig = horig;
     }
 
     /**
@@ -140,19 +162,50 @@ public class ClassroomTimetable extends javax.swing.JFrame {
                     Bact.setSize(160, 60);
                     Bact.setLocation(120+(j-act.getdIni())*160, 80+(i-act.gethIni())*60);
                     if(!Bact.getText().equals(""))  {
-                        Bact.addActionListener(new java.awt.event.ActionListener() {
-                            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                presentationctrl.SwitchFromCTTtoGTT(GSact.getGroup());
+                        if(origin != null) {
+                            if (presentationctrl.groupRestrictions(act, origin, j, i) && presentationctrl.classroomRestrictions(act, origin, j, i)){
+                                Bact.setBackground(Color.GREEN);
                             }
-                        });
-                        Bact.setBackground(Color.WHITE);
+                        }
+                        else
+                            Bact.setBackground(Color.WHITE);
                     }
                     else {
-                        if (act.getTimetable().isBanned(j, i)) Bact.setBackground(Color.RED);
-                        else Bact.setBackground(Color.GRAY);
+                        if(origin != null) {
+                            if (presentationctrl.groupRestrictions(act, origin, j, i) && presentationctrl.classroomRestrictions(act, origin, j, i)){
+                                Bact.setBackground(Color.GREEN);
+                            }
+                            else if (act.getTimetable().isBanned(j, i)) Bact.setBackground(Color.RED);
+                            else Bact.setBackground(Color.GRAY);
+                        }
+                        else {
+                            if (act.getTimetable().isBanned(j, i)) Bact.setBackground(Color.RED);
+                            else Bact.setBackground(Color.GRAY);
+                        }
                         Bact.setForeground(Color.RED);
-                        Bact.setEnabled(false);
                     }
+                    int day = j;
+                    int hour = i;
+                    JFrame aux = this;
+                    Bact.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            if (origin != null) {
+                                if(Bact.getBackground() == Color.GREEN) {
+                                    presentationctrl.swapGS(corig, dorig, horig, origin, act, day, hour, GSact);
+                                    presentationctrl.SwitchFromMCTtoSC();
+                                }
+                                else 
+                                    JOptionPane.showMessageDialog(aux, "Aquestes hores no es poden intercambiar.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+                                //añadir codigo actualizar horario gses
+                            }
+                            else {
+                                if(Bact.getText().equals("")) 
+                                    JOptionPane.showMessageDialog(aux, "Per tal de poder modificar els horaris \nprimerament has de seleccionar una hora no buida.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+                                else 
+                                    presentationctrl.SwitchFromMCTtoMSC(GSact, day, hour, act);
+                            }
+                        }
+                    });
                     getContentPane().add(Bact);
                 }
             }
@@ -160,13 +213,20 @@ public class ClassroomTimetable extends javax.swing.JFrame {
     }
     
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        presentationctrl.SwitchFromCTTtoSC();
+        if (origin != null) {
+            origin = null;
+            presentationctrl.SwitchFromMCTtoMSC();
+        }
+        else 
+            presentationctrl.SwitchFromMCTtoSC();
     }
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        JLabel Title = new JLabel("Aula: " + act.getRef());
-        Title.setSize(200, 20);
+        JLabel Title;
+        if (origin == null) Title = new JLabel("Selecciona l'hora que vulguis cambiar");
+        else Title = new JLabel("Selecciona una hora disponible.");
+        Title.setSize(500, 20);
         Title.setLocation(20, 20);
         getContentPane().add(Title);
         generateButtons();
@@ -174,21 +234,12 @@ public class ClassroomTimetable extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         backButton = new JButton("Tornar");
-        modifyButton = new JButton("Modificar");
         backButton.setSize(120, 40);
-        modifyButton.setSize(120, 40);
         backButton.setLocation((400+(act.getdEnd())*160) - 240, (240+(act.gethEnd()-act.gethIni())*60) - 120);
-        modifyButton.setLocation(((act.getdEnd())*160), (240+(act.gethEnd()-act.gethIni())*60) - 120);
         getContentPane().add(backButton);
-        getContentPane().add(modifyButton);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
-            }
-        });
-        modifyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                presentationctrl.SwitchFromCTTtoMCT(act);
             }
         });
     }//GEN-LAST:event_formWindowActivated

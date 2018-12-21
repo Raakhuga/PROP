@@ -76,6 +76,12 @@ public class Classroom {
         return timetable.gethEnd();
     }
     
+    public String getTypes() {
+        if(type[THEORY]) return "Teoría";
+        if(type[LABORATORY]) return "Laboratori";
+        return "Problemes";
+    }
+    
     public void setTimetable(ClassroomTimetable timetable) {
         this.timetable = timetable;
     }
