@@ -13,12 +13,20 @@ public class ClassroomTimetable extends Timetable {
         initialize();
     }
     
-    public void initialize(){
+    private void initialize(){
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 24; j++){
                 restrictions[i][j] = new ClassRestrictions();
                 if (i < super.getdIni() || i > super.getdEnd()) restrictions[i][j].setOut(true);
                 if (j < super.gethIni() || j >= super.gethEnd()) restrictions[i][j].setOut(true);
+                GS[i][j] = new GroupSubject();
+            }
+        }
+    }
+    
+    public void initializeGS(){
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 24; j++){
                 GS[i][j] = new GroupSubject();
             }
         }

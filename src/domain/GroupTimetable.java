@@ -12,12 +12,20 @@ public class GroupTimetable extends Timetable{
         initialize();
     }
     
-    public void initialize(){
+    private void initialize(){
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 24; j++){
                 restrictions[i][j] = new GroupRestrictions();
                 if (i < super.getdIni() || i > super.getdEnd()) restrictions[i][j].setOut(true);
                 if (j < super.gethIni() || j >= super.gethEnd()) restrictions[i][j].setOut(true);
+                CS[i][j] = new ClassSubject();
+            }
+        }
+    }
+    
+    public void initializeGS(){
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 24; j++){
                 CS[i][j] = new ClassSubject();
             }
         }

@@ -24,9 +24,9 @@ public class AddGroupResMenu extends javax.swing.JFrame {
      */
 
     
-    public AddGroupResMenu(PresentationCtrl pre) {
+    public AddGroupResMenu(PresentationCtrl presentationctrl) {
         initComponents();
-        presentationctrl = pre;
+        this.presentationctrl = presentationctrl;
     }
 
     /**
@@ -354,7 +354,7 @@ public class AddGroupResMenu extends javax.swing.JFrame {
 
     private void backBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBottomActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromAClassResMtoRM();
+        presentationctrl.SwitchFromAGroupResMtoRM();
     }//GEN-LAST:event_backBottomActionPerformed
 
     private void addHourResBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHourResBottomActionPerformed
@@ -364,8 +364,8 @@ public class AddGroupResMenu extends javax.swing.JFrame {
         int hIni = Integer.parseInt(hIniHLabel2.getText());
         int hEnd = Integer.parseInt(hEndHLabel2.getText());
         if (dIni > dEnd)
-        JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        if (hIni >= hEnd)
+            JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if (hIni >= hEnd)
         JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else if (!presentationctrl.addGroupRes(group, dIni, dEnd, hIni, hEnd))
             JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);

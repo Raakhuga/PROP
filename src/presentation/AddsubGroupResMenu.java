@@ -354,7 +354,7 @@ public class AddsubGroupResMenu extends javax.swing.JFrame {
 
     private void backBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBottomActionPerformed
         // TODO add your handling code here:
-        presentationctrl.SwitchFromAClassResMtoRM();
+        presentationctrl.SwitchFromAsubGroupResMtoRM();
     }//GEN-LAST:event_backBottomActionPerformed
 
     private void addHourResBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHourResBottomActionPerformed
@@ -367,10 +367,10 @@ public class AddsubGroupResMenu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
         if (hIni >= hEnd)
         JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        else {
-            presentationctrl.addsubGroupRes(subgroup, dIni, dEnd, hIni, hEnd);
+        else if (presentationctrl.addsubGroupRes(subgroup, dIni, dEnd, hIni, hEnd))
+            JOptionPane.showMessageDialog(this, "Aquesta restriccio ja existeix.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else
             presentationctrl.SwitchFromAsubGroupResMtoRM();
-        }
     }//GEN-LAST:event_addHourResBottomActionPerformed
 
     private void hEndSliderHourStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hEndSliderHourStateChanged
@@ -394,13 +394,12 @@ public class AddsubGroupResMenu extends javax.swing.JFrame {
         int dEnd = Integer.parseInt(dEndBox1.getSelectedIndex()+"");
         int hIni = Integer.parseInt(hIniHLabel1.getText());
         int hEnd = Integer.parseInt(hEndHLabel1.getText());
-        if(presentationctrl.classcontain(name)){
-            presentationctrl.addsubGroupRes(subgroup, dIni, dEnd, hIni, hEnd, name);
-            presentationctrl.SwitchFromAsubGroupResMtoRM();
-        }
-        else{
+        if(!presentationctrl.classcontain(name))
             JOptionPane.showMessageDialog(this, "No hi ha una assignatura amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        }
+        else if (presentationctrl.addsubGroupRes(subgroup, dIni, dEnd, hIni, hEnd, name))
+            JOptionPane.showMessageDialog(this, "Aquesta restriccio ja existeix.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else
+            presentationctrl.SwitchFromAsubGroupResMtoRM();
     }//GEN-LAST:event_addClassroomResBotoomActionPerformed
 
     private void hEndSliderclassStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hEndSliderclassStateChanged

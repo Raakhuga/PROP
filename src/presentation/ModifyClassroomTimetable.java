@@ -166,6 +166,7 @@ public class ModifyClassroomTimetable extends javax.swing.JFrame {
                             if (presentationctrl.groupRestrictions(act, origin, j, i) && presentationctrl.classroomRestrictions(act, origin, j, i)){
                                 Bact.setBackground(Color.GREEN);
                             }
+                            Bact.setBackground(Color.WHITE);
                         }
                         else
                             Bact.setBackground(Color.WHITE);

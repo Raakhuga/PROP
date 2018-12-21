@@ -400,6 +400,7 @@ public class TimetableGenerator {
                 if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
                     if (ctrlRestrictions.groupRestrictions(i, j, classroom, GS)) {
                         addToTimetable(classroom, GS.getGroup(), GS, new ClassSubject(classroom, GS.getSubject()), i, j);
+                        System.out.println(classroom.getRef());
                         if (!i_generateTimetable(0, pos_problem+1)) {
                             removeFromTimetable(classroom, GS.getGroup(), i, j);
                             return false;
@@ -414,16 +415,16 @@ public class TimetableGenerator {
     
     public void resetTimetables() {
         for(Classroom classroom : classrooms) {
-            classroom.getTimetable().initialize();
+            classroom.getTimetable().initializeGS();
         }
         for(StudyProgram program : programs) {
             for(Level level : program.getLevels()) {
                 for(Subject subject : level.getSubjects()) {
                     for (Group group : subject.getGroups()) {
-                        group.getTimetable().initialize();
+                        group.getTimetable().initializeGS();
                         for(subGroup subgroup : group.getSubGroups()) {
-                            subgroup.getTimetable().initialize();
-                            subgroup.getSubTimetable().initialize();
+                            subgroup.getTimetable().initializeGS();
+                            subgroup.getSubTimetable().initializeGS();
                         }
                     }
                 }

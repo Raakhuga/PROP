@@ -22,9 +22,9 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
      */
 
     
-    public AddClassroomResMenu(PresentationCtrl pre) {
+    public AddClassroomResMenu(PresentationCtrl presentationctrl) {
         initComponents();
-        presentationctrl = pre;
+        this.presentationctrl = presentationctrl;
     }
 
     /**

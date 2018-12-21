@@ -331,13 +331,13 @@ public class RestrictionMenu extends javax.swing.JFrame {
         if (hours.isSelected()) presentationctrl.activeRes(0);
         else presentationctrl.disactiveRes(0);
         if (groupRes.isSelected()) presentationctrl.activeRes(2);
-        else  presentationctrl.activeRes(2);
+        else  presentationctrl.disactiveRes(2);
         if (subjectRes.isSelected()) presentationctrl.activeRes(1);
-        else presentationctrl.activeRes(1);
+        else presentationctrl.disactiveRes(1);
         if (lbtRes.isSelected()) presentationctrl.activeRes(4);
-        else presentationctrl.activeRes(4);
+        else presentationctrl.disactiveRes(4);
         if (crRes.isSelected()) presentationctrl.activeRes(3);
-        else presentationctrl.activeRes(3);
+        else presentationctrl.disactiveRes(3);
         presentationctrl.SwitchFromRMtoMM();
         
     }//GEN-LAST:event_backActionPerformed
