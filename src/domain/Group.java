@@ -96,10 +96,15 @@ public class Group {
         return timetable.isClassroomBanned(day, hour, ref);
     }
     
-    public void ban(int dIni, int dEnd, int hIni, int hEnd) {
-        for(int i = dIni; i <= dEnd; i++) 
-            for (int j = hIni; j < hEnd; j++) timetable.ban(i, j);
-        addedRestrictions.add("Bloquejar_franja " + "dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
+    public boolean ban(int dIni, int dEnd, int hIni, int hEnd) {
+        String restr = "Bloquejar_franja " + "dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd;
+        if (!addedRestrictions.contains(restr)){
+            for(int i = dIni; i <= dEnd; i++) 
+                for (int j = hIni; j < hEnd; j++) timetable.ban(i, j);
+            addedRestrictions.add(restr);
+            return true;
+        }
+        return false;
     }
     
     public void unban(int dIni, int dEnd, int hIni, int hEnd) {
@@ -108,10 +113,15 @@ public class Group {
         //addedRestrictions.add("Desbloquejar_franja " + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
-    public void banSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        for(int i = dIni; i <= dEnd; i++) 
-            for (int j = hIni; j < hEnd; j++) timetable.banSubject(i, j, subject);
-        addedRestrictions.add("Bloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
+    public boolean banSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        String restr = "Bloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd;
+        if (!addedRestrictions.contains(restr)) {
+            for(int i = dIni; i <= dEnd; i++) 
+                for (int j = hIni; j < hEnd; j++) timetable.banSubject(i, j, subject);
+            addedRestrictions.add(restr);
+            return true; 
+        }
+        return false;
     }
     
     public void unbanSubject(int dIni, int dEnd, int hIni, int hEnd, String subject) {
@@ -120,10 +130,15 @@ public class Group {
         //addedRestrictions.add("Desbloquejar_assignatura " + subject + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
     }
     
-    public void banClassroom(int dIni, int dEnd, int hIni, int hEnd, String ref) {
-        for(int i = dIni; i <= dEnd; i++) 
-            for (int j = hIni; j < hEnd; j++) timetable.banClassroom(i, j, ref);
-        addedRestrictions.add("Bloquejar_aula " + ref + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd);
+    public boolean banClassroom(int dIni, int dEnd, int hIni, int hEnd, String ref) {
+        String restr = "Bloquejar_aula " + ref + " dia_inicial: " + dIni + " dia_final: " + dEnd + " hora_inicial: " + hIni + " hora_final: " + hEnd;
+        if (!addedRestrictions.contains(restr)) {
+            for(int i = dIni; i <= dEnd; i++) 
+                for (int j = hIni; j < hEnd; j++) timetable.banClassroom(i, j, ref);
+            addedRestrictions.add(restr);
+            return true;
+        }
+        return false;
     }
     
     public void unbanClassroom(int dIni, int dEnd, int hIni, int hEnd, String ref) {

@@ -103,11 +103,11 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
 
         dIniLabel1.setText("Selecciona el primer dia a bloquejar:");
 
-        dIniBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dIniBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
 
         dEndLabel1.setText("Selecciona el darrer dia a bloquejar:");
 
-        dEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
         dEndBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dEndBox1ActionPerformed(evt);
@@ -226,11 +226,11 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
 
         dIniLabel.setText("Selecciona el primer dia a bloquejar:");
 
-        dIniBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dIniBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
 
         dEndLabel.setText("Selecciona el darrer dia a bloquejar:");
 
-        dEndBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dEndBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
         dEndBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dEndBoxActionPerformed(evt);
@@ -341,11 +341,11 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
 
         dIniLabel2.setText("Selecciona el primer dia a bloquejar:");
 
-        dIniBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dIniBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
 
         dEndLabel2.setText("Selecciona el darrer dia a bloquejar:");
 
-        dEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
         dEndBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dEndBox2ActionPerformed(evt);
@@ -544,13 +544,13 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
         int dEnd = Integer.parseInt(dEndBox1.getSelectedIndex()+"");
         int hIni = Integer.parseInt(hIniHLabel1.getText());
         int hEnd = Integer.parseInt(hEndHLabel1.getText());
-        if(presentationctrl.subjectscontain(name)){
-            presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd, name);
-            presentationctrl.SwitchFromAClassResMtoRM();
-        }
-        else{
+        if(name.equals(""))
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if(!presentationctrl.subjectscontain(name))
             JOptionPane.showMessageDialog(this, "No hi ha cap assignatura amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        }
+        else if(!presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd, name))
+            JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else presentationctrl.SwitchFromAClassResMtoRM();
             
     }//GEN-LAST:event_addSubjectResBotoomActionPerformed
 
@@ -565,13 +565,13 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
         if (hIni >= hEnd)
             JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if (num.equals(""))
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         else if (!presentationctrl.isInt(num))
             JOptionPane.showMessageDialog(this, "El numero de grup ha de ser un valor numèric.", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        else {
-            presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd, Integer.parseInt(num));
-            presentationctrl.SwitchFromAClassResMtoRM();
-        }
-         
+        else if(!presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd, Integer.parseInt(num)))
+            JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else presentationctrl.SwitchFromAClassResMtoRM();
     }//GEN-LAST:event_addGroupResBotoomActionPerformed
 
     private void addHourResBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHourResBottomActionPerformed
@@ -584,10 +584,10 @@ public class AddClassroomResMenu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
         if (hIni >= hEnd)
             JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        else {
-            presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd);
+        else if (!presentationctrl.addResClass(clas, dIni, dEnd, hIni, hEnd))
+            JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else
             presentationctrl.SwitchFromAClassResMtoRM();
-        }
     }//GEN-LAST:event_addHourResBottomActionPerformed
 
     private void backBottomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBottomActionPerformed

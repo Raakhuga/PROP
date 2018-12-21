@@ -87,11 +87,11 @@ public class AddGroupResMenu extends javax.swing.JFrame {
 
         dIniLabel1.setText("Selecciona el primer dia a bloquejar:");
 
-        dIniBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dIniBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
 
         dEndLabel1.setText("Selecciona el darrer dia a bloquejar:");
 
-        dEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
         dEndBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dEndBox1ActionPerformed(evt);
@@ -202,11 +202,11 @@ public class AddGroupResMenu extends javax.swing.JFrame {
 
         dIniLabel2.setText("Selecciona el primer dia a bloquejar:");
 
-        dIniBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dIniBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
 
         dEndLabel2.setText("Selecciona el darrer dia a bloquejar:");
 
-        dEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Dissabte", "Diumenje" }));
+        dEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenje" }));
         dEndBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dEndBox2ActionPerformed(evt);
@@ -367,10 +367,10 @@ public class AddGroupResMenu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "El darrer día útil ha de\nser el mateix dia o \nposterior al inicial", "Atenció:", JOptionPane.WARNING_MESSAGE);
         if (hIni >= hEnd)
         JOptionPane.showMessageDialog(this, "La darrera hora útil ha de\nser posterior a la primera", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        else {
-            presentationctrl.addGroupRes(group, dIni, dEnd, hIni, hEnd);
+        else if (!presentationctrl.addGroupRes(group, dIni, dEnd, hIni, hEnd))
+            JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else
             presentationctrl.SwitchFromAGroupResMtoRM();
-        }
     }//GEN-LAST:event_addHourResBottomActionPerformed
 
     private void hEndSliderHourStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hEndSliderHourStateChanged
@@ -394,13 +394,15 @@ public class AddGroupResMenu extends javax.swing.JFrame {
         int dEnd = Integer.parseInt(dEndBox1.getSelectedIndex()+"");
         int hIni = Integer.parseInt(hIniHLabel1.getText());
         int hEnd = Integer.parseInt(hEndHLabel1.getText());
-        if(presentationctrl.classcontain(name)){
-            presentationctrl.addGroupRes(group, dIni, dEnd, hIni, hEnd, name);
-            presentationctrl.SwitchFromAGroupResMtoRM();
-        }
-        else{
+        if(name.equals(""))
+            JOptionPane.showMessageDialog(this, "S'han d'omplir tots els camps.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else if(!presentationctrl.classcontain(name))
             JOptionPane.showMessageDialog(this, "No hi ha cap aula amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
-        }
+        else if(!presentationctrl.addGroupRes(group, dIni, dEnd, hIni, hEnd, name))
+            JOptionPane.showMessageDialog(this, "Ja existeix aquesta restricció.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else
+            presentationctrl.SwitchFromAGroupResMtoRM();
+            
     }//GEN-LAST:event_addClassroomResBotoomActionPerformed
 
     private void hEndSliderclassStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hEndSliderclassStateChanged

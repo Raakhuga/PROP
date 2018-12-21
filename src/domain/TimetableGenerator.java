@@ -284,12 +284,12 @@ public class TimetableGenerator {
         g.removeFromGroupTimetable(day, hour);
     }
     
-    public void ban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
-        g.ban(dIni, dEnd, hIni, hEnd);
+    public boolean ban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
+        return g.ban(dIni, dEnd, hIni, hEnd);
     }
     
-    public void ban(Classroom c, int dIni, int dEnd, int hIni, int hEnd) {
-        c.ban(dIni, dEnd, hIni, hEnd);
+    public boolean ban(Classroom c, int dIni, int dEnd, int hIni, int hEnd) {
+        return c.ban(dIni, dEnd, hIni, hEnd);
     }
     
     public void unban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
@@ -300,12 +300,12 @@ public class TimetableGenerator {
         c.unban(dIni, dEnd, hIni, hEnd);
     }
     
-    public void banSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        g.banSubject(dIni, dEnd, hIni, hEnd, subject);
+    public boolean banSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        return g.banSubject(dIni, dEnd, hIni, hEnd, subject);
     }
     
-    public void banSubject(Classroom c, int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        c.banSubject(dIni, dEnd, hIni, hEnd, subject);
+    public boolean banSubject(Classroom c, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        return c.banSubject(dIni, dEnd, hIni, hEnd, subject);
     }
     
     public void unbanSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
@@ -316,16 +316,16 @@ public class TimetableGenerator {
         c.unbanSubject(dIni, dEnd, hIni, hEnd, subject);
     }
     
-    public void banClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
-        g.banClassroom(dIni, dEnd, hIni, hEnd, ref);
+    public boolean banClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
+        return g.banClassroom(dIni, dEnd, hIni, hEnd, ref);
     }
 
     public void unbanClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
         g.unbanClassroom(dIni, dEnd, hIni, hEnd, ref);
     }
     
-    public void banGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
-        c.banGroup(dIni, dEnd, hIni, hEnd, num);
+    public boolean banGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        return c.banGroup(dIni, dEnd, hIni, hEnd, num);
     }
     
     public void unbanGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
