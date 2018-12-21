@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package domain;
 
-/**
- *
- * @author raakhuga
- */
+
 abstract class Timetable {
     private int dIni;
     private int dEnd;
     private int hIni;
     private int hEnd;
 
-        public Timetable(int dIni, int dEnd, int hIni, int hEnd) {
+    public Timetable(int dIni, int dEnd, int hIni, int hEnd) {
         this.dIni = dIni;
         this.dEnd = dEnd;
         this.hIni = hIni;

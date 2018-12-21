@@ -1,7 +1,6 @@
 
 package domain;
 
-import static java.lang.Integer.min;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;

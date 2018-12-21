@@ -9,13 +9,11 @@ public class Level {
     
     /** Atributtes **/
     private int iden;
-    //private String SP;
     private List<Subject> subjects;
     
     /** Constructor **/
     public Level(int iden){
         this.iden = iden;
-        //this.SP = SP;
         this.subjects = new ArrayList<>();
     }
 
@@ -36,7 +34,7 @@ public class Level {
     }
     
     public Subject addSubject(String name) {
-        Subject subject = new Subject(name, this);
+        Subject subject = new Subject(name);
         subjects.add(subject);
         return subject;
     }
