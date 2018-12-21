@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistance;
+
 import domain.Classroom;
 import domain.Group;
 import domain.Level;
@@ -16,14 +12,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
-/**
- *
- * @author raakhuga
- */
+
+
 public class PersistanceCtrl {
     public void save(TimetableGenerator TG, String path){
         String state;

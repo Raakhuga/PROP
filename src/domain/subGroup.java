@@ -35,7 +35,6 @@ public class subGroup extends Group {
         this.subtimetable = subtimetable;
     }
     
-    //posible error
     public boolean isEmpty(int day, int hour) {
         if(super.isEmpty(day, hour)) return subtimetable.isEmpty(day, hour);
         return false;
