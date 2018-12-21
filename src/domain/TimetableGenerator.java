@@ -566,4 +566,12 @@ public class TimetableGenerator {
     public boolean groupRestrictions(int day, int hour, Classroom clasroom, GroupSubject GSNew) {
         return ctrlRestrictions.groupRestrictions(day, hour, clasroom, GSNew);
     }
+
+    public void activeRes(int i) {
+        ctrlRestrictions.enableRestriction(i);
+    }
+
+    public void disableRes(int i) {
+        ctrlRestrictions.disableRestriction(i);
+    }
 }

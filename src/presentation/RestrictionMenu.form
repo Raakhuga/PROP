@@ -65,7 +65,7 @@
                                                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="subjectRes" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="groupRes" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="samelvl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="hours" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="crRes" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="lbtRes" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -139,7 +139,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="samelvl" min="-2" max="-2" attributes="0"/>
+                              <Component id="hours" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="groupRes" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -264,12 +264,12 @@
         <Property name="text" type="java.lang.String" value="Restriccions actives:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="samelvl">
+    <Component class="javax.swing.JCheckBox" name="hours">
       <Properties>
         <Property name="text" type="java.lang.String" value="Restringir hores"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="samelvlActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hoursActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="groupRes">
