@@ -345,10 +345,10 @@ public class ViewState extends javax.swing.JFrame {
     }
     
     private void showGroup(Group g) {
-        jLabel7.setText("Nummero de grup: " + g.getNum());
+        jLabel7.setText("Numero de grup: " + g.getNum());
         jLabel8.setText("Numero de inscrits en el grup: " + g.getEnrolled());
-        jLabel9.setText("Primer dia útil del grup: " + g.getdIni());
-        jLabel10.setText("Darrer dia útil del grup: " + g.getdEnd());
+        jLabel9.setText("Primer dia útil del grup: " + dia(g.getdIni()));
+        jLabel10.setText("Darrer dia útil del grup: " + dia(g.getdEnd()));
         jLabel11.setText("Primera hora útil del grup: " + g.gethIni());
         jLabel12.setText("Darrera hora útil del grup " + g.gethEnd());
     }
