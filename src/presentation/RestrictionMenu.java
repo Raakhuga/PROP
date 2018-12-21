@@ -31,9 +31,9 @@ public class RestrictionMenu extends javax.swing.JFrame {
     /**
      * Creates new form RestrictionMenu
      */
-    public RestrictionMenu(PresentationCtrl pre) {
+    public RestrictionMenu(PresentationCtrl presentationctrl) {
         initComponents();
-        presentationctrl = pre;
+        this.presentationctrl = presentationctrl;
     }
 
     /**
@@ -377,6 +377,11 @@ public class RestrictionMenu extends javax.swing.JFrame {
         crScroll.setViewportView(crList);
         SPList.setModel(presentationctrl.getProgramsNames());
         SPScroll.setViewportView(SPList);
+        hours.setSelected(presentationctrl.rExtra(0));
+        subjectRes.setSelected(presentationctrl.rExtra(1));
+        groupRes.setSelected(presentationctrl.rExtra(2));
+        crRes.setSelected(presentationctrl.rExtra(3));
+        lbtRes.setSelected(presentationctrl.rExtra(4));
         if (actual != 0) {
             if (actual == 1) {
                 if (crList.getSelectedIndex() != -1){

@@ -575,4 +575,8 @@ public class TimetableGenerator {
     public void disableRes(int i) {
         ctrlRestrictions.disableRestriction(i);
     }
+    
+    public boolean rExtra(int id) {
+        return ctrlRestrictions.rExtra(id);
+    }
 }

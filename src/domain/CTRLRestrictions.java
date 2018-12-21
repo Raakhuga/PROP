@@ -216,4 +216,8 @@ public class CTRLRestrictions {
     public String saveRestrictions() {
         return rBase[0] + " " + rBase[1] + " " + rBase[2] + " " + rBase[3] + " " + rExtra[0] + " " + rExtra[1] + " " + rExtra[2] + " " + rExtra[3] + " " + rExtra[4];
     }
+    
+    public boolean rExtra(int id) {
+        return rExtra[id];
+    }
 }

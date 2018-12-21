@@ -72,7 +72,7 @@ public class PresentationCtrl {
     private DeletesubGroup deletesubgroup = null;
     private AddGroupResMenu addgroupresmenu = null;
     private AddsubGroupResMenu addsubgroupresmenu = null;
-
+    private ViewState viewstate = null;
     private ModifyClassroomTimetable mctimetable = null;
     private ModifySelectClassroom msclassroom = null;
     
@@ -103,6 +103,23 @@ public class PresentationCtrl {
     }
 
     /** SYNCRONIZATION **/    
+    public void SwitchFromMMtoVS() {
+        if(viewstate == null)
+            viewstate = new ViewState(this);
+        mainmenu.setVisible(false);
+        mainmenu.setEnabled(false);
+        viewstate.setEnabled(true);
+        centerFrame(viewstate);
+        viewstate.setVisible(true);
+    }
+    
+    public void SwitchFromVStoMM() {
+        viewstate.setVisible(false);
+        viewstate.setEnabled(false);
+        mainmenu.setEnabled(true);
+        mainmenu.setVisible(true);
+    }
+    
     public void SwitchFromMMtoSLM(){
         if(saveloadmenu == null)
             saveloadmenu = new SaveLoadMenu(this);
@@ -1383,5 +1400,8 @@ public class PresentationCtrl {
     public void disactiveRes(int i) {
         DomainCtrl.disableRes(i);
     }
-
+    
+    public boolean rExtra(int id) {
+        return DomainCtrl.rExtra(id);
+    }
 }

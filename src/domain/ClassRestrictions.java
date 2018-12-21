@@ -10,14 +10,14 @@ import java.util.Set;
 public class ClassRestrictions {
     private boolean banned;
     private boolean out;
-    private List<String> bannedSubjects;
-    private List<Integer> bannedGroups;
+    private Set<String> bannedSubjects;
+    private Set<Integer> bannedGroups;
 
     public ClassRestrictions() {
         this.banned = false;
         this.out = false;
-        this.bannedSubjects = new ArrayList<>();
-        this.bannedGroups = new ArrayList<>();
+        this.bannedSubjects = new HashSet<>();
+        this.bannedGroups = new HashSet<>();
     }
     
     public boolean isBanned() {
@@ -28,11 +28,11 @@ public class ClassRestrictions {
         return out;
     }
 
-    public List<String> getBannedSubjects() {
+    public Set<String> getBannedSubjects() {
         return bannedSubjects;
     }
 
-    public List<Integer> getBannedClassrooms() {
+    public Set<Integer> getBannedClassrooms() {
         return bannedGroups;
     }
 
@@ -44,11 +44,11 @@ public class ClassRestrictions {
         this.out = out;
     }
 
-    public void setBannedSubjects(List<String> bannedSubjects) {
+    public void setBannedSubjects(Set<String> bannedSubjects) {
         this.bannedSubjects = bannedSubjects;
     }
 
-    public void setBannedClassrooms(List<Integer> bannedGroups) {
+    public void setBannedClassrooms(Set<Integer> bannedGroups) {
         this.bannedGroups = bannedGroups;
     }
     
@@ -62,7 +62,6 @@ public class ClassRestrictions {
     
     public void banSubject(String subject) {
         bannedSubjects.add(subject);
-        System.out.println(bannedSubjects.get(0));
     }
     
     public void unbanSubject(String subject) {
