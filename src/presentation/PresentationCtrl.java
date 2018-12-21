@@ -192,9 +192,10 @@ public class PresentationCtrl {
         mainmenu.setVisible(true);
     }
     
-    public void SwitchFromCMtoAC(){
+    public void SwitchFromCMtoAC(DefaultListModel<String> classrooms){
         if(addclassroom == null)
             addclassroom = new AddClassroom(this);
+        addclassroom.setList(classrooms);
         classroommenu.setEnabled(false);
         addclassroom.setEnabled(true);
         centerFrame(addclassroom);
@@ -217,10 +218,11 @@ public class PresentationCtrl {
         classroommenu.setVisible(true);
     }
     
-    public void SwitchFromCMtoMC(Classroom classroom){
+    public void SwitchFromCMtoMC(Classroom classroom, DefaultListModel<String> classrooms){
         if(modifyclassroom == null)
             modifyclassroom = new ModifyClassroom(this);
         modifyclassroom.setClassroom(classroom);
+        modifyclassroom.setList(classrooms);
         classroommenu.setEnabled(false);
         modifyclassroom.setEnabled(true);
         centerFrame(modifyclassroom);
