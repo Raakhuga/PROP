@@ -166,7 +166,6 @@ public class SaveLoadMenu extends javax.swing.JFrame {
         File f = chooser.getSelectedFile();
         String path = f.getAbsolutePath();
         loadPath.setText(path);
-        //presentationctrl.load(path);
     }//GEN-LAST:event_LoadButtonActionPerformed
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
@@ -180,7 +179,6 @@ public class SaveLoadMenu extends javax.swing.JFrame {
           String path = f.getAbsolutePath();
           savePath.setText(path);
         }
-        //presentationctrl.load(path);
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed

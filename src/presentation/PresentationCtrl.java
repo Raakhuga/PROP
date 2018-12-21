@@ -31,7 +31,6 @@ import javax.swing.DefaultListModel;
 
 public class PresentationCtrl {
     private TimetableGenerator DomainCtrl;
-    //private PersistanceCtrl persistancectrl;
     Dimension dim;
     private boolean first;
     
@@ -1053,16 +1052,8 @@ public class PresentationCtrl {
     
     //domain methods
     public boolean generate() {
-        /*this.save("./aux.state");
-        System.out.println("guardo");
-        DomainCtrl = new TimetableGenerator();
-        this.load("./aux.state");*/
         DomainCtrl.deleteAllGS();
         DomainCtrl.generateAllGS();
-        /*System.out.println("leo");
-        File file = new File("./aux.state");
-        file.delete();
-        System.out.println("borro");*/
         DomainCtrl.resetTimetables();
         return DomainCtrl.generateTimetable();
     }

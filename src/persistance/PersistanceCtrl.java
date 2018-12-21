@@ -23,8 +23,6 @@ public class PersistanceCtrl {
         state = state + TG.saveClassrooms();
         state = state + TG.saveStudyPrograms();
         state = state + TG.saveRestrictions();
-        
-        //System.out.print(state);
         try {
             File file = new  File(path);
             if (!file.exists()) {
@@ -235,15 +233,12 @@ public class PersistanceCtrl {
                 aux = input.next();
                 int nMaxStudentsSubGroup = input.nextInt();
                 
-                //TG = new TimetableGenerator(nMaxStudentsGroup, nMaxStudentsSubGroup);
-                
                 TG.setnMaxStudentsGroup(nMaxStudentsGroup);
                 TG.setnMaxStudentsSubgroup(nMaxStudentsSubGroup);
                 
                 aux = input.next();
                 int numOfClassrooms = input.nextInt();
                 aux = input.next();
-                //System.out.println(aux+ " " + numOfClassrooms);
 
                 for(int i = 0; i < numOfClassrooms; i++) {
                     aux = input.next();
@@ -258,7 +253,6 @@ public class PersistanceCtrl {
                     int hIni = input.nextInt();
                     aux = input.next();
                     int hEnd = input.nextInt();
-                    //System.out.print(dIni + " " + dEnd + " " + hIni + " " + hEnd + " " + ref);
                     Classroom c = TG.addClassroom(capacity, ref, dIni, dEnd, hIni, hEnd);
                     aux = input.next();
                     if(input.nextBoolean()) c.setTheory();

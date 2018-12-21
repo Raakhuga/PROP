@@ -9,16 +9,10 @@ import domain.Group;
 import domain.Subject;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author hasee
- */
 public class AddGroup extends javax.swing.JFrame {
     private PresentationCtrl presentationctrl;
     private Subject sub;
-    /**
-     * Creates new form AddGroup
-     */
+
     public AddGroup(PresentationCtrl presentationctrl) {
         initComponents();
         this.presentationctrl = presentationctrl;
@@ -256,10 +250,6 @@ public class AddGroup extends javax.swing.JFrame {
     private void EnrolledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrolledActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EnrolledActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Enrolled;

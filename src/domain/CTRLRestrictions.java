@@ -34,7 +34,7 @@ public class CTRLRestrictions {
             //El aula tiene bloqueado al grupo en dicha franja horaria
             else if (groupBanned(day, hour, classroom.getTimetable(), GSNew.getNumGroup()) && rExtra[2]) return false;
             //La materia esta bloqueada en dicha franja horaria
-            else if (subjectBanned(day, hour, classroom.getTimetable(), GSNew.getNameSubject()) && rExtra[1]) {System.out.println("classroom " + classroom.getRef() + GSNew.getNameSubject()); return false;}
+            else if (subjectBanned(day, hour, classroom.getTimetable(), GSNew.getNameSubject()) && rExtra[1]) return false;
             //El aula es demasiado pequeña
             else if (classroomTooSmall(classroom, GSNew) && rBase[1]) return false;
             //El tipus de aula no es la mateixa amb el de GroupSubject
@@ -52,7 +52,7 @@ public class CTRLRestrictions {
             //El grupo no puede ir a esa clase en dicha franja horaria
             else if (classroomBanned(day, hour, GSNew, classroom.getRef()) && rExtra[3]) return false;
             //La materia esta bloqueada en dicha franja horaria
-            else if (subjectBanned(day, hour, GSNew, GSNew.getNameSubject()) && rExtra[1]){System.out.println("group " + GSNew.getNameSubject()); return false;}
+            else if (subjectBanned(day, hour, GSNew, GSNew.getNameSubject()) && rExtra[1]) return false;
             //Hay solapamiento de dos asignaturas de un mismo nivel
             else if (sameLevel(day, hour, GSNew) && rBase[1]) return false;
             //Hay clase de Lab antes que la de teoria
