@@ -414,30 +414,16 @@ public class TimetableGenerator {
     
     public void resetTimetables() {
         for(Classroom classroom : classrooms) {
-            int dIni = classroom.getdIni();
-            int dEnd = classroom.getdEnd();
-            int hIni = classroom.gethIni();
-            int hEnd = classroom.gethEnd();
-            for (int i = dIni; i <= dEnd; i++)
-                for (int j = hIni; j < hEnd; j++) classroom.removeFromClassTimetable(i, j);
+            classroom.getTimetable().initialize();
         }
         for(StudyProgram program : programs) {
             for(Level level : program.getLevels()) {
                 for(Subject subject : level.getSubjects()) {
                     for (Group group : subject.getGroups()) {
-                        int dIni = group.getdIni();
-                        int dEnd = group.getdEnd();
-                        int hIni = group.gethIni();
-                        int hEnd = group.gethEnd();
-                        for (int i = dIni; i <= dEnd; i++)
-                            for (int j = hIni; j < hEnd; j++) group.removeFromGroupTimetable(i, j);
+                        group.getTimetable().initialize();
                         for(subGroup subgroup : group.getSubGroups()) {
-                            dIni = subgroup.getdIni();
-                            dEnd = subgroup.getdEnd();
-                            hIni = subgroup.gethIni();
-                            hEnd = subgroup.gethEnd();
-                            for (int i = dIni; i <= dEnd; i++)
-                                for (int j = hIni; j < hEnd; j++) group.removeFromGroupTimetable(i, j);
+                            subgroup.getTimetable().initialize();
+                            subgroup.getSubTimetable().initialize();
                         }
                     }
                 }

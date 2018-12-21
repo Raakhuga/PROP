@@ -7,6 +7,7 @@ package presentation;
 
 import domain.Classroom;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -161,17 +162,34 @@ public class ClassroomMenu extends javax.swing.JFrame {
 
     private void ModifyClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyClassroomActionPerformed
         // TODO add your handling code here:
-        int index = ClassroomsList.getSelectedIndex();
-        List<Classroom> classrooms = presentationctrl.getClassrooms();
-        presentationctrl.SwitchFromCMtoMC(classrooms.get(index));
+        if(ClassroomsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni una aula.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = ClassroomsList.getSelectedIndex();
+            if (ClassroomsList.getSelectedValue().equals("No hi ha cap aula al sistema")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi una aula.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Classroom> classrooms = presentationctrl.getClassrooms();
+                presentationctrl.SwitchFromCMtoMC(classrooms.get(index));
+            }
+        }
     }//GEN-LAST:event_ModifyClassroomActionPerformed
 
     private void DeleteClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteClassroomActionPerformed
         // TODO add your handling code here:
-        int index = ClassroomsList.getSelectedIndex();
-        presentationctrl.removeClassroom(index);
-        ClassroomsList.setModel(presentationctrl.getClassroomsRefs());
-        jScrollPane1.setViewportView(ClassroomsList);
+        if(ClassroomsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni una aula.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = ClassroomsList.getSelectedIndex();
+            if (ClassroomsList.getSelectedValue().equals("No hi ha cap aula al sistema")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi una aula.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                System.out.println(index);
+                presentationctrl.SwitchFromCMtoDC(index);
+            }
+        }
     }//GEN-LAST:event_DeleteClassroomActionPerformed
 
     private void mainmenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainmenuButtonActionPerformed

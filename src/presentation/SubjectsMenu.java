@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class SubjectsMenu extends javax.swing.JFrame {
 
-    PresentationCtrl presentationctrl;
-    Level lvl;
+    private PresentationCtrl presentationctrl;
+    private Level lvl;
     /**
      * Creates new form SubjectsMenu
      */
@@ -49,6 +49,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
         SubjectsList = new javax.swing.JList<>();
         delete = new javax.swing.JButton();
         groups = new javax.swing.JButton();
+        autoGenerateGroups = new javax.swing.JButton();
         mainmenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,19 +103,29 @@ public class SubjectsMenu extends javax.swing.JFrame {
             }
         });
 
+        autoGenerateGroups.setText("Autogenerar grups");
+        autoGenerateGroups.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoGenerateGroupsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modifySubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(groups, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(64, 64, 64))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(addSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(modifySubject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(autoGenerateGroups, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(groups, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,6 +137,8 @@ public class SubjectsMenu extends javax.swing.JFrame {
                 .addComponent(modifySubject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(autoGenerateGroups)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(groups))
         );
@@ -142,25 +155,27 @@ public class SubjectsMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(mainmenuButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exit)
-                    .addComponent(mainmenuButton))
-                .addContainerGap())
+                    .addComponent(mainmenuButton)
+                    .addComponent(exit))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,7 +241,7 @@ public class SubjectsMenu extends javax.swing.JFrame {
             }
             else {
                 List<Subject> subjects = presentationctrl.getSubjects(lvl);
-                presentationctrl.SwitchFromSMtoGM(subjects.get(index));
+                presentationctrl.SwitchFromSMtoGM(subjects.get(index), lvl);
             }
         }        
     }//GEN-LAST:event_groupsActionPerformed
@@ -237,10 +252,27 @@ public class SubjectsMenu extends javax.swing.JFrame {
         presentationctrl.SwitchFromSjMtoMM();
     }//GEN-LAST:event_mainmenuButtonActionPerformed
 
+    private void autoGenerateGroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoGenerateGroupsActionPerformed
+        // TODO add your handling code here:
+        if(SubjectsList.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "Seleccioni una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        else {
+            int index = SubjectsList.getSelectedIndex();
+            if (SubjectsList.getSelectedValue().equals("No hi ha cap assignatura al sistema en aquest nivell")) {
+                JOptionPane.showMessageDialog(this, "Afegeixi una assignatura.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+            else {
+                List<Subject> subjects = presentationctrl.getSubjects(lvl);
+                presentationctrl.SwitchFromSMtoAG(subjects.get(index), lvl);
+            }
+        }
+    }//GEN-LAST:event_autoGenerateGroupsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> SubjectsList;
     private javax.swing.JButton addSubject;
+    private javax.swing.JButton autoGenerateGroups;
     private javax.swing.JButton delete;
     private javax.swing.JButton exit;
     private javax.swing.JButton groups;
