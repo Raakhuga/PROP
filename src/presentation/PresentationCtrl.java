@@ -65,6 +65,9 @@ public class PresentationCtrl {
     private AddSubject addsubj = null;
     private ModifySubject modsubj = null;
     private DeleteSubject delsubj = null;
+    private AddGroupResMenu addgroupresmenu = null;
+    private AddsubGroupResMenu addsubgroupresmenu = null;
+
     
     
     public PresentationCtrl(){
@@ -349,6 +352,25 @@ public class PresentationCtrl {
     }
 
     public void SwitchFromRMtoAGR(Group g) {
+        if (addgroupresmenu == null)
+            addgroupresmenu = new AddGroupResMenu(this);
+        addgroupresmenu.setGroup(g);
+        addgroupresmenu.setEnabled(true);
+        centerFrame(addgroupresmenu);
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        addgroupresmenu.setVisible(true);
+    }  
+    
+    public void SwitchFromRMtoAsGR(subGroup sG) {
+          if (addsubgroupresmenu == null)
+            addsubgroupresmenu = new AddsubGroupResMenu(this);
+        addsubgroupresmenu.setsubGroup(sG);
+        addsubgroupresmenu.setEnabled(true);
+        centerFrame(addsubgroupresmenu);
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        addsubgroupresmenu.setVisible(true);
     }
     //end of restriccions switches
     
@@ -679,6 +701,30 @@ public class PresentationCtrl {
         centerFrame(mainmenu);
         mainmenu.setVisible(true);
     }
+    
+     public void SwitchFromAClassResMtoRM() {
+         restrictionmenu.setEnabled(true);
+         addcRmenu.setEnabled(false);
+         addcRmenu.setVisible(false);
+         centerFrame(restrictionmenu);
+         restrictionmenu.setVisible(true);
+         
+    }
+     
+    public void SwitchFromAsubGroupResMtoRM() {
+        addsubgroupresmenu.setVisible(false);
+        addsubgroupresmenu.setEnabled(false);
+        restrictionmenu.setEnabled(true);
+        centerFrame(restrictionmenu);
+        restrictionmenu.setVisible(true);
+    }
+      public void SwitchFromAGroupResMtoRM() {
+        addgroupresmenu.setVisible(false);
+        addgroupresmenu.setEnabled(false);
+        restrictionmenu.setEnabled(true);
+        centerFrame(restrictionmenu);
+        restrictionmenu.setVisible(true);
+      }
     
     //presentation methods
     
@@ -1037,4 +1083,57 @@ public class PresentationCtrl {
     public void fixTimetables(Level level) {
         DomainCtrl.fixTimetables(level);
     }
+
+    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        DomainCtrl.banSubject(clas,dIni, dEnd, hIni, hEnd, name);
+    }
+    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        DomainCtrl.banGroup(clas, dIni, dEnd, hIni, hEnd, num);
+    }
+
+    public boolean subjectscontain(String name) {
+        return DomainCtrl.containSubject(name);
+    }
+
+    public void addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd) {
+        DomainCtrl.ban(clas, dIni, dEnd, hIni, hEnd);
+    }
+
+    public void addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        DomainCtrl.banClassroom(group, dIni, dEnd, hIni, hEnd, name);
+    }
+
+    public boolean classcontain(String name) {
+        return DomainCtrl.containClass(name);
+    }
+
+    public void addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd) {
+        DomainCtrl.ban(group, dIni, dEnd, hIni, hEnd);
+    }
+
+    public void addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd) {
+        DomainCtrl.ban(subgroup, dIni, dEnd, hIni, hEnd);
+    }
+
+    public void addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        DomainCtrl.banClassroom(subgroup, dIni, dEnd, hIni, hEnd, name);
+    }
+
+    void removeRestriction(Classroom clas, int selectedIndex) {
+        DomainCtrl.removeRestriction(clas, selectedIndex);
+    }
+
+    void removeRestriction(Group g, int selectedIndex) {
+        DomainCtrl.removeRestriction(g, selectedIndex);
+    }
+
+    public void SwitchFromRMtoMM() {
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
+
+
 }

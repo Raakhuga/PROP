@@ -13,6 +13,7 @@ import domain.Subject;
 import domain.subGroup;
 import java.util.List;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -115,6 +116,11 @@ public class RestrictionMenu extends javax.swing.JFrame {
         });
 
         remove.setText("Esborrar");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Restriccions actives:");
 
@@ -322,6 +328,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+        presentationctrl.SwitchFromRMtoMM();
     }//GEN-LAST:event_backActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -333,8 +340,11 @@ public class RestrictionMenu extends javax.swing.JFrame {
         else if (actual == 2) {
             presentationctrl.SwitchFromRMtoAGR(g);
         }
+        else if (actual == 3){
+            presentationctrl.SwitchFromRMtoAsGR(sG);
+        }
         else {
-            presentationctrl.SwitchFromRMtoAGR(sG);
+            JOptionPane.showMessageDialog(this, "Selecciona una aula, grup o subgrup per afegir una restriccio.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_addActionPerformed
 
@@ -444,6 +454,22 @@ public class RestrictionMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_subGroupListMouseClicked
 
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+        // TODO add your handling code here:
+        if (actual == 1) {
+            presentationctrl.removeRestriction(clas, crList.getSelectedIndex());
+        }
+        else if (actual == 2) {
+            presentationctrl.removeRestriction(g, groupList.getSelectedIndex());
+        }
+        else if (actual == 3){
+            presentationctrl.removeRestriction(sG, subGroupList.getSelectedIndex());
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Selecciona una aula, grup o subgrup per esborrar una restriccio.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_removeActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -467,7 +493,6 @@ public class RestrictionMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JCheckBox lbtRes;
     private javax.swing.JList<String> lvlList;
     private javax.swing.JScrollPane lvlScroll;

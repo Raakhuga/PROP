@@ -548,4 +548,29 @@ public class TimetableGenerator {
         g.removeRestriction(id);
     }
 
+    public boolean containSubject(String name) {
+        Iterator<StudyProgram> Rit = programs.iterator();
+        while(Rit.hasNext()) {
+            List<Level> lList = Rit.next().getLevels();
+            Iterator<Level> Lit = lList.iterator();
+            while(Lit.hasNext()) {
+                List<Subject> sList = Lit.next().getSubjects();
+                Iterator<Subject> Sit = sList.iterator();
+                while(Sit.hasNext()){
+                    if (Sit.next().getName() == name) return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public boolean containClass(String name) {
+        Iterator<Classroom> Cit = classrooms.iterator();
+        while(Cit.hasNext()){
+            if (Cit.next().getRef() == name) return true;
+        }
+        return false;
+    }
+
 }
