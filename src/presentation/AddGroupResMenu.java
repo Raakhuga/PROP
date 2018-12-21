@@ -320,8 +320,7 @@ public class AddGroupResMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -400,7 +399,7 @@ public class AddGroupResMenu extends javax.swing.JFrame {
             presentationctrl.SwitchFromAGroupResMtoRM();
         }
         else{
-            JOptionPane.showMessageDialog(this, "No hi ha una assignatura amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hi ha cap aula amb aquest nom.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_addClassroomResBotoomActionPerformed
 
