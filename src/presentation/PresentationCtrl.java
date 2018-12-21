@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.ClassSubject;
 import domain.Classroom;
 import domain.Group;
 import domain.GroupSubject;
@@ -69,6 +70,11 @@ public class PresentationCtrl {
     private DeleteClassroom deleteclassroom = null;
     private DeleteGroup deletegroup = null;
     private DeletesubGroup deletesubgroup = null;
+    private AddGroupResMenu addgroupresmenu = null;
+    private AddsubGroupResMenu addsubgroupresmenu = null;
+
+    private ModifyClassroomTimetable mctimetable = null;
+    private ModifySelectClassroom msclassroom = null;
     
     
     public PresentationCtrl(){
@@ -407,6 +413,25 @@ public class PresentationCtrl {
     }
 
     public void SwitchFromRMtoAGR(Group g) {
+        if (addgroupresmenu == null)
+            addgroupresmenu = new AddGroupResMenu(this);
+        addgroupresmenu.setGroup(g);
+        addgroupresmenu.setEnabled(true);
+        centerFrame(addgroupresmenu);
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        addgroupresmenu.setVisible(true);
+    }  
+    
+    public void SwitchFromRMtoAsGR(subGroup sG) {
+          if (addsubgroupresmenu == null)
+            addsubgroupresmenu = new AddsubGroupResMenu(this);
+        addsubgroupresmenu.setsubGroup(sG);
+        addsubgroupresmenu.setEnabled(true);
+        centerFrame(addsubgroupresmenu);
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        addsubgroupresmenu.setVisible(true);
     }
     //end of restriccions switches
     
@@ -808,7 +833,125 @@ public class PresentationCtrl {
         deletesubgroup.setVisible(true);
     }
     
+     public void SwitchFromAClassResMtoRM() {
+         restrictionmenu.setEnabled(true);
+         addcRmenu.setEnabled(false);
+         addcRmenu.setVisible(false);
+         centerFrame(restrictionmenu);
+         restrictionmenu.setVisible(true);
+         
+    }
+     
+    public void SwitchFromAsubGroupResMtoRM() {
+        addsubgroupresmenu.setVisible(false);
+        addsubgroupresmenu.setEnabled(false);
+        restrictionmenu.setEnabled(true);
+        centerFrame(restrictionmenu);
+        restrictionmenu.setVisible(true);
+    }
+      public void SwitchFromAGroupResMtoRM() {
+        addgroupresmenu.setVisible(false);
+        addgroupresmenu.setEnabled(false);
+        restrictionmenu.setEnabled(true);
+        centerFrame(restrictionmenu);
+        restrictionmenu.setVisible(true);
+      }
+    
+    public void SwitchFromMCTtoMSC(GroupSubject GS, int day, int hour, Classroom c) {
+        if(msclassroom == null)
+            msclassroom = new ModifySelectClassroom(this);
+        msclassroom.setGroupSubject(GS);
+        msclassroom.setCorig(c);
+        msclassroom.setDorig(day); 
+        msclassroom.setHorig(hour);
+        mctimetable.setVisible(false);
+        mctimetable.setEnabled(false);
+        msclassroom.setEnabled(true);
+        centerFrame(msclassroom);
+        msclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromMSCtoMCT(Classroom cdest, Classroom corig, GroupSubject GS, int dorig, int horig) {
+        mctimetable = new ModifyClassroomTimetable(this);
+        mctimetable.setGroupSubject(GS);
+        mctimetable.setClassroom(cdest);
+        mctimetable.setCorig(corig);
+        mctimetable.setDorig(dorig);
+        mctimetable.setHorig(horig);
+        msclassroom.setVisible(false);
+        msclassroom.setEnabled(false);
+        mctimetable.setEnabled(true);
+        centerFrame(mctimetable);
+        mctimetable.setVisible(true);
+    }
+    
+    public void SwitchFromMSCtoMCT(Classroom c) {
+        mctimetable = new ModifyClassroomTimetable(this);
+        msclassroom.setVisible(false);
+        msclassroom.setEnabled(false);
+        mctimetable.setClassroom(c);
+        mctimetable.setEnabled(true);
+        centerFrame(mctimetable);
+        mctimetable.setVisible(true);
+    }
+    
+    public void SwitchFromCTTtoMCT(Classroom c) {
+        mctimetable = new ModifyClassroomTimetable(this);
+        mctimetable.setClassroom(c);
+        classroomtimetable.setVisible(false);
+        classroomtimetable.setEnabled(false);
+        mctimetable.setEnabled(true);
+        centerFrame(mctimetable);
+        mctimetable.setVisible(true);
+    }
+    
+    public void SwitchFromMCTtoSC() {
+        mctimetable.setVisible(false);
+        mctimetable.setEnabled(false);
+        selectclassroom.setEnabled(true);
+        centerFrame(selectclassroom);
+        selectclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromMCTtoMSC() {
+        mctimetable.setVisible(false);
+        mctimetable.setEnabled(false);
+        msclassroom.setEnabled(true);
+        centerFrame(msclassroom);
+        msclassroom.setVisible(true);
+    }
+    
+    public void SwitchFromRMtoMM() {
+        restrictionmenu.setEnabled(false);
+        restrictionmenu.setVisible(false);
+        mainmenu.setEnabled(true);
+        centerFrame(mainmenu);
+        mainmenu.setVisible(true);
+    }
     //presentation methods
+    
+    public boolean groupRestrictions(Classroom c, GroupSubject GS, int day, int hour) {
+        return DomainCtrl.groupRestrictions(day, hour, c, GS);
+    }
+    
+    public boolean classroomRestrictions(Classroom c, GroupSubject GS, int day, int hour) {
+        return DomainCtrl.classroomRestrictions(day, hour, c, GS);
+    }
+    
+    public void swapGS(Classroom corig, int dorig, int horig, GroupSubject orig, Classroom cdest, int ddest, int hdest, GroupSubject dest) {
+        ClassSubject csorig;
+        ClassSubject csdest;
+        if(!orig.isEmpty()) csorig = new ClassSubject(corig, orig.getSubject());
+        else csorig = new ClassSubject();
+        if(!dest.isEmpty())csdest = new ClassSubject(cdest, dest.getSubject());
+        else csdest = new ClassSubject();
+        if(!dest.isEmpty()) corig.addToClassTimetable(dest, dorig, horig);
+        else corig.removeFromClassTimetable(dorig, horig);
+        if(!orig.isEmpty()) cdest.addToClassTimetable(orig, ddest, hdest);
+        else cdest.removeFromClassTimetable(ddest, hdest);
+        if(!dest.isEmpty())dest.getGroup().addToGroupTimetable(csorig, ddest, hdest);
+        if(!orig.isEmpty())orig.getGroup().addToGroupTimetable(csdest, dorig, horig);
+    }
     
     public DefaultListModel<String> getClassroomsRefs() {
         List<Classroom> classrooms = DomainCtrl.getClassrooms();
@@ -821,7 +964,17 @@ public class PresentationCtrl {
         return refs;
     }
     
-
+    public DefaultListModel<String> getClassroomsRefsType() {
+        List<Classroom> classrooms = DomainCtrl.getClassrooms();
+        Iterator<Classroom> Cit = classrooms.iterator();
+        DefaultListModel<String> refs = new DefaultListModel<>();
+        while(Cit.hasNext()) {
+            Classroom Cact = Cit.next();
+            refs.addElement(Cact.getRef() + " " + Cact.getTypes());
+        }
+        if(refs.size() == 0) refs.addElement("No hi ha cap aula al sistema");
+        return refs;
+    }
     
     public DefaultListModel<String> getProgramsNames() {
         List<StudyProgram> programs = DomainCtrl.getPrograms();
@@ -1179,4 +1332,56 @@ public class PresentationCtrl {
     public void generateGroups(Subject s, int enrolled, int dIni, int dEnd) {
         DomainCtrl.generateGroups(s, enrolled, dIni, dEnd);
     }
+
+    public boolean addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        return DomainCtrl.banSubject(clas,dIni, dEnd, hIni, hEnd, name);
+    }
+    public boolean addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        return DomainCtrl.banGroup(clas, dIni, dEnd, hIni, hEnd, num);
+    }
+
+    public boolean subjectscontain(String name) {
+        return DomainCtrl.containSubject(name);
+    }
+
+    public boolean addResClass(Classroom clas, int dIni, int dEnd, int hIni, int hEnd) {
+        return DomainCtrl.ban(clas, dIni, dEnd, hIni, hEnd);
+    }
+
+    public boolean addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        return DomainCtrl.banClassroom(group, dIni, dEnd, hIni, hEnd, name);
+    }
+
+    public boolean classcontain(String name) {
+        return DomainCtrl.containClass(name);
+    }
+
+    public boolean addGroupRes(Group group, int dIni, int dEnd, int hIni, int hEnd) {
+        return DomainCtrl.ban(group, dIni, dEnd, hIni, hEnd);
+    }
+
+    public boolean addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd) {
+        return DomainCtrl.ban(subgroup, dIni, dEnd, hIni, hEnd);
+    }
+
+    public boolean addsubGroupRes(subGroup subgroup, int dIni, int dEnd, int hIni, int hEnd, String name) {
+        return DomainCtrl.banClassroom(subgroup, dIni, dEnd, hIni, hEnd, name);
+    }
+
+    public void removeRestriction(Classroom clas, int selectedIndex) {
+        DomainCtrl.removeRestriction(clas, selectedIndex);
+    }
+
+    public void removeRestriction(Group g, int selectedIndex) {
+        DomainCtrl.removeRestriction(g, selectedIndex);
+    }
+
+    public void activeRes(int i) {
+        DomainCtrl.activeRes(i);
+    }
+
+    public void disactiveRes(int i) {
+        DomainCtrl.disableRes(i);
+    }
+
 }

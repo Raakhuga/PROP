@@ -121,7 +121,7 @@ public class GroupSubject {
     }
     
     public String getType() {
-        if(type[THEORY]) return "Teoria";
+        if(type[THEORY]) return "Teoría";
         if(type[LABORATORY]) return "Laboratori";
         return "Problemes";
     }

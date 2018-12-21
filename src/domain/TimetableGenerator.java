@@ -284,12 +284,12 @@ public class TimetableGenerator {
         g.removeFromGroupTimetable(day, hour);
     }
     
-    public void ban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
-        g.ban(dIni, dEnd, hIni, hEnd);
+    public boolean ban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
+        return g.ban(dIni, dEnd, hIni, hEnd);
     }
     
-    public void ban(Classroom c, int dIni, int dEnd, int hIni, int hEnd) {
-        c.ban(dIni, dEnd, hIni, hEnd);
+    public boolean ban(Classroom c, int dIni, int dEnd, int hIni, int hEnd) {
+        return c.ban(dIni, dEnd, hIni, hEnd);
     }
     
     public void unban(Group g, int dIni, int dEnd, int hIni, int hEnd) {
@@ -300,12 +300,12 @@ public class TimetableGenerator {
         c.unban(dIni, dEnd, hIni, hEnd);
     }
     
-    public void banSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        g.banSubject(dIni, dEnd, hIni, hEnd, subject);
+    public boolean banSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        return g.banSubject(dIni, dEnd, hIni, hEnd, subject);
     }
     
-    public void banSubject(Classroom c, int dIni, int dEnd, int hIni, int hEnd, String subject) {
-        c.banSubject(dIni, dEnd, hIni, hEnd, subject);
+    public boolean banSubject(Classroom c, int dIni, int dEnd, int hIni, int hEnd, String subject) {
+        return c.banSubject(dIni, dEnd, hIni, hEnd, subject);
     }
     
     public void unbanSubject(Group g, int dIni, int dEnd, int hIni, int hEnd, String subject) {
@@ -316,16 +316,16 @@ public class TimetableGenerator {
         c.unbanSubject(dIni, dEnd, hIni, hEnd, subject);
     }
     
-    public void banClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
-        g.banClassroom(dIni, dEnd, hIni, hEnd, ref);
+    public boolean banClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
+        return g.banClassroom(dIni, dEnd, hIni, hEnd, ref);
     }
 
     public void unbanClassroom(Group g, int dIni, int dEnd, int hIni, int hEnd, String ref) {
         g.unbanClassroom(dIni, dEnd, hIni, hEnd, ref);
     }
     
-    public void banGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
-        c.banGroup(dIni, dEnd, hIni, hEnd, num);
+    public boolean banGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
+        return c.banGroup(dIni, dEnd, hIni, hEnd, num);
     }
     
     public void unbanGroup(Classroom c, int dIni, int dEnd, int hIni, int hEnd, int num) {
@@ -400,6 +400,7 @@ public class TimetableGenerator {
                 if (ctrlRestrictions.classroomRestrictions(i, j, classroom, GS)) {
                     if (ctrlRestrictions.groupRestrictions(i, j, classroom, GS)) {
                         addToTimetable(classroom, GS.getGroup(), GS, new ClassSubject(classroom, GS.getSubject()), i, j);
+                        System.out.println(classroom.getRef());
                         if (!i_generateTimetable(0, pos_problem+1)) {
                             removeFromTimetable(classroom, GS.getGroup(), i, j);
                             return false;
@@ -414,16 +415,16 @@ public class TimetableGenerator {
     
     public void resetTimetables() {
         for(Classroom classroom : classrooms) {
-            classroom.getTimetable().initialize();
+            classroom.getTimetable().initializeGS();
         }
         for(StudyProgram program : programs) {
             for(Level level : program.getLevels()) {
                 for(Subject subject : level.getSubjects()) {
                     for (Group group : subject.getGroups()) {
-                        group.getTimetable().initialize();
+                        group.getTimetable().initializeGS();
                         for(subGroup subgroup : group.getSubGroups()) {
-                            subgroup.getTimetable().initialize();
-                            subgroup.getSubTimetable().initialize();
+                            subgroup.getTimetable().initializeGS();
+                            subgroup.getSubTimetable().initializeGS();
                         }
                     }
                 }
@@ -534,4 +535,44 @@ public class TimetableGenerator {
         g.removeRestriction(id);
     }
 
+    public boolean containSubject(String name) {
+        Iterator<StudyProgram> Rit = programs.iterator();
+        while(Rit.hasNext()) {
+            List<Level> lList = Rit.next().getLevels();
+            Iterator<Level> Lit = lList.iterator();
+            while(Lit.hasNext()) {
+                List<Subject> sList = Lit.next().getSubjects();
+                Iterator<Subject> Sit = sList.iterator();
+                while(Sit.hasNext()){
+                    if (Sit.next().getName().equals(name)) return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public boolean containClass(String name) {
+        Iterator<Classroom> Cit = classrooms.iterator();
+        while(Cit.hasNext()){
+            if (Cit.next().getRef().equals(name)) return true;
+        }
+        return false;
+    }
+
+    public boolean classroomRestrictions(int day, int hour, Classroom classroom, GroupSubject GSNew) {
+        return ctrlRestrictions.classroomRestrictions(day, hour, classroom, GSNew);
+    }
+    
+    public boolean groupRestrictions(int day, int hour, Classroom clasroom, GroupSubject GSNew) {
+        return ctrlRestrictions.groupRestrictions(day, hour, clasroom, GSNew);
+    }
+
+    public void activeRes(int i) {
+        ctrlRestrictions.enableRestriction(i);
+    }
+
+    public void disableRes(int i) {
+        ctrlRestrictions.disableRestriction(i);
+    }
 }

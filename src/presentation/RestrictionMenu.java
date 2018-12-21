@@ -13,6 +13,7 @@ import domain.Subject;
 import domain.subGroup;
 import java.util.List;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,7 +55,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
         add = new javax.swing.JButton();
         remove = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        samelvl = new javax.swing.JCheckBox();
+        hours = new javax.swing.JCheckBox();
         groupRes = new javax.swing.JCheckBox();
         subjectRes = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
@@ -115,13 +116,18 @@ public class RestrictionMenu extends javax.swing.JFrame {
         });
 
         remove.setText("Esborrar");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Restriccions actives:");
 
-        samelvl.setText("Restringir hores");
-        samelvl.addActionListener(new java.awt.event.ActionListener() {
+        hours.setText("Restringir hores");
+        hours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                samelvlActionPerformed(evt);
+                hoursActionPerformed(evt);
             }
         });
 
@@ -204,7 +210,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(checkedName, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkedName, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -226,7 +232,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                                                     .addComponent(jLabel5)
                                                     .addComponent(subjectRes)
                                                     .addComponent(groupRes)
-                                                    .addComponent(samelvl)
+                                                    .addComponent(hours)
                                                     .addComponent(crRes)
                                                     .addComponent(lbtRes))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -249,7 +255,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(back))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(13, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +285,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addGap(10, 10, 10)
-                                .addComponent(samelvl)
+                                .addComponent(hours)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(groupRes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -322,6 +328,18 @@ public class RestrictionMenu extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+        if (hours.isSelected()) presentationctrl.activeRes(0);
+        else presentationctrl.disactiveRes(0);
+        if (groupRes.isSelected()) presentationctrl.activeRes(2);
+        else  presentationctrl.disactiveRes(2);
+        if (subjectRes.isSelected()) presentationctrl.activeRes(1);
+        else presentationctrl.disactiveRes(1);
+        if (lbtRes.isSelected()) presentationctrl.activeRes(4);
+        else presentationctrl.disactiveRes(4);
+        if (crRes.isSelected()) presentationctrl.activeRes(3);
+        else presentationctrl.disactiveRes(3);
+        presentationctrl.SwitchFromRMtoMM();
+        
     }//GEN-LAST:event_backActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -333,14 +351,17 @@ public class RestrictionMenu extends javax.swing.JFrame {
         else if (actual == 2) {
             presentationctrl.SwitchFromRMtoAGR(g);
         }
+        else if (actual == 3){
+            presentationctrl.SwitchFromRMtoAsGR(sG);
+        }
         else {
-            presentationctrl.SwitchFromRMtoAGR(sG);
+             JOptionPane.showMessageDialog(this, "Selecciona una aula, grup o subgrup per afegir una restriccio.", "Atenció:", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_addActionPerformed
 
-    private void samelvlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samelvlActionPerformed
+    private void hoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_samelvlActionPerformed
+    }//GEN-LAST:event_hoursActionPerformed
 
     private void groupResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupResActionPerformed
         // TODO add your handling code here:
@@ -356,6 +377,36 @@ public class RestrictionMenu extends javax.swing.JFrame {
         crScroll.setViewportView(crList);
         SPList.setModel(presentationctrl.getProgramsNames());
         SPScroll.setViewportView(SPList);
+        if (actual != 0) {
+            if (actual == 1) {
+                if (crList.getSelectedIndex() != -1){
+                    presentationctrl.removeRestriction(clas, resList.getSelectedIndex());
+                    int index = crList.getSelectedIndex();
+                    List<Classroom> classrooms = presentationctrl.getClassrooms();
+                    resList.setModel(presentationctrl.getRestrictions(classrooms.get(index)));
+                    resScroll.setViewportView(resList);
+                }
+            }
+            else if (actual == 3) {
+                if(subGroupList.getSelectedIndex() != -1) {
+                    presentationctrl.removeRestriction(g, resList.getSelectedIndex());
+                    int index = groupList.getSelectedIndex();
+                    List<Group> groups = presentationctrl.getGroup(sub);
+                    resList.setModel(presentationctrl.getRestrictions(g));
+                    resScroll.setViewportView(resList);
+                    
+                }
+            }
+            else {
+                if (groupList.getSelectedIndex() != -1) {
+                    int index = subGroupList.getSelectedIndex();
+                    List<subGroup> subgroups = presentationctrl.getsubGroup(g);
+                    resList.setModel(presentationctrl.getRestrictions(subgroups.get(index)));
+                    resScroll.setViewportView(resList);
+                    
+                }
+            }
+        }
     }//GEN-LAST:event_formWindowActivated
 
     private void crListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crListMouseClicked
@@ -382,7 +433,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
             List<StudyProgram> stuydyprograms = presentationctrl.getSP();
             sp = stuydyprograms.get(index);
             lvlList.setModel(presentationctrl.getLevel(stuydyprograms.get(index)));
-            lvlScroll.setViewportView(SPList);
+            lvlScroll.setViewportView(lvlList);
         }
     }//GEN-LAST:event_SPListMouseClicked
 
@@ -444,6 +495,40 @@ public class RestrictionMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_subGroupListMouseClicked
 
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+        // TODO add your handling code here:
+        if (resList.getSelectedIndex() != -1) {
+            if (actual == 1) {
+                presentationctrl.removeRestriction(clas, resList.getSelectedIndex());
+                int index = crList.getSelectedIndex();
+                List<Classroom> classrooms = presentationctrl.getClassrooms();
+                resList.setModel(presentationctrl.getRestrictions(classrooms.get(index)));
+                resScroll.setViewportView(resList);
+            }
+            else if (actual == 2) {
+                presentationctrl.removeRestriction(g, resList.getSelectedIndex());
+                int index = groupList.getSelectedIndex();
+                List<Group> groups = presentationctrl.getGroup(sub);
+                resList.setModel(presentationctrl.getRestrictions(g));
+                resScroll.setViewportView(resList);
+                
+            }
+            else if (actual == 3){
+                presentationctrl.removeRestriction(sG, resList.getSelectedIndex());
+                int index = subGroupList.getSelectedIndex();
+                List<subGroup> subgroups = presentationctrl.getsubGroup(g);
+                resList.setModel(presentationctrl.getRestrictions(subgroups.get(index)));
+                resScroll.setViewportView(resList);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Selecciona una aula, grup o subgrup per esborrar una restriccio.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Selecciona una aula, grup o subgrup per esborrar una restriccio.", "Atenció:", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_removeActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -458,6 +543,7 @@ public class RestrictionMenu extends javax.swing.JFrame {
     private javax.swing.JList<String> groupList;
     private javax.swing.JCheckBox groupRes;
     private javax.swing.JScrollPane groupScroll;
+    private javax.swing.JCheckBox hours;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -467,14 +553,12 @@ public class RestrictionMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JCheckBox lbtRes;
     private javax.swing.JList<String> lvlList;
     private javax.swing.JScrollPane lvlScroll;
     private javax.swing.JButton remove;
     private javax.swing.JList<String> resList;
     private javax.swing.JScrollPane resScroll;
-    private javax.swing.JCheckBox samelvl;
     private javax.swing.JList<String> subGroupList;
     private javax.swing.JScrollPane subGroupScroll;
     private javax.swing.JScrollPane subScroll;
